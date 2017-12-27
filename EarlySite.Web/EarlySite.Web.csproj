@@ -149,28 +149,28 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Themes\Scripts\earlysiteCommon.js" />
+    <Content Include="Themes\Style\bootstrap.css" />
+    <Content Include="Themes\Style\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Themes\Style\Site.css" />
+    <Content Include="Themes\expandAssembly\bootstrap.js" />
+    <Content Include="Themes\expandAssembly\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
+    <None Include="Themes\expandAssembly\jquery-1.10.2.intellisense.js" />
+    <Content Include="Themes\expandAssembly\jquery-1.10.2.js" />
+    <Content Include="Themes\expandAssembly\jquery-1.10.2.min.js" />
+    <None Include="Themes\expandAssembly\jquery.validate-vsdoc.js" />
+    <Content Include="Themes\expandAssembly\jquery.validate.js" />
+    <Content Include="Themes\expandAssembly\jquery.validate.min.js" />
+    <Content Include="Themes\expandAssembly\jquery.validate.unobtrusive.js" />
+    <Content Include="Themes\expandAssembly\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Themes\expandAssembly\respond.js" />
+    <Content Include="Themes\expandAssembly\respond.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -182,12 +182,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +198,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Themes\expandAssembly\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
+      <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
+      <Name>EarlySite.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
