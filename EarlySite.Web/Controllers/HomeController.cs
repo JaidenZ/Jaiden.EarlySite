@@ -10,9 +10,16 @@ namespace EarlySite.Web.Controllers
     {
         public ActionResult Index()
         {
+
+
             return View();
         }
 
+        public ActionResult Test()
+        {
+            throw new Exception("Test ");
+            return View();
+        }
 
     }
 }

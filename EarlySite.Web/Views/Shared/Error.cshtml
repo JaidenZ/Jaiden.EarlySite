@@ -8,61 +8,91 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>系统异常</title>
+    <title>EarlySite 丨 404 NotFound</title>
     <style type="text/css">
-        body {
-            height: 100%;
+
+        <!--
+        * {
+            font-family: 'Lato';
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
             width: 100%;
-            background: #ffffff;
-            font-size: 13px;
-            font-family: Arial, 'Microsoft Yahei', sans-serif;
-        }
-
-        .errow-warp {
-            padding-top: 75px;
+            height: 100%;
             text-align: center;
+            letter-spacing: 0.2rem;
         }
 
-            .errow-warp h3 {
-                padding: 15px 0px;
-                color: #484848;
-                font-size: 16px;
-                line-height: 25px;
-                font-weight: normal;
-                font-family: Arial, 'Microsoft Yahei', sans-serif;
-            }
+        #container {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate(0,-50%);
+            -ms-transform: translate(0,-50%);
+            transform: translate(0,-50%);
+            z-index: 1;
+        }
 
-            .errow-warp a {
-                display: inline-block;
-                width: 100px;
-                height: 40px;
-                margin: 0px 10px;
-                border-radius: 5px;
-                background: #fe7853;
-                color: #ffffff;
-                font-size: 14px;
-                line-height: 40px;
-                text-align: center;
-            }
+        h1 {
+            font-size: 1.5rem;
+            font-size: calc(1.2rem + 2vmin);
+            font-weight: normal;
+        }
 
-                .errow-warp a:hover {
-                    background: #d76546;
-                }
+        #bar {
+            border-bottom: solid 1px #000;
+            width: 0;
+            margin-top: 10px;
+        }
 
-        a, a:link {
-            cursor: pointer;
+        p {
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #000;
+            padding-bottom: 5px;
             text-decoration: none;
+            border-bottom: 1px #000 dashed;
         }
+        -->
     </style>
 </head>
 <body>
-    <div class="errow-warp">
+    <div id="container">
+        <h1>404 Not Found</h1>
+        <div id="bar" style="width:0%"></div>
         <p>
-            <img src="~/Themes/Images/errow_icon.png" />
+            Redirect to <a href="@Url.Action("Index","Home")">top page</a>.
         </p>
-        <h2>@Html.Raw(Model.Message)</h2>
-        <h3>Oops! @Html.Raw(Model == null || Model.Data == null || string.IsNullOrEmpty(Model.Data.ToString()) ? "系统繁忙，请稍后~" : Model.Data.ToString()) </h3>
-        <p><a onclick="window.history.back(-1)" class="mr20">重试</a><a href="@Url.Action("Index","Home")" target="_top">返回主页</a></p>
     </div>
+    @Scripts.Render("~/Themes/assembly/jquery")
+    <script type="text/javascript">
+        var redirectTime = 0;
+        var interval = 0;
+        function showBar() {
+
+            if (redirectTime < 1000) {
+                var parentWidth = $('#container').width();
+                var currentBarWidth = parentWidth * (redirectTime / 1000);
+                $("#bar").width(currentBarWidth);
+                redirectTime += 2;
+                
+            }
+            else {
+                clearInterval(interval);
+                var parentWidth = $('#container').width();
+                $("#bar").width(parentWidth);
+                window.location.href = "@Url.Action("Index", "Home")";
+            }
+        }
+        $(function () {
+             interval = setInterval(() => { showBar(); }, 2);
+        });
+
+    </script>
 </body>
 </html>
