@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.Web", "EarlySite.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.Core", "EarlySite.Core\EarlySite.Core.csproj", "{1622D25B-A25D-4640-B5E6-413E7F3A3A87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.SModel.cs", "EarlySite.SModel.cs\EarlySite.SModel.cs.csproj", "{D889EBF6-62F6-4BFF-B537-9830BAA24953}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1622D25B-A25D-4640-B5E6-413E7F3A3A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1622D25B-A25D-4640-B5E6-413E7F3A3A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1622D25B-A25D-4640-B5E6-413E7F3A3A87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D889EBF6-62F6-4BFF-B537-9830BAA24953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D889EBF6-62F6-4BFF-B537-9830BAA24953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D889EBF6-62F6-4BFF-B537-9830BAA24953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D889EBF6-62F6-4BFF-B537-9830BAA24953}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

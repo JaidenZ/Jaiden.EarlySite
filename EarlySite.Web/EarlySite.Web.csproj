@@ -142,6 +142,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -149,6 +150,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Themes\Images\errow_icon.png" />
     <Content Include="Themes\Scripts\earlysiteCommon.js" />
     <Content Include="Themes\Style\bootstrap.css" />
     <Content Include="Themes\Style\bootstrap.min.css" />
@@ -186,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -204,6 +207,10 @@
     <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
       <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
       <Name>EarlySite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.SModel.cs.csproj">
+      <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
+      <Name>EarlySite.SModel.cs</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

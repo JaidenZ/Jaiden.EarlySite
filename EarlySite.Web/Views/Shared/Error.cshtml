@@ -1,14 +1,68 @@
-﻿<!DOCTYPE html>
+﻿@model EarlySite.SModel.Result<Exception>
+
+@{
+    Layout = null;
+}
+<!doctype html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>错误</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统异常</title>
+    <style type="text/css">
+        body {
+            height: 100%;
+            width: 100%;
+            background: #ffffff;
+            font-size: 13px;
+            font-family: Arial, 'Microsoft Yahei', sans-serif;
+        }
+
+        .errow-warp {
+            padding-top: 75px;
+            text-align: center;
+        }
+
+            .errow-warp h3 {
+                padding: 15px 0px;
+                color: #484848;
+                font-size: 16px;
+                line-height: 25px;
+                font-weight: normal;
+                font-family: Arial, 'Microsoft Yahei', sans-serif;
+            }
+
+            .errow-warp a {
+                display: inline-block;
+                width: 100px;
+                height: 40px;
+                margin: 0px 10px;
+                border-radius: 5px;
+                background: #fe7853;
+                color: #ffffff;
+                font-size: 14px;
+                line-height: 40px;
+                text-align: center;
+            }
+
+                .errow-warp a:hover {
+                    background: #d76546;
+                }
+
+        a, a:link {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <hgroup>
-        <h1>错误。</h1>
-        <h2>处理你的请求时出错。</h2>
-    </hgroup>
+    <div class="errow-warp">
+        <p>
+            <img src="~/Themes/Images/errow_icon.png" />
+        </p>
+        <h2>@Html.Raw(Model.Message)</h2>
+        <h3>Oops! @Html.Raw(Model == null || Model.Data == null || string.IsNullOrEmpty(Model.Data.ToString()) ? "系统繁忙，请稍后~" : Model.Data.ToString()) </h3>
+        <p><a onclick="window.history.back(-1)" class="mr20">重试</a><a href="@Url.Action("Index","Home")" target="_top">返回主页</a></p>
+    </div>
 </body>
 </html>
