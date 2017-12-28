@@ -19,16 +19,12 @@
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //验证登录信息或其他
-
             base.OnActionExecuting(filterContext);
         }
 
 
         protected override void HandleUnknownAction(string actionName)
         {
-
-
-
             base.HandleUnknownAction(actionName);
         }
 
