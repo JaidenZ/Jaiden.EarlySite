@@ -25,8 +25,10 @@
 
         protected override void HandleUnknownAction(string actionName)
         {
-            base.HandleUnknownAction(actionName);
+            //Response.Redirect("/", true);
+            this.View("Error").ExecuteResult(this.ControllerContext);
         }
+        
 
         /// <summary>
         /// 重写异常
