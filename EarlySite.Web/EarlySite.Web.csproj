@@ -210,9 +210,9 @@
       <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
       <Name>EarlySite.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.SModel.cs.csproj">
+    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.SModel.csproj">
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
-      <Name>EarlySite.SModel.cs</Name>
+      <Name>EarlySite.SModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

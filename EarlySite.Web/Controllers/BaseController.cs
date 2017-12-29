@@ -10,7 +10,17 @@
         {
             ViewBag.Title = "EarlySite";
         }
-
+        
+        /// <summary>
+        /// 当前登录账户
+        /// </summary>
+        protected Account CurrentAccount
+        {
+            get
+            {
+                return new Account();
+            }
+        }
 
         /// <summary>
         /// 重写调用方法前操作
