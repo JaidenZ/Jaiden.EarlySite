@@ -1,0 +1,12 @@
+﻿.efont {
+    font-family: 'Lato';
+    margin: 0;
+    padding: 0;
+}
+
+.ea {
+    color: #000;
+    padding-bottom: 5px;
+    text-decoration: none;
+    border-bottom: 1px #000 dashed;
+}

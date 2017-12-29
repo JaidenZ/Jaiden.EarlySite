@@ -22,7 +22,8 @@ namespace EarlySite.Web
 
             bundles.Add(new StyleBundle("~/Themes/Style").Include(
                       "~/Themes/Style/bootstrap.css",
-                      "~/Themes/Style/site.css"));
+                      "~/Themes/Style/site.css",
+                      "~/Themes/Style/common.css"));
         }
     }
 }
