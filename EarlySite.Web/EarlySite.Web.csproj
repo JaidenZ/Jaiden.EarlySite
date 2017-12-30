@@ -142,8 +142,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -152,6 +154,7 @@
   <ItemGroup>
     <Content Include="Themes\Images\error-connection-failure.svg" />
     <Content Include="Themes\Images\errow_icon.png" />
+    <Content Include="Themes\Images\signback.png" />
     <Content Include="Themes\Scripts\earlysiteCommon.js" />
     <Content Include="Themes\Style\bootstrap.css" />
     <Content Include="Themes\Style\bootstrap.min.css" />
@@ -187,6 +190,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

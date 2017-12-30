@@ -11,9 +11,9 @@
     <div class="container-fluid">
         <div class="col-xs-2">
             <ul class="nav-list">
-                <li><a href="@Url.Action("Index","Home")">DEMON1</a></li>
-                <li>DEMON2</li>
-                <li>DEMON3</li>
+                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                <li><a href="@Url.Action("Index","Profile")">Profile</a></li>
+                <li><a href="@Url.Action("Login","Account")">Login</a></li>
                 <li>DEMON4</li>
             </ul>
 
@@ -34,7 +34,7 @@
 
     @Scripts.Render("~/Themes/assembly/jquery")
     @Scripts.Render("~/Themes/assembly/bootstrap")
-    @Scripts.Render("~/Themes/Scripts");
+    @Scripts.Render("~/Themes/Scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
