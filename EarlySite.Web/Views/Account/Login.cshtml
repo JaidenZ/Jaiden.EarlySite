@@ -9,206 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LognIn -EearlySite</title>
-    <style type="text/css">
-        body {
-            margin: 0;
-            font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
-            font-size: 15px;
-            color: #262626;
-            background: #f3f3f3;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-        }
-
-        .App-main {
-            display: block;
-        }
-
-        .EntrySign-body {
-            overflow: hidden;
-        }
-
-        .Card {
-            margin-bottom: 10px;
-            background: #fff;
-            overflow: hidden;
-            border-radius: 2px;
-            -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.1);
-            box-shadow: 0 1px 3px rgba(0,0,0,.1);
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .SignFlowHomepage {
-            background-image: url(../../Themes/Images/signback.png);
-            background-repeat: no-repeat;
-            background-color: #fff;
-            background-size: cover;
-            width: 100%;
-            height: 100vh;
-            overflow: auto;
-            padding-right: 15px;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-        }
-
-
-        .SignFlowHomepage-content {
-            -webkit-box-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            border-radius: 2px;
-            min-height: calc(100vh - 42px);
-            padding: 54px 0;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .SignFlowHeader {
-            padding-top: 30px;
-        }
-
-        .SignFlowHeader-slogen {
-            margin-top: 15px;
-            color: #4a90e2;
-            font-size: 22px;
-        }
-
-        .SignContainer-content {
-            width: 432px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-            .SignContainer-content .Input-wrapper {
-                width: 100%;
-                height: 48px;
-                padding: 0;
-                color: #8590a6;
-                border: none;
-                border-bottom: 1px solid #e7eaf1;
-                border-radius: 0;
-            }
-
-                .SignContainer-content .Input-wrapper.is-focus {
-                    border: none;
-                    border-bottom: 1px solid #e7eaf1;
-                }
-
-            .SignContainer-content .SignFlow-accountInput.Input-wrapper, .SignContainer-content .SignFlow-accountInput.Input-wrapper.is-focus {
-                border: none;
-            }
-
-            .SignContainer-content input:-webkit-autofill {
-                -webkit-box-shadow: 0 0 0 30px #fff inset;
-            }
-
-            .SignContainer-content .SignFlow-captchaContainer:not(.Captcha-chinese), .SignContainer-content .SignFlow-password, .SignContainer-content .SignFlow-username {
-                border-bottom: 1px solid #e7eaf1;
-            }
-
-                .SignContainer-content .SignFlow-captchaContainer:not(.Captcha-chinese) .Input-wrapper, .SignContainer-content .SignFlow-password .Input-wrapper, .SignContainer-content .SignFlow-username .Input-wrapper {
-                    border-bottom: none !important;
-                }
-
-        .SignContainer-inner {
-            position: relative;
-        }
-
-
-        .SignFlowHeader {
-            padding-top: 30px;
-        }
-
-        .SignFlowHeader-slogen {
-            margin-top: 15px;
-            color: #4a90e2;
-            font-size: 22px;
-        }
-
-        .SignContainer-content {
-            width: 432px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-            .SignContainer-content .Input-wrapper {
-                width: 100%;
-                height: 48px;
-                padding: 0;
-                color: #8590a6;
-                border: none;
-                border-bottom: 1px solid #e7eaf1;
-                border-radius: 0;
-            }
-
-                .SignContainer-content .Input-wrapper.is-focus {
-                    border: none;
-                    border-bottom: 1px solid #e7eaf1;
-                }
-
-            .SignContainer-content .SignFlow-accountInput.Input-wrapper, .SignContainer-content .SignFlow-accountInput.Input-wrapper.is-focus {
-                border: none;
-            }
-
-            .SignContainer-content input:-webkit-autofill {
-                -webkit-box-shadow: 0 0 0 30px #fff inset;
-            }
-
-            .SignContainer-content .SignFlow-captchaContainer:not(.Captcha-chinese), .SignContainer-content .SignFlow-password, .SignContainer-content .SignFlow-username {
-                border-bottom: 1px solid #e7eaf1;
-            }
-
-                .SignContainer-content .SignFlow-captchaContainer:not(.Captcha-chinese) .Input-wrapper, .SignContainer-content .SignFlow-password .Input-wrapper, .SignContainer-content .SignFlow-username .Input-wrapper {
-                    border-bottom: none !important;
-                }
-
-        .SignContainer-inner {
-            position: relative;
-        }
-
-        .Login-content {
-            padding: 0 40px 36px;
-        }
-
-            .Login-content .Login-footer {
-                -webkit-box-align: center;
-                -ms-flex-align: center;
-                align-items: center;
-                -webkit-box-pack: center;
-                -ms-flex-pack: center;
-                justify-content: center;
-                line-height: 25px;
-            }
-
-            .Login-content .Login-footer, .Login-options {
-                display: -webkit-box;
-                display: -ms-flexbox;
-                display: flex;
-            }
-    </style>
-
-
+    <link href="~/Themes/Style/AccountLogin.css" rel="stylesheet" />
 </head>
 <body class="EntrySign-body">
     <div class="App-main">
@@ -221,13 +22,33 @@
                         </div>
                     </div>
                     <div class="SignContainer-inner">
+                        <div class="Login-content">
+                            <form id="loginform">
+                                <div class="SignFlow-account">
+                                    <div class="SignFlowInput">
+                                        <div class="SignFlow-accountInput Input-wrapper">
+                                            <input id="usernameinput" value="" name="username" class="Input" placeholder="手机号或邮箱" data-reactid="26" type="text">
+                                        </div>
+                                        <div id="usernameerrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请输入手机号码</div>
+                                    </div>
+                                </div>
 
-                        <div class="Login-content"></div>
+                                <div class="SignFlow-password">
+                                    <div class="SignFlowInput">
+                                        <div class="SignFlow-accountInput Input-wrapper">
+                                            <input id="passwordinput" value="" name="username" class="Input" placeholder="密码" data-reactid="26" type="password">
+                                        </div>
+                                        <div id="passworderrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请输入密码</div>
+                                    </div>
+                                </div>
 
+                                <div class="Login-options">
+                                    <button class="Button Login-cannotLogin Button--plain">忘记密码?</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -235,5 +56,42 @@
     @Scripts.Render("~/Themes/assembly/jquery")
     @Scripts.Render("~/Themes/assembly/bootstrap")
     @Scripts.Render("~/Themes/Scripts")
+    <script type="text/javascript">
+
+
+        $(function () {
+            $("#usernameerrormask").hide();
+            $("#passworderrormask").hide();
+
+        });
+
+        $('#usernameerrormask').click(function () {
+            $('#usernameerrormask').hide(300);
+            $('#usernameinput').click();
+        });
+
+        $('#usernameinput').blur(function () {
+            var inputtext = $('#usernameinput').val();
+            if (inputtext == null || inputtext == "" || inputtext == undefined) {
+                $('#usernameerrormask').show(300);
+            }
+        });
+
+        $('#passworderrormask').click(function () {
+            $('#passworderrormask').hide(300);
+            $('#passwordinput').click();
+        });
+
+        $('#passwordinput').blur(function () {
+            var inputtext = $('#passwordinput').val();
+            if (inputtext == null || inputtext == "" || inputtext == undefined) {
+                $('#passworderrormask').show(300);
+            }
+        });
+
+        
+
+        
+    </script>
 </body>
 </html>
