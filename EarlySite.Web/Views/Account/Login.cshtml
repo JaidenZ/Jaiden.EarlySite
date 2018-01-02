@@ -74,7 +74,7 @@
         $('#usernameinput').blur(function () {
             var inputtext = $('#usernameinput').val();
             if (inputtext == null || inputtext == "" || inputtext == undefined) {
-                $('#usernameerrormask').val('请输入登录信息');
+                $('#usernameerrormask').html('请输入登录信息');
                 $('#usernameerrormask').show(300);
             }
         });
@@ -87,7 +87,7 @@
         $('#passwordinput').blur(function () {
             var inputtext = $('#passwordinput').val();
             if (inputtext == null || inputtext == "" || inputtext == undefined) {
-                $('#passworderrormask').val('请输入密码');
+                $('#passworderrormask').html('请输入密码');
                 $('#passworderrormask').show(300);
             }
         });
@@ -118,7 +118,19 @@
                 url: '@Url.Action("LoginRequest","Account")',
                 data: { account : loginaccount },
                 success: function (result) {
-                    alert(result.Message);
+                    if (!result.Status) {
+                        if (result.StatusCode.indexOf('LG10') != -1) {
+                            $('#usernameerrormask').html(result.Message);
+                            $('#usernameerrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('LG11') != -1) {
+                            $('#passworderrormask').html(result.Message);
+                            $('#passworderrormask').show(300);
+                        }
+                    }
+                    else {
+                        window.location = '@Url.Action("Index","Home")';
+                    }
                 },
                 error: function (error) {
                     alert("Ajax send error");
