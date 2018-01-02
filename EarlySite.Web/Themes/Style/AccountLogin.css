@@ -311,3 +311,222 @@ body {
     .Login-cannotLogin:hover {
         color: #7a8599
     }
+
+.SignFlow input {
+    height: 48px
+}
+
+    .SignFlow input::-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 1000px #fff inset !important
+    }
+
+    .SignFlow input[type=number] {
+        -moz-appearance: textfield
+    }
+
+.SignFlow .SignFlow-accountInput, .SignFlow .SignFlow-smsInput {
+    width: auto
+}
+
+.SignFlow-submitButton {
+    width: 100%;
+    margin-top: 30px;
+    height: 36px
+}
+
+.Button {
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid #ccd8e1;
+    border-radius: 3px
+}
+
+    .Button::-moz-focus-inner {
+        padding: 0;
+        border: 0
+    }
+
+    .Button:focus {
+        outline: none
+    }
+
+    .Button:disabled {
+        cursor: default;
+        opacity: .5
+    }
+
+    .Button:hover {
+        background-color: rgba(207,216,230,.1)
+    }
+
+        .Button:hover:disabled {
+            background-color: transparent;
+            background-color: initial
+        }
+
+.Button--grey:hover {
+    color: #abb6c5;
+    border: 1px solid #abb6c5
+}
+
+.Button--grey, .Button--grey:disabled {
+    color: #c3ccd9;
+    border: 1px solid #c3ccd9
+}
+
+.Button--blue {
+    color: #0f88eb;
+    border: 1px solid #0f88eb
+}
+
+    .Button--blue:hover {
+        background-color: rgba(13,121,209,.06)
+    }
+
+    .Button--blue:disabled {
+        background-color: transparent;
+        background-color: initial
+    }
+
+.Button--green {
+    color: #11a668;
+    border: 1px solid #11a668
+}
+
+    .Button--green:hover {
+        background-color: rgba(8,166,100,.06)
+    }
+
+    .Button--green:disabled {
+        background-color: transparent;
+        background-color: initial
+    }
+
+.Button--red {
+    color: #f75659;
+    border: 1px solid #f75659
+}
+
+    .Button--red:hover {
+        background-color: rgba(247,86,89,.06)
+    }
+
+    .Button--red:disabled {
+        background-color: transparent;
+        background-color: initial
+    }
+
+.Button--primary.Button--blue {
+    color: #fff
+}
+
+    .Button--primary.Button--blue:hover {
+        background-color: #0d79d1
+    }
+
+    .Button--primary.Button--blue, .Button--primary.Button--blue:disabled {
+        background: #0f88eb
+    }
+
+.Button--primary.Button--green {
+    color: #fff;
+    border-color: #12b370
+}
+
+    .Button--primary.Button--green:hover {
+        background-color: #08a369
+    }
+
+    .Button--primary.Button--green, .Button--primary.Button--green:disabled {
+        background: #12b370
+    }
+
+.Button--primary.Button--red {
+    color: #fff
+}
+
+    .Button--primary.Button--red:hover {
+        background-color: #ed4e50
+    }
+
+    .Button--primary.Button--red, .Button--primary.Button--red:disabled {
+        background: #f75659;
+        border-color: #f75659
+    }
+
+.Button--primary.Button--grey {
+    color: #fff
+}
+
+    .Button--primary.Button--grey:hover {
+        background: #abb6c5;
+        border: 1px solid #abb6c5
+    }
+
+    .Button--primary.Button--grey, .Button--primary.Button--grey:disabled {
+        background: #c3ccd9;
+        border: 1px solid #c3ccd9
+    }
+
+.Button--spread {
+    width: 100%
+}
+
+.Button-icon {
+    margin-right: 7px
+}
+
+.Button--plain .Button-icon {
+    margin-right: 6px
+}
+
+.Button--blue .Button-icon, .Button--green .Button-icon, .Button--red .Button-icon {
+    fill: currentColor
+}
+
+.Button--link, .Button--plain {
+    height: auto;
+    padding: 0;
+    line-height: inherit;
+    background-color: transparent;
+    border: none;
+    border-radius: 0
+}
+
+    .Button--link:hover, .Button--plain:hover {
+        background-color: transparent
+    }
+
+    .Button--plain:hover {
+        color: #7a8599
+    }
+
+.Button--link {
+    color: #175199
+}
+
+.Button--withIcon.Button--iconOnly {
+    padding: 0 4px
+}
+
+.Button--withIcon.Button--link, .Button--withIcon.Button--plain {
+    padding: 0
+}
+
+.Button--withIcon.Button--withLabel .Button-zi {
+    margin-right: 4px
+}
+
+.Button--withIcon.Button--plain .Button-zi {
+    fill: #9fadc7
+}
+
+.Button--withIcon.Button--plain:hover .Button-zi {
+    fill: #95a1ba
+}
