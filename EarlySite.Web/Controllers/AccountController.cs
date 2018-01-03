@@ -24,11 +24,38 @@ namespace EarlySite.Web.Controllers
         [HttpPost]
         public JsonResult LoginRequest(LoginRequest account)
         {
-            Result loginresult = VerificationAccount(account.LoginUsername, account.LoginSecurity);
+            Result loginresult = new Result()
+            {
+                Status = true,
+                Message = "",
+                StatusCode = ""
+            };
 
+            if (LastSubmitDate != null)
+            {
+                DateTime now = DateTime.Now;
+                double seconds = now.Subtract(LastSubmitDate).TotalMilliseconds;
+                if(seconds < 1000 * 5)
+                {
+                    loginresult.Status = false;
+                    loginresult.Message = "操作过于频繁";
+                    loginresult.StatusCode = "LG000";
+                }
+            }
+
+
+            loginresult = VerificationAccount(account.LoginUsername, account.LoginSecurity);
+
+            LastSubmitDate = DateTime.Now;
             return Json(loginresult);
         }
 
+        /// <summary>
+        /// 验证账户有效性
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         private Result VerificationAccount(string username,string password)
         {
             Result loginresult = new Result()

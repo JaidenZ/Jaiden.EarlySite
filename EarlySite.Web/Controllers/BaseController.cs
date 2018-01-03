@@ -23,6 +23,16 @@
         }
 
         /// <summary>
+        /// 上次提交日期
+        /// </summary>
+        protected DateTime LastSubmitDate
+        {
+            get;
+            set;
+        }
+
+
+        /// <summary>
         /// 重写调用方法前操作
         /// </summary>
         /// <param name="filterContext"></param>
