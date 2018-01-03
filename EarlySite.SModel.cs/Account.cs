@@ -10,7 +10,7 @@
         /// <summary>
         /// 手机号
         /// </summary>
-        public int Phone { get; set; }
+        public long Phone { get; set; }
         
         /// <summary>
         /// 电子邮箱地址

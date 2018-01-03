@@ -1,4 +1,5 @@
-﻿using EarlySite.SModel;
+﻿using EarlySite.Core.Utils;
+using EarlySite.SModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,22 +32,38 @@ namespace EarlySite.Web.Controllers
                 StatusCode = ""
             };
 
-            if (LastSubmitDate != null)
+            
+            string lastdate = CookieUtils.Get("lastSubmit");
+            if (string.IsNullOrEmpty(lastdate))
+            {
+                CookieUtils.SetCookie("lastSubmit",DateTime.Now.ToString());
+            }
+            else
             {
                 DateTime now = DateTime.Now;
-                double seconds = now.Subtract(LastSubmitDate).TotalMilliseconds;
-                if(seconds < 1000 * 5)
+                CookieUtils.SetCookie("lastSubmit", now.ToString());
+                double seconds = now.Subtract(Convert.ToDateTime(lastdate)).TotalMilliseconds;
+                if (seconds < 1000 * 5)
                 {
                     loginresult.Status = false;
-                    loginresult.Message = "操作过于频繁";
+                    loginresult.Message = "操作过于频繁,请稍后再试";
                     loginresult.StatusCode = "LG000";
                 }
             }
 
+            if (loginresult.Status)
+            {
+                loginresult = VerificationAccount(account.LoginUsername, account.LoginSecurity);
+            }
 
-            loginresult = VerificationAccount(account.LoginUsername, account.LoginSecurity);
+            if (loginresult.Status)
+            {
+                
 
-            LastSubmitDate = DateTime.Now;
+                base.CurrentAccount = new Account() { NickName = "hello" };
+            }
+
+
             return Json(loginresult);
         }
 
@@ -56,7 +73,7 @@ namespace EarlySite.Web.Controllers
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        private Result VerificationAccount(string username,string password)
+        private Result VerificationAccount(string username, string password)
         {
             Result loginresult = new Result()
             {
@@ -73,10 +90,10 @@ namespace EarlySite.Web.Controllers
             }
             else
             {
-                int phone = 0;
-                if(int.TryParse(username,out phone))
+                Int64 phone = 0;
+                if (Int64.TryParse(username, out phone))
                 {
-                    if(username.Length != 11)
+                    if (username.Length != 11)
                     {
                         loginresult.Status = false;
                         loginresult.StatusCode = "LG102";

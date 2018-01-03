@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.SModel", "EarlySi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.Business", "EarlySite.Business\EarlySite.Business.csproj", "{DFEA73B0-7091-48B8-8F17-6C0962C41464}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EarlySite.Drms", "EarlySite.Drms\EarlySite.Drms.csproj", "{674EF399-F450-457C-99DE-54B3980A5672}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DFEA73B0-7091-48B8-8F17-6C0962C41464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFEA73B0-7091-48B8-8F17-6C0962C41464}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFEA73B0-7091-48B8-8F17-6C0962C41464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{674EF399-F450-457C-99DE-54B3980A5672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{674EF399-F450-457C-99DE-54B3980A5672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{674EF399-F450-457C-99DE-54B3980A5672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{674EF399-F450-457C-99DE-54B3980A5672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

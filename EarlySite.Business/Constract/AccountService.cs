@@ -19,7 +19,15 @@
 
         public Result<Account> SignIn(string signInCode, string securityCode)
         {
-            throw new System.NotImplementedException();
+            Result<Account> result = new Result<Account>();
+
+            Account account = new Account();
+            account.NickName = "Jaiden";
+            account.Phone = 18502850589;
+
+            result.Status = true;
+            result.Data = account;
+            return result;
         }
     }
 }

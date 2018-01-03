@@ -20,17 +20,12 @@
             {
                 return new Account();
             }
+            set
+            {
+                
+            }
         }
-
-        /// <summary>
-        /// 上次提交日期
-        /// </summary>
-        protected DateTime LastSubmitDate
-        {
-            get;
-            set;
-        }
-
+        
 
         /// <summary>
         /// 重写调用方法前操作
@@ -38,7 +33,7 @@
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //验证登录信息或其他  
+            //验证登录信息或其他
             base.OnActionExecuting(filterContext);
         }
 

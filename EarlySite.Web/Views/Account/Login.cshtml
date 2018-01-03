@@ -110,7 +110,6 @@
             var loginaccount = {};
             loginaccount.LoginUsername = username;
             loginaccount.LoginSecurity = password;
-            loginaccount.VerificationCode = "DP28";
 
             $.ajax({
                 type: "POST",
@@ -125,6 +124,12 @@
                         }
                         if (result.StatusCode.indexOf('LG11') != -1) {
                             $('#passworderrormask').html(result.Message);
+                            $('#passworderrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('LG000') != -1) {
+                            $('#passwordinput').val("");
+                            $('#passworderrormask').html(result.Message);
+                            $('#usernameerrormask').hide(300);
                             $('#passworderrormask').show(300);
                         }
                     }
