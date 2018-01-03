@@ -1,4 +1,8 @@
-﻿.efont {
+﻿body{
+    padding-top:70px;
+}
+
+.efont {
     font-family: 'Lato';
     margin: 0;
     padding: 0;
