@@ -49,7 +49,7 @@
       <Project>{674ef399-f450-457c-99de-54b3980a5672}</Project>
       <Name>EarlySite.Drms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.Model.csproj">
+    <ProjectReference Include="..\EarlySite.Model\EarlySite.Model.csproj">
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
       <Name>EarlySite.Model</Name>
     </ProjectReference>
