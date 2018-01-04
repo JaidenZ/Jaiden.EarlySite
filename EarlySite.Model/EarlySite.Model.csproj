@@ -41,6 +41,7 @@
     <Compile Include="Show\LoginRequest.cs" />
     <Compile Include="Common\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Show\RegistRequest.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
