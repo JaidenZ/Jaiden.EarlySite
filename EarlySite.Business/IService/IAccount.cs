@@ -1,6 +1,7 @@
 ﻿namespace EarlySite.Business.IService
 {
-    using EarlySite.SModel;
+    using Model.Show;
+    using Model.Common;
 
     public interface IAccount : IService
     {

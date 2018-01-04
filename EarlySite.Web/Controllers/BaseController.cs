@@ -1,6 +1,10 @@
 ﻿namespace EarlySite.Web.Controllers
 {
-    using EarlySite.SModel;
+    using Core.Utils;
+    using EarlySite.Cache;
+    using EarlySite.Model.Common;
+    using EarlySite.Model.Database;
+    using EarlySite.Model.Show;
     using System;
     using System.Web.Mvc;
 
@@ -18,11 +22,7 @@
         {
             get
             {
-                return new Account();
-            }
-            set
-            {
-                
+                return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
             }
         }
         
@@ -34,6 +34,23 @@
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //验证登录信息或其他
+            if(CurrentAccount == null)
+            {
+                if (filterContext.HttpContext.Request.IsAjaxRequest())
+                {
+                    filterContext.Result = Json(new
+                    {
+                        IsLogout = true
+                    }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    filterContext.Result = Redirect(Url.Action("Login", "Account"));
+                }
+            }
+
+
+
             base.OnActionExecuting(filterContext);
         }
 

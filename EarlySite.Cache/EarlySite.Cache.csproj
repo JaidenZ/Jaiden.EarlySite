@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D889EBF6-62F6-4BFF-B537-9830BAA24953}</ProjectGuid>
+    <ProjectGuid>{1088A62A-80AF-42FE-BF6A-24254DB8ABDF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EarlySite.SModel.cs</RootNamespace>
-    <AssemblyName>EarlySite.SModel.cs</AssemblyName>
+    <RootNamespace>EarlySite.Cache</RootNamespace>
+    <AssemblyName>EarlySite.Cache</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,18 +32,27 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="LoginRequest.cs" />
-    <Compile Include="Result.cs" />
+    <Compile Include="AccountInfoCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
+      <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
+      <Name>EarlySite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.Drms\EarlySite.Drms.csproj">
+      <Project>{674ef399-f450-457c-99de-54b3980a5672}</Project>
+      <Name>EarlySite.Drms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.Model.csproj">
+      <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
+      <Name>EarlySite.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

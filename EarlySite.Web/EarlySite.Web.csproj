@@ -212,13 +212,21 @@
     <Content Include="Themes\expandAssembly\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EarlySite.Business\EarlySite.Business.csproj">
+      <Project>{dfea73b0-7091-48b8-8f17-6c0962c41464}</Project>
+      <Name>EarlySite.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.Cache\EarlySite.Cache.csproj">
+      <Project>{1088a62a-80af-42fe-bf6a-24254db8abdf}</Project>
+      <Name>EarlySite.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
       <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
       <Name>EarlySite.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.SModel.csproj">
+    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.Model.csproj">
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
-      <Name>EarlySite.SModel</Name>
+      <Name>EarlySite.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

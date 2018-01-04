@@ -1,4 +1,4 @@
-﻿@using EarlySite.SModel
+﻿@using EarlySite.Model.Show
 
 <!DOCTYPE html>
 <html>
@@ -36,9 +36,9 @@
                         @(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">我的主页</a></li>
+                            <li><a href="@Url.Action("Index", "Profile")">我的主页</a></li>
                             <li><a href="#">设置</a></li>
-                            <li><a href="#">退出</a></li>
+                            <li><a href="javascript:signOut()">退出</a></li>
                         </ul>
                     </li>
                 </ul>

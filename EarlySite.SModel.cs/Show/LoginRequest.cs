@@ -1,4 +1,4 @@
-﻿namespace EarlySite.SModel
+﻿namespace EarlySite.Model.Show
 {
     public class LoginRequest
     {

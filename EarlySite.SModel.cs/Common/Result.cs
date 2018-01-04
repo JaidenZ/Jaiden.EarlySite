@@ -1,10 +1,6 @@
-﻿namespace EarlySite.SModel
+﻿namespace EarlySite.Model.Common
 {
-    using System;
-    using System.Data;
-    using System.Collections;
-    using System.Collections.Generic;
-
+    
     /// <summary>
     /// 返回结果
     /// </summary>

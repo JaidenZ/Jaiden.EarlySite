@@ -1,9 +1,9 @@
-﻿@model EarlySite.SModel.Account
+﻿@using EarlySite.Model.Show
 
 @{
     ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Profile</h2>
+<h2>@(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)</h2>
 

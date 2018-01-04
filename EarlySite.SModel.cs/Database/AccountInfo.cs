@@ -1,17 +1,17 @@
-﻿namespace EarlySite.SModel
+﻿namespace EarlySite.Model.Database
 {
     using System;
 
     /// <summary>
-    /// 账户模型
+    /// 账户信息 数据库模型
     /// </summary>
-    public class Account
+    public class AccountInfo
     {
         /// <summary>
         /// 手机号
         /// </summary>
         public long Phone { get; set; }
-        
+
         /// <summary>
         /// 电子邮箱地址
         /// </summary>
@@ -36,7 +36,6 @@
         /// 头像
         /// </summary>
         public string Avator { get; set; }
-
 
 
     }

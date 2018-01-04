@@ -32,12 +32,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constract\AccountService.cs" />
@@ -46,9 +44,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.SModel.csproj">
+    <ProjectReference Include="..\EarlySite.Cache\EarlySite.Cache.csproj">
+      <Project>{1088a62a-80af-42fe-bf6a-24254db8abdf}</Project>
+      <Name>EarlySite.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
+      <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
+      <Name>EarlySite.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EarlySite.SModel.cs\EarlySite.Model.csproj">
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
-      <Name>EarlySite.SModel</Name>
+      <Name>EarlySite.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

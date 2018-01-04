@@ -1,14 +1,16 @@
 ﻿using EarlySite.Core.Utils;
-using EarlySite.SModel;
+using EarlySite.Model.Show;
+using EarlySite.Model.Common;
+using EarlySite.Business.IService;
+using EarlySite.Business.Constract;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace EarlySite.Web.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
 
         public ActionResult Login()
@@ -25,13 +27,13 @@ namespace EarlySite.Web.Controllers
         [HttpPost]
         public JsonResult LoginRequest(LoginRequest account)
         {
-            Result loginresult = new Result()
+            Result<Account> loginresult = new Result<Account>()
             {
                 Status = true,
                 Message = "",
-                StatusCode = ""
+                StatusCode = "",
+                Data = null
             };
-
             
             string lastdate = CookieUtils.Get("lastSubmit");
             if (string.IsNullOrEmpty(lastdate))
@@ -51,16 +53,17 @@ namespace EarlySite.Web.Controllers
                 }
             }
 
+            //数据验证
             if (loginresult.Status)
             {
                 loginresult = VerificationAccount(account.LoginUsername, account.LoginSecurity);
             }
 
+            //登录操作
             if (loginresult.Status)
             {
-                
-
-                base.CurrentAccount = new Account() { NickName = "hello" };
+                IAccount service = new AccountService();
+                loginresult = service.SignIn(account.LoginUsername, account.LoginSecurity);
             }
 
 
@@ -73,13 +76,14 @@ namespace EarlySite.Web.Controllers
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        private Result VerificationAccount(string username, string password)
+        private Result<Account> VerificationAccount(string username, string password)
         {
-            Result loginresult = new Result()
+            Result<Account> loginresult = new Result<Account>()
             {
                 Status = true,
                 Message = "登录成功",
-                StatusCode = "100"
+                StatusCode = "100",
+                Data = null
             };
 
             if (string.IsNullOrEmpty(username))
