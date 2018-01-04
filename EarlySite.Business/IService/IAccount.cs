@@ -27,7 +27,12 @@
         /// <returns></returns>
         Result<Account> RegistInfo(Account account);
 
-
+        /// <summary>
+        /// 发送注册邮件
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Result SendRegistEmail(Account account);
 
     }
 }

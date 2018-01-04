@@ -127,19 +127,51 @@ namespace EarlySite.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult RegistRequest()
+        public JsonResult RegistRequest(RegistRequest regist)
         {
-            Result<Account> registresult = new Result<Account>()
+            Result registresult = new Result()
             {
                 Status = true,
                 Message = "",
-                StatusCode = "",
-                Data = null
+                StatusCode = ""
             };
 
+            string lastdate = CookieUtils.Get("lastSubmit");
+            if (string.IsNullOrEmpty(lastdate))
+            {
+                CookieUtils.SetCookie("lastSubmit", DateTime.Now.ToString());
+            }
+            else
+            {
+                DateTime now = DateTime.Now;
+                CookieUtils.SetCookie("lastSubmit", now.ToString());
+                double seconds = now.Subtract(Convert.ToDateTime(lastdate)).TotalMilliseconds;
+                if (seconds < 1000 * 5)
+                {
+                    registresult.Status = false;
+                    registresult.Message = "操作过于频繁,请稍后再试";
+                    registresult.StatusCode = "RR000";
+                }
+            }
+
+            if (registresult.Status)
+            {
+                IAccount service = new AccountService();
+                Account info = new Account();
+                info = regist.Copy<Account>();
+
+                registresult = service.SendRegistEmail(info);
+            }
             return Json(registresult);
         }
 
+        [HttpGet]
+        public ActionResult RequireRegist(string phone,string code)
+        {
+            IAccount service = new AccountService();
+            service.SignIn(phone, "111");
+            return Redirect(Url.Action("Index", "Home"));
+        }
 
         /// <summary>
         /// 验证账户有效性
@@ -196,7 +228,6 @@ namespace EarlySite.Web.Controllers
             }
             return loginresult;
         }
-
 
     }
 }

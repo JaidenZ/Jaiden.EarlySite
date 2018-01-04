@@ -28,9 +28,9 @@ body {
     overflow: hidden;
 }
 
-.Input{
-    width:100%;
-    border:none;
+.Input {
+    width: 100%;
+    border: none;
 }
 
 .Card {
@@ -300,12 +300,22 @@ body {
 }
 
 
-.Button--plain{
-    margin-right:6px;
+.Button--plain {
+    margin-right: 6px;
 }
 
+.Login-regist {
+    float: left;
+    
+}
+
+    .Login-regist:hover {
+        color: #7a8599
+    }
+
 .Login-cannotLogin {
-    float: right
+    float: right;
+    margin-left:10px
 }
 
     .Login-cannotLogin:hover {

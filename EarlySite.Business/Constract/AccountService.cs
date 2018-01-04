@@ -41,6 +41,8 @@
 
         public Result<Account> RegistInfo(Account account)
         {
+            //Todo:根据code码拿到用户信息 修改数据库账户状态
+
             throw new System.NotImplementedException();
         }
 
@@ -60,6 +62,17 @@
 
             result.Data = account.Copy<Account>();
             return result;
+        }
+
+        public Result SendRegistEmail(Account account)
+        {
+            //加入到数据库
+
+            //生成code码加入缓存 设置时效日期
+
+            //Todo 发送code码注册邮件
+
+            throw new NotImplementedException();
         }
     }
 }

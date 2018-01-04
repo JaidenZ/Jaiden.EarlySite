@@ -172,12 +172,17 @@
                 return;
             }
 
+            var registdata = {};
+            registdata.Phone = phoneinfo;
+            registdata.Email = mailinfo;
+            registdata.SecurityCode = password;
+
             //ajax send data
             $.ajax({
                 type: "POST",
                 dataType: "json",
                 url: '@Url.Action("RegistRequest","Account")',
-                data: { account : loginaccount },
+                data: { regist: registdata },
                 success: function (result) {
                     if (!result.Status) {
                         if (result.StatusCode.indexOf('LG10') != -1) {

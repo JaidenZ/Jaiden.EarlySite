@@ -42,6 +42,7 @@
                             </div>
 
                             <div class="Login-options">
+                                <button id="registbtn" class="Button Login-regist Button--plain">没有账户,立即注册</button>
                                 <button id="forgetbtn" class="Button Login-cannotLogin Button--plain">忘记密码?</button>
                             </div>
 
@@ -92,7 +93,7 @@
             }
         });
 
-        $('#forgetbtn').click(function () {
+        $('#registbtn').click(function () {
              window.location = '@Url.Action("Regist","Account")';
         });
 
