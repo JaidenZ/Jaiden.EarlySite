@@ -193,6 +193,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Regist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

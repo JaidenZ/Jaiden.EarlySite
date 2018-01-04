@@ -1,0 +1,212 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regist -EearlySite</title>
+    <link href="~/Themes/Style/AccountLogin.css" rel="stylesheet" />
+</head>
+<body class="EntrySign-body">
+    <div class="App-main">
+        <div class="SignFlowHomepage">
+            <div class="SignFlowHomepage-content">
+                <div class="Card SignContainer-content">
+                    <div class="SignFlowHeader" style="padding-bottom:5px">
+                        <div class="SignFlowHeader-slogen">
+                            加入哪儿吃,记录你的食谱
+                        </div>
+                    </div>
+                    <div class="SignContainer-inner">
+                        <div class="Login-content">
+                            <div class="SignFlow-password">
+                                <div class="SignFlowInput">
+                                    <div class="SignFlow-accountInput Input-wrapper">
+                                        <input id="mailinput" value="" class="Input" placeholder="邮箱" data-reactid="26" type="text">
+                                    </div>
+                                    <div id="mailerrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请输入邮箱信息</div>
+                                </div>
+                            </div>
+
+                            <div class="SignFlow-password">
+                                <div class="SignFlowInput">
+                                    <div class="SignFlow-accountInput Input-wrapper">
+                                        <input id="phoneinput" value="" class="Input" placeholder="手机号" data-reactid="26" type="text">
+                                    </div>
+                                    <div id="phoneerrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请输入手机信息</div>
+                                </div>
+                            </div>
+
+                            <div class="SignFlow-password">
+                                <div class="SignFlowInput">
+                                    <div class="SignFlow-accountInput Input-wrapper">
+                                        <input id="passwordinput" value="" class="Input" placeholder="密码" data-reactid="26" type="password">
+                                    </div>
+                                    <div id="passworderrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请输入密码</div>
+                                </div>
+                            </div>
+
+                            <div class="SignFlow-password">
+                                <div class="SignFlowInput">
+                                    <div class="SignFlow-accountInput Input-wrapper">
+                                        <input id="repasswordinput" value="" class="Input" placeholder="再次输入密码" data-reactid="26" type="password">
+                                    </div>
+                                    <div id="repassworderrormask" class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">请再次输入密码</div>
+                                </div>
+                            </div>
+
+                            <div class="Login-options">
+                                <button id="loginbtn" class="Button Login-cannotLogin Button--plain">已有账号,登录</button>
+                            </div>
+
+                            <button id="registbtn" class="Button SignFlow-submitButton Button--primary Button--blue" type="button" data-reactid="51">
+                                <!-- react-text: 52 -->注册<!-- /react-text -->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/Themes/assembly/jquery")
+    @Scripts.Render("~/Themes/assembly/bootstrap")
+    @Scripts.Render("~/Themes/Scripts")
+    <script type="text/javascript">
+
+        $(function () {
+            $('#mailerrormask').hide();
+            $('#phoneerrormask').hide();
+            $('#passworderrormask').hide();
+            $('#repassworderrormask').hide();
+
+        });
+
+
+        $('#loginbtn').click(function () {
+
+             window.location = '@Url.Action("Login","Account")';
+        });
+
+        $('#mailinput').blur(function () {
+            var mailinfo = $('#mailinput').val();
+            if (mailinfo == null || mailinfo == "" || mailinfo == undefined) {
+                $('#mailerrormask').html("请输入邮箱信息");
+                $('#mailerrormask').show(300);
+            }
+        });
+        $('#mailerrormask').click(function () {
+            $('#mailerrormask').hide(300);
+            $('#mailinput').click();
+        });
+
+
+        $('#phoneinput').blur(function () {
+            var phoneinfo = $('#phoneinput').val();
+            if (phoneinfo == null || phoneinfo == "" || phoneinfo == undefined) {
+                $('#phoneerrormask').html("请输入手机信息");
+                $('#phoneerrormask').show(300);
+            }
+        });
+
+        $('#phoneerrormask').click(function () {
+            $('#phoneerrormask').hide(300);
+            $('#phoneinput').click();
+        });
+
+        $('#passwordinput').blur(function () {
+            var passwordinfo = $('#passwordinput').val();
+            if (passwordinfo == null || passwordinfo == "" || passwordinfo == undefined) {
+                $('#passworderrormask').html("请输入密码");
+                $('#passworderrormask').show(300);
+            }
+        });
+
+        $('#passworderrormask').click(function () {
+            $('#passworderrormask').hide(300);
+            $('#passwordinput').click();
+        });
+
+        $('#repasswordinput').blur(function () {
+            var repasswordinfo = $('#repasswordinput').val();
+            if (repasswordinfo == null || repasswordinfo == "" || repasswordinfo == undefined) {
+                $('#repassworderrormask').html("请再次输入密码");
+                $('#repassworderrormask').show(300);
+            }
+        });
+
+        $('#repassworderrormask').click(function () {
+            $('#repassworderrormask').hide(300);
+            $('#repasswordinput').click();
+        });
+
+        $('#registbtn').click(function () {
+            var mailinfo = $('#mailinput').val();
+            if (mailinfo == null || mailinfo == "" || mailinfo == undefined) {
+                $('#mailerrormask').show(300);
+                return;
+            }
+            var phoneinfo = $('#phoneinput').val();
+            if (phoneinfo == null || phoneinfo == "" || phoneinfo == undefined) {
+                $('#phoneerrormask').show(300);
+                return;
+            }
+            var password = $('#passwordinput').val();
+            if (password == null || password == "" || password == undefined) {
+                $('#passworderrormask').show(300);
+                return;
+            }
+            var repassword = $('#repasswordinput').val();
+            if (repassword == null || repassword == "" || repassword == undefined) {
+                $('#repassworderrormask').show(300);
+                return;
+            }
+
+            if (password != repassword) {
+                $('#repassworderrormask').html("请确认两次输入的密码相同");
+                $('#repassworderrormask').show(300);
+                return;
+            }
+
+            //ajax send data
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '@Url.Action("RegistRequest","Account")',
+                data: { account : loginaccount },
+                success: function (result) {
+                    if (!result.Status) {
+                        if (result.StatusCode.indexOf('LG10') != -1) {
+                            $('#usernameerrormask').html(result.Message);
+                            $('#usernameerrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('LG11') != -1) {
+                            $('#passworderrormask').html(result.Message);
+                            $('#passworderrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('LG000') != -1) {
+                            $('#passwordinput').val("");
+                            $('#passworderrormask').html(result.Message);
+                            $('#usernameerrormask').hide(300);
+                            $('#passworderrormask').show(300);
+                        }
+                    }
+                    else {
+                        window.location = '@Url.Action("Index","Home")';
+                    }
+                },
+                error: function (error) {
+                    alert("Ajax send error");
+                }
+            });
+
+        });
+
+
+    </script>
+</body>
+</html>

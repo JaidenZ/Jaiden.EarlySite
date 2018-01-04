@@ -23,6 +23,11 @@ namespace EarlySite.Web.Controllers
             return View();
         }
 
+        public ActionResult Regist()
+        {
+            return View();
+        }
+
 
         /// <summary>
         /// 登录ajax请求
@@ -115,6 +120,24 @@ namespace EarlySite.Web.Controllers
             result = service.SignOut(signoutphone);
 
             return Json(result);
+        }
+
+        /// <summary>
+        /// 注册ajax请求
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult RegistRequest()
+        {
+            Result<Account> registresult = new Result<Account>()
+            {
+                Status = true,
+                Message = "",
+                StatusCode = "",
+                Data = null
+            };
+
+            return Json(registresult);
         }
 
 
