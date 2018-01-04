@@ -18,7 +18,7 @@
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        Result<Account> LogOut(int phone);
+        Result<Account> SignOut(long phone);
 
         /// <summary>
         /// 账户注册

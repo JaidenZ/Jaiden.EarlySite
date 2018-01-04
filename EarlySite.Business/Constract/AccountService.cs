@@ -11,10 +11,32 @@
     public class AccountService : IAccount
     {
 
-
-        public Result<Account> LogOut(int phone)
+        /// <summary>
+        /// 登出
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public Result<Account> SignOut(long phone)
         {
-            throw new System.NotImplementedException();
+            Result<Account> result = new Result<Account>()
+            {
+                Status = false,
+                Message = "登出失败,登出人员与当前账户不匹配",
+                StatusCode = "SO001"
+            };
+
+            if (AccountInfoCache.Instance.CurrentAccount != null && AccountInfoCache.Instance.CurrentAccount.Phone == phone)
+            {
+                result.Status = true;
+                //Todo:记录数据库
+
+                AccountInfoCache.Instance.CurrentAccount = null;
+                result.Status = true;
+                result.Message = "登出成功";
+                result.StatusCode = "SO101";
+            }
+
+            return result;
         }
 
         public Result<Account> RegistInfo(Account account)

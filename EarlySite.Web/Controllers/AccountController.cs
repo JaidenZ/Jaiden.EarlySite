@@ -24,6 +24,11 @@ namespace EarlySite.Web.Controllers
         }
 
 
+        /// <summary>
+        /// 登录ajax请求
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult LoginRequest(LoginRequest account)
         {
@@ -69,6 +74,49 @@ namespace EarlySite.Web.Controllers
 
             return Json(loginresult);
         }
+
+        /// <summary>
+        /// 登出ajax请求
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult SignOutRequest(string phone)
+        {
+            Result result = new Result()
+            {
+                Status = false
+            };
+            string lastdate = CookieUtils.Get("lastSubmit");
+            if (string.IsNullOrEmpty(lastdate))
+            {
+                CookieUtils.SetCookie("lastSubmit", DateTime.Now.ToString());
+            }
+            else
+            {
+                DateTime now = DateTime.Now;
+                CookieUtils.SetCookie("lastSubmit", now.ToString());
+                double seconds = now.Subtract(Convert.ToDateTime(lastdate)).TotalMilliseconds;
+                if (seconds < 1000 * 5)
+                {
+                    result.Status = false;
+                    result.Message = "操作过于频繁,请稍后再试";
+                    result.StatusCode = "SO000";
+                }
+            }
+            long signoutphone = 0;
+            if(!long.TryParse(phone, out signoutphone))
+            {
+                result.Status = false;
+                result.Message = "参数错误";
+                result.StatusCode = "SO002";
+            }
+
+            IAccount service = new AccountService();
+            result = service.SignOut(signoutphone);
+
+            return Json(result);
+        }
+
 
         /// <summary>
         /// 验证账户有效性
