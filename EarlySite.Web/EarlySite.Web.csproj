@@ -152,6 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Themes\Images\defaultHead.png" />
     <Content Include="Themes\Images\error-connection-failure.svg" />
     <Content Include="Themes\Images\errow_icon.png" />
     <Content Include="Themes\Images\signback.png" />

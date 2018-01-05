@@ -33,8 +33,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="@Url.Action("Index", "Profile")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        @(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)
+                            <img width="20" height="20" src="data:image/png;base64,@(ViewBag.Account == null ? "无" : ViewBag.Account.Avator)" />
+                            @(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)
                         </a>
+                        
+
+
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Index", "Profile")">我的主页</a></li>
                             <li><a href="#">设置</a></li>
