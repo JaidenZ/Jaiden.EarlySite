@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using EarlySite.Core.Cryptography;
 
 namespace EarlySite.Web.Controllers
 {
@@ -133,8 +134,8 @@ namespace EarlySite.Web.Controllers
             Result registresult = new Result()
             {
                 Status = true,
-                Message = "",
-                StatusCode = ""
+                Message = "账户注册成功,请到邮箱进行验证.",
+                StatusCode = "RR100"
             };
 
             string lastdate = CookieUtils.Get("lastSubmit");
@@ -158,10 +159,24 @@ namespace EarlySite.Web.Controllers
             if (registresult.Status)
             {
                 IAccount service = new AccountService();
-                Account info = new Account();
-                info = regist.Copy<Account>();
+                Account account = new Account();
+                account.Phone = Int64.Parse(regist.Phone);
+                account.Email = regist.Email;
+                account.SecurityCode = MD5Engine.ToMD5String(regist.SecurityCode);
+                account.CreatTime = DateTime.Now;
+                account.Avator = ConstInfo.DefaultHeadBase64;
 
-                registresult = service.SendRegistEmail(info);
+                Result<Account> accountresult = service.RegistInfo(account);
+                if (!accountresult.Status)
+                {
+                    registresult.Status = false;
+                    registresult.Message = "注册账户失败,请稍后再试";
+                    registresult.StatusCode = "RR001";
+                }
+                else
+                {
+                    service.SendRegistEmail(accountresult.Data);
+                }
             }
             return Json(registresult);
         }
@@ -170,7 +185,19 @@ namespace EarlySite.Web.Controllers
         public ActionResult RequireRegist(string phone,string code)
         {
             IAccount service = new AccountService();
-            service.SignIn(phone, "111");
+            
+            string codesave = CookieUtils.Get(phone);
+            if (string.IsNullOrEmpty(codesave))
+            {
+                if(code == codesave)
+                {
+                    Account account = new Account();
+                    account.Phone = Int64.Parse(phone);
+                    service.RequireAccount(account);
+                }
+
+            }
+
             return Redirect(Url.Action("Index", "Home"));
         }
 

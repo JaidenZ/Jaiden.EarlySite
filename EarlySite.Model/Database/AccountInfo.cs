@@ -24,9 +24,14 @@
         public string SecurityCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 创建日期
         /// </summary>
         public DateTime CreatTime { get; set; }
+
+        /// <summary>
+        /// 出生日期
+        /// </summary>
+        public DateTime Birthday { get; set; }
 
         /// <summary>
         /// 用户昵称
@@ -42,5 +47,10 @@
         /// 账户认证状态
         /// </summary>
         public AccountRequiredStatus RequiredStatus { get; set; }
+
+        /// <summary>
+        /// 性别
+        /// </summary>
+        public AccountSex Sex { get; set; }
     }
 }

@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="SignContainer-inner">
-                        <div class="Login-content">
+                        <div id="registcontent" class="Login-content">
                             <div class="SignFlow-password">
                                 <div class="SignFlowInput">
                                     <div class="SignFlow-accountInput Input-wrapper">
@@ -65,6 +65,12 @@
                                 <!-- react-text: 52 -->注册<!-- /react-text -->
                             </button>
                         </div>
+
+                        <div id="registshow" class="Login-content" hidden ="hidden">
+                            恭喜您,成功加入哪儿吃.
+                            <hr />
+                            我们发送了一封邮件到您的注册邮箱,请到注册邮件收取邮件,点击邮件里的链接进行认证操作.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,6 +101,7 @@
             if (mailinfo == null || mailinfo == "" || mailinfo == undefined) {
                 $('#mailerrormask').html("请输入邮箱信息");
                 $('#mailerrormask').show(300);
+                return false;
             }
         });
         $('#mailerrormask').click(function () {
@@ -107,6 +114,10 @@
             var phoneinfo = $('#phoneinput').val();
             if (phoneinfo == null || phoneinfo == "" || phoneinfo == undefined) {
                 $('#phoneerrormask').html("请输入手机信息");
+                $('#phoneerrormask').show(300);
+            }
+            else if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phoneinfo))) {
+                $('#phoneerrormask').html('请输入正确的手机号码');
                 $('#phoneerrormask').show(300);
             }
         });
@@ -150,9 +161,17 @@
             }
             var phoneinfo = $('#phoneinput').val();
             if (phoneinfo == null || phoneinfo == "" || phoneinfo == undefined) {
+                $('#phoneerrormask').html('请输入手机信息');
                 $('#phoneerrormask').show(300);
                 return;
             }
+
+            if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phoneinfo))) {
+                $('#phoneerrormask').html('请输入正确的手机号码');
+                $('#phoneerrormask').show(300);
+                return false;
+            }
+
             var password = $('#passwordinput').val();
             if (password == null || password == "" || password == undefined) {
                 $('#passworderrormask').show(300);
@@ -187,19 +206,23 @@
                             $('#usernameerrormask').html(result.Message);
                             $('#usernameerrormask').show(300);
                         }
-                        if (result.StatusCode.indexOf('LG11') != -1) {
-                            $('#passworderrormask').html(result.Message);
-                            $('#passworderrormask').show(300);
-                        }
-                        if (result.StatusCode.indexOf('LG000') != -1) {
+                        if (result.StatusCode.indexOf('RR001') != -1) {
                             $('#passwordinput').val("");
-                            $('#passworderrormask').html(result.Message);
-                            $('#usernameerrormask').hide(300);
-                            $('#passworderrormask').show(300);
+                            $('#repasswordinput').val("");
+                            $('#repassworderrormask').html(result.Message);
+                            $('#repassworderrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('RR000') != -1) {
+                            $('#passwordinput').val("");
+                            $('#repasswordinput').val("");
+                            $('#repassworderrormask').html(result.Message);
+                            $('#repassworderrormask').show(300);
                         }
                     }
                     else {
-                        window.location = '@Url.Action("Index","Home")';
+                        
+                        $('#registcontent').hide();
+                        $('#registshow').show();
                     }
                 },
                 error: function (error) {

@@ -37,9 +37,9 @@
         /// <summary>
         /// 认证账户
         /// </summary>
-        /// <param name="requireCode"></param>
+        /// <param name="account"></param>
         /// <returns></returns>
-        Result RequireAccount(string requireCode);
+        Result RequireAccount(Account account);
 
     }
 }

@@ -15,5 +15,20 @@
         Required = 1
     }
 
+    /// <summary>
+    /// 账户性别
+    /// </summary>
+    public enum AccountSex
+    {
+        /// <summary>
+        /// 女性
+        /// </summary>
+        FeMale = 0,
+        /// <summary>
+        /// 男性
+        /// </summary>
+        Male = 1
+    }
+
 
 }
