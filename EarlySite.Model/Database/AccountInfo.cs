@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Model.Database
 {
+    using EarlySite.Model.Enum;
     using System;
 
     /// <summary>
@@ -37,6 +38,9 @@
         /// </summary>
         public string Avator { get; set; }
 
-
+        /// <summary>
+        /// 账户认证状态
+        /// </summary>
+        public AccountRequiredStatus RequiredStatus { get; set; }
     }
 }

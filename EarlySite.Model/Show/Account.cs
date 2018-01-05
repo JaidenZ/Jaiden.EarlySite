@@ -18,11 +18,6 @@
         public string Email { get; set; }
 
         /// <summary>
-        /// 安全码
-        /// </summary>
-        public string SecurityCode { get; set; }
-
-        /// <summary>
         /// 创建时间
         /// </summary>
         public DateTime CreatTime { get; set; }

@@ -34,5 +34,12 @@
         /// <returns></returns>
         Result SendRegistEmail(Account account);
 
+        /// <summary>
+        /// 认证账户
+        /// </summary>
+        /// <param name="requireCode"></param>
+        /// <returns></returns>
+        Result RequireAccount(string requireCode);
+
     }
 }

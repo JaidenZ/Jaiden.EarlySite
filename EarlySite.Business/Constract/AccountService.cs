@@ -38,14 +38,23 @@
 
             return result;
         }
-
+        /// <summary>
+        /// 注册账户信息
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         public Result<Account> RegistInfo(Account account)
         {
-            //Todo:根据code码拿到用户信息 修改数据库账户状态
+            //Todo:加入数据库信息
 
             throw new System.NotImplementedException();
         }
-
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="signInCode"></param>
+        /// <param name="securityCode"></param>
+        /// <returns></returns>
         public Result<Account> SignIn(string signInCode, string securityCode)
         {
             Result<Account> result = new Result<Account>();
@@ -63,16 +72,29 @@
             result.Data = account.Copy<Account>();
             return result;
         }
-
+        /// <summary>
+        /// 发送注册邮件
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
         public Result SendRegistEmail(Account account)
         {
-            //加入到数据库
-
             //生成code码加入缓存 设置时效日期
 
             //Todo 发送code码注册邮件
 
             throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 认证账户
+        /// </summary>
+        /// <param name="requireCode"></param>
+        /// <returns></returns>
+        public Result RequireAccount(string requireCode)
+        {
+            //拿到code对应的账户信息 修改数据库账户状态 登录
+
+            return null;
         }
     }
 }
