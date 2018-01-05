@@ -195,6 +195,7 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Regist.cshtml" />
+    <Content Include="Views\Account\Forget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

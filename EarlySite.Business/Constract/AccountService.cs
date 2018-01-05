@@ -116,9 +116,27 @@
         /// <returns></returns>
         public Result RequireAccount(Account account)
         {
-            //拿到code对应的账户信息 修改数据库账户状态 登录
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "验证账户",
+                StatusCode = "RA000"
+            };
 
-            return null;
+            //修改数据库账户状态 登录
+            //保存到缓存
+            AccountInfo accountinfo = new AccountInfo();
+            accountinfo.NickName = "PandaTV_0000";
+            accountinfo.Phone = 18502850589;
+            accountinfo.CreatTime = DateTime.Now;
+            accountinfo.Avator = ConstInfo.DefaultHeadBase64;
+
+            result.Status = true;
+            //保存到缓存
+            AccountInfoCache.Instance.CurrentAccount = accountinfo;
+
+
+            return result;
         }
     }
 }
