@@ -1,5 +1,6 @@
 ﻿body{
     padding-top:65px;
+    background-color:#F3F3F3;
 }
 
 .efont {
@@ -13,4 +14,15 @@
     padding-bottom: 5px;
     text-decoration: none;
     border-bottom: 1px #000 dashed;
+}
+
+.corner {
+    margin-bottom: 10px;
+    background: white;
+    overflow: hidden;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
 }
