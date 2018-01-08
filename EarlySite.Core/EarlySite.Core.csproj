@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,9 +44,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collection\SafetyList.cs" />
+    <Compile Include="Configuration\INIDocument.cs" />
+    <Compile Include="Configuration\INIKey.cs" />
+    <Compile Include="Configuration\INIKeyCollection.cs" />
+    <Compile Include="Configuration\INISection.cs" />
+    <Compile Include="Configuration\INISectionCollection.cs" />
+    <Compile Include="Configuration\NativeMethods.cs" />
     <Compile Include="Cryptography\Base64Engine.cs" />
     <Compile Include="Cryptography\MD5Engine.cs" />
     <Compile Include="MailSender\OpporunMail.cs" />
+    <Compile Include="MailSender\OpporunMailConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\LoggerUtils.cs" />
     <Compile Include="Utils\CookieUtils.cs" />

@@ -9,6 +9,8 @@
     using IService;
     using EarlySite.Core.Cryptography;
     using System.Text;
+    using EarlySite.Core.MailSender;
+    using System.Collections.Generic;
 
     public class AccountService : IAccount
     {
@@ -96,7 +98,12 @@
                 Message = "发送邮件成功",
                 StatusCode = "SR000"
             };
+            SendMailInfo sendinfo = new SendMailInfo();
+            sendinfo.Content = "hello haojun.zhao";
+            sendinfo.Title = "test mail server";
+            
 
+            VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
             //生成code码加入缓存 设置时效日期
             //if(account != null)
             //{

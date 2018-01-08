@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Mail;
-using System.Net.Mime;
-using System.Threading;
-using EarlySite.Core.Utils;
-
-namespace EarlySite.Core.MailSender
+﻿namespace EarlySite.Core.MailSender
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Net.Mail;
+    using System.Net.Mime;
+    using System.Threading;
+    using System.Reflection;
+    using Configuration;
+    using EarlySite.Core.Utils;
+
+
+
     public class OpporunMail
     {
         private MailMessage mMailMessage;   //主要处理发送邮件的内容（如：收发人地址、标题、主体、图片等等）
@@ -142,17 +146,13 @@ namespace EarlySite.Core.MailSender
         /// </summary>
         private static Queue<OpporunMail> _mailQueue;
 
-        private string mailserver = "smtp.qq.com";
-        private string mailserverport = "587";
-        private string user = "272665534";
-        private string password = "suylewzpzhiwcagg";
-        private string sendUser = "272665534@qq.com";
-
+        private static string path = AppDomain.CurrentDomain.BaseDirectory + "Mailconfig.ini";
 
         #endregion
 
         #region 构造器
         private static VerifiedMail _mailsender = null;
+        private static OpporunMailConfig config = null;
         private Thread sendThread = null;
         public static VerifiedMail Sender
         {
@@ -171,6 +171,29 @@ namespace EarlySite.Core.MailSender
 
         public VerifiedMail()
         {
+
+            if(config == null)
+            {
+                config = new OpporunMailConfig();
+                INIDocument doc = new INIDocument(path);
+                doc.Load();
+                Type clazz = config.GetType();
+                foreach (INISection section in doc.Sections)
+                {
+                    foreach (INIKey key in section.Keys)
+                    {
+                        PropertyInfo pi = clazz.GetProperty(key.Name);
+                        object value = key.Value;
+                        if (pi.PropertyType == typeof(int))
+                            value = Convert.ToInt32(value);
+                        if (pi != null && !pi.PropertyType.IsGenericType)
+                        {
+                            pi.SetValue(config, value, null);
+                        }
+                    }
+                }
+            }
+
             _mailQueue = new Queue<OpporunMail>();
 
             sendThread = new Thread(new ThreadStart(MailSending));
@@ -180,15 +203,14 @@ namespace EarlySite.Core.MailSender
 
         #endregion
 
-
-
+        
         /// <summary>
         /// 添加到发送队列
         /// </summary>
         /// <param name="info"></param>
         public void AddSend(SendMailInfo info,IList<string> sendList)
         {
-            OpporunMail mailinfo = new OpporunMail(mailserver, sendList, sendUser, info.Title, info.Content, user, password, mailserverport, true, false);
+            OpporunMail mailinfo = new OpporunMail(config.MailServer, sendList, config.SendUser, info.Title, info.Content, config.User, config.Password, config.MailServerPort, true, false);
             lock(_mailQueue)
             {
                 _mailQueue.Enqueue(mailinfo);

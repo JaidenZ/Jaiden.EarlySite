@@ -3,6 +3,8 @@
     using System;
     using System.Web.Mvc;
     using Cache;
+    using EarlySite.Business.Constract;
+    using EarlySite.Business.IService;
 
     public class HomeController : BaseController
     {
@@ -17,7 +19,8 @@
 
         public ActionResult Test()
         {
-            throw new Exception("Test ");
+            IAccount service = new AccountService();
+            service.SendRegistEmail(null);
             return View();
         }
 
