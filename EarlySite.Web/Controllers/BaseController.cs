@@ -69,6 +69,10 @@
         protected override void OnException(ExceptionContext filterContext)
         {
             Exception exception = filterContext.Exception;
+
+            //日志收集
+            LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(exception, "At Controller OnException"), LogType.ErrorLog);
+
             Result<Exception> exceptionmodel = new Result<Exception>()
             {
                 Data = exception,
