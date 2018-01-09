@@ -4,6 +4,34 @@
     ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row corner">
+            <div class="ProfileHeader-userCover"></div>
 
-<h2>@(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)</h2>
+            <div class="ProfileHeader-wrapper">
+                <div class="ProfileHeader-main">
+                    <!--左边头像-->
+                    <div class="ProfileHeader-avatar">
 
+                        <img class="Avatar Avatar--large UserAvatar-inner" src="https://pic4.zhimg.com/4ca1c993e6fbedca35abf6707baeb033_xl.jpg"  width="160" height="160">
+
+                    </div>
+
+                    <!--右边资料-->
+                </div>
+            </div>
+
+
+            <div class="description-back"></div>
+            <div class="description-content">
+                <div class="description-head">
+                    <img class="avator" width="149" height="149" src="data:image/png;base64,@(ViewBag.Account == null ? "无" : ViewBag.Account.Avator)"/>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
