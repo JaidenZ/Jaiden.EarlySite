@@ -12,22 +12,35 @@
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <div class="collapse navbar-collapse">
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    Explore
-                </a>
-                <a class="navbar-brand" href="@Url.Action("Index", "Profile")">
-                    Like
-                </a>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#target-menu">
+                    <span class="sr-only">qieh</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">EarlySite</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="target-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="">
+                            Explore
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Profile")">
+                            Like
+                        </a>
+                    </li>
+                </ul>
+
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="搜索你感兴趣的食物...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">搜索</button>
-                            </span>
-                        </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索你感兴趣的食物">
                     </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
                 </form>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -36,9 +49,6 @@
                             <img width="20" height="20" src="data:image/png;base64,@(ViewBag.Account == null ? "无" : ViewBag.Account.Avator)" />
                             @(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)
                         </a>
-                        
-
-
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Index", "Profile")">我的主页</a></li>
                             <li><a href="#">设置</a></li>
