@@ -13,23 +13,35 @@
                 <div class="ProfileHeader-main">
                     <!--左边头像-->
                     <div class="ProfileHeader-avatar">
-
-                        <img class="Avatar Avatar--large UserAvatar-inner" src="https://pic4.zhimg.com/4ca1c993e6fbedca35abf6707baeb033_xl.jpg"  width="160" height="160">
-
+                        <div class="UserAvatar">
+                            <img class="Avatar UserAvatar-inner" src="data:image/png;base64,@(ViewBag.Account != null?ViewBag.Account.Avator:"")" width="160" height="160">
+                        </div>
                     </div>
 
                     <!--右边资料-->
+                    <div class="ProfileHeader-content">
+                        <div class="ProfileHeader-contentHead">
+                            <h1 class="ProfileHeader-title">
+                                <span class="ProfileHeader-name">@(ViewBag.Account != null ? ViewBag.Account.NickName : "")</span>
+                            </h1>
+                        </div>
+                        <div class="ProfileHeader-contentBody" style="height:52px">
+
+                        </div>
+
+                        <div class="ProfileHeader-contentFooter"></div>
+                    </div>
                 </div>
             </div>
 
-
+            <!--
             <div class="description-back"></div>
             <div class="description-content">
                 <div class="description-head">
-                    <img class="avator" width="149" height="149" src="data:image/png;base64,@(ViewBag.Account == null ? "无" : ViewBag.Account.Avator)"/>
+                    <img class="avator" width="149" height="149" src="data:image/png;base64,"/>
                 </div>
 
-            </div>
+            </div>-->
         </div>
     </div>
 

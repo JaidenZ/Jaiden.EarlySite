@@ -33,6 +33,7 @@
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+
             //验证登录信息或其他
             if(CurrentAccount == null)
             {
