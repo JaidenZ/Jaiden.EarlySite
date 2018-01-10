@@ -53,6 +53,42 @@
     height:150px;
 }
 
+.UserCover {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    background: #f7f8fa;
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    -webkit-transition: height .3s;
+    transition: height .3s
+}
+
+.UserCover-image {
+    -webkit-transition: -webkit-transform 6s ease-out;
+    transition: -webkit-transform 6s ease-out;
+    transition: transform 6s ease-out;
+    transition: transform 6s ease-out,-webkit-transform 6s ease-out
+}
+
+    .UserCover-image, .UserCover-image img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover
+    }
+
+
+.UserCoverEditor {
+    position: relative
+}
+.UserCoverEditor-simpleEditButton {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 1
+}
+
 .ProfileHeader-wrapper {
     position: relative;
     width: 100%;

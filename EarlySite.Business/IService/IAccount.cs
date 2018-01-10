@@ -25,7 +25,7 @@
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        Result<Account> RegistInfo(Account account);
+        Result<Account> RegistInfo(RegistRequest request);
 
         /// <summary>
         /// 发送注册邮件
@@ -37,9 +37,9 @@
         /// <summary>
         /// 认证账户
         /// </summary>
-        /// <param name="account"></param>
+        /// <param name="phone"></param>
         /// <returns></returns>
-        Result RequireAccount(Account account);
+        Result RequireAccount(long phone);
 
     }
 }

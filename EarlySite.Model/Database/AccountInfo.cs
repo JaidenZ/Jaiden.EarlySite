@@ -44,6 +44,11 @@
         public string Avator { get; set; }
 
         /// <summary>
+        /// 背景墙
+        /// </summary>
+        public string BackCorver { get; set; }
+
+        /// <summary>
         /// 账户认证状态
         /// </summary>
         public AccountRequiredStatus RequiredStatus { get; set; }
@@ -52,5 +57,12 @@
         /// 性别
         /// </summary>
         public AccountSex Sex { get; set; }
+
+        /// <summary>
+        /// 个人描述
+        /// </summary>
+        public string Description { get; set; }
+
+
     }
 }

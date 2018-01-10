@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Model.Show
 {
+    using EarlySite.Model.Enum;
     using System;
 
     /// <summary>
@@ -11,21 +12,21 @@
         /// 手机号
         /// </summary>
         public long Phone { get; set; }
-        
+
         /// <summary>
         /// 电子邮箱地址
         /// </summary>
         public string Email { get; set; }
-
+        
         /// <summary>
-        ///  安全码
-        /// </summary>
-        public string SecurityCode { get; set; }
-
-        /// <summary>
-        /// 创建时间
+        /// 创建日期
         /// </summary>
         public DateTime CreatTime { get; set; }
+
+        /// <summary>
+        /// 出生日期
+        /// </summary>
+        public DateTime Birthday { get; set; }
 
         /// <summary>
         /// 用户昵称
@@ -37,7 +38,21 @@
         /// </summary>
         public string Avator { get; set; }
 
+        /// <summary>
+        /// 背景墙
+        /// </summary>
+        public string BackCorver { get; set; }
 
+        
+        /// <summary>
+        /// 性别
+        /// </summary>
+        public AccountSex Sex { get; set; }
+
+        /// <summary>
+        /// 个人描述
+        /// </summary>
+        public string Description { get; set; }
 
     }
 }

@@ -7,14 +7,30 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="row corner">
-            <div class="ProfileHeader-userCover"></div>
-
+            <div class="ProfileHeader-userCover">
+                <div class="UserCoverEditor">
+                    <div>
+                        <button class="btn btn-default UserCoverEditor-simpleEditButton">
+                            <svg viewBox="0 0 20 16" width="14" height="16" aria-hidden="true" style="height: 16px; width: 14px;">
+                                <title></title>
+                                <g>
+                                    <path d="M18.094 2H15s-1-2-2-2H7C6 0 5 2 5 2H2C0 2 0 3.967 0 3.967V14c0 2 2.036 2 2.036 2H17c3 0 3-1.983 3-1.983V4c0-2-1.906-2-1.906-2zM10 12c-1.933 0-3.5-1.567-3.5-3.5S8.067 5 10 5s3.5 1.567 3.5 3.5S11.933 12 10 12zm0 1.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm7.5-8c-.552 0-1-.448-1-1s.448-1 1-1 1 .448 1 1-.448 1-1 1z" fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                            编辑封面图片
+                        </button>
+                        <div class="UserCover">
+                            <img class="UserCover-image" src="data:image/png;base64,@(ViewBag.Account != null ? ViewBag.Account.BackCorver:"")" alt="用户封面" , width="1000" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="ProfileHeader-wrapper">
                 <div class="ProfileHeader-main">
                     <!--左边头像-->
                     <div class="ProfileHeader-avatar">
                         <div class="UserAvatar">
-                            <img class="Avatar UserAvatar-inner" src="data:image/png;base64,@(ViewBag.Account != null?ViewBag.Account.Avator:"")" width="160" height="160">
+                            <img class="Avatar UserAvatar-inner" src="data:image/png;base64,@(ViewBag.Account != null?ViewBag.Account.Avator:"")" width="160" height="160" />
                         </div>
                     </div>
 
@@ -26,22 +42,15 @@
                             </h1>
                         </div>
                         <div class="ProfileHeader-contentBody" style="height:52px">
-
+                            222
                         </div>
 
-                        <div class="ProfileHeader-contentFooter"></div>
+                        <div class="ProfileHeader-contentFooter">
+                            111
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <!--
-            <div class="description-back"></div>
-            <div class="description-content">
-                <div class="description-head">
-                    <img class="avator" width="149" height="149" src="data:image/png;base64,"/>
-                </div>
-
-            </div>-->
         </div>
     </div>
 

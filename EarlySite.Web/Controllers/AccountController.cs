@@ -17,6 +17,22 @@ namespace EarlySite.Web.Controllers
 
         public ActionResult Login()
         {
+
+            //string path = AppDomain.CurrentDomain.BaseDirectory + "\\backCover.jpg";
+            //FileStream fs = new FileStream(path, FileMode.Open);
+            //byte[] array = new byte[fs.Length];
+            //using (fs)
+            //{
+            //    int index = 0;
+            //    do
+            //    {
+            //        index = fs.Read(array, 0, array.Length);
+            //    } while (index > 0);
+                
+            //}
+            //string base64 = Base64Engine.ToBase64String(array);
+
+
             return View();
         }
 
@@ -159,14 +175,7 @@ namespace EarlySite.Web.Controllers
             if (registresult.Status)
             {
                 IAccount service = new AccountService();
-                Account account = new Account();
-                account.Phone = Int64.Parse(regist.Phone);
-                account.Email = regist.Email;
-                account.SecurityCode = MD5Engine.ToMD5String(regist.SecurityCode);
-                account.CreatTime = DateTime.Now;
-                account.Avator = ConstInfo.DefaultHeadBase64;
-
-                Result<Account> accountresult = service.RegistInfo(account);
+                Result<Account> accountresult = service.RegistInfo(regist);
                 if (!accountresult.Status)
                 {
                     registresult.Status = false;
@@ -191,9 +200,7 @@ namespace EarlySite.Web.Controllers
             {
                 if(code == codesave)
                 {
-                    Account account = new Account();
-                    account.Phone = Int64.Parse(phone);
-                    service.RequireAccount(account);
+                    service.RequireAccount(Int64.Parse(phone));
                 }
 
             }

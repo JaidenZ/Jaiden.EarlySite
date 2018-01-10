@@ -2,6 +2,7 @@
 {
     using System;
     using Core.Collection;
+    using Model.Show;
     using Model.Database;
 
 
@@ -12,7 +13,7 @@
 
         private static SafetyList<AccountInfo> _list;
 
-        private static AccountInfo _currentAccount;
+        private static Account _currentAccount;
 
         public AccountInfoCache()
         {
@@ -45,7 +46,7 @@
             }
         }
 
-        public AccountInfo CurrentAccount
+        public Account CurrentAccount
         {
             get
             {

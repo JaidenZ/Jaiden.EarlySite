@@ -47,7 +47,7 @@
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public Result<Account> RegistInfo(Account account)
+        public Result<Account> RegistInfo(RegistRequest request)
         {
             Result<Account> result = new Result<Account>()
             {
@@ -57,6 +57,23 @@
                 StatusCode = "RR000"
 
             };
+
+            AccountInfo account = new AccountInfo();
+            account.Phone = Int64.Parse(request.Phone);
+            account.Email = request.Email;
+            account.SecurityCode = MD5Engine.ToMD5String(request.SecurityCode);
+            account.CreatTime = DateTime.Now;
+            account.Birthday = DateTime.Parse("2000-01-01");
+            account.Avator = ConstInfo.DefaultHeadBase64;
+            account.BackCorver = ConstInfo.DefaultBackCover;
+            account.Sex = Model.Enum.AccountSex.Male;
+            account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
+            account.Description = "";
+            account.NickName = request.Phone;
+
+            //Todo:加入数据库
+
+            result.Data = account.Copy<Account>();
 
             return result;
         }
@@ -77,12 +94,19 @@
             account.Phone = 18502850589;
             account.CreatTime = DateTime.Now;
             account.Avator = ConstInfo.DefaultHeadBase64;
-
+            account.BackCorver = ConstInfo.DefaultBackCover;
+            account.Sex = Model.Enum.AccountSex.Male;
+            account.Birthday = DateTime.Parse("2000-01-01");
+            account.Description = "描述为空";
+            account.RequiredStatus = Model.Enum.AccountRequiredStatus.Required;
+            account.Email = "haojun.zhao@icloud.com";
             result.Status = true;
-            //保存到缓存
-            AccountInfoCache.Instance.CurrentAccount = account;
+            Account returnaccount = account.Copy<Account>();
 
-            result.Data = account.Copy<Account>();
+            //保存到缓存
+            AccountInfoCache.Instance.CurrentAccount = returnaccount;
+
+            result.Data = returnaccount;
             return result;
         }
         /// <summary>
@@ -123,9 +147,9 @@
         /// <summary>
         /// 认证账户
         /// </summary>
-        /// <param name="account"></param>
+        /// <param name="phone"></param>
         /// <returns></returns>
-        public Result RequireAccount(Account account)
+        public Result RequireAccount(long phone)
         {
             Result result = new Result()
             {
@@ -141,10 +165,15 @@
             accountinfo.Phone = 18502850589;
             accountinfo.CreatTime = DateTime.Now;
             accountinfo.Avator = ConstInfo.DefaultHeadBase64;
+            accountinfo.BackCorver = ConstInfo.DefaultBackCover;
+            accountinfo.Sex = Model.Enum.AccountSex.Male;
+            accountinfo.Birthday = DateTime.Parse("2000-01-01");
 
             result.Status = true;
+
+            Account returnaccount = accountinfo.Copy<Account>();
             //保存到缓存
-            AccountInfoCache.Instance.CurrentAccount = accountinfo;
+            AccountInfoCache.Instance.CurrentAccount = returnaccount;
 
 
             return result;
