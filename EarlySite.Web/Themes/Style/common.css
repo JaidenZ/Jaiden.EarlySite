@@ -192,6 +192,30 @@
     transition: height .3s
 }
 
+
+.ProfileHeader-info {
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+.ProfileHeader-infoItem {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+    .ProfileHeader-infoItem:not(:last-child) {
+        margin-bottom: 10px
+    }
+
+.ProfileHeader-iconWrapper {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;
+    text-align: center
+}
 .ProfileHeader-contentFooter {
     position: relative;
     padding-top: 8px
