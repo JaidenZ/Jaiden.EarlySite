@@ -16,6 +16,11 @@
     border-bottom: 1px #000 dashed;
 }
 
+.Icon {
+    vertical-align: text-bottom;
+    fill: #9fadc7
+}
+
 .corner {
     margin-bottom: 10px;
     background: white;
@@ -219,4 +224,10 @@
 .ProfileHeader-contentFooter {
     position: relative;
     padding-top: 8px
+}
+
+.ProfileHeader-buttons {
+    position: absolute;
+    right: 0;
+    bottom: 0
 }
