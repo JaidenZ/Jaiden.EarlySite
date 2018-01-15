@@ -19,5 +19,12 @@
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Setting()
+        {
+            return View();
+        }
+
     }
 }

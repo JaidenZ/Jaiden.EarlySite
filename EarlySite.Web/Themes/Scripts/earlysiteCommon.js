@@ -11,9 +11,7 @@ function signOut(phone) {
         data: { phone: phone },
         success: function (result) {
             if (!result.Status) {
-                if (result.StatusCode.indexOf('SO10') != -1) {
-
-                }
+                alert(result.Message);
             }
             else {
                 window.location = '/Account/Login';
