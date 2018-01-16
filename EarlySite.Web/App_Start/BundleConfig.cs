@@ -17,7 +17,8 @@ namespace EarlySite.Web
                       "~/Themes/expandAssembly/respond.js"));
 
             bundles.Add(new ScriptBundle("~/Themes/Scripts").Include(
-                      "~/Themes/Scripts/earlysiteCommon.js"));
+                      "~/Themes/Scripts/earlysiteCommon.js",
+                      "~/Themes/Scripts/amapScript.js"));
 
 
             bundles.Add(new StyleBundle("~/Themes/Style").Include(

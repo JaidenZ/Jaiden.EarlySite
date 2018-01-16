@@ -6,10 +6,8 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="row corner">
-            <div class="corner-content">
-                <div class="corner-title">
+            <div id="mapContainer">
 
-                </div>
             </div>
         </div>
     </div>
@@ -41,3 +39,16 @@
     </div>
 
 </div>
+
+
+<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+<script src="http://webapi.amap.com/maps?v=1.4.3&key=e024f773e61e96be65e2e8a4f0869774&callback=init"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script>
+
+    var map = new AMap.Map('mapContainer', {
+        resizeEnable: true,
+        zoom: 11,
+        center: [116.397428, 39.90923]
+    });
+</script>

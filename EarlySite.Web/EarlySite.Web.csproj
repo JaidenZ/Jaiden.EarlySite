@@ -150,6 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Themes\Images\defaultHead.png" />
