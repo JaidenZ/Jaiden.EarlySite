@@ -1,6 +1,6 @@
-﻿body{
-    padding-top:65px;
-    background-color:#F3F3F3;
+﻿body {
+    padding-top: 65px;
+    background-color: #F3F3F3;
 }
 
 .efont {
@@ -32,15 +32,15 @@
     box-sizing: border-box
 }
 
-.corner-content{
-    margin-top:12px;
-    font-size:inherit;
-    font-style:normal;
-    font-weight:400;
+.corner-content {
+    margin-top: 12px;
+    font-size: inherit;
+    font-style: normal;
+    font-weight: 400;
 }
 
-.corner-title{
-    margin-bottom:14px;
+.corner-title {
+    margin-bottom: 14px;
 }
 
 .ProfileHeader {
@@ -49,13 +49,14 @@
     padding: 0 16px;
     margin: 10px auto
 }
+
 .ProfileHeader-userCover {
     position: relative;
     width: 100%;
     background: #96A1A9;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    height:150px;
+    height: 150px;
 }
 
 .UserCover {
@@ -87,6 +88,7 @@
 .UserCoverEditor {
     position: relative
 }
+
 .UserCoverEditor-simpleEditButton {
     position: absolute;
     top: 24px;
@@ -101,6 +103,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .ProfileHeader-main {
     position: relative;
     margin: 0 20px 24px
@@ -182,6 +185,7 @@
     text-overflow: ellipsis;
     white-space: nowrap
 }
+
 .ProfileHeader-name {
     font-size: 26px;
     font-weight: 600;
@@ -204,6 +208,7 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box
 }
+
 .ProfileHeader-infoItem {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -221,6 +226,7 @@
     margin-right: 12px;
     text-align: center
 }
+
 .ProfileHeader-contentFooter {
     position: relative;
     padding-top: 8px
@@ -230,4 +236,30 @@
     position: absolute;
     right: 0;
     bottom: 0
+}
+
+.ProfileBoard {
+    padding:0 8px;
+    text-align: center;
+    line-height: 1.6;
+    border-left: 1px solid #e7eaf1;
+
+}
+
+.ProfileBoard a {
+    text-decoration: none;
+}
+
+    .ProfileBoard a :hover {
+        color: #175199;
+    }
+
+.ProfileBoard-title {
+    font-size: 16px;
+    color: #8590a6
+}
+
+.ProfileBoard-number {
+    font-size:16px;
+    color: black;
 }
