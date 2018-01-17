@@ -3,52 +3,42 @@
 }
 
 
+
 <div class="row">
     <div class="col-sm-8">
-        <div class="row corner">
-            <div id="mapContainer">
-
-            </div>
+        <div id="mapContainer" class="row corner" style="height:0px;padding-bottom:80%">
         </div>
     </div>
 
     <div class="col-sm-3 col-sm-offset-1">
         <div class="row corner">
-            <div class="row">
-                <div class="col-sm-6 ProfileBoard">
-                    <div class="ProfileBoard-title">
-                        关注
-                    </div>
-                    <a href="">
-                        <strong class="ProfileBoard-number">122</strong>
-                    </a>
-                </div>
-                <div class="col-sm-6 ProfileBoard">
-                    <div class="ProfileBoard-title">
-                        收藏
-                    </div>
-                    <a href="">
-                        <strong class="ProfileBoard-number">36</strong>
-                    </a>
-                </div>
-            </div>
+            1
         </div>
         <div class="row corner">
             2
         </div>
     </div>
-
 </div>
 
+@section scripts
+{
 
-<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
-<script src="http://webapi.amap.com/maps?v=1.4.3&key=e024f773e61e96be65e2e8a4f0869774&callback=init"></script>
-<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
-<script>
+    <script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+    <script src="http://webapi.amap.com/maps?v=1.4.3&key=e024f773e61e96be65e2e8a4f0869774"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+    <script type="text/javascript">
 
-    var map = new AMap.Map('mapContainer', {
-        resizeEnable: true,
-        zoom: 11,
-        center: [116.397428, 39.90923]
-    });
-</script>
+        var map;
+
+        $(function () {
+
+            map = new AMap.Map('mapContainer', {
+                resizeEnable: true,
+                zoom: 11,
+                center: [116.397428, 39.90923]
+            });
+
+        });
+    </script>
+
+}

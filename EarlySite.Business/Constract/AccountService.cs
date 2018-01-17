@@ -62,8 +62,8 @@
             account.Phone = Int64.Parse(request.Phone);
             account.Email = request.Email;
             account.SecurityCode = MD5Engine.ToMD5String(request.SecurityCode);
-            account.CreatTime = DateTime.Now;
-            account.Birthday = DateTime.Parse("2000-01-01");
+            account.CreatDate = DateTime.Now;
+            account.BirthdayDate = DateTime.Parse("2000-01-01");
             account.Avator = ConstInfo.DefaultHeadBase64;
             account.BackCorver = ConstInfo.DefaultBackCover;
             account.Sex = Model.Enum.AccountSex.Male;
@@ -92,11 +92,11 @@
             AccountInfo account = new AccountInfo();
             account.NickName = "PandaTV_0000";
             account.Phone = 18502850589;
-            account.CreatTime = DateTime.Now;
+            account.CreatDate = DateTime.Now;
             account.Avator = ConstInfo.DefaultHeadBase64;
             account.BackCorver = ConstInfo.DefaultBackCover;
             account.Sex = Model.Enum.AccountSex.Male;
-            account.Birthday = DateTime.Parse("2000-01-01");
+            account.BirthdayDate = DateTime.Parse("2000-01-01");
             account.Description = "描述为空";
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.Required;
             account.Email = "haojun.zhao@icloud.com";
@@ -163,11 +163,11 @@
             AccountInfo accountinfo = new AccountInfo();
             accountinfo.NickName = "PandaTV_0000";
             accountinfo.Phone = 18502850589;
-            accountinfo.CreatTime = DateTime.Now;
+            accountinfo.CreatDate = DateTime.Now;
             accountinfo.Avator = ConstInfo.DefaultHeadBase64;
             accountinfo.BackCorver = ConstInfo.DefaultBackCover;
             accountinfo.Sex = Model.Enum.AccountSex.Male;
-            accountinfo.Birthday = DateTime.Parse("2000-01-01");
+            accountinfo.BirthdayDate = DateTime.Parse("2000-01-01");
 
             result.Status = true;
 

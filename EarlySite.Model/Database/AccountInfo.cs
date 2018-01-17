@@ -26,12 +26,12 @@
         /// <summary>
         /// 创建日期
         /// </summary>
-        public DateTime CreatTime { get; set; }
+        public DateTime CreatDate { get; set; }
 
         /// <summary>
         /// 出生日期
         /// </summary>
-        public DateTime Birthday { get; set; }
+        public DateTime BirthdayDate { get; set; }
 
         /// <summary>
         /// 用户昵称
