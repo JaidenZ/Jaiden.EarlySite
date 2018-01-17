@@ -1,14 +1,13 @@
-﻿using MySql;
-using MySql.Data;
-using System.Configuration;
-
-
-namespace EarlySite.Drms
+﻿namespace EarlySite.Drms
 {
+    using MySql;
+    using MySql.Data;
+    using System.Configuration;
+
+
     public class MysqlHelper
     {
-        public static string mysqlConnStr = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
-
+        private readonly static string mysqlConnStr = ConfigurationManager.ConnectionStrings["MySql"].ConnectionString;
 
 
 
