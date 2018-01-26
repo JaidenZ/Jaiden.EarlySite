@@ -50,7 +50,12 @@
         {
             get
             {
-                return _currentAccount;
+                return new Account()
+                {
+                    NickName = "Test",
+                     
+            };
+                //return _currentAccount;
             }
             set
             {
