@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="DBManager\DBConnectionManager.cs" />
     <Compile Include="DBManager\IConnectionHandler.cs" />
-    <Compile Include="DBManager\Provider\MysqConnectionProvider.cs" />
+    <Compile Include="DBManager\Provider\MysqlConnectionProvider.cs" />
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,6 +53,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
+      <Project>{1622d25b-a25d-4640-b5e6-413e7f3a3a87}</Project>
+      <Name>EarlySite.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

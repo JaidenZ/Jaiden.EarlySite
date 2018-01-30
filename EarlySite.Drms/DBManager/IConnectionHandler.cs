@@ -17,7 +17,7 @@
         /// <summary>
         /// 是否连接到数据库
         /// </summary>
-        bool Connected { get; set; }
+        bool Connected { get; }
 
         /// <summary>
         /// 开启连接
