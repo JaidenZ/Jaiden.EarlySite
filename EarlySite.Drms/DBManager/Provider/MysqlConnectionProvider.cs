@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using System.Configuration;
     using EarlySite.Core.Utils;
-
+    using System.Data;
 
     public class MysqlConnectionProvider : IConnectionHandler
     {
@@ -48,7 +48,33 @@
 
         public IList<object> ExecuteDataTableList(string command)
         {
-            throw new System.NotImplementedException();
+            IList<object> list = new List<object>();
+            MySql.Data.MySqlClient.MySqlDataReader dr;
+            try
+            {
+                using(MySql.Data.MySqlClient.MySqlCommand mySqlCommand = new MySql.Data.MySqlClient.MySqlCommand(command, mySqlConnection))
+                {
+                    dr = mySqlCommand.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            
+                        }
+                    }
+
+
+                }
+
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+
+            return null;
         }
 
         public int ExecuteNonQuery(string command)

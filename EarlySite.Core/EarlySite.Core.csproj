@@ -52,6 +52,7 @@
     <Compile Include="Configuration\NativeMethods.cs" />
     <Compile Include="Cryptography\Base64Engine.cs" />
     <Compile Include="Cryptography\MD5Engine.cs" />
+    <Compile Include="Data\DataModelConverter.cs" />
     <Compile Include="MailSender\OpporunMail.cs" />
     <Compile Include="MailSender\OpporunMailConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +60,9 @@
     <Compile Include="Utils\CookieUtils.cs" />
     <Compile Include="Utils\JsonExtension\JsonAttribute.cs" />
     <Compile Include="Utils\ModelUtils.cs" />
+    <Compile Include="Utils\TypeUtils.cs" />
+    <Compile Include="ValueType\ValueTypeFormatter.cs" />
+    <Compile Include="ValueType\ValueTypeUnit.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
