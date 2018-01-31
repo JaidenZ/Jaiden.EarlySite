@@ -9,6 +9,8 @@
     public interface IConnectionHandler
     {
 
+        
+
         /// <summary>
         /// 连接字符串
         /// </summary>
