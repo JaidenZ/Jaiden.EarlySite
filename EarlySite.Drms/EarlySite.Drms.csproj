@@ -38,11 +38,13 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBManager\Connection\IConnection.cs" />
     <Compile Include="DBManager\DBConnectionManager.cs" />
-    <Compile Include="DBManager\IConnectionHandler.cs" />
-    <Compile Include="DBManager\Provider\MysqlConnectionProvider.cs" />
+    <Compile Include="DBManager\Connection\MysqlConnection.cs" />
+    <Compile Include="DBManager\Provider\MySqlDBReader.cs" />
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

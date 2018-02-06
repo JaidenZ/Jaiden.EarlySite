@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\Data\DataModelProxyConverter.cs" />
     <Compile Include="Collection\SafetyList.cs" />
+    <Compile Include="Component\WorkThreadDictionary.cs" />
     <Compile Include="Configuration\INIDocument.cs" />
     <Compile Include="Configuration\INIKey.cs" />
     <Compile Include="Configuration\INIKeyCollection.cs" />
@@ -60,9 +62,13 @@
     <Compile Include="Utils\CookieUtils.cs" />
     <Compile Include="Utils\JsonExtension\JsonAttribute.cs" />
     <Compile Include="Utils\ModelUtils.cs" />
+    <Compile Include="Utils\ThreadUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />
     <Compile Include="ValueType\ValueTypeFormatter.cs" />
     <Compile Include="ValueType\ValueTypeUnit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Component\Contract.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
