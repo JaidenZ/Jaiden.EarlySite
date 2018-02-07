@@ -45,6 +45,7 @@
     <Compile Include="DBManager\DBConnectionManager.cs" />
     <Compile Include="DBManager\Connection\MysqlConnection.cs" />
     <Compile Include="DBManager\Provider\MySqlDBReader.cs" />
+    <Compile Include="DBManager\Provider\MysqlDBWriter.cs" />
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
