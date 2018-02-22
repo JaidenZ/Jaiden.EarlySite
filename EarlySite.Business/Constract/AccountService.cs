@@ -11,6 +11,7 @@
     using System.Text;
     using EarlySite.Core.MailSender;
     using System.Collections.Generic;
+    using EarlySite.Drms.DBManager;
 
     public class AccountService : IAccount
     {
@@ -72,6 +73,8 @@
             account.Description = "";
             account.NickName = request.Phone;
             
+            //加入数据库
+            //DBConnectionManager.Instance.Writer.Insert()
 
             result.Data = account.Copy<Account>();
 

@@ -11,7 +11,7 @@
     using EarlySite.Core.Utils;
     using EarlySite.Drms.DBManager.Connection;
 
-    public class MysqlDBWriter:IDisposable
+    public class MySqlDBWriter:IDisposable
     {
         /// <summary>
         /// 连接器
@@ -30,7 +30,7 @@
             private set;
         }
 
-        public MysqlDBWriter()
+        public MySqlDBWriter()
         {
             this.Connection = MysqlConnection.Current;
             if(this.Connection.State != ConnectionState.Open)
@@ -39,7 +39,7 @@
             }
             this.Transaction = this.Connection.BeginTransaction();
         }
-        ~MysqlDBWriter()
+        ~MySqlDBWriter()
         {
             this.Dispose();
         }
