@@ -12,6 +12,7 @@
         {
             ViewBag.Account = base.CurrentAccount;
 
+            
 
 
             return View();
@@ -20,7 +21,7 @@
         public ActionResult Test()
         {
             IAccount service = new AccountService();
-            service.SendRegistEmail(null);
+
             return View();
         }
 

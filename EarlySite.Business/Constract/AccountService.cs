@@ -33,6 +33,7 @@
             {
                 result.Status = true;
                 //Todo:记录数据库
+                
 
                 AccountInfoCache.Instance.CurrentAccount = null;
                 result.Status = true;
@@ -70,8 +71,7 @@
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
             account.Description = "";
             account.NickName = request.Phone;
-
-            //Todo:加入数据库
+            
 
             result.Data = account.Copy<Account>();
 
