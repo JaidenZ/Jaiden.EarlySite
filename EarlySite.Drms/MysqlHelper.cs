@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Drms
 {
+    using EarlySite.Core.Utils;
     using EarlySite.Drms.DBManager.Connection;
     using MySql;
     using MySql.Data;
@@ -284,3 +285,4 @@
             return exception.HResult >= 20; // 严重错误
         }
     }
+}
