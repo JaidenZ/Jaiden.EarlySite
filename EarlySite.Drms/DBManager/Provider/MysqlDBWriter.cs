@@ -5,6 +5,7 @@
     using System.Data;
     using System.Data.SqlClient;
     using System.Linq;
+    using System.Text;
     using EarlySite.Core.AOP.Data;
     using EarlySite.Core.Data;
     using EarlySite.Core.Utils;
@@ -88,7 +89,7 @@
             {
                 throw new ArgumentException();
             }
-            using (MySql.Data.MySqlClient.MySqlCommand cmd = SDLHelper.CreateInsert(value, table))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = MysqlHelper.CreateInsert(value, table))
             {
                 return this.Insert(cmd);
             }
@@ -120,7 +121,7 @@
                 cmd.Parameters.AddRange(parameters);
             }
             cmd.Transaction = this.Transaction;
-            return SDLHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
+            return MysqlHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
         }
 
         /// <summary>
@@ -138,7 +139,7 @@
                 cmd.Parameters.AddRange(parameters);
             }
             cmd.Transaction = this.Transaction;
-            return SDLHelper.ExecuteScalar(cmd, this.Connection);
+            return MysqlHelper.ExecuteScalar(cmd, this.Connection);
         }
 
         /// <summary>
@@ -147,13 +148,13 @@
         /// <param name="sql">语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public bool Insert(StringBuilder sql, params SqlParameter[] parameters)
+        public bool Insert(StringBuilder sql, params MySql.Data.MySqlClient.MySqlParameter[] parameters)
         {
             if (sql == null)
             {
                 throw new ArgumentNullException("sql");
             }
-            using (SqlCommand cmd = new SqlCommand())
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql.ToString()))
             {
                 if (parameters != null)
                 {
@@ -169,7 +170,7 @@
         /// <param name="procedure">存储过程</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public bool Insert(SqlParameter[] parameters, string procedure)
+        public bool Insert(MySql.Data.MySqlClient.MySqlParameter[] parameters, string procedure)
         {
             return this.Update(parameters, procedure);
         }
@@ -180,9 +181,9 @@
         /// <param name="name">参数名</param>
         /// <param name="value">参数值</param>
         /// <returns></returns>
-        public SqlParameter CreateParameter(string name, object value, DbType? type = null)
+        public MySql.Data.MySqlClient.MySqlParameter CreateParameter(string name, object value, DbType? type = null)
         {
-            var arg = new SqlParameter(name, value);
+            var arg = new MySql.Data.MySqlClient.MySqlParameter(name, value);
             if (type != null)
                 arg.DbType = (DbType)type;
             return arg;
@@ -194,13 +195,13 @@
         /// <param name="parameters">参数</param>
         /// <param name="sql">语句</param>
         /// <returns></returns>
-        public bool Insert(string sql, params SqlParameter[] parameters)
+        public bool Insert(string sql, params MySql.Data.MySqlClient.MySqlParameter[] parameters)
         {
             if (string.IsNullOrEmpty(sql))
             {
                 throw new ArgumentException("sql");
             }
-            using (SqlCommand cmd = new SqlCommand(sql))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
             {
                 return this.Insert(cmd, parameters);
             }
@@ -238,7 +239,7 @@
             {
                 throw new ArgumentException();
             }
-            using (SqlCommand cmd = SDLHelper.CreateUpdate(value, table, key, where))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = MysqlHelper.CreateUpdate(value, table, key, where))
             {
                 return this.Update(cmd);
             }
@@ -249,14 +250,14 @@
         /// </summary>
         /// <param name="cmd">命名行</param>
         /// <returns></returns>
-        public bool Update(SqlCommand cmd)
+        public bool Update(MySql.Data.MySqlClient.MySqlCommand cmd)
         {
             if (cmd == null)
             {
                 throw new ArgumentNullException("cmd");
             }
             cmd.Transaction = this.Transaction;
-            return SDLHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
+            return MysqlHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
         }
 
         /// <summary>
@@ -265,13 +266,13 @@
         /// <param name="sql">语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public bool Update(string sql, params SqlParameter[] parameters)
+        public bool Update(string sql, params MySql.Data.MySqlClient.MySqlParameter[] parameters)
         {
             if (string.IsNullOrEmpty(sql))
             {
                 throw new ArgumentNullException("cmd");
             }
-            using (SqlCommand cmd = new SqlCommand(sql))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
             {
                 if (parameters != null)
                 {
@@ -297,7 +298,7 @@
             {
                 throw new ArgumentNullException("value");
             }
-            return this.Update(SDLHelper.GetParameters(value), procedure);
+            return this.Update(MysqlHelper.GetParameters(value), procedure);
         }
 
         /// <summary>
@@ -306,13 +307,13 @@
         /// <param name="parameters">参数</param>
         /// <param name="procedure">存储过程</param>
         /// <returns></returns>
-        public bool Update(SqlParameter[] parameters, string procedure)
+        public bool Update(MySql.Data.MySqlClient.MySqlParameter[] parameters, string procedure)
         {
             if (string.IsNullOrEmpty(procedure))
             {
                 throw new ArgumentException("procedure");
             }
-            using (SqlCommand cmd = new SqlCommand())
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand())
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 if (parameters != null)
@@ -343,14 +344,14 @@
         /// </summary>
         /// <param name="cmd">命名行</param>
         /// <returns></returns>
-        public int UpdateReturnInt(SqlCommand cmd)
+        public int UpdateReturnInt(MySql.Data.MySqlClient.MySqlCommand cmd)
         {
             if (cmd == null)
             {
                 throw new ArgumentNullException("cmd");
             }
             cmd.Transaction = this.Transaction;
-            return SDLHelper.ExecuteNonQuery(cmd, this.Connection);
+            return MysqlHelper.ExecuteNonQuery(cmd, this.Connection);
         }
 
         /// <summary>
@@ -359,13 +360,13 @@
         /// <param name="sql">语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public int UpdateReturnInt(string sql, params SqlParameter[] parameters)
+        public int UpdateReturnInt(string sql, params MySql.Data.MySqlClient.MySqlParameter[] parameters)
         {
             if (string.IsNullOrEmpty(sql))
             {
                 throw new ArgumentNullException("cmd");
             }
-            using (SqlCommand cmd = new SqlCommand(sql))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
             {
                 if (parameters != null)
                 {
@@ -412,7 +413,7 @@
         /// <param name="parameters">参数</param>
         /// <param name="procedure">存储过程</param>
         /// <returns></returns>
-        public bool Delete(SqlParameter[] parameters, string procedure)
+        public bool Delete(MySql.Data.MySqlClient.MySqlParameter[] parameters, string procedure)
         {
             return this.Update(parameters, procedure);
         }
@@ -423,13 +424,13 @@
         /// <param name="sql">删除语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public bool Delete(string sql, params SqlParameter[] parameters)
+        public bool Delete(string sql, params MySql.Data.MySqlClient.MySqlParameter[] parameters)
         {
             if (string.IsNullOrEmpty(sql))
             {
                 throw new ArgumentException("sql");
             }
-            using (SqlCommand cmd = new SqlCommand(sql))
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
             {
                 if (parameters != null)
                 {
@@ -457,7 +458,7 @@
         /// 删除
         /// </summary>
         /// <returns></returns>
-        public bool Delete(SqlCommand cmd)
+        public bool Delete(MySql.Data.MySqlClient.MySqlCommand cmd)
         {
             if (cmd == null)
             {
@@ -465,7 +466,7 @@
             }
             cmd.Transaction = this.Transaction;
             //
-            return SDLHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
+            return MysqlHelper.ExecuteNonQuery(cmd, this.Connection) > 0;
         }
 
 
