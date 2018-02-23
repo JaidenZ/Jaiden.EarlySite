@@ -112,12 +112,18 @@
                     //保存到缓存
                     AccountInfoCache.Instance.CurrentAccount = result.Data;
                 }
+                else
+                {
+                    result.Message = "用户名或密码错误";
+                    result.StatusCode = "LG000";
+                }
             }
             catch(Exception ex)
             {
                 result.Status = false;
                 result.Data = null;
                 result.Message = ex.Message;
+                result.StatusCode = "LG000";
             }
             //AccountInfo account = new AccountInfo();
             //account.NickName = "PandaTV_0000";

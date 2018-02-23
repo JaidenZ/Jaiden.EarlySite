@@ -34,16 +34,19 @@
             if(_type == 0)
             {
                 sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
-                    " where Phone = {0} ", _searchText);
+                    " from which_account" +
+                    " where Phone = '{0}' ", _searchText);
             }
             if (_type == 1)
             {
                 sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
+                    " from which_account" +
                     " where Phone = '{0}' and SecurityCode = '{1}' ", _searchText, _securityCode);
             }
             if (_type == 2)
             {
                 sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
+                    " from which_account" +
                     " where NickName like '%{0}%' ", _searchText);
             }
 
