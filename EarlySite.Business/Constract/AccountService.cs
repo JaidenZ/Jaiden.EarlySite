@@ -12,6 +12,7 @@
     using EarlySite.Core.MailSender;
     using System.Collections.Generic;
     using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
 
     public class AccountService : IAccount
     {
@@ -72,9 +73,9 @@
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
             account.Description = "";
             account.NickName = request.Phone;
-            
+
             //加入数据库
-            //DBConnectionManager.Instance.Writer.Insert()
+            DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
 
             result.Data = account.Copy<Account>();
 

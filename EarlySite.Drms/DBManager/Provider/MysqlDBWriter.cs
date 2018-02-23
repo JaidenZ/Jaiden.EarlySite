@@ -10,6 +10,7 @@
     using EarlySite.Core.Data;
     using EarlySite.Core.Utils;
     using EarlySite.Drms.DBManager.Connection;
+    using MySql;
 
     public class MySqlDBWriter:IDisposable
     {
@@ -204,6 +205,23 @@
             using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
             {
                 return this.Insert(cmd, parameters);
+            }
+        }
+
+        /// <summary>
+        /// 插入一行
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public bool Insert(string sql)
+        {
+            if (string.IsNullOrEmpty(sql))
+            {
+                throw new ArgumentException("sql");
+            }
+            using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sql))
+            {
+                return this.Insert(cmd, null);
             }
         }
 
