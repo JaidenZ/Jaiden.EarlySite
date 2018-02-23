@@ -80,5 +80,16 @@
                 return this.ToList<T>(dt);
             }
         }
+
+        public IList<T> Select<T>(string sql) where T : class
+        {
+            if (string.IsNullOrEmpty(sql))
+            {
+                throw new ArgumentNullException("sql", "sql can not be empty or null");
+            }
+            MySql.Data.MySqlClient.MySqlCommand command = new MySql.Data.MySqlClient.MySqlCommand(sql);
+            return this.Select<T>(command);
+        }
+
     }
 }

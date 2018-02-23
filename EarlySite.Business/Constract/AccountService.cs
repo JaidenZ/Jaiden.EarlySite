@@ -75,9 +75,20 @@
             account.NickName = request.Phone;
 
             //加入数据库
-            DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
+            try
+            {
+                result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
+                DBConnectionManager.Instance.Writer.Commit();
 
-            result.Data = account.Copy<Account>();
+                result.Data = account.Copy<Account>();
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = ex.Message;
+                DBConnectionManager.Instance.Writer.Rollback();
+            }
+            
 
             return result;
         }
@@ -90,27 +101,39 @@
         public Result<Account> SignIn(string signInCode, string securityCode)
         {
             Result<Account> result = new Result<Account>();
-            //Todo:查询数据库
+            try
+            {
+                IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(1, signInCode, securityCode).Satifasy());
+                if (inforesult != null && inforesult.Count > 0)
+                {
+                    result.Status = true;
+                    result.Data = inforesult[0].Copy<Account>();
+                    
+                    //保存到缓存
+                    AccountInfoCache.Instance.CurrentAccount = result.Data;
 
+                }
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Data = null;
+                result.Message = ex.Message;
+            }
+            //AccountInfo account = new AccountInfo();
+            //account.NickName = "PandaTV_0000";
+            //account.Phone = 18502850589;
+            //account.CreatDate = DateTime.Now;
+            //account.Avator = ConstInfo.DefaultHeadBase64;
+            //account.BackCorver = ConstInfo.DefaultBackCover;
+            //account.Sex = Model.Enum.AccountSex.Male;
+            //account.BirthdayDate = DateTime.Parse("2000-01-01");
+            //account.Description = "描述为空";
+            //account.RequiredStatus = Model.Enum.AccountRequiredStatus.Required;
+            //account.Email = "haojun.zhao@icloud.com";
+            //result.Status = true;
+            //Account returnaccount = account.Copy<Account>();
 
-            AccountInfo account = new AccountInfo();
-            account.NickName = "PandaTV_0000";
-            account.Phone = 18502850589;
-            account.CreatDate = DateTime.Now;
-            account.Avator = ConstInfo.DefaultHeadBase64;
-            account.BackCorver = ConstInfo.DefaultBackCover;
-            account.Sex = Model.Enum.AccountSex.Male;
-            account.BirthdayDate = DateTime.Parse("2000-01-01");
-            account.Description = "描述为空";
-            account.RequiredStatus = Model.Enum.AccountRequiredStatus.Required;
-            account.Email = "haojun.zhao@icloud.com";
-            result.Status = true;
-            Account returnaccount = account.Copy<Account>();
-
-            //保存到缓存
-            AccountInfoCache.Instance.CurrentAccount = returnaccount;
-
-            result.Data = returnaccount;
             return result;
         }
         /// <summary>
