@@ -111,7 +111,6 @@
                     
                     //保存到缓存
                     AccountInfoCache.Instance.CurrentAccount = result.Data;
-
                 }
             }
             catch(Exception ex)
@@ -133,7 +132,7 @@
             //account.Email = "haojun.zhao@icloud.com";
             //result.Status = true;
             //Account returnaccount = account.Copy<Account>();
-
+            
             return result;
         }
         /// <summary>
