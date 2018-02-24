@@ -86,6 +86,7 @@
             {
                 result.Status = false;
                 result.Message = ex.Message;
+                result.StatusCode = "LG000";
                 DBConnectionManager.Instance.Writer.Rollback();
             }
             
