@@ -128,20 +128,6 @@
                 result.Message = ex.Message;
                 result.StatusCode = "LG000";
             }
-            //AccountInfo account = new AccountInfo();
-            //account.NickName = "PandaTV_0000";
-            //account.Phone = 18502850589;
-            //account.CreatDate = DateTime.Now;
-            //account.Avator = ConstInfo.DefaultHeadBase64;
-            //account.BackCorver = ConstInfo.DefaultBackCover;
-            //account.Sex = Model.Enum.AccountSex.Male;
-            //account.BirthdayDate = DateTime.Parse("2000-01-01");
-            //account.Description = "描述为空";
-            //account.RequiredStatus = Model.Enum.AccountRequiredStatus.Required;
-            //account.Email = "haojun.zhao@icloud.com";
-            //result.Status = true;
-            //Account returnaccount = account.Copy<Account>();
-            
             return result;
         }
         /// <summary>
