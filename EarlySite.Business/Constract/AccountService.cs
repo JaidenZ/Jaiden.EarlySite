@@ -86,7 +86,7 @@
             {
                 result.Status = false;
                 result.Message = ex.Message;
-                result.StatusCode = "LG000";
+                result.StatusCode = "EX000";
                 DBConnectionManager.Instance.Writer.Rollback();
             }
             
@@ -126,7 +126,7 @@
                 result.Status = false;
                 result.Data = null;
                 result.Message = ex.Message;
-                result.StatusCode = "LG000";
+                result.StatusCode = "EX000";
             }
             return result;
         }
@@ -175,27 +175,35 @@
             Result result = new Result()
             {
                 Status = true,
-                Message = "验证账户",
+                Message = "验证账户成功",
                 StatusCode = "RA000"
             };
 
-            //修改数据库账户状态 登录
-            //保存到缓存
-            AccountInfo accountinfo = new AccountInfo();
-            accountinfo.NickName = "PandaTV_0000";
-            accountinfo.Phone = 18502850589;
-            accountinfo.CreatDate = DateTime.Now;
-            accountinfo.Avator = ConstInfo.DefaultHeadBase64;
-            accountinfo.BackCorver = ConstInfo.DefaultBackCover;
-            accountinfo.Sex = Model.Enum.AccountSex.Male;
-            accountinfo.BirthdayDate = DateTime.Parse("2000-01-01");
-
-            result.Status = true;
-
-            Account returnaccount = accountinfo.Copy<Account>();
-            //保存到缓存
-            AccountInfoCache.Instance.CurrentAccount = returnaccount;
-
+            try
+            {
+                //更改数据库
+                if(DBConnectionManager.Instance.Writer.Update(new AccountRequireSpefication(true, phone).Satifasy(), null))
+                {
+                    IList<AccountInfo> accountlist = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
+                    if(accountlist != null && accountlist.Count > 0)
+                    {
+                        Account returnaccount = accountlist[0].Copy<Account>();
+                        AccountInfoCache.Instance.CurrentAccount = returnaccount;
+                    }
+                }
+                else
+                {
+                    result.Status = false;
+                    result.Message = "验证账户失败";
+                    result.StatusCode = "RA001";
+                }
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = string.Format("验证账户出错/r/n {0}", ex.Message);
+                result.StatusCode = "EX000";
+            }
 
             return result;
         }
