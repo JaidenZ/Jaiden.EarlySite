@@ -143,25 +143,32 @@
                 Message = "发送邮件成功",
                 StatusCode = "SR000"
             };
-
-            //生成code码加入缓存 设置时效日期
-            if (account != null)
+            
+            try
             {
-                byte[] phonebyte = Encoding.UTF8.GetBytes(account.Phone.ToString());
-                string code = Base64Engine.ToBase64String(phonebyte);
+                //生成code码加入缓存 设置时效日期
+                if (account != null)
+                {
+                    byte[] phonebyte = Encoding.UTF8.GetBytes(account.Phone.ToString());
+                    string code = Base64Engine.ToBase64String(phonebyte);
 
-                CookieUtils.SetCookie(string.Format("code{0}", account.Phone), code, DateTime.Now.AddHours(1));
-
-
-                SendMailInfo sendinfo = new SendMailInfo();
-                sendinfo.Content = "hello haojun.zhao";
-                sendinfo.Title = "验证账户";
+                    CookieUtils.SetCookie(string.Format("code{0}", account.Phone), code, DateTime.Now.AddHours(1));
 
 
-                VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
+                    SendMailInfo sendinfo = new SendMailInfo();
+                    sendinfo.Content = "hello haojun.zhao";
+                    sendinfo.Title = "验证账户";
 
+
+                    VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
+                }
             }
-
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = string.Format("邮件验证出错 /r/n{0}", ex.Message);
+                result.StatusCode = "EX000";
+            }
 
             return result;
         }
