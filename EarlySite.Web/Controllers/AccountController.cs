@@ -196,7 +196,7 @@ namespace EarlySite.Web.Controllers
             IAccount service = new AccountService();
             
             string codesave = CookieUtils.Get(string.Format("code{0}",phone));
-            if (string.IsNullOrEmpty(codesave))
+            if (!string.IsNullOrEmpty(codesave))
             {
                 if(code == codesave)
                 {
