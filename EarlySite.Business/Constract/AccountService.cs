@@ -79,7 +79,7 @@
             try
             {
                 result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
-                DBConnectionManager.Instance.Writer.Commit();
+                DBConnectionManager.Instance.Commit();
 
                 result.Data = account.Copy<Account>();
             }
@@ -88,7 +88,7 @@
                 result.Status = false;
                 result.Message = ex.Message;
                 result.StatusCode = "EX000";
-                DBConnectionManager.Instance.Writer.Rollback();
+                DBConnectionManager.Instance.Rollback();
             }
             
 
@@ -207,6 +207,7 @@
                         Account returnaccount = accountlist[0].Copy<Account>();
                         AccountInfoCache.Instance.CurrentAccount = returnaccount;
                     }
+                    DBConnectionManager.Instance.Commit();
                 }
                 else
                 {
