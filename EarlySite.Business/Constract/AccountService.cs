@@ -1,6 +1,7 @@
 ﻿namespace EarlySite.Business.Constract
 {
     using System;
+    using System.IO;
     using Model.Show;
     using Model.Common;
     using Model.Database;
@@ -156,9 +157,18 @@
 
 
                     SendMailInfo sendinfo = new SendMailInfo();
-                    sendinfo.Content = "hello haojun.zhao";
-                    sendinfo.Title = "验证账户";
 
+                    using (StreamReader sr = File.OpenText(AppDomain.CurrentDomain.BaseDirectory + "VerificationMail.html"))
+                    {
+                        sendinfo.Content = sr.ReadToEnd();
+                    }
+                    sendinfo.Title = "验证账户";
+                    if (!string.IsNullOrEmpty(sendinfo.Content))
+                    {
+                        sendinfo.Content = sendinfo.Content.Replace("(手机)", account.Phone.ToString());
+                        sendinfo.Content = sendinfo.Content.Replace("(邮箱)", account.Email);
+                        sendinfo.Content = sendinfo.Content.Replace("(验证码)", code);
+                    }
 
                     VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
                 }

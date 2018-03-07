@@ -181,6 +181,7 @@
     <Content Include="Themes\expandAssembly\jquery.validate.unobtrusive.min.js" />
     <Content Include="Themes\expandAssembly\respond.js" />
     <Content Include="Themes\expandAssembly\respond.min.js" />
+    <Content Include="VerificationMail.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
