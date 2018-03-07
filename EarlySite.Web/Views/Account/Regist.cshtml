@@ -66,7 +66,7 @@
                             </button>
                         </div>
 
-                        <div id="registshow" class="Login-content" hidden ="hidden">
+                        <div id="registshow" class="Login-content" hidden="hidden">
                             恭喜您,成功加入哪儿吃.
                             <hr />
                             我们发送了一封邮件到您的注册邮箱,请到注册邮件收取邮件,点击邮件里的链接进行认证操作.
@@ -102,6 +102,43 @@
                 $('#mailerrormask').html("请输入邮箱信息");
                 $('#mailerrormask').show(300);
                 return false;
+            }
+            else {
+                //ajax send data
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '@Url.Action("CheckMail", "Account")',
+                data: { mail: mailinfo },
+                success: function (result) {
+                    if (!result.Status) {
+                        if (result.StatusCode.indexOf('LG10') != -1) {
+                            $('#usernameerrormask').html(result.Message);
+                            $('#usernameerrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('RR001') != -1) {
+                            $('#passwordinput').val("");
+                            $('#repasswordinput').val("");
+                            $('#repassworderrormask').html(result.Message);
+                            $('#repassworderrormask').show(300);
+                        }
+                        if (result.StatusCode.indexOf('RR000') != -1) {
+                            $('#passwordinput').val("");
+                            $('#repasswordinput').val("");
+                            $('#repassworderrormask').html(result.Message);
+                            $('#repassworderrormask').show(300);
+                        }
+                    }
+                    else {
+
+                        $('#registcontent').hide();
+                        $('#registshow').show();
+                    }
+                },
+                error: function (error) {
+                    alert("Ajax send error");
+                }
+            });
             }
         });
         $('#mailerrormask').click(function () {
@@ -220,7 +257,7 @@
                         }
                     }
                     else {
-                        
+
                         $('#registcontent').hide();
                         $('#registshow').show();
                     }

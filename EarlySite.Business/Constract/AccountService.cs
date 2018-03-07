@@ -74,6 +74,7 @@
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
             account.Description = "";
             account.NickName = request.Phone;
+            
 
             //加入数据库
             try
@@ -225,5 +226,44 @@
 
             return result;
         }
+
+        public Result CheckMailRegisted(string mail)
+        {
+            Result result = new Result()
+            {
+                Status = false,  
+            };
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "邮箱验证出错" + ex.Message;
+                result.StatusCode = "CMR000";
+            }
+            return result;
+        }
+
+        public Result CheckPhoneRegisted(string phone)
+        {
+            Result result = new Result()
+            {
+                Status = false,
+            };
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "手机验证出错" + ex.Message;
+                result.StatusCode = "CMR000";
+            }
+            return result;
+        }
+
     }
 }

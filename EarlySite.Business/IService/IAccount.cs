@@ -41,5 +41,19 @@
         /// <returns></returns>
         Result RequireAccount(long phone);
 
+        /// <summary>
+        /// 验证邮箱是否注册
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        Result CheckMailRegisted(string mail);
+        
+        /// <summary>
+        /// 验证手机是否注册
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Result CheckPhoneRegisted(string phone);
+
     }
 }

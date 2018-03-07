@@ -190,6 +190,50 @@ namespace EarlySite.Web.Controllers
             return Json(registresult);
         }
 
+        /// <summary>
+        /// 检查邮箱是否注册
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult CheckMail(string mail)
+        {
+            Result registresult = new Result()
+            {
+                Status = false,
+                Message = "邮箱已被注册",
+                StatusCode = "CM000"
+            };
+            if (!string.IsNullOrEmpty(mail))
+            {
+                IAccount service = new AccountService();
+                registresult.Status = service.CheckMailRegisted(mail).Status;
+            }
+            return Json(registresult);
+        }
+
+        /// <summary>
+        /// 检查手机是否注册
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult CheckPhone(string phone)
+        {
+            Result registresult = new Result()
+            {
+                Status = false,
+                Message = "手机已被注册",
+                StatusCode = "CP000"
+            };
+            if (!string.IsNullOrEmpty(phone))
+            {
+                IAccount service = new AccountService();
+                registresult.Status = service.CheckPhoneRegisted(phone).Status;
+            }
+            return Json(registresult);
+        }
+
         [HttpGet]
         public ActionResult RequireRegist(string phone,string code)
         {
