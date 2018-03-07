@@ -112,22 +112,7 @@
                 data: { mail: mailinfo },
                 success: function (result) {
                     if (!result.Status) {
-                        if (result.StatusCode.indexOf('LG10') != -1) {
-                            $('#usernameerrormask').html(result.Message);
-                            $('#usernameerrormask').show(300);
-                        }
-                        if (result.StatusCode.indexOf('RR001') != -1) {
-                            $('#passwordinput').val("");
-                            $('#repasswordinput').val("");
-                            $('#repassworderrormask').html(result.Message);
-                            $('#repassworderrormask').show(300);
-                        }
-                        if (result.StatusCode.indexOf('RR000') != -1) {
-                            $('#passwordinput').val("");
-                            $('#repasswordinput').val("");
-                            $('#repassworderrormask').html(result.Message);
-                            $('#repassworderrormask').show(300);
-                        }
+
                     }
                     else {
 
@@ -156,6 +141,28 @@
             else if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phoneinfo))) {
                 $('#phoneerrormask').html('请输入正确的手机号码');
                 $('#phoneerrormask').show(300);
+            }
+            else {
+                                //ajax send data
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: '@Url.Action("CheckMail", "Account")',
+                data: { mail: mailinfo },
+                success: function (result) {
+                    if (!result.Status) {
+
+                    }
+                    else {
+
+                        $('#registcontent').hide();
+                        $('#registshow').show();
+                    }
+                },
+                error: function (error) {
+                    alert("Ajax send error");
+                }
+            });
             }
         });
 
