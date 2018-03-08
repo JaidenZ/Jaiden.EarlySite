@@ -213,6 +213,11 @@ body {
         display: flex;
     }
 
+    .Login-footer {
+ margin-top:16px;
+ text-align:center
+}
+
 .SignFlow-account {
     margin-top: 16px;
     border-bottom: 1px solid #e7eaf1;
@@ -537,4 +542,147 @@ body {
 
 .Button--withIcon.Button--plain:hover .Button-zi {
     fill: #95a1ba
+}
+
+.SignContainer-switch {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #f6f6f6;
+    height: 58px;
+    border-top: 1px solid #ebebeb;
+    font-size: 16px
+}
+
+    .SignContainer-switch span {
+        color: #175199;
+        cursor: pointer
+    }
+
+html[data-theme=dark] .SignContainer-switch span {
+    color: #175199
+}
+
+html[data-theme=dark] .SignContainer-switch {
+    background-color: #2e2e2e;
+    border-top: 1px solid #444
+}
+
+.Register-footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 16px;
+    line-height: 25px
+}
+
+.Register-org, html[data-theme=dark] .Register-org {
+    color: #175199
+}
+
+.Register-declaration, .Register-declaration a {
+    color: #8590a6;
+    text-decoration:none;
+}
+    .Register-declaration, .Register-declaration a {
+        color: #8590a6
+    }
+
+html[data-theme=dark] .Register-declaration a {
+    color: #606a80
+}
+
+    .Register-declaration a:hover, html[data-theme=dark] .Register-declaration a:hover {
+        color: gray
+    }
+
+html[data-theme=dark] .Register-declaration {
+    color: #606a80
+}
+
+.Login-footerSeparate {
+    display: inline-block;
+    width: 6%;
+    color: #8590a6;
+    text-align: center;
+    box-sizing: border-box
+}
+
+html[data-theme=dark] .Login-footerSeparate {
+    color: #606a80
+}
+
+.Login-socialLogin {
+    max-width: 128px;
+    display: inline-block;
+    vertical-align: middle
+}
+
+.Login-socialButtonGroup {
+    margin-left: 2px;
+    transition: opacity .3s ease
+}
+
+.Login-socialButtonGroup--hidden {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0
+}
+
+    .Login-socialButtonGroup--hidden button {
+        width: 0;
+        height: 0;
+        overflow: hidden
+    }
+
+.Login-socialButtonEntrance {
+    width: 103px;
+    text-align: left;
+}
+
+.Login-socialButtonEntrance--hidden {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: none
+}
+
+.Login-socialButtonEntrance:hover, html[data-theme=dark] .Login-socialButtonEntrance:hover {
+    color: gray
+}
+
+.Login-socialButton {
+    height: 24px;
+}
+
+    .Login-socialButton svg {
+        vertical-align: middle
+    }
+
+    .Login-socialButton:not(:first-child) {
+        margin-left: 22px
+    }
+
+.Login-socialIcon {
+    fill: #8590a6;
+}
+.Login-socialIcon:hover {
+    fill: #77839c;
+}
+
+html[data-theme=dark] .Login-socialIcon:hover {
+    fill: #646464
 }
