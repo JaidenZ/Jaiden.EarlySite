@@ -158,6 +158,7 @@
     <Content Include="Themes\Images\errow_icon.png" />
     <Content Include="Themes\Images\signback.png" />
     <Content Include="Themes\Scripts\earlysiteCommon.js" />
+    <Content Include="Themes\Style\AccountForget.css" />
     <Content Include="Themes\Style\AccountLogin.css" />
     <Content Include="Themes\Style\bootstrap.css" />
     <Content Include="Themes\Style\bootstrap.min.css" />

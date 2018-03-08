@@ -2,16 +2,44 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Forget</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forget -EearlySite</title>
+    <link href="~/Themes/Style/AccountForget.css" rel="stylesheet" />
 </head>
-<body>
-    <div> 
-    </div>
+<body class="EntrySign-body">
+
+    <main class="App-main">
+        <div class="Step" data-reactid="40">
+            <div class="Step-inner PasswordReset" data-reactid="41">
+                <div class="StepHeader" data-reactid="43">
+                    <h1 class="StepHeader-title">找回密码</h1>
+                    <h2 class="StepHeader-subtitle">验证码将会发送至你的注册邮箱</h2>
+                </div>
+                <div class="SignFlow-account">
+                    <div class="SignFlow-supportedCountriesSelectContainer"></div>
+                    <div class="SignFlowInput SignFlow-accountInputContainer">
+                        <div class="SignFlow-accountInput Input-wrapper">
+                            <input class="Input" value="" name="username" placeholder="邮箱账号" type="text" />
+                        </div>
+                        <div class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask">22656</div>
+                    </div>
+                    <button class="Button PasswordReset-nextStep Button--primary Button--blue" type="submit" data-reactid="61"><!-- react-text: 62 -->下一步<!-- /react-text --></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    @Scripts.Render("~/Themes/assembly/jquery")
+    @Scripts.Render("~/Themes/assembly/bootstrap")
+    @Scripts.Render("~/Themes/Scripts")
+    <script type="text/javascript">
+
+    </script>
+
 </body>
 </html>
