@@ -46,6 +46,10 @@ namespace EarlySite.Web.Controllers
             return View();
         }
 
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
 
         /// <summary>
         /// 登录ajax请求
@@ -235,6 +239,24 @@ namespace EarlySite.Web.Controllers
         }
 
         /// <summary>
+        /// 忘记密码提交
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ForgetSubmit(string mail)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+            };
+
+            //生成验证码发送到邮箱 加入缓存
+
+            return Json(result);
+        }
+
+        /// <summary>
         /// 账户注册认证
         /// </summary>
         /// <param name="phone">手机号</param>
@@ -313,6 +335,7 @@ namespace EarlySite.Web.Controllers
             }
             return loginresult;
         }
+
 
     }
 }

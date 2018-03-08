@@ -200,6 +200,7 @@
     <Content Include="Views\Account\Regist.cshtml" />
     <Content Include="Views\Account\Forget.cshtml" />
     <Content Include="Views\Profile\Setting.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
