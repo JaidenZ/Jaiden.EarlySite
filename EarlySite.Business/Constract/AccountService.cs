@@ -227,6 +227,11 @@
             return result;
         }
 
+        /// <summary>
+        /// 检查邮箱是否被注册
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
         public Result CheckMailRegisted(string mail)
         {
             Result result = new Result()
@@ -246,6 +251,11 @@
             return result;
         }
 
+        /// <summary>
+        /// 检查手机是否被注册
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public Result CheckPhoneRegisted(string phone)
         {
             Result result = new Result()
