@@ -11246,7 +11246,7 @@ html[data-theme=dark] .PasswordReset .Input-wrapper.is-focus {
     display: block;
     width: 100%;
     margin-top: 32px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .PasswordReset-supportedCountries {
