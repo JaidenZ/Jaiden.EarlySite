@@ -105,25 +105,25 @@
             }
             else {
                 //ajax send data
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: '@Url.Action("CheckMail", "Account")',
-                data: { mail: mailinfo },
-                success: function (result) {
-                    if (!result.Status) {
-
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("CheckMail", "Account")',
+                    data: { mail: mailinfo },
+                    success: function (result) {
+                        if (!result.Status) {
+                            $('#mailerrormask').html(result.Message);
+                            $('#mailerrormask').show(300);
+                            return false;
+                        }
+                        else {
+                            $('#mailerrormask').hide();
+                        }
+                    },
+                    error: function (error) {
+                        alert("Ajax send error");
                     }
-                    else {
-
-                        $('#registcontent').hide();
-                        $('#registshow').show();
-                    }
-                },
-                error: function (error) {
-                    alert("Ajax send error");
-                }
-            });
+                });
             }
         });
         $('#mailerrormask').click(function () {
@@ -143,26 +143,26 @@
                 $('#phoneerrormask').show(300);
             }
             else {
-                                //ajax send data
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                url: '@Url.Action("CheckMail", "Account")',
-                data: { mail: mailinfo },
-                success: function (result) {
-                    if (!result.Status) {
-
+                //检查手机是否被注册
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("CheckPhone", "Account")',
+                    data: { phone: phoneinfo },
+                    success: function (result) {
+                        if (!result.Status) {
+                            $('#phoneerrormask').html(result.Message);
+                            $('#phoneerrormask').show(300);
+                            return false;
+                        }
+                        else {
+                            $('#phoneerrormask').hide();
+                        }
+                    },
+                    error: function (error) {
+                        alert("Ajax send error");
                     }
-                    else {
-
-                        $('#registcontent').hide();
-                        $('#registshow').show();
-                    }
-                },
-                error: function (error) {
-                    alert("Ajax send error");
-                }
-            });
+                });
             }
         });
 
@@ -200,8 +200,31 @@
         $('#registbtn').click(function () {
             var mailinfo = $('#mailinput').val();
             if (mailinfo == null || mailinfo == "" || mailinfo == undefined) {
+                $('#mailerrormask').html("请输入邮箱信息");
                 $('#mailerrormask').show(300);
                 return;
+            }
+            else {
+                //检查是否被注册
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("CheckMail", "Account")',
+                    data: { mail: mailinfo },
+                    success: function (result) {
+                        if (!result.Status) {
+                            $('#mailerrormask').html(result.Message);
+                            $('#mailerrormask').show(300);
+                            return false;
+                        }
+                        else {
+                            $('#mailerrormask').hide();
+                        }
+                    },
+                    error: function (error) {
+                        alert("Ajax send error");
+                    }
+                });
             }
             var phoneinfo = $('#phoneinput').val();
             if (phoneinfo == null || phoneinfo == "" || phoneinfo == undefined) {
@@ -213,7 +236,29 @@
             if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phoneinfo))) {
                 $('#phoneerrormask').html('请输入正确的手机号码');
                 $('#phoneerrormask').show(300);
-                return false;
+                return;
+            }
+            else {
+                //检查手机是否被注册
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("CheckPhone", "Account")',
+                    data: { phone: phoneinfo },
+                    success: function (result) {
+                        if (!result.Status) {
+                            $('#phoneerrormask').html(result.Message);
+                            $('#phoneerrormask').show(300);
+                            return false;
+                        }
+                        else {
+                            $('#phoneerrormask').hide();
+                        }
+                    },
+                    error: function (error) {
+                        alert("Ajax send error");
+                    }
+                });
             }
 
             var password = $('#passwordinput').val();

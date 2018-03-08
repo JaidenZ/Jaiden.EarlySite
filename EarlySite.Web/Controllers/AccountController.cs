@@ -200,7 +200,7 @@ namespace EarlySite.Web.Controllers
         {
             Result registresult = new Result()
             {
-                Status = false,
+                Status = true,
                 Message = "邮箱已被注册",
                 StatusCode = "CM000"
             };
@@ -222,7 +222,7 @@ namespace EarlySite.Web.Controllers
         {
             Result registresult = new Result()
             {
-                Status = false,
+                Status = true,
                 Message = "手机已被注册",
                 StatusCode = "CP000"
             };

@@ -236,11 +236,15 @@
         {
             Result result = new Result()
             {
-                Status = false,  
+                Status = true,  
             };
             try
             {
-
+                int resultcount = DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(mail, 1).Satifasy());
+                if(resultcount > 0)
+                {
+                    result.Status = false;
+                }
             }
             catch(Exception ex)
             {
@@ -260,11 +264,15 @@
         {
             Result result = new Result()
             {
-                Status = false,
+                Status = true,
             };
             try
             {
-
+                int resultcount = DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(phone, 0).Satifasy());
+                if (resultcount > 0)
+                {
+                    result.Status = false;
+                }
             }
             catch (Exception ex)
             {
