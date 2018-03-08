@@ -234,6 +234,12 @@ namespace EarlySite.Web.Controllers
             return Json(registresult);
         }
 
+        /// <summary>
+        /// 账户注册认证
+        /// </summary>
+        /// <param name="phone">手机号</param>
+        /// <param name="code">认证码</param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult RequireRegist(string phone,string code)
         {
