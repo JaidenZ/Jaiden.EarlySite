@@ -362,5 +362,40 @@
             return result;
         }
 
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="securityCode"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public Result ResetPassword(string account, string securityCode, int type)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "重置密码成功",
+                StatusCode = "RP001"
+            };
+            try
+            {
+                //加密
+                string code = MD5Engine.ToMD5String(securityCode);
+                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountResetPassSpefication(account, code, 0).Satifasy());
+                DBConnectionManager.Instance.Commit();
+                if (!result.Status)
+                {
+                    result.Message = "重置密码失败";
+                }
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "修改密码出错" + ex.Message;
+                result.StatusCode = "EX000";
+            }
+            return result;
+        }
+
     }
 }

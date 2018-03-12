@@ -51,6 +51,7 @@
     <Compile Include="Repository\WhichAccountRepository.cs" />
     <Compile Include="Spefication\AccountAddSpefication.cs" />
     <Compile Include="Spefication\AccountCheckSpefication.cs" />
+    <Compile Include="Spefication\AccountResetPassSpefication.cs" />
     <Compile Include="Spefication\AccountSelectSpefication.cs" />
     <Compile Include="Spefication\AccountRequireSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />

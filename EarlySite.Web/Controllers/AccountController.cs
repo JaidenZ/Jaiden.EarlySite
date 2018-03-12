@@ -46,8 +46,9 @@ namespace EarlySite.Web.Controllers
             return View();
         }
 
-        public ActionResult ResetPassword()
+        public ActionResult ResetPassword(string account)
         {
+            ViewBag.Account = account;
             return View();
         }
 
@@ -263,6 +264,7 @@ namespace EarlySite.Web.Controllers
         /// <param name="mail"></param>
         /// <param name="code"></param>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult ForgetVerivicationCode(string mail,string code)
         {
             Result result = new Result()
@@ -274,6 +276,28 @@ namespace EarlySite.Web.Controllers
             IAccount service = new AccountService();
             result = service.VerificationForgetCode(mail, code);
 
+            return Json(result);
+        }
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ResetPassword(string mail,string code)
+        {
+            Result result = new Result()
+            {
+                Status = false,
+                Message = "密码修改失败",
+                StatusCode = "RP000"
+            };
+
+            IAccount account = new AccountService();
+            result = account.ResetPassword(mail, code, 0);
+            
             return Json(result);
         }
 

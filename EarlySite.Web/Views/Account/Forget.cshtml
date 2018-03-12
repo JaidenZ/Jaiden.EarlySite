@@ -174,7 +174,7 @@
                         },
                         success: function (result) {
                             if (result.Status) {
-                                window.location = '@Url.Action("ResetPassword", "Account")';
+                                window.location = '@Url.Action("ResetPassword", "Account")' + '?account=' + username;
                             }
                             else {
                                 $('#captchamask').html('验证码错误');
@@ -186,11 +186,6 @@
                             alert("Ajax send error");
                         }
                     });
-
-
-
-
-
             }
         });
 

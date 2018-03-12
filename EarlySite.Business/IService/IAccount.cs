@@ -69,5 +69,18 @@
         /// <param name="code"></param>
         /// <returns></returns>
         Result VerificationForgetCode(string mail, string code);
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="account">账户</param>
+        /// <param name="securityCode">重置的密码</param>
+        /// <param name="type">
+        /// 重置的类型
+        /// 0:邮箱
+        /// 1:手机号
+        /// </param>
+        /// <returns></returns>
+        Result ResetPassword(string account, string securityCode, int type);
     }
 }
