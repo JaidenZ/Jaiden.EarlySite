@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1622D25B-A25D-4640-B5E6-413E7F3A3A87}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EarlySite.Core</RootNamespace>
     <AssemblyName>EarlySite.Core</AssemblyName>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\Data\DataModelProxyConverter.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Collection\SafetyList.cs" />
     <Compile Include="Component\WorkThreadDictionary.cs" />
     <Compile Include="Configuration\INIDocument.cs" />
@@ -65,6 +69,7 @@
     <Compile Include="Utils\ModelUtils.cs" />
     <Compile Include="Utils\ThreadUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />
+    <Compile Include="Utils\VerificationUtils.cs" />
     <Compile Include="ValueType\ValueTypeFormatter.cs" />
     <Compile Include="ValueType\ValueTypeUnit.cs" />
   </ItemGroup>
