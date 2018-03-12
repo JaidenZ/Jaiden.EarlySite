@@ -62,5 +62,12 @@
         /// <returns></returns>
         Result SendForgetVerificationCode(string mail);
 
+        /// <summary>
+        /// 验证忘记密码验证码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        Result VerificationForgetCode(string mail, string code);
     }
 }

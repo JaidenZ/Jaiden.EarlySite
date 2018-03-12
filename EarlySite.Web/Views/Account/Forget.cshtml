@@ -33,7 +33,7 @@
                 <div id="captchainput" class="SignFlow SignFlow-smsInputContainer">
                     <div class="SignFlowInput SignFlow-smsInput">
                         <div class="Input-wrapper">
-                            <input id="smsvalue" value="" name="digits" class="Input" placeholder="输入 6 位邮箱验证码" type="number">
+                            <input id="smsvalue" value="" name="digits" class="Input" placeholder="输入 5 位邮箱验证码" type="text">
                         </div>
                         <div id="captchamask" class="SignFlowInput-errorMask SignFlow-smsInputErrorMessage"></div>
                     </div>
@@ -101,7 +101,7 @@
         });
 
         $('#btnSmsSend').click(function () {
-
+            console.log("点击重发");
             if (mailsend <= 0 && step == 0) {
                 mailsend = 30;
                 //验证邮箱
@@ -157,13 +157,39 @@
             else if (step == 1) {
                 //验证验证码
                 var smsvalue = $('#smsvalue').val();
+                var username = $('#username').val();
                 if (smsvalue == null || smsvalue == "" || smsvalue == undefined) {
                     $('#captchamask').html('验证码错误');
                     $('#captchamask').show(300);
                     return;
                 }
+                //验证
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("ForgetVerivicationCode", "Account")',
+                        data: {
+                            mail: username,
+                            code: smsvalue
+                        },
+                        success: function (result) {
+                            if (result.Status) {
+                                window.location = '@Url.Action("ResetPassword", "Account")';
+                            }
+                            else {
+                                $('#captchamask').html('验证码错误');
+                                $('#captchamask').show(300);
+                                return;
+                            }
+                        },
+                        error: function (error) {
+                            alert("Ajax send error");
+                        }
+                    });
 
-                window.location = '@Url.Action("ResetPassword", "Account")';
+
+
+
 
             }
         });
@@ -172,6 +198,7 @@
          * 提交忘记密码 发送验证码
          */
         function submitForget(mail) {
+
             //发送邮件
             $.ajax({
                         type: "POST",
@@ -190,7 +217,7 @@
                             }
                         },
                         error: function (error) {
-                            alert("Ajax send error");
+                            alert(error);
                  }
              });
         }

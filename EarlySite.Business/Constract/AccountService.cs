@@ -302,11 +302,7 @@
                 //生成code码加入缓存 设置时效日期
                 if (!string.IsNullOrEmpty(mail))
                 {
-                    string code = "";
-
-                    Random random = new Random();
-                    
-
+                    string code = VerificationUtils.GetVefication();
 
                     CookieUtils.SetCookie(string.Format("forget{0}", mail), code, DateTime.Now.AddMinutes(30));
 
@@ -320,7 +316,7 @@
                     sendinfo.Title = string.Format("你此次重置密码的验证码是:{0}",code);
                     if (!string.IsNullOrEmpty(sendinfo.Content))
                     {
-                        sendinfo.Content = sendinfo.Content.Replace("(邮箱)", mail);
+                        sendinfo.Content = sendinfo.Content.Replace("(手机)", mail);
                         sendinfo.Content = sendinfo.Content.Replace("(验证码)", code);
                     }
 
@@ -336,5 +332,35 @@
 
             return result;
         }
+
+        /// <summary>
+        /// 验证忘记密码提交的验证码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public Result VerificationForgetCode(string mail, string code)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "验证码正确",
+                StatusCode = "VF001"
+            };
+
+            if (!string.IsNullOrEmpty(mail) && !string.IsNullOrEmpty(code))
+            {
+                string vcode = CookieUtils.Get(string.Format("forget{0}", mail));
+                if (vcode != code)
+                {
+                    result.Status = false;
+                    result.Message = "验证码错误";
+                    result.StatusCode = "VF000";
+                }
+            }
+
+            return result;
+        }
+
     }
 }

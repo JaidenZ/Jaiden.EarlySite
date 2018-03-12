@@ -248,10 +248,31 @@ namespace EarlySite.Web.Controllers
         {
             Result result = new Result()
             {
-                Status = true,
+                Status = false,
             };
 
             //生成验证码发送到邮箱 加入缓存
+            IAccount service = new AccountService();
+            result.Status =  service.SendForgetVerificationCode(mail).Status;
+            return Json(result);
+        }
+
+        /// <summary>
+        /// 验证忘记密码验证码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public JsonResult ForgetVerivicationCode(string mail,string code)
+        {
+            Result result = new Result()
+            {
+                Status = false,
+                Message = "验证码不正确",
+                StatusCode = "FV000"
+            };
+            IAccount service = new AccountService();
+            result = service.VerificationForgetCode(mail, code);
 
             return Json(result);
         }
