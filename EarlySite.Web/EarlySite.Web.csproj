@@ -150,6 +150,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="ForgetVerificationMail.html" />
     <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
   <ItemGroup>

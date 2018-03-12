@@ -55,5 +55,12 @@
         /// <returns></returns>
         Result CheckPhoneRegisted(string phone);
 
+        /// <summary>
+        /// 发送忘记密码验证码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        Result SendForgetVerificationCode(string mail);
+
     }
 }

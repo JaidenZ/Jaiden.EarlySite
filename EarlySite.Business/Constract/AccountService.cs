@@ -283,5 +283,58 @@
             return result;
         }
 
+        /// <summary>
+        /// 发送忘记密码验证码
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        public Result SendForgetVerificationCode(string mail)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "发送邮件成功",
+                StatusCode = "SR000"
+            };
+
+            try
+            {
+                //生成code码加入缓存 设置时效日期
+                if (!string.IsNullOrEmpty(mail))
+                {
+                    string code = "";
+
+                    Random random = new Random();
+                    
+
+
+                    CookieUtils.SetCookie(string.Format("forget{0}", mail), code, DateTime.Now.AddMinutes(30));
+
+
+                    SendMailInfo sendinfo = new SendMailInfo();
+
+                    using (StreamReader sr = File.OpenText(AppDomain.CurrentDomain.BaseDirectory + "ForgetVerificationMail.html"))
+                    {
+                        sendinfo.Content = sr.ReadToEnd();
+                    }
+                    sendinfo.Title = string.Format("你此次重置密码的验证码是:{0}",code);
+                    if (!string.IsNullOrEmpty(sendinfo.Content))
+                    {
+                        sendinfo.Content = sendinfo.Content.Replace("(邮箱)", mail);
+                        sendinfo.Content = sendinfo.Content.Replace("(验证码)", code);
+                    }
+
+                    VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = string.Format("忘记密码邮件验证出错 /r/n{0}", ex.Message);
+                result.StatusCode = "EX000";
+            }
+
+            return result;
+        }
     }
 }
