@@ -16,7 +16,9 @@
         /// 查询类型
         /// 0:按手机号查询
         /// 1:按手机号密码匹配查询
-        /// 2:按昵称模糊
+        /// 2:按邮箱密码匹配查询
+        /// 3:按手机或邮箱 密码匹配查询
+        /// 4:按昵称模糊
         /// </param>
         /// <param name="search"></param>
         /// <param name="securityCode"></param>
@@ -37,18 +39,32 @@
                     " from which_account" +
                     " where Phone = '{0}' ", _searchText);
             }
-            if (_type == 1)
+
+            if(_type == 1)
             {
                 sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
                     " from which_account" +
-                    " where Phone = '{0}' and SecurityCode = '{1}' ", _searchText, _securityCode);
+                    " where Email = '{0}' and SecurityCode = '{1}' ", _searchText, _securityCode);
             }
             if (_type == 2)
             {
                 sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
                     " from which_account" +
+                    " where Phone = '{0}' and SecurityCode = '{1}' ", _searchText, _securityCode);
+            }
+            if(_type == 3)
+            {
+                sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
+                    " from which_account" +
+                    " where Phone = '{0}' or Email = '{0}' and SecurityCode = '{1}' ", _searchText, _securityCode);
+            }
+            if (_type == 4)
+            {
+                sql = string.Format(" select Phone,Email,SecurityCode,CreatDate,BirthdayDate,NickName,Avator,BackCorver,Sex,Description,RequiredStatus " +
+                    " from which_account" +
                     " where NickName like '%{0}%' ", _searchText);
             }
+            
 
             return sql;
         }

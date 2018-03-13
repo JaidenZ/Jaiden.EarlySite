@@ -108,7 +108,7 @@
             {
                 string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
 
-                IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(1, signInCode, securityCodeMD5).Satifasy());
+                IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3 ,signInCode, securityCodeMD5).Satifasy());
                 if (inforesult != null && inforesult.Count > 0)
                 {
                     result.Status = true;
