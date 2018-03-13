@@ -22,3 +22,44 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.header-banner {
+    height: 180px;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: -15px;
+    overflow: hidden;
+    background: no-repeat center top;
+    background-size: auto 100%;
+    width: 100%;
+    background: #fff;
+    padding: 0px 0px;
+    line-height: 1;
+    border: 1px solid #ccc;
+    -webkit-transition: opacity .5s ease .5s;
+    -moz-transition: opacity .5s ease .5s;
+    -ms-transition: opacity .5s ease .5s;
+    -o-transition: opacity .5s ease .5s;
+    transition: opacity .5s ease .5s;
+}
+
+.banner-href {
+    display: block;
+    height: 180px;
+    background: no-repeat center top;
+    background-size: auto 100%;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+}
+
+.banner-href {
+    background-image: url(http://imgs.aixifan.com/cms/2018_03_12/1520851326758.jpg);
+}
+
+@media screen and (max-width:1280px) {
+    .banner-href {
+        background-image: url(http://imgs.aixifan.com/cms/2018_03_12/1520851333603.jpg);
+    }
+}
