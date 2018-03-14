@@ -2,6 +2,15 @@
     padding-top: 65px;
     background-color: #F3F3F3;
 }
+a {
+    text-decoration: none;
+    color:black;
+}
+
+a:hover{
+    text-decoration:none;
+    color:black;
+}
 
 .efont {
     font-family: 'Lato';
