@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="ForgetVerificationMail.html" />
+    <Content Include="Themes\Images\test.jpg" />
     <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
   <ItemGroup>

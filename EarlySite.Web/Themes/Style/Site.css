@@ -107,6 +107,7 @@ textarea {
     margin:0;
     padding:20px;
     height:200px;
+    border:1px solid red;
 }
 .warrper-body-list-item-mask {
     position: absolute;
@@ -117,13 +118,33 @@ textarea {
     height: 100%;
 }
 .warrper-body-list-item-bottom {
-    position: relative;
-    height: 30px;
-    line-height: 30px;
+    clear:both;
+    width:100%;
+    height: 32px;
+    line-height: 32px;
     font-size: 14px;
-    background-color:#808080;
+    background-color: rgba(0,0,0,0.5);
+    border:1px solid green;
 }
+.warrper-body-list-item-bottom span{
+    color:#FFF;
+}
+
+@media \0screen\,screen\9 { /* 只支持IE6、7、8 */
+    .warrper-body-list-item-bottom {
+        background-color: #000000;
+        filter: Alpha(opacity=50);
+        position: static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+        *zoom: 1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+    }
+
+        .warrper-body-list-item-bottom span {
+            position: relative; /* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+        }
+}
+
+
 .warrper-body-list-item-des {
-    margin: 0px 0 20px;
     font-size: 14px;
+    border:1px solid black;
 }
