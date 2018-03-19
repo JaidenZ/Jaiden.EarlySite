@@ -151,7 +151,19 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="ForgetVerificationMail.html" />
-    <Content Include="Themes\Images\head-0319.jpg" />
+    <Content Include="Pictures\pic-00.jpg" />
+    <Content Include="Pictures\pic-01.jpg" />
+    <Content Include="Pictures\pic-02.jpg" />
+    <Content Include="Pictures\pic-03.jpg" />
+    <Content Include="Pictures\pic-04.jpg" />
+    <Content Include="Pictures\pic-05.jpg" />
+    <Content Include="Pictures\pic-06.jpg" />
+    <Content Include="Pictures\pic-07.jpg" />
+    <Content Include="Pictures\pic-08.jpg" />
+    <Content Include="Pictures\pic-09.jpg" />
+    <Content Include="Pictures\pic-10.jpg" />
+    <Content Include="Pictures\pic-11.jpg" />
+    <Content Include="Themes\Images\headerBanner-acfun.jpg" />
     <Content Include="Themes\Images\test.jpg" />
     <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
@@ -207,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Pictures\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

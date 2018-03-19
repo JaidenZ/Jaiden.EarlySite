@@ -84,12 +84,12 @@ textarea {
 }
 
 .banner-href {
-    background-image: url(~/Themes/Images/head-0319.jpg);
+    background-image: url(../Images/headerBanner-acfun.jpg);
 }
 
 @media screen and (max-width:1280px) {
     .banner-href {
-        background-image: url(~/Themes/Images/head-0319.jpg);
+        background-image: url(../Images/headerBanner-acfun.jgp);
     }
 }
 
