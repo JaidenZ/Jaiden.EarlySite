@@ -23,6 +23,35 @@ textarea {
     max-width: 280px;
 }
 
+.left {
+    float: left !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.m-right {
+    margin-right: 10px;
+}
+
+.m-left {
+    margin-left: 10px;
+}
+
+.m-top {
+    margin-top: 10px;
+}
+
+.m-bottom {
+    margin-bottom: 10px;
+}
+
+
+.iconfont {
+    color: #3366cc;
+    font-size: 28px;
+}
 
 .header-banner {
     height: 180px;
@@ -55,12 +84,12 @@ textarea {
 }
 
 .banner-href {
-    background-image: url(http://imgs.aixifan.com/cms/2018_03_12/1520851326758.jpg);
+    background-image: url(~/Themes/Images/head-0319.jpg);
 }
 
 @media screen and (max-width:1280px) {
     .banner-href {
-        background-image: url(http://imgs.aixifan.com/cms/2018_03_12/1520851333603.jpg);
+        background-image: url(~/Themes/Images/head-0319.jpg);
     }
 }
 
@@ -104,11 +133,50 @@ textarea {
 }
 
 .warrper-body-list-item {
-    margin:0;
-    padding:20px;
-    height:200px;
-    border:1px solid red;
+    background: #fff;
+    border: 1px #d9d9d9 solid;
+    padding: 10px 11px 0;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
 }
+
+    .warrper-body-list-item:hover {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transform: translate3d(0, -2px, 0);
+    }
+
+.warrper-body-list-item-pic{
+    position:relative;
+    max-height:480px;
+    overflow:hidden;
+    text-align:center;
+
+}
+
+    .warrper-body-list-item-pic img {
+        display: block;
+        width: 100%;
+        -webkit-animation-duration: .3s !important;
+        animation-duration: .3s !important
+    }
+
+
+.warrper-body-list-item-text {
+    text-align: left;
+    font-size: 14px;
+}
+
+    .warrper-body-list-item-text a {
+        color: #7e7e7e;
+    }
+        .warrper-body-list-item-text a:hover {
+            color: #db3838;
+            text-decoration: none;
+        }
+
 .warrper-body-list-item-mask {
     position: absolute;
     top: 0;
@@ -118,33 +186,19 @@ textarea {
     height: 100%;
 }
 .warrper-body-list-item-bottom {
-    clear:both;
-    width:100%;
-    height: 32px;
-    line-height: 32px;
-    font-size: 14px;
-    background-color: rgba(0,0,0,0.5);
-    border:1px solid green;
+    font-size: 12px;
+    background: #f6f6f6;
+    border-top: 1px solid #e7e7e7;
+    box-shadow: 0 1px 0 0 #fff inset;
+    padding: 0px 11px;
+    margin: 0 -11px;
+    color: #8B8B8C;
+    height: 36px;
+    overflow: hidden
 }
-.warrper-body-list-item-bottom span{
-    color:#FFF;
-}
-
-@media \0screen\,screen\9 { /* 只支持IE6、7、8 */
-    .warrper-body-list-item-bottom {
-        background-color: #000000;
-        filter: Alpha(opacity=50);
-        position: static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
-        *zoom: 1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+    .warrper-body-list-item-bottom span {
+        display: inline-block;
+        line-height: 36px;
     }
 
-        .warrper-body-list-item-bottom span {
-            position: relative; /* 设置子元素为相对定位，可让子元素不继承Alpha值 */
-        }
-}
 
-
-.warrper-body-list-item-des {
-    font-size: 14px;
-    border:1px solid black;
-}
