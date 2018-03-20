@@ -38,7 +38,9 @@
   <ItemGroup>
     <Compile Include="Common\ConstInfo.cs" />
     <Compile Include="Database\AccountInfo.cs" />
+    <Compile Include="Database\DishInfo.cs" />
     <Compile Include="Enum\AccountEnum.cs" />
+    <Compile Include="Enum\DishTypeEnum.cs" />
     <Compile Include="Show\Account.cs" />
     <Compile Include="Show\LoginRequest.cs" />
     <Compile Include="Common\Result.cs" />
