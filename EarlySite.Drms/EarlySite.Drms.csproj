@@ -54,6 +54,7 @@
     <Compile Include="Spefication\AccountResetPassSpefication.cs" />
     <Compile Include="Spefication\AccountSelectSpefication.cs" />
     <Compile Include="Spefication\AccountRequireSpefication.cs" />
+    <Compile Include="Spefication\DishSelectSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,25 @@
     {
         public Result<Dish> SearchDishInfoById(int dishId)
         {
-            throw new NotImplementedException();
+            Result<Dish> result = new Result<Dish>()
+            {
+                Data = null,
+                Status = true
+            };
+            try
+            {
+                Dish dish = new Dish();
+                result.Data = dish;
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+            }
+            
+            return result;
         }
 
         public Result<IList<Dish>> SearchDishInfoByMealTime(MealTime time)
