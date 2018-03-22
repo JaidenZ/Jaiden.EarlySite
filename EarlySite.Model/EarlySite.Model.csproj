@@ -39,6 +39,8 @@
     <Compile Include="Common\ConstInfo.cs" />
     <Compile Include="Database\AccountInfo.cs" />
     <Compile Include="Database\DishInfo.cs" />
+    <Compile Include="Database\RecipesInfo.cs" />
+    <Compile Include="Database\ShopInfo.cs" />
     <Compile Include="Enum\AccountEnum.cs" />
     <Compile Include="Enum\DishTypeEnum.cs" />
     <Compile Include="Show\Account.cs" />

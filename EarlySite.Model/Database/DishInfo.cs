@@ -20,9 +20,20 @@
         /// </summary>
         public DateTime UpdateDate { get; set; }
 
-        public int Type { get; set; }
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public DishType Type { get; set; }
 
+        /// <summary>
+        /// 类型名称
+        /// </summary>
         public string TypeName { get; set; }
+
+        /// <summary>
+        /// 用餐时间
+        /// </summary>
+        public MealTime MealTime { get; set; }
 
         /// <summary>
         /// 商店编号
