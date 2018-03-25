@@ -47,6 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AOP\Data\DataModelProxyConverter.cs" />
+    <Compile Include="AOP\Proxy\InterfaceProxy.cs" />
+    <Compile Include="AOP\Proxy\InvocationHandler.cs" />
+    <Compile Include="DDD\Service\IoCContainerBase.cs" />
+    <Compile Include="DDD\Service\IServiceBase.cs" />
+    <Compile Include="DDD\Service\ServiceBaseContainer.cs" />
+    <Compile Include="DDD\Service\ServiceFilter.cs" />
+    <Compile Include="DDD\Service\ServiceFilterContainer.cs" />
+    <Compile Include="DDD\Service\ServiceObjectAttribute.cs" />
+    <Compile Include="DDD\Service\ServiceObjectContainer.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Collection\SafetyList.cs" />
     <Compile Include="Component\WorkThreadDictionary.cs" />

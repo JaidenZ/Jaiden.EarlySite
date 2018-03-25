@@ -4,11 +4,12 @@
     using Model.Common;
     using Model.Enum;
     using System.Collections.Generic;
+    using Core.DDD.Service;
 
     /// <summary>
     /// 食谱操作服务
     /// </summary>
-    public interface IRecipesService
+    public interface IRecipesService: IServiceBase
     {
 
         /// <summary>

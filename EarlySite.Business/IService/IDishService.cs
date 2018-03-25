@@ -4,11 +4,12 @@
     using Model.Common;
     using Model.Enum;
     using System.Collections.Generic;
+    using Core.DDD.Service;
 
     /// <summary>
     /// 单品食物服务
     /// </summary>
-    public interface IDishService:IService
+    public interface IDishService: IServiceBase
     {
         /// <summary>
         /// 根据编号精确获取单品食物

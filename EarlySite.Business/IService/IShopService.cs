@@ -4,11 +4,12 @@
     using Model.Common;
     using Model.Enum;
     using System.Collections.Generic;
+    using Core.DDD.Service;
 
     /// <summary>
     /// 门店操作服务
     /// </summary>
-    public interface IShopService : IService
+    public interface IShopService : IServiceBase
     {
         /// <summary>
         /// 根据店铺昵称模糊搜索

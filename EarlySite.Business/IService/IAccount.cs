@@ -2,8 +2,9 @@
 {
     using Model.Show;
     using Model.Common;
+    using Core.DDD.Service;
 
-    public interface IAccount : IService
+    public interface IAccount : IServiceBase
     {
         /// <summary>
         /// 账户登录
