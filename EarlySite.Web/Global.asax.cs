@@ -24,6 +24,21 @@
             //注册业务服务
             ServiceObjectContainer.Load(Assembly.LoadFrom("bin/EarlySite.Business.dll"));
 
+
+
+
+
+
+
+
+
+
+
+
+
+            //获取当前执行程序集,以获取路径,得到业务程序集进行加载
+            //Assembly assembly = Assembly.GetExecutingAssembly();
+
         }
     }
 }
