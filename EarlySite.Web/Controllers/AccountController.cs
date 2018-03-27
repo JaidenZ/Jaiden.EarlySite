@@ -1,17 +1,18 @@
-﻿using EarlySite.Core.Utils;
-using EarlySite.Model.Show;
-using EarlySite.Model.Common;
-using EarlySite.Business.IService;
-using EarlySite.Business.Constract;
-using System;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.IO;
-using EarlySite.Core.Cryptography;
-
-namespace EarlySite.Web.Controllers
+﻿namespace EarlySite.Web.Controllers
 {
+    using EarlySite.Core.Utils;
+    using EarlySite.Model.Show;
+    using EarlySite.Model.Common;
+    using EarlySite.Business.IService;
+    using EarlySite.Business.Constract;
+    using System;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.IO;
+    using EarlySite.Core.Cryptography;
+    using EarlySite.Core.DDD.Service;
+
     public class AccountController : Controller
     {
 
@@ -95,8 +96,7 @@ namespace EarlySite.Web.Controllers
             //登录操作
             if (loginresult.Status)
             {
-                IAccount service = new AccountService();
-                loginresult = service.SignIn(account.LoginUsername, account.LoginSecurity);
+                loginresult = ServiceObjectContainer.Get<IAccount>().SignIn(account.LoginUsername, account.LoginSecurity);
             }
 
 
@@ -139,8 +139,7 @@ namespace EarlySite.Web.Controllers
                 result.StatusCode = "SO002";
             }
 
-            IAccount service = new AccountService();
-            result = service.SignOut(signoutphone);
+            result = ServiceObjectContainer.Get<IAccount>().SignOut(signoutphone);
 
             return Json(result);
         }
@@ -179,7 +178,7 @@ namespace EarlySite.Web.Controllers
 
             if (registresult.Status)
             {
-                IAccount service = new AccountService();
+                IAccount service = ServiceObjectContainer.Get<IAccount>();
                 Result<Account> accountresult = service.RegistInfo(regist);
                 if (!accountresult.Status)
                 {
@@ -211,8 +210,7 @@ namespace EarlySite.Web.Controllers
             };
             if (!string.IsNullOrEmpty(mail))
             {
-                IAccount service = new AccountService();
-                registresult.Status = service.CheckMailRegisted(mail).Status;
+                registresult.Status = ServiceObjectContainer.Get<IAccount>().CheckMailRegisted(mail).Status;
             }
             return Json(registresult);
         }
@@ -233,8 +231,7 @@ namespace EarlySite.Web.Controllers
             };
             if (!string.IsNullOrEmpty(phone))
             {
-                IAccount service = new AccountService();
-                registresult.Status = service.CheckPhoneRegisted(phone).Status;
+                registresult.Status = ServiceObjectContainer.Get<IAccount>().CheckPhoneRegisted(phone).Status;
             }
             return Json(registresult);
         }
@@ -253,8 +250,7 @@ namespace EarlySite.Web.Controllers
             };
 
             //生成验证码发送到邮箱 加入缓存
-            IAccount service = new AccountService();
-            result.Status =  service.SendForgetVerificationCode(mail).Status;
+            result.Status = ServiceObjectContainer.Get<IAccount>().SendForgetVerificationCode(mail).Status;
             return Json(result);
         }
 
@@ -273,8 +269,7 @@ namespace EarlySite.Web.Controllers
                 Message = "验证码不正确",
                 StatusCode = "FV000"
             };
-            IAccount service = new AccountService();
-            result = service.VerificationForgetCode(mail, code);
+            result = ServiceObjectContainer.Get<IAccount>().VerificationForgetCode(mail, code);
 
             return Json(result);
         }
@@ -294,9 +289,8 @@ namespace EarlySite.Web.Controllers
                 Message = "密码修改失败",
                 StatusCode = "RP000"
             };
-
-            IAccount account = new AccountService();
-            result = account.ResetPassword(mail, code, 0);
+            
+            result = ServiceObjectContainer.Get<IAccount>().ResetPassword(mail, code, 0);
             
             return Json(result);
         }
@@ -310,14 +304,12 @@ namespace EarlySite.Web.Controllers
         [HttpGet]
         public ActionResult RequireRegist(string phone,string code)
         {
-            IAccount service = new AccountService();
-            
             string codesave = CookieUtils.Get(string.Format("code{0}",phone));
             if (!string.IsNullOrEmpty(codesave))
             {
                 if(code == codesave)
                 {
-                    service.RequireAccount(Int64.Parse(phone));
+                    ServiceObjectContainer.Get<IAccount>().RequireAccount(Int64.Parse(phone));
                 }
 
             }

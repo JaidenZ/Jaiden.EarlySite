@@ -21,10 +21,11 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //注册业务服务
-            ServiceObjectContainer.Load(Assembly.LoadFrom("bin/EarlySite.Business.dll"));
-
-
+            //获取业务服务程序集
+            Assembly[] loadassemblys = System.AppDomain.CurrentDomain.GetAssemblies();
+            Assembly businessdll = loadassemblys.FirstOrDefault(w => w.FullName.Contains("EarlySite.Business"));
+            //注册业务服务程序集
+            ServiceObjectContainer.Load(businessdll);
 
 
 
