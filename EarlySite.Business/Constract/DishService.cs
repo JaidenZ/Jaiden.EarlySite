@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using Business.IService;
+    using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
     using EarlySite.Model.Common;
     using EarlySite.Model.Enum;
     using EarlySite.Model.Show;
@@ -18,9 +20,15 @@
             };
             try
             {
-                Dish dish = new Dish();
-                result.Data = dish;
-
+                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(dishId.ToString(), 0).Satifasy());
+                if(dish != null && dish.Count > 0)
+                {
+                    result.Data = dish[0];
+                }
+                else
+                {
+                    result.Status = false;
+                }
             }
             catch (Exception ex)
             {
@@ -34,7 +42,24 @@
 
         public Result<IList<Dish>> SearchDishInfoByMealTime(MealTime time)
         {
-            throw new NotImplementedException();
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+            try
+            {
+                
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+            }
+
+            return result;
         }
 
         public Result<IList<Dish>> SearchDishInfoByName(string searchName)
