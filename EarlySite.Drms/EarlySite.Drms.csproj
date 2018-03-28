@@ -49,12 +49,13 @@
     <Compile Include="MysqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\WhichAccountRepository.cs" />
-    <Compile Include="Spefication\AccountAddSpefication.cs" />
-    <Compile Include="Spefication\AccountCheckSpefication.cs" />
-    <Compile Include="Spefication\AccountResetPassSpefication.cs" />
-    <Compile Include="Spefication\AccountSelectSpefication.cs" />
-    <Compile Include="Spefication\AccountRequireSpefication.cs" />
-    <Compile Include="Spefication\DishSelectSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountAddSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountCheckSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountResetPassSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountSelectSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountRequireSpefication.cs" />
+    <Compile Include="Spefication\DishSpefication\DishAddSpefication.cs" />
+    <Compile Include="Spefication\DishSpefication\DishSelectSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
   </ItemGroup>
   <ItemGroup>

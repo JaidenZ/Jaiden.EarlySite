@@ -28,7 +28,14 @@
         /// <summary>
         /// 类型名称
         /// </summary>
-        public string TypeName { get; set; }
+        public string TypeName
+        {
+            get
+            {
+                return Enum.GetName(typeof(DishType), this.Type);
+            }
+
+        }
 
         /// <summary>
         /// 用餐时间

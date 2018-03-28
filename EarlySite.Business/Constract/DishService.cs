@@ -134,7 +134,24 @@
         /// <returns></returns>
         public Result ShareDishInfo(DishShare share)
         {
-            throw new NotImplementedException();
+            Result result = new Result()
+            {
+                Status = true,
+                StatusCode = "SSD000"
+            };
+            try
+            {
+
+
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "分享单品食物失败";
+                result.StatusCode = "SSD001";
+            }
+            return result;
+
         }
     }
 }
