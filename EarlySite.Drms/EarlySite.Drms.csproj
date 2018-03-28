@@ -56,6 +56,7 @@
     <Compile Include="Spefication\AccountSpefication\AccountRequireSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishAddSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishSelectSpefication.cs" />
+    <Compile Include="Spefication\DishSpefication\DishUpdateSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
   </ItemGroup>
   <ItemGroup>
