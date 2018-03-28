@@ -147,7 +147,7 @@
             catch(Exception ex)
             {
                 result.Status = false;
-                result.Message = "分享单品食物失败";
+                result.Message = "分享单品食物失败" + ex.Message;
                 result.StatusCode = "SSD001";
             }
             return result;
