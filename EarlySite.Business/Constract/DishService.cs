@@ -11,6 +11,12 @@
 
     public class DishService : IDishService
     {
+
+        /// <summary>
+        /// 根据编号精确获取单品食物
+        /// </summary>
+        /// <param name="dishId">单品食物编号</param>
+        /// <returns></returns>
         public Result<Dish> SearchDishInfoById(int dishId)
         {
             Result<Dish> result = new Result<Dish>()
@@ -40,6 +46,11 @@
             return result;
         }
 
+        /// <summary>
+        /// 根据用餐时间获取单品食物
+        /// </summary>
+        /// <param name="time">用餐时间</param>
+        /// <returns></returns>
         public Result<IList<Dish>> SearchDishInfoByMealTime(MealTime time)
         {
             Result<IList<Dish>> result = new Result<IList<Dish>>()
@@ -61,7 +72,11 @@
 
             return result;
         }
-
+        /// <summary>
+        /// 根据名称模糊获取单品食物
+        /// </summary>
+        /// <param name="searchName">查询名字</param>
+        /// <returns></returns>
         public Result<IList<Dish>> SearchDishInfoByName(string searchName)
         {
             Result<IList<Dish>> result = new Result<IList<Dish>>()
@@ -84,11 +99,39 @@
             return result;
         }
 
+        /// <summary>
+        /// 根据单品食品类型获取信息
+        /// </summary>
+        /// <param name="type">类型</param>
+        /// <returns></returns>
         public Result<IList<Dish>> SearchDishInfoByType(DishType type)
         {
-            throw new NotImplementedException();
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+            try
+            {
+                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(type.GetHashCode().ToString(), 3).Satifasy());
+                result.Data = dish;
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+            }
+
+            return result;
+
         }
 
+        /// <summary>
+        /// 分享单品食物信息
+        /// </summary>
+        /// <param name="share"></param>
+        /// <returns></returns>
         public Result ShareDishInfo(DishShare share)
         {
             throw new NotImplementedException();
