@@ -49,8 +49,8 @@
             };
             try
             {
-                
-
+                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(time.GetHashCode().ToString(),2).Satifasy());
+                result.Data = dish;
             }
             catch (Exception ex)
             {
@@ -64,7 +64,24 @@
 
         public Result<IList<Dish>> SearchDishInfoByName(string searchName)
         {
-            throw new NotImplementedException();
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+            try
+            {
+                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(searchName, 1).Satifasy());
+                result.Data = dish;
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+            }
+
+            return result;
         }
 
         public Result<IList<Dish>> SearchDishInfoByType(DishType type)
