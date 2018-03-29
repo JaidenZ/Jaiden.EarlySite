@@ -1,4 +1,4 @@
-﻿namespace EarlySite.Drms.Spefication.DishSpefication
+﻿namespace EarlySite.Drms.Spefication
 {
     using System.Text;
     using EarlySite.Model.Database;

@@ -60,11 +60,13 @@
     <Compile Include="Spefication\RecipesSpefication\RecipesAddSpefication.cs" />
     <Compile Include="Spefication\RecipesSpefication\RecipesDeleteSpefication.cs" />
     <Compile Include="Spefication\RecipesSpefication\RecipesUpdateSpefication.cs" />
+    <Compile Include="Spefication\RelationSpefication\RelationShareAddSpefication.cs" />
+    <Compile Include="Spefication\ShopSpefication\ShopAddSpefication.cs" />
+    <Compile Include="Spefication\ShopSpefication\ShopDeleteSpefication.cs" />
+    <Compile Include="Spefication\ShopSpefication\ShopUpdateSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Spefication\RelationSpefication\" />
-    <Folder Include="Spefication\ShopSpefication\" />
     <Folder Include="UnitWork\" />
   </ItemGroup>
   <ItemGroup>

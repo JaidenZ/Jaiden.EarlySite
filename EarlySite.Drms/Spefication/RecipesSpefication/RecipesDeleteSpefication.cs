@@ -1,4 +1,4 @@
-﻿namespace EarlySite.Drms.Spefication.RecipesSpefication
+﻿namespace EarlySite.Drms.Spefication
 {
     public class RecipesDeleteSpefication : SpeficationBase
     {
