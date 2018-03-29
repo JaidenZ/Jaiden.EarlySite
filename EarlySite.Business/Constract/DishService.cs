@@ -8,7 +8,8 @@
     using EarlySite.Model.Common;
     using EarlySite.Model.Enum;
     using EarlySite.Model.Show;
-
+    using EarlySite.Model.Database;
+    using EarlySite.Core.Utils;
     public class DishService : IDishService
     {
 
@@ -26,10 +27,10 @@
             };
             try
             {
-                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(dishId.ToString(), 0).Satifasy());
-                if(dish != null && dish.Count > 0)
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(dishId.ToString(), 0).Satifasy());
+                if (dish != null && dish.Count > 0)
                 {
-                    result.Data = dish[0];
+                    result.Data = dish[0].Copy<Dish>();
                 }
                 else
                 {
@@ -42,7 +43,7 @@
                 result.Message = "查询单品食物出错:" + ex.Message;
                 result.StatusCode = "SD001";
             }
-            
+
             return result;
         }
 
@@ -60,8 +61,8 @@
             };
             try
             {
-                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(time.GetHashCode().ToString(),2).Satifasy());
-                result.Data = dish;
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(time.GetHashCode().ToString(), 2).Satifasy());
+                result.Data = dish.CopyList<DishInfo, Dish>();
             }
             catch (Exception ex)
             {
@@ -86,8 +87,8 @@
             };
             try
             {
-                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(searchName, 1).Satifasy());
-                result.Data = dish;
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(searchName, 1).Satifasy());
+                result.Data = dish.CopyList<DishInfo, Dish>();
             }
             catch (Exception ex)
             {
@@ -113,8 +114,8 @@
             };
             try
             {
-                IList<Dish> dish = DBConnectionManager.Instance.Reader.Select<Dish>(new DishSelectSpefication(type.GetHashCode().ToString(), 3).Satifasy());
-                result.Data = dish;
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(type.GetHashCode().ToString(), 3).Satifasy());
+                result.Data = dish.CopyList<DishInfo, Dish>();
             }
             catch (Exception ex)
             {
@@ -137,15 +138,46 @@
             Result result = new Result()
             {
                 Status = true,
-                StatusCode = "SSD000"
+                StatusCode = "SSD000",
+                Message = "分享单品食物成功"
             };
             try
             {
+                //新增一条单品记录
+                bool cannext = false;
+                DishInfo dishinfo = share.DishInfo.Copy<DishInfo>();
+                if (dishinfo != null)
+                {
+                    cannext = DBConnectionManager.Instance.Writer.Insert(new DishAddSpefication(dishinfo).Satifasy());
+                }
+                //新增一条单品与食谱关系记录
+                if (cannext)
+                {
+                    cannext = false;
+                    //cannext = DBConnectionManager.Instance.Writer.Insert(new )
 
-
+                }
+                //新增一条单品与门店关系记录
+                if (cannext)
+                {
+                    cannext = false;
+                }
+                //更新食谱信息与门店信息
+                if (cannext)
+                {
+                    cannext = false;
+                }
+                
+                if (!cannext)
+                {
+                    DBConnectionManager.Instance.Rollback();
+                    result.Status = false;
+                    result.Message = "分享单品食物失败,请确保请求数据合法";
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                DBConnectionManager.Instance.Rollback();
                 result.Status = false;
                 result.Message = "分享单品食物失败" + ex.Message;
                 result.StatusCode = "SSD001";
