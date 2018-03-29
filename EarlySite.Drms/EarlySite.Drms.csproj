@@ -57,9 +57,14 @@
     <Compile Include="Spefication\DishSpefication\DishAddSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishSelectSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishUpdateSpefication.cs" />
+    <Compile Include="Spefication\RecipesSpefication\RecipesAddSpefication.cs" />
+    <Compile Include="Spefication\RecipesSpefication\RecipesDeleteSpefication.cs" />
+    <Compile Include="Spefication\RecipesSpefication\RecipesUpdateSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Spefication\RelationSpefication\" />
+    <Folder Include="Spefication\ShopSpefication\" />
     <Folder Include="UnitWork\" />
   </ItemGroup>
   <ItemGroup>

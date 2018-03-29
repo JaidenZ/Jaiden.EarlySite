@@ -174,6 +174,10 @@
                     result.Status = false;
                     result.Message = "分享单品食物失败,请确保请求数据合法";
                 }
+                else
+                {
+                    DBConnectionManager.Instance.Commit();
+                }
             }
             catch (Exception ex)
             {
