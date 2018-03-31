@@ -26,20 +26,7 @@
             Assembly businessdll = loadassemblys.FirstOrDefault(w => w.FullName.Contains("EarlySite.Business"));
             //注册业务服务程序集
             ServiceObjectContainer.Load(businessdll);
-
-
-
-
-
-
-
-
-
-
-
-            //获取当前执行程序集,以获取路径,得到业务程序集进行加载
-            //Assembly assembly = Assembly.GetExecutingAssembly();
-
+            
         }
     }
 }
