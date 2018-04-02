@@ -154,20 +154,33 @@
                 if (cannext)
                 {
                     cannext = false;
-                    //cannext = DBConnectionManager.Instance.Writer.Insert(new )
+                    IList<RelationShareInfo> shareinfo = new List<RelationShareInfo>();
+                    RelationShareInfo sharerelation = new RelationShareInfo()
+                    {
+                        DishId = dishinfo.DIshId,
+                        Phone = share.RecipesInfo.Phone,
+                        RecipesId = share.RecipesInfo.RecipesId,
+                        UpdateDate = DateTime.Now
+                    };
+                    shareinfo.Add(sharerelation);
+                    cannext = DBConnectionManager.Instance.Writer.Insert(new RelationShareAddSpefication(shareinfo).Satifasy());
 
                 }
-                //新增一条单品与门店关系记录
+                //更新门店信息(更新操作时间)
                 if (cannext)
                 {
-                    cannext = false;
+                    ShopInfo updateshop = share.ShopInfo.Copy<ShopInfo>();
+                    updateshop.UpdateDate = DateTime.Now;
+                    cannext = DBConnectionManager.Instance.Writer.Update(new ShopUpdateSpefication(updateshop).Satifasy());
                 }
-                //更新食谱信息与门店信息
+                //更新食谱信息(更新操作时间)
                 if (cannext)
                 {
-                    cannext = false;
+                    RecipesInfo updaterecipes = share.RecipesInfo.Copy<RecipesInfo>();
+                    updaterecipes.UpdateDate = DateTime.Now;
+                    cannext = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(updaterecipes).Satifasy());
                 }
-                
+
                 if (!cannext)
                 {
                     DBConnectionManager.Instance.Rollback();
