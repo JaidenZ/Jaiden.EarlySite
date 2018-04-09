@@ -7,7 +7,7 @@
         /// <summary>
         /// 索引页
         /// </summary>
-        public int Index { get; set; }
+        public int PageIndex { get; set; }
 
         /// <summary>
         /// 每页显示
