@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ConstInfo.cs" />
+    <Compile Include="Common\PageList.cs" />
     <Compile Include="Database\AccountInfo.cs" />
     <Compile Include="Database\DishInfo.cs" />
     <Compile Include="Database\RecipesInfo.cs" />
