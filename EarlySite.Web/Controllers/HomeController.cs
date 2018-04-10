@@ -47,6 +47,15 @@
 
             Dish dishmodel = new Dish();
             dishmodel.DIshId = Convert.ToInt32(string.Format("30{0}", System.DateTime.Now.ToString("yyMMdd")));
+            dishmodel.Name = "葱白肉丝";
+            dishmodel.Type = Model.Enum.DishType.川菜;
+            dishmodel.MealTime = Model.Enum.MealTime.All;
+            dishmodel.UpdateDate = DateTime.Now;
+            dishmodel.Image = "";
+            dishmodel.Description = "测试单品";
+            dishmodel.ShopId = shopmodel.ShopId;
+            dishmodel.ShopName = shopmodel.ShopName;
+
 
             return View();
         }
