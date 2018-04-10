@@ -75,6 +75,27 @@
                     throw new ArgumentNullException("删除食谱,参数非法");
                 }
                 //删除食谱绑定关系
+                bool cannext = false;
+                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(recipesId.ToString(), 0).Satifasy());
+
+                if (cannext)
+                {
+                    cannext = false;
+                    //修改食谱信息为禁用
+                    cannext = DBConnectionManager.Instance.Writer.Update(new RecipesDeleteSpefication(recipesId.ToString(), 0).Satifasy());
+                }
+
+
+                if (!cannext)
+                {
+                    DBConnectionManager.Instance.Rollback();
+                    result.Status = false;
+                    result.Message = "删除食谱失败,请确保请求数据合法";
+                }
+                else
+                {
+                    DBConnectionManager.Instance.Writer.Commit();
+                }
 
 
             }
@@ -92,7 +113,53 @@
 
         public Result RemoveRecipesByPhone(long phone)
         {
-            throw new NotImplementedException();
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "删除食谱成功"
+            };
+
+            try
+            {
+                if (phone == 0)
+                {
+                    throw new ArgumentNullException("删除食谱,参数非法");
+                }
+                //删除食谱绑定关系
+                bool cannext = false;
+                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(phone.ToString(), 2).Satifasy());
+
+                if (cannext)
+                {
+                    cannext = false;
+                    //修改食谱信息为禁用
+                    cannext = DBConnectionManager.Instance.Writer.Update(new RecipesDeleteSpefication(phone.ToString(), 1).Satifasy());
+                }
+
+
+                if (!cannext)
+                {
+                    DBConnectionManager.Instance.Rollback();
+                    result.Status = false;
+                    result.Message = "删除食谱失败,请确保请求数据合法";
+                }
+                else
+                {
+                    DBConnectionManager.Instance.Writer.Commit();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                DBConnectionManager.Instance.Writer.Rollback();
+                result.Status = false;
+                result.Message = "删除食谱出错:" + ex.Message;
+
+            }
+
+            return result;
         }
 
         public Result UpdateRecipes(Recipes recipes)
