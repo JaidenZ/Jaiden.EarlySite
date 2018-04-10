@@ -46,5 +46,11 @@
         /// <returns></returns>
         Result ShareDishInfo(DishShare share);
 
+        /// <summary>
+        /// 收藏单品食物信息
+        /// </summary>
+        /// <param name="share"></param>
+        /// <returns></returns>
+        Result CollectDishInfo(DishCollect collect);
     }
 }

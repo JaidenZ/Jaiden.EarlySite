@@ -23,4 +23,29 @@
         /// </summary>
         public Recipes RecipesInfo { get; set; }
     }
+
+
+    /// <summary>
+    /// 收藏单品模型
+    /// </summary>
+    public class DishCollect
+    {
+        /// <summary>
+        /// 收藏的食物编号
+        /// </summary>
+        public int DIshId { get; set; }
+
+
+        /// <summary>
+        /// 收藏的食谱编号
+        /// </summary>
+        public int RecipesId { get; set; }
+
+        /// <summary>
+        /// 收藏者的手机号
+        /// </summary>
+        public long Phone { get; set; }
+
+    }
+
 }

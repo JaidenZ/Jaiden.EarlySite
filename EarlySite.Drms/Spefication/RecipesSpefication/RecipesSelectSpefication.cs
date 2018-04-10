@@ -5,7 +5,7 @@
 
     public class RecipesSelectSpefication : SpeficationBase
     {
-        private RecipesInfo _info;
+        private string _info;
         private int _type = 0;
 
         /// <summary>
@@ -17,9 +17,9 @@
         /// 0:根据编号查询
         /// 1:根据食谱名称模糊查询
         /// </param>
-        public RecipesSelectSpefication(RecipesInfo recipesInfo,int type)
+        public RecipesSelectSpefication(string searchCode,int type)
         {
-            _info = recipesInfo;
+            _info = searchCode;
             _type = type;
         }
 
@@ -29,11 +29,11 @@
 
             if(_type == 0)
             {
-                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and RecipesId = '{0}' ", _info.RecipesId);
+                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and RecipesId = '{0}' ", _info);
             }
             if(_type == 1)
             {
-                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and Name like '%{0}%' ", _info.Name);
+                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and Name like '%{0}%' ", _info);
             }
 
 

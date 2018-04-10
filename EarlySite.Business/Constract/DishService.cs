@@ -213,5 +213,78 @@
             return result;
 
         }
+
+        /// <summary>
+        /// 收藏单品食物到食谱
+        /// </summary>
+        /// <param name="collect"></param>
+        /// <returns></returns>
+        public Result CollectDishInfo(DishCollect collect)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                StatusCode = "CD000",
+                Message = "收藏单品食物成功"
+            };
+            try
+            {
+                //新增一条单品记录
+                bool cannext = false;
+                
+                //新增一条单品与食谱关系记录
+                if (cannext)
+                {
+                    cannext = false;
+                    IList<RelationShareInfo> shareinfo = new List<RelationShareInfo>();
+                    RelationShareInfo sharerelation = new RelationShareInfo()
+                    {
+                        DishId = collect.DIshId,
+                        Phone = collect.Phone,
+                        RecipesId = collect.RecipesId,
+                        UpdateDate = DateTime.Now
+                    };
+                    shareinfo.Add(sharerelation);
+                    cannext = DBConnectionManager.Instance.Writer.Insert(new RelationShareAddSpefication(shareinfo).Satifasy());
+
+                }
+                //更新食谱信息(更新操作时间)
+                if (cannext)
+                {
+                    cannext = false;
+                    IList<RecipesInfo> recipeslist = DBConnectionManager.Instance.Reader.Select<RecipesInfo>(new RecipesSelectSpefication(collect.RecipesId.ToString(), 0).Satifasy());
+                    if(recipeslist == null || recipeslist.Count <= 0)
+                    {
+                        throw new Exception("收藏食物,食谱参数不能为空");
+                    }
+                    RecipesInfo updaterecipes = recipeslist[0];
+                    if (updaterecipes == null)
+                    {
+                        throw new ArgumentNullException("收藏食物,食谱参数不能为空");
+                    }
+                    updaterecipes.UpdateDate = DateTime.Now;
+                    cannext = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(updaterecipes).Satifasy());
+                }
+
+                if (!cannext)
+                {
+                    DBConnectionManager.Instance.Rollback();
+                    result.Status = false;
+                    result.Message = "收藏单品食物失败,请确保请求数据合法";
+                }
+                else
+                {
+                    DBConnectionManager.Instance.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                DBConnectionManager.Instance.Rollback();
+                result.Status = false;
+                result.Message = "收藏单品食物失败" + ex.Message;
+                result.StatusCode = "CD001";
+            }
+            return result;
+        }
     }
 }
