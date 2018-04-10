@@ -24,7 +24,12 @@
 
         public ActionResult Test()
         {
-            ServiceObjectContainer.Get<IAccount>();
+            IDishService service = ServiceObjectContainer.Get<IDishService>();
+
+            //service.ShareDishInfo()
+
+
+
             return View();
         }
 

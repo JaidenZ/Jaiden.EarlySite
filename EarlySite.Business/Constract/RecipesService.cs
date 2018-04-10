@@ -25,6 +25,12 @@
             try
             {
                 RecipesInfo addinfo = recipes.Copy<RecipesInfo>();
+
+                if(addinfo == null)
+                {
+                    throw new ArgumentNullException("新增食谱信息,参数不能为空");
+                }
+
                 result.Status = DBConnectionManager.Instance.Writer.Insert(new RecipesAddSpefication(addinfo).Satifasy());
 
                 if (result.Status)

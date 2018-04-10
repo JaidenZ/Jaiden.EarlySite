@@ -146,10 +146,13 @@
                 //新增一条单品记录
                 bool cannext = false;
                 DishInfo dishinfo = share.DishInfo.Copy<DishInfo>();
-                if (dishinfo != null)
+                if(dishinfo == null)
                 {
-                    cannext = DBConnectionManager.Instance.Writer.Insert(new DishAddSpefication(dishinfo).Satifasy());
+                    throw new ArgumentNullException("创建食物,单品食物参数不能为空");
                 }
+
+                cannext = DBConnectionManager.Instance.Writer.Insert(new DishAddSpefication(dishinfo).Satifasy());
+
                 //新增一条单品与食谱关系记录
                 if (cannext)
                 {
@@ -170,6 +173,10 @@
                 if (cannext)
                 {
                     ShopInfo updateshop = share.ShopInfo.Copy<ShopInfo>();
+                    if(updateshop == null)
+                    {
+                        throw new ArgumentNullException("创建食物,门店参数不能为空");
+                    }
                     updateshop.UpdateDate = DateTime.Now;
                     cannext = DBConnectionManager.Instance.Writer.Update(new ShopUpdateSpefication(updateshop).Satifasy());
                 }
@@ -177,6 +184,10 @@
                 if (cannext)
                 {
                     RecipesInfo updaterecipes = share.RecipesInfo.Copy<RecipesInfo>();
+                    if(updaterecipes == null)
+                    {
+                        throw new ArgumentNullException("创建食物,食谱参数不能为空");
+                    }
                     updaterecipes.UpdateDate = DateTime.Now;
                     cannext = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(updaterecipes).Satifasy());
                 }
