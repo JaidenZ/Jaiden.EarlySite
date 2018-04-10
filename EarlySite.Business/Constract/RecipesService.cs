@@ -62,7 +62,32 @@
 
         public Result RemoveRecipesById(int recipesId)
         {
-            throw new NotImplementedException();
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "删除食谱成功"
+            };
+
+            try
+            {
+                if(recipesId == 0)
+                {
+                    throw new ArgumentNullException("删除食谱,参数非法");
+                }
+                //删除食谱绑定关系
+
+
+            }
+            catch (Exception ex)
+            {
+
+                DBConnectionManager.Instance.Writer.Rollback();
+                result.Status = false;
+                result.Message = "删除食谱出错:" + ex.Message;
+
+            }
+
+            return result;
         }
 
         public Result RemoveRecipesByPhone(long phone)

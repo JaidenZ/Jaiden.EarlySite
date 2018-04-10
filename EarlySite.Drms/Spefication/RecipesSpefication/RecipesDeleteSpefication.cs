@@ -26,11 +26,11 @@
             string sql = "";
             if(_type == 0)
             {
-                sql = string.Format(" delete from which_recipes where RecipesId = '{0}'", _deleteInfo);
+                sql = string.Format(" update which_shop set Enable = '1' where RecipesId = '{0}'", _deleteInfo);
             }
             else if(_type == 1)
             {
-                sql = string.Format(" delete from which_recipes where Phone = '{0}'", _deleteInfo);
+                sql = string.Format(" update which_shop set Enable = '1' where Phone = '{0}'", _deleteInfo);
             }
             return sql.ToString();
         }

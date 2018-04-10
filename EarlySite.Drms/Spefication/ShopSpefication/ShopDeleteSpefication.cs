@@ -11,7 +11,7 @@
 
         public override string Satifasy()
         {
-            string sql = string.Format(" delete from which_shop where ShopId = '{0}'", _shopId);
+            string sql = string.Format(" update which_shop set Enable = '1' where ShopId = '{0}'", _shopId);
             return sql;
         }
     }

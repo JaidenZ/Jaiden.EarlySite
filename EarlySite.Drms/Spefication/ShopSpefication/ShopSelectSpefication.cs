@@ -30,11 +30,11 @@
             string sql = "";
             if(_type == 0)
             {
-                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where ShopId = '{0}'", _searchCode);
+                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Enable = '0' and ShopId = '{0}'", _searchCode);
             }
             else if(_type == 1)
             {
-                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where ShopName like '%{0}%'", _searchCode);
+                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Enable = '0' and ShopName like '%{0}%'", _searchCode);
             }
             return sql;
         }

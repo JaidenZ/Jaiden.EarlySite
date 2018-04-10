@@ -29,11 +29,11 @@
 
             if(_type == 0)
             {
-                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where RecipesId = '{0}' ", _info.RecipesId);
+                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and RecipesId = '{0}' ", _info.RecipesId);
             }
             if(_type == 1)
             {
-                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Name like '%{0}%' ", _info.Name);
+                sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and Name like '%{0}%' ", _info.Name);
             }
 
 

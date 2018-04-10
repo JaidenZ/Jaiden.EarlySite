@@ -14,7 +14,7 @@
 
         public override string Satifasy()
         {
-            return string.Format(" delete from which_dish where DishId = '{0}' ", _id);
+            return string.Format(" update which_shop set Enable = '1' where DishId = '{0}' ", _id);
         }
     }
 }
