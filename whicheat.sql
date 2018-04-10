@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-03-20 14:20:31
+Date: 2018-04-10 17:29:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,10 +65,12 @@ CREATE TABLE `which_dish` (
   `UpdateDate` datetime NOT NULL COMMENT '最后更新时间',
   `Type` int(11) NOT NULL COMMENT '类型',
   `TypeName` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '类型名称',
+  `MealTime` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '用餐时间段0:所有时间段 1:早餐 2:午餐 3:下午茶 4:晚餐 5:宵夜',
   `ShopId` int(11) NOT NULL COMMENT '所属商店编号',
   `ShopName` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '所属商店名称',
   `Image` text COLLATE utf8_bin COMMENT '配图',
   `Description` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '描述',
+  `Enable` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '禁用启用0:启用 1:禁用',
   PRIMARY KEY (`DishId`,`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -85,6 +87,7 @@ CREATE TABLE `which_recipes` (
   `Description` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '食谱描述',
   `Tag` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '标签',
   `IsPrivate` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '是否私有 0不私有 1私有',
+  `Enable` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '是否启用0:启用 1:禁用',
   PRIMARY KEY (`RecipesId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -98,5 +101,6 @@ CREATE TABLE `which_shop` (
   `Longitude` decimal(10,6) NOT NULL COMMENT '经度',
   `Latitude` decimal(10,6) NOT NULL COMMENT '纬度',
   `UpdateDate` datetime NOT NULL COMMENT '最后更新时间',
-  `Description` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '商店描述'
+  `Description` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '商店描述',
+  `Enable` char(1) COLLATE utf8_bin NOT NULL DEFAULT '0' COMMENT '禁用启用0:启用 1:禁用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
