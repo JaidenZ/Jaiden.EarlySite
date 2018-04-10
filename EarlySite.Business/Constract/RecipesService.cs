@@ -162,9 +162,51 @@
             return result;
         }
 
+        /// <summary>
+        /// 更新食谱信息
+        /// </summary>
+        /// <param name="recipes"></param>
+        /// <returns></returns>
         public Result UpdateRecipes(Recipes recipes)
         {
-            throw new NotImplementedException();
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "删除食谱成功"
+            };
+
+            try
+            {
+                RecipesInfo info = recipes.Copy<RecipesInfo>();
+                if (info == null)
+                {
+                    throw new ArgumentNullException("更新食谱,参数非法");
+                }
+                info.UpdateDate = DateTime.Now;
+
+                result.Status = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(info).Satifasy());
+                
+                if (!result.Status)
+                {
+                    DBConnectionManager.Instance.Rollback();
+                    result.Status = false;
+                    result.Message = "更新食谱失败,请确保请求数据合法";
+                }
+                else
+                {
+                    DBConnectionManager.Instance.Writer.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                DBConnectionManager.Instance.Writer.Rollback();
+                result.Status = false;
+                result.Message = "删除食谱出错:" + ex.Message;
+
+            }
+
+            return result;
         }
     }
 }
