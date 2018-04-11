@@ -33,11 +33,11 @@
 
                 if(result.Status)
                 {
-                    DBConnectionManager.Instance.Commit();
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
                 else
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Message = "创建门店失败,请确认参数合法";
                 }
 
@@ -90,11 +90,11 @@
 
                 if (result.Status)
                 {
-                    DBConnectionManager.Instance.Commit();
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
                 else
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Message = "更新门店失败,请确认参数合法";
                 }
 

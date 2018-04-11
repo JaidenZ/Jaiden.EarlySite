@@ -78,6 +78,7 @@
                 throw new InvalidOperationException();
             }
             this.Transaction.Commit();
+            this.Transaction = this.Connection.BeginTransaction();
         }
 
         /// <summary>

@@ -80,13 +80,13 @@
             try
             {
                 result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
-                DBConnectionManager.Instance.Commit();
+                DBConnectionManager.Instance.Writer.Commit();
 
                 result.Data = account.Copy<Account>();
             }
             catch(Exception ex)
             {
-                DBConnectionManager.Instance.Rollback();
+                DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = ex.Message;
                 result.StatusCode = "EX000";
@@ -213,7 +213,7 @@
                         Account returnaccount = accountlist[0].Copy<Account>();
                         AccountInfoCache.Instance.CurrentAccount = returnaccount;
                     }
-                    DBConnectionManager.Instance.Commit();
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
                 else
                 {
@@ -391,7 +391,7 @@
                 //加密
                 string code = MD5Engine.ToMD5String(securityCode);
                 result.Status = DBConnectionManager.Instance.Writer.Update(new AccountResetPassSpefication(account, code, 0).Satifasy());
-                DBConnectionManager.Instance.Commit();
+                DBConnectionManager.Instance.Writer.Commit();
                 if (!result.Status)
                 {
                     result.Message = "重置密码失败";

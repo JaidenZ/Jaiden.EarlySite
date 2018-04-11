@@ -163,7 +163,7 @@
 
                 if (!cannext)
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Status = false;
                     result.Message = "删除食谱失败,请确保请求数据合法";
                 }
@@ -214,7 +214,7 @@
 
                 if (!cannext)
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Status = false;
                     result.Message = "删除食谱失败,请确保请求数据合法";
                 }
@@ -263,7 +263,7 @@
 
                 if (!result.Status)
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Status = false;
                     result.Message = "更新食谱失败,请确保请求数据合法";
                 }

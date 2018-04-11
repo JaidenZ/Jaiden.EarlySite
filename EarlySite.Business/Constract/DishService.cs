@@ -198,18 +198,18 @@
 
                 if (!cannext)
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Status = false;
                     result.Message = "分享单品食物失败,请确保请求数据合法";
                 }
                 else
                 {
-                    DBConnectionManager.Instance.Commit();
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
             }
             catch (Exception ex)
             {
-                DBConnectionManager.Instance.Rollback();
+                DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "分享单品食物失败" + ex.Message;
                 result.StatusCode = "SSD001";
@@ -273,18 +273,18 @@
 
                 if (!cannext)
                 {
-                    DBConnectionManager.Instance.Rollback();
+                    DBConnectionManager.Instance.Writer.Rollback();
                     result.Status = false;
                     result.Message = "收藏单品食物失败,请确保请求数据合法";
                 }
                 else
                 {
-                    DBConnectionManager.Instance.Commit();
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
             }
             catch (Exception ex)
             {
-                DBConnectionManager.Instance.Rollback();
+                DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "收藏单品食物失败" + ex.Message;
                 result.StatusCode = "CD001";

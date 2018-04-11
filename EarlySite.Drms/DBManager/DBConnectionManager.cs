@@ -33,23 +33,7 @@
                 return _manager;
             }
         }
-
-        public void Commit()
-        {
-            Writer.Commit();
-            Writer = new MySqlDBWriter();
-            Reader = new MySqlDBReader();
-        }
-
-        public void Rollback()
-        {
-            Writer.Rollback();
-            Writer = new MySqlDBWriter();
-            Reader = new MySqlDBReader();
-        }
-
-
-
+        
     }
     
 }
