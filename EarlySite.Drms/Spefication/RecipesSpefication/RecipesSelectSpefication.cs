@@ -16,6 +16,7 @@
         /// 查询类型
         /// 0:根据编号查询
         /// 1:根据食谱名称模糊查询
+        /// 2:根据手机号码查询
         /// </param>
         public RecipesSelectSpefication(string searchCode,int type)
         {
@@ -35,7 +36,10 @@
             {
                 sb.AppendFormat(" select RecipesId,Name,UpdateDate,Phone,Cover,Description,Tag,IsPrivate from which_recipes where Enable = '0' and Name like '%{0}%' ", _info);
             }
-
+            if(_type == 2)
+            {
+                sb.AppendFormat(" select RecipesId, Name, UpdateDate, Phone, Cover, Description, Tag, IsPrivate from which_recipes where Enable = '0' and Phone =  '{0}' ", _info);
+            }
 
             return sb.ToString();
         }

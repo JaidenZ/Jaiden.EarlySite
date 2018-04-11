@@ -58,7 +58,39 @@
 
         public Result<IList<Recipes>> GetRecipesByPhone(long phone)
         {
-            throw new NotImplementedException();
+            Result<IList<Recipes>> result = new Result<IList<Recipes>>()
+            {
+                Status = true,
+                Message = "查找食谱成功"
+            };
+            try
+            {
+                if (phone == 0)
+                {
+                    throw new ArgumentException("获取食谱,参数非法");
+                }
+
+                IList<Recipes> recipeslist = DBConnectionManager.Instance.Reader.Select<Recipes>(new RecipesSelectSpefication(phone.ToString(), 2).Satifasy());
+                if (recipeslist != null && recipeslist.Count > 0)
+                {
+                    result.Data = recipeslist;
+                }
+                else
+                {
+                    result.Status = false;
+                    result.Message = "获取食谱失败,未找到对应食谱";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查找食谱出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetRecipesByPhone() .RecipesService"), LogType.ErrorLog);
+            }
+
+
+            return result;
         }
         /// <summary>
         /// 根据手机号获取食谱集
@@ -72,8 +104,31 @@
                 Status = true,
                 Message = "查找食谱成功"
             };
+            try
+            {
+                if(recipesId == 0)
+                {
+                    throw new ArgumentException("获取食谱,参数非法");
+                }
 
+                IList<Recipes> recipeslist = DBConnectionManager.Instance.Reader.Select<Recipes>(new RecipesSelectSpefication(recipesId.ToString(), 0).Satifasy());
+                if(recipeslist != null && recipeslist.Count > 0)
+                {
+                    result.Data = recipeslist[0];
+                }
+                else
+                {
+                    result.Status = false;
+                    result.Message = "获取食谱失败,未找到对应食谱";
+                }
 
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查找食谱出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetRecipesById() .RecipesService"), LogType.ErrorLog);
+            }
 
 
             return result;
