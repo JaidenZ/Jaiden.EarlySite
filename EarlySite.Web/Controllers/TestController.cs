@@ -21,7 +21,7 @@
 
         public JsonResult GenerationId()
         {
-            return Json(Generation.GenerationId(0));
+            return Json(Generation.GenerationId());
         }
 
 
@@ -34,7 +34,7 @@
             Recipes recipesselect = recipes.GetRecipesById(recipesId).Data;
 
             Dish dishmodel = new Dish();
-            dishmodel.DIshId = Generation.GenerationId(2);
+            dishmodel.DIshId = Generation.GenerationId();
             dishmodel.Name = "葱白肉丝";
             dishmodel.Type = Model.Enum.DishType.川菜;
             dishmodel.MealTime = Model.Enum.MealTime.All;
@@ -57,7 +57,7 @@
 
             IShopService shop = ServiceObjectContainer.Get<IShopService>();
             Shop shopmodel = new Shop();
-            shopmodel.ShopId = Generation.GenerationId(0);
+            shopmodel.ShopId = Generation.GenerationId();
             shopmodel.UpdateDate = DateTime.Now;
             shopmodel.ShopName = "成都人民南路四段门店";
             shopmodel.Description = "测试门店";
@@ -74,7 +74,7 @@
             
 
             Recipes recipesmodel = new Recipes();
-            recipesmodel.RecipesId = Generation.GenerationId(1);
+            recipesmodel.RecipesId = Generation.GenerationId();
             recipesmodel.Name = "喜欢的食谱";
             recipesmodel.IsPrivate = false;
             recipesmodel.Phone = 18502850589;

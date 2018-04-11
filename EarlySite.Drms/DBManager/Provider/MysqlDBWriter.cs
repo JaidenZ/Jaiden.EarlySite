@@ -65,7 +65,14 @@
             {
                 throw new InvalidOperationException();
             }
-            this.Transaction.Rollback();
+            try
+            {
+                this.Transaction.Rollback();
+            }
+            catch (Exception)
+            {
+                this.Transaction = this.Connection.BeginTransaction();
+            }
         }
 
         /// <summary>

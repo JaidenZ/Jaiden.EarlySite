@@ -24,14 +24,14 @@
         /// 2:食品编号
         /// </param>
         /// <returns></returns>
-        public static int GenerationId(int type)
+        public static int GenerationId()
         {
             int result = 0;
             Random fGen = new Random(GetRandomSeed());
             Random sGen = new Random(GetRandomSeed());
             Random tGen = new Random(GetRandomSeed());
 
-            result = int.Parse(string.Format("{0}{1}{2}{3}{4}", (type + 1), DateTime.Now.ToString("yyMMdd"), fGen.Next(10), sGen.Next(10), tGen.Next(10)));
+            result = int.Parse(string.Format("{0}{1}", DateTime.Now.ToString("yyMMddfff"), fGen.Next(10)));
             if (result == 0)
             {
                 throw new Exception("Generation ID is not legitimate");
