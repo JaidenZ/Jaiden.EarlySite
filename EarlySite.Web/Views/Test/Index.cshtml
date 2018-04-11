@@ -18,26 +18,92 @@
         <button id="recipes" class="Button" type="button">创建食谱</button>
         <button id="share" class="Button" type="button">分享单品</button>
         <button id="collect" class="Button" type="button">收藏单品</button>
+        <button id="generation" class="Button" type="button">生成编号</button>
 
     </div>
     @Scripts.Render("~/Themes/assembly/jquery")
     @Scripts.Render("~/Themes/assembly/bootstrap")
     @Scripts.Render("~/Themes/Scripts")
-        <script type="text/javascript">
+    <script type="text/javascript">
 
             $(function () {
 
-                $('#store').click(function () {
-                    console.log("创建门店");
+                //分享食物
+                $('#share').click(function () {
+                   $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("ShareDish", "Test")',
+                        data: {  },
+                        success: function (result) {
+                            console.log('-------------食物分享信息-----------')
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            alert("Ajax send error");
+                        }
+                    });
 
+                });
+
+                //创建门店
+                $('#store').click(function () {
+                   $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("AddStore", "Test")',
+                        data: {  },
+                        success: function (result) {
+                            console.log('-------------门店信息-----------')
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            alert("Ajax send error");
+                        }
+                    });
+
+                });
+
+                //创建食谱
+                $('#recipes').click(function () {
+                   $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("AddRecipes", "Test")',
+                        data: {  },
+                        success: function (result) {
+
+                            console.log('-------------食谱信息-----------');
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            alert("Ajax send error");
+                        }
+                    });
 
                 });
 
 
+                $('#generation').click(function () {
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("GenerationId", "Test")',
+                        data: {  },
+                        success: function (result) {
+
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            alert("Ajax send error");
+                        }
+                    });
+                });
             });
 
 
-        </script>
+    </script>
 
 
 </body>

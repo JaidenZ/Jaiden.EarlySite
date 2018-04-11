@@ -23,7 +23,7 @@
 
             if(_info != null && _info.Count > 0)
             {
-                sql.Append("insert RecipesId,DishId,Phone,UpdateDate into relation_share values ");
+                sql.Append("insert into relation_share (RecipesId,DishId,Phone,UpdateDate) values ");
 
                 for (int i = 0; i < _info.Count; i++)
                 {
