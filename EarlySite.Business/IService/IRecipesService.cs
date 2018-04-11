@@ -20,6 +20,13 @@
         Result<IList<Recipes>> GetRecipesByPhone(long phone);
 
         /// <summary>
+        /// 根据手机号获取食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Result<Recipes> GetRecipesById(int recipesId);
+
+        /// <summary>
         /// 创建食谱
         /// </summary>
         /// <param name="recipes">食谱信息</param>

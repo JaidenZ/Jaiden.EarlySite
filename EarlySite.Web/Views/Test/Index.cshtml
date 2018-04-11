@@ -1,0 +1,47 @@
+﻿@using EarlySite.Model.Show
+@{Layout = null; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>Test -EearlySite</title>
+    @Styles.Render("~/Themes/Style")
+</head>
+<body class="body-content">
+    
+    <div class="row">
+
+        <button id="store" class="Button" type="button">创建门店</button>
+        <button id="recipes" class="Button" type="button">创建食谱</button>
+        <button id="share" class="Button" type="button">分享单品</button>
+        <button id="collect" class="Button" type="button">收藏单品</button>
+
+    </div>
+    @Scripts.Render("~/Themes/assembly/jquery")
+    @Scripts.Render("~/Themes/assembly/bootstrap")
+    @Scripts.Render("~/Themes/Scripts")
+        <script type="text/javascript">
+
+            $(function () {
+
+                $('#store').click(function () {
+                    console.log("创建门店");
+
+
+                });
+
+
+            });
+
+
+        </script>
+
+
+</body>
+
+
+
+</html>

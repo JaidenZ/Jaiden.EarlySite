@@ -26,7 +26,7 @@
             {
                 RecipesInfo addinfo = recipes.Copy<RecipesInfo>();
 
-                if(addinfo == null)
+                if (addinfo == null)
                 {
                     throw new ArgumentNullException("新增食谱信息,参数不能为空");
                 }
@@ -43,7 +43,7 @@
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
                 DBConnectionManager.Instance.Writer.Rollback();
@@ -60,6 +60,25 @@
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// 根据手机号获取食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public Result<Recipes> GetRecipesById(int recipesId)
+        {
+            Result<Recipes> result = new Result<Recipes>()
+            {
+                Status = true,
+                Message = "查找食谱成功"
+            };
+
+
+
+
+            return result;
+        }
+
 
         public Result RemoveRecipesById(int recipesId)
         {
@@ -71,7 +90,7 @@
 
             try
             {
-                if(recipesId == 0)
+                if (recipesId == 0)
                 {
                     throw new ArgumentNullException("删除食谱,参数非法");
                 }
@@ -186,7 +205,7 @@
                 info.UpdateDate = DateTime.Now;
 
                 result.Status = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(info).Satifasy());
-                
+
                 if (!result.Status)
                 {
                     DBConnectionManager.Instance.Rollback();
