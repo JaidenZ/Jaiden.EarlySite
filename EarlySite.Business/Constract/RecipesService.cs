@@ -49,6 +49,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "创建食谱出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CreatRecipes() .RecipesService"), LogType.ErrorLog);
 
             }
 
@@ -105,7 +106,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "删除食谱出错:" + ex.Message;
-
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RemoveRecipesById() .RecipesService"), LogType.ErrorLog);
             }
 
             return result;
@@ -156,7 +157,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "删除食谱出错:" + ex.Message;
-
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RemoveRecipesByPhone() .RecipesService"), LogType.ErrorLog);
             }
 
             return result;
@@ -203,6 +204,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "删除食谱出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:UpdateRecipes() .RecipesService"), LogType.ErrorLog);
 
             }
 

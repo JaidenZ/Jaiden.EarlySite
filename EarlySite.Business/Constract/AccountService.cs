@@ -86,10 +86,11 @@
             }
             catch(Exception ex)
             {
+                DBConnectionManager.Instance.Rollback();
                 result.Status = false;
                 result.Message = ex.Message;
                 result.StatusCode = "EX000";
-                DBConnectionManager.Instance.Rollback();
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RegistInfo() .AccountService"), LogType.ErrorLog);
             }
             
 
@@ -129,6 +130,9 @@
                 result.Data = null;
                 result.Message = ex.Message;
                 result.StatusCode = "EX000";
+
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SignIn() .AccountService"), LogType.ErrorLog);
+
             }
             return result;
         }
@@ -171,7 +175,7 @@
                         sendinfo.Content = sendinfo.Content.Replace("(验证码)", code);
                     }
 
-                    VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { "272665534@qq.com" });
+                    VerifiedMail.Sender.AddSend(sendinfo, new List<string>() { account.Email });
                 }
             }
             catch (Exception ex)
@@ -179,6 +183,7 @@
                 result.Status = false;
                 result.Message = string.Format("邮件验证出错 /r/n{0}", ex.Message);
                 result.StatusCode = "EX000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SendRegistEmail() .AccountService"), LogType.ErrorLog);
             }
 
             return result;
@@ -222,6 +227,7 @@
                 result.Status = false;
                 result.Message = string.Format("验证账户出错/r/n {0}", ex.Message);
                 result.StatusCode = "EX000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RequireAccount() .AccountService"), LogType.ErrorLog);
             }
 
             return result;
@@ -251,6 +257,7 @@
                 result.Status = false;
                 result.Message = "邮箱验证出错" + ex.Message;
                 result.StatusCode = "CMR000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CheckMailRegisted() .AccountService"), LogType.ErrorLog);
             }
             return result;
         }
@@ -279,6 +286,7 @@
                 result.Status = false;
                 result.Message = "手机验证出错" + ex.Message;
                 result.StatusCode = "CMR000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CheckPhoneRegisted() .AccountService"), LogType.ErrorLog);
             }
             return result;
         }
@@ -328,6 +336,7 @@
                 result.Status = false;
                 result.Message = string.Format("忘记密码邮件验证出错 /r/n{0}", ex.Message);
                 result.StatusCode = "EX000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SendForgetVerificationCode() .AccountService"), LogType.ErrorLog);
             }
 
             return result;
@@ -393,6 +402,7 @@
                 result.Status = false;
                 result.Message = "修改密码出错" + ex.Message;
                 result.StatusCode = "EX000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:ResetPassword() .AccountService"), LogType.ErrorLog);
             }
             return result;
         }

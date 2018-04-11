@@ -48,6 +48,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "创建门店出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CreatShopInfo() .ShopService"), LogType.ErrorLog);
 
             }
 
@@ -104,7 +105,7 @@
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "更新门店出错:" + ex.Message;
-
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:UpdateShopInfo() .ShopService"), LogType.ErrorLog);
             }
 
             return result;

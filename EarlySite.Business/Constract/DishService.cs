@@ -42,6 +42,7 @@
                 result.Status = false;
                 result.Message = "查询单品食物出错:" + ex.Message;
                 result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoById() .DishService"), LogType.ErrorLog);
             }
 
             return result;
@@ -69,6 +70,7 @@
                 result.Status = false;
                 result.Message = "查询单品食物出错:" + ex.Message;
                 result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoByMealTime() .DishService"), LogType.ErrorLog);
             }
 
             return result;
@@ -95,6 +97,7 @@
                 result.Status = false;
                 result.Message = "查询单品食物出错:" + ex.Message;
                 result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoByName() .DishService"), LogType.ErrorLog);
             }
 
             return result;
@@ -122,6 +125,7 @@
                 result.Status = false;
                 result.Message = "查询单品食物出错:" + ex.Message;
                 result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoByType() .DishService"), LogType.ErrorLog);
             }
 
             return result;
@@ -209,6 +213,7 @@
                 result.Status = false;
                 result.Message = "分享单品食物失败" + ex.Message;
                 result.StatusCode = "SSD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:ShareDishInfo() .DishService"), LogType.ErrorLog);
             }
             return result;
 
@@ -283,6 +288,7 @@
                 result.Status = false;
                 result.Message = "收藏单品食物失败" + ex.Message;
                 result.StatusCode = "CD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CollectDishInfo() .DishService"), LogType.ErrorLog);
             }
             return result;
         }
