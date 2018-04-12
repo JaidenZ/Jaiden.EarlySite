@@ -34,7 +34,10 @@
                         type: "POST",
                         dataType: "json",
                         url: '@Url.Action("ShareDish", "Test")',
-                        data: {  },
+                        data: {
+                            shopId:1804114628,
+                            recipesId:1804111753
+                        },
                         success: function (result) {
                             console.log('-------------食物分享信息-----------')
                             console.log(result);

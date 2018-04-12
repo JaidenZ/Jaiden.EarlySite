@@ -57,7 +57,41 @@
 
         public Result<Shop> GetShopInfoById(int shopId)
         {
-            throw new NotImplementedException();
+            Result<Shop> result = new Result<Shop>()
+            {
+                Status = true,
+                Message = "获取门店信息成功"
+            };
+            if(shopId == 0)
+            {
+                throw new ArgumentException("查询门店信息,参数非法");
+            }
+
+            try
+            {
+                //根据门店编号获取门店信息
+                IList<ShopInfo> shopinfolist = DBConnectionManager.Instance.Reader.Select<ShopInfo>(new ShopSelectSpefication(shopId.ToString(), 0).Satifasy());
+
+                if(shopinfolist != null && shopinfolist.Count > 0)
+                {
+                    result.Data = shopinfolist[0].Copy<Shop>();
+                }
+                else
+                {
+                    result.Data = null;
+                    result.Status = false;
+                    result.Message = "没有获取到对应信息";
+                }
+
+            }
+            catch(Exception ex)
+            {
+                result.Data = null;
+                result.Status = false;
+                result.Message = "获取门店信息出错:" + ex.Message;
+            }
+
+            return result;
         }
 
         public Result RemoveShopInfoById(int shopId)

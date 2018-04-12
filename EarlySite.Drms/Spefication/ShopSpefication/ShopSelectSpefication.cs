@@ -18,7 +18,7 @@
         /// 0:根据店铺编号精确查询
         /// 1:根据店铺名称模糊查询
         /// </param>
-        protected ShopSelectSpefication(string searchCode,int type)
+        public ShopSelectSpefication(string searchCode,int type)
         {
             _searchCode = searchCode;
             _type = type;
