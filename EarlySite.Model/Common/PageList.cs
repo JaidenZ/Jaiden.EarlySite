@@ -12,7 +12,7 @@
         /// <summary>
         /// 每页显示
         /// </summary>
-        public int PageCount { get; set; }
+        public int PageNumer { get; set; }
 
         /// <summary>
         /// 总条数
@@ -22,19 +22,19 @@
         /// <summary>
         /// 页数
         /// </summary>
-        public int PageNumber
+        public int PageCount
         {
             get
             {
-                int number = this.Count / this.PageCount;
+                int count = this.Count / this.PageNumer;
 
-                if ((this.Count % this.PageCount) > 0)
+                if ((this.Count % this.PageNumer) > 0)
                 {
-                    return number + 1;
+                    return count + 1;
                 }
                 else
                 {
-                    return number;
+                    return count;
                 }
 
             }

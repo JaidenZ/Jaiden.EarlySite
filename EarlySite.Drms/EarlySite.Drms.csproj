@@ -67,6 +67,7 @@
     <Compile Include="Spefication\RelationSpefication\RelationShareDeleteSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopAddSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopDeleteSpefication.cs" />
+    <Compile Include="Spefication\ShopSpefication\ShopSelectPageSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopSelectSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopUpdateSpefication.cs" />
     <Compile Include="Spefication\SpeficationBase.cs" />
