@@ -15,7 +15,7 @@
         {
             StringBuilder sql = new StringBuilder();
             sql.AppendFormat("update which_recipes set Name = '{1}',UpdateDate = '{2}',Phone = '{3}',Cover = '{4}',Description = '{5}',Tag = '{6}',IsPrivate = '{7}' where RecipesId = '{0}'", _info.RecipesId,
-                _info.Name, _info.UpdateDate.ToString("yyyy-MM-dd HH:mm:ss"), _info.Phone, _info.Cover, _info.Description, _info.Tag, _info.IsPrivate);
+                _info.Name, _info.UpdateDate.ToString("yyyy-MM-dd HH:mm:ss"), _info.Phone, _info.Cover, _info.Description, _info.Tag, _info.IsPrivate ? "1" : "0");
 
             return sql.ToString();
         }
