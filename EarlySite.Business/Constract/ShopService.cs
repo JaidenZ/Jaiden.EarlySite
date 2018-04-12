@@ -55,6 +55,11 @@
             return result;
         }
 
+        /// <summary>
+        /// 根据门店编号获取信息
+        /// </summary>
+        /// <param name="shopId">门店编号</param>
+        /// <returns>操作结果</returns>
         public Result<Shop> GetShopInfoById(int shopId)
         {
             Result<Shop> result = new Result<Shop>()
@@ -62,13 +67,13 @@
                 Status = true,
                 Message = "获取门店信息成功"
             };
-            if(shopId == 0)
-            {
-                throw new ArgumentException("查询门店信息,参数非法");
-            }
-
+            
             try
             {
+                if (shopId == 0)
+                {
+                    throw new ArgumentException("查询门店信息,参数非法");
+                }
                 //根据门店编号获取门店信息
                 IList<ShopInfo> shopinfolist = DBConnectionManager.Instance.Reader.Select<ShopInfo>(new ShopSelectSpefication(shopId.ToString(), 0).Satifasy());
 
@@ -89,14 +94,48 @@
                 result.Data = null;
                 result.Status = false;
                 result.Message = "获取门店信息出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetShopInfoById() .ShopService"), LogType.ErrorLog);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// 根据门店编号删除门店信息 (禁用门店信息)
+        /// </summary>
+        /// <param name="shopId">门店编号</param>
+        /// <returns>操作结果</returns>
         public Result RemoveShopInfoById(int shopId)
         {
-            throw new NotImplementedException();
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "删除门店成功"
+            };
+            try
+            {
+                if (shopId == 0)
+                {
+                    throw new ArgumentException("查询门店信息,参数非法");
+                }
+
+                bool execstatus = DBConnectionManager.Instance.Writer.Update(new ShopDeleteSpefication(shopId).Satifasy());
+
+                if (!execstatus)
+                {
+                    result.Status = false;
+                    result.Message = "删除门店操作失败,请检查参数数据";
+                }
+
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "获取门店信息出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RemoveShopInfoById() .ShopService"), LogType.ErrorLog);
+            }
+
+            return result;
         }
 
         public Result<IList<Shop>> SearchShopInfoByName(string shopName)
@@ -104,6 +143,11 @@
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 更新门店信息
+        /// </summary>
+        /// <param name="shopInfo">门店信息</param>
+        /// <returns>操作结果</returns>
         public Result UpdateShopInfo(Shop shopInfo)
         {
             Result result = new Result()
@@ -114,22 +158,33 @@
 
             try
             {
+                bool cannext = false;
+
                 ShopInfo info = shopInfo.Copy<ShopInfo>();
                 if (info == null)
                 {
                     throw new ArgumentNullException("更新门店,参数不能为空");
                 }
                 info.UpdateDate = DateTime.Now;
-                result.Status = DBConnectionManager.Instance.Writer.Insert(new ShopUpdateSpefication(info).Satifasy());
-
-                if (result.Status)
+                //更新门店信息
+                cannext = DBConnectionManager.Instance.Writer.Update(new ShopUpdateSpefication(info).Satifasy());
+                //门店信息更新成功,更新关联食物的门店名称
+                if (cannext)
                 {
-                    DBConnectionManager.Instance.Writer.Commit();
+                    cannext = false;
+                    cannext = DBConnectionManager.Instance.Writer.Update(new DishShopNameUpdateSpefication(info.ShopId, info.ShopName).Satifasy());
+                    
                 }
-                else
+                result.Status = cannext;
+
+                if(!cannext)
                 {
                     DBConnectionManager.Instance.Writer.Rollback();
                     result.Message = "更新门店失败,请确认参数合法";
+                }
+                else
+                {
+                    DBConnectionManager.Instance.Writer.Commit();
                 }
 
             }
