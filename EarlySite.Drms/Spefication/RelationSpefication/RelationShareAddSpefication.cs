@@ -27,7 +27,7 @@
 
                 for (int i = 0; i < _info.Count; i++)
                 {
-                    sql.AppendFormat("('{0}','{1}','{2}','{3}')", _info[i].RecipesId, _info[i].DishId, _info[i].Phone, _info[i].UpdateDate.ToString("yyyy-MM-DD HH:mm:ss"));
+                    sql.AppendFormat("('{0}','{1}','{2}','{3}')", _info[i].RecipesId, _info[i].DishId, _info[i].Phone, _info[i].UpdateDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     if(i != _info.Count - 1)
                     {
                         sql.Append(" , ");
