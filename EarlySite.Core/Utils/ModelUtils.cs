@@ -25,7 +25,10 @@
                 if (pp != null && !pp.PropertyType.IsGenericType)
                 {
                     object val = pi.GetValue(value, null);
-                    pp.SetValue(obj, val, null);
+                    if(pp.SetMethod != null)
+                    {
+                        pp.SetValue(obj, val, null);
+                    }
                 }
             }
             return obj;
@@ -46,7 +49,10 @@
                 if (pp != null && !pp.PropertyType.IsGenericType)
                 {
                     object val = pi.GetValue(value, null);
-                    pp.SetValue(obj, val, null);
+                    if(pp.SetMethod != null)
+                    {
+                        pp.SetValue(obj, val, null);
+                    }
                 }
             }
             return (T)obj;
@@ -74,7 +80,10 @@
                     if (pp != null)
                     {
                         object val = pi.GetValue(item, null);
-                        pp.SetValue(obj, val, null);
+                        if (pp.SetMethod != null)
+                        {
+                            pp.SetValue(obj, val, null);
+                        }
                     }
                 }
 
@@ -122,10 +131,10 @@
                         {
                             val = GetObj(val, pi.PropertyType, pp.PropertyType);
                         }
-
-
-
-                        pp.SetValue(obj, val, null);
+                        if (pp.SetMethod != null)
+                        {
+                            pp.SetValue(obj, val, null);
+                        }
                     }
 
                 }
@@ -167,7 +176,12 @@
                             val = GetObj(val, pi.PropertyType, pp.PropertyType);
                         }
 
-                        pp.SetValue(outmodel, val, null);
+                        if (pp.SetMethod != null)
+                        {
+                            pp.SetValue(outmodel, val, null);
+                        }
+
+                        
                     }
                 }
 
@@ -227,7 +241,10 @@
                         val = GetObj(val, item.PropertyType, pp.PropertyType);
                     }
 
-                    pp.SetValue(outmodel, val, null);
+                    if (pp.SetMethod != null)
+                    {
+                        pp.SetValue(outmodel, val, null);
+                    }
                 }
             }
 

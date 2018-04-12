@@ -211,7 +211,7 @@
             {
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
-                result.Message = "分享单品食物失败" + ex.Message;
+                result.Message = "分享单品食物失败:" + ex.Message;
                 result.StatusCode = "SSD001";
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:ShareDishInfo() .DishService"), LogType.ErrorLog);
             }

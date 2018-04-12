@@ -34,7 +34,6 @@
             {
                 return Enum.GetName(typeof(DishType), this.Type);
             }
-
         }
 
         /// <summary>

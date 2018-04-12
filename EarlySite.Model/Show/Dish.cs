@@ -34,9 +34,7 @@
         public string TypeName {
             get
             {
-                string name = "";
-                name = Enum.GetName(typeof(DishType), this.Type);
-                return name;
+                return Enum.GetName(typeof(DishType), this.Type);
             }
         }
 
