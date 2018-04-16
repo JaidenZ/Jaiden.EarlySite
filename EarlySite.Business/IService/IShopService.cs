@@ -12,11 +12,18 @@
     public interface IShopService : IServiceBase
     {
         /// <summary>
-        /// 根据店铺昵称模糊搜索
+        /// 根据店铺昵称模糊搜索[Remark:要该修改成分页的查询]
         /// </summary>
         /// <param name="shopName"></param>
         /// <returns></returns>
         Result<IList<Shop>> SearchShopInfoByName(string shopName);
+
+        /// <summary>
+        /// 获取店铺分页信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        Result<PageList<Shop>> GetShopPageList(PageSearchParam param);
 
         /// <summary>
         /// 根据店铺编号获取信息

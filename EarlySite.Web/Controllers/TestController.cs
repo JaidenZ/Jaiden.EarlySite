@@ -84,6 +84,17 @@
             return Json(recipes.CreatRecipes(recipesmodel));
         }
 
+        public JsonResult GetShopPageList(int pageindex)
+        {
+            IShopService shops = ServiceObjectContainer.Get<IShopService>();
 
+            PageSearchParam param = new PageSearchParam();
+            param.PageNumer = 3;
+            param.SearchType = 0;
+            param.PageIndex = pageindex;
+
+            
+            return Json(shops.GetShopPageList(param));
+        }
     }
 }

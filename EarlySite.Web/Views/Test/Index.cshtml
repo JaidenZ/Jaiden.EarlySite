@@ -47,8 +47,8 @@
             </table>
             <nav aria-label="...">
                 <ul class="pager">
-                    <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-                    <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                    <li class="previous" id="btnprevious"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                    <li class="next" id="btnnext"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -82,7 +82,7 @@
     @Scripts.Render("~/Themes/assembly/bootstrap")
     @Scripts.Render("~/Themes/Scripts")
     <script type="text/javascript">
-
+        var page = 1;
             $(function () {
 
                 //分享食物
@@ -143,7 +143,7 @@
 
                 });
 
-
+                //生成编码
                 $('#generation').click(function () {
 
                     $.ajax({
@@ -151,6 +151,38 @@
                         dataType: "json",
                         url: '@Url.Action("GenerationId", "Test")',
                         data: {  },
+                        success: function (result) {
+
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            console.log('ajax send error:' + error);
+                        }
+                    });
+                });
+
+                $('#btnprevious').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("GetShopPageList", "Test")',
+                        data: { pageindex:page },
+                        success: function (result) {
+
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            console.log('ajax send error:' + error);
+                        }
+                    });
+                });
+
+                $('#btnnext').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: '@Url.Action("GetShopPageList", "Test")',
+                        data: { pageindex:page+1 },
                         success: function (result) {
 
                             console.log(result);
