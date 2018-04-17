@@ -96,5 +96,6 @@
             
             return Json(shops.GetShopPageList(param));
         }
+
     }
 }
