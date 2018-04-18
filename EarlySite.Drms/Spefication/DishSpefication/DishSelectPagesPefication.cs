@@ -42,7 +42,7 @@
             }
             else if (_param.SearchType == 2)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and MealTime = '0' or  " +
                     " MealTime = '{0}' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
             else if (_param.SearchType == 3)

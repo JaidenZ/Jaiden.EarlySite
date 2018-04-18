@@ -30,8 +30,8 @@
             }
             else if (_param.SearchType == 2)
             {
-                sql = string.Format("select count(1) from which_dish where Enable = '0' and " +
-                    " MealTime = '{0}' ORDER BY UpdateDate ASC ", _param.SearchCode);
+                sql = string.Format("select count(1) from which_dish where Enable = '0' and MealTime = 0 or " +
+                    " MealTime = '{0}'  ORDER BY UpdateDate ASC ", _param.SearchCode);
             }
             else if (_param.SearchType == 3)
             {

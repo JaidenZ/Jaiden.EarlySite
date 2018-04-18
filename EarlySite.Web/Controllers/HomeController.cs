@@ -8,6 +8,7 @@
     using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
     using EarlySite.Model.Common;
+    using EarlySite.Model.Enum;
     using EarlySite.Model.Show;
 
     public class HomeController : BaseController
@@ -15,7 +16,7 @@
         public ActionResult Index()
         {
             ViewBag.Account = base.CurrentAccount;
-            
+
             return View();
         }
 
@@ -25,14 +26,42 @@
         /// <returns></returns>
         public PartialViewResult PushDishInfoPartialView()
         {
+            //根据时间获取单品信息
+            DateTime now = DateTime.Now;
+            MealTime meal = MealTime.All;
+            if (now.Hour >= 5 && now.Hour < 11)
+            {
+                meal = MealTime.BreakFast;
+            }
+            if (now.Hour >= 11 && now.Hour < 14)
+            {
+                meal = MealTime.Lunch;
+            }
+            if (now.Hour >= 14 && now.Hour < 17)
+            {
+                meal = MealTime.TeaTime;
+            }
+            if (now.Hour >= 17 && now.Hour < 21)
+            {
+                meal = MealTime.Dinner;
+            }
+            if (now.Hour >= 21 || now.Hour < 5)
+            {
+                meal = MealTime.NightSnack;
+            }
 
+            PageSearchParam param = new PageSearchParam();
+            param.PageIndex = 1;
+            param.PageNumer = 6;
 
-            return PartialView();
+            Result<PageList<Dish>> searchresult = ServiceObjectContainer.Get<IDishService>().SearchDishInfoByMealTime(meal, param);
+
+            return PartialView(searchresult.Data);
 
         }
 
 
 
-        
+
     }
 }
