@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="shopName"></param>
         /// <returns></returns>
-        Result<IList<Shop>> SearchShopInfoByName(string shopName);
+        Result<PageList<Shop>> SearchShopInfoByName(string shopName ,PageSearchParam param);
 
         /// <summary>
         /// 获取店铺分页信息

@@ -138,9 +138,45 @@
             return result;
         }
 
-        public Result<IList<Shop>> SearchShopInfoByName(string shopName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shopName"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public Result<PageList<Shop>> SearchShopInfoByName(string shopName, PageSearchParam param)
         {
-            throw new NotImplementedException();
+            Result<PageList<Shop>> pagelistresult = new Result<PageList<Shop>>()
+            {
+                Status = true
+            };
+
+            param.SearchType = 1;
+            param.SearchCode = shopName;
+
+            pagelistresult.Data = new PageList<Shop>();
+            pagelistresult.Data.PageIndex = param.PageIndex;
+            pagelistresult.Data.PageNumer = param.PageNumer;
+
+
+            try
+            {
+                //获取总数
+                pagelistresult.Data.Count = DBConnectionManager.Instance.Reader.Count(new ShopCountForSelectPageSpefication(param).Satifasy());
+
+                //获取分页信息
+                IList<ShopInfo> selectresult = DBConnectionManager.Instance.Reader.Select<ShopInfo>(new ShopSelectPageSpefication(param).Satifasy());
+                pagelistresult.Data.List = selectresult.CopyList<ShopInfo, Shop>();
+
+            }
+            catch (Exception ex)
+            {
+                pagelistresult.Status = false;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetShopPageList() .ShopService"), LogType.ErrorLog);
+            }
+
+
+            return pagelistresult;
         }
 
         /// <summary>
@@ -211,6 +247,9 @@
             {
                 Status = true
             };
+
+            param.SearchType = 0;
+
             pagelistresult.Data = new PageList<Shop>();
             pagelistresult.Data.PageIndex = param.PageIndex;
             pagelistresult.Data.PageNumer = param.PageNumer;
