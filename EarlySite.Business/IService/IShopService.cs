@@ -12,7 +12,7 @@
     public interface IShopService : IServiceBase
     {
         /// <summary>
-        /// 根据店铺昵称模糊搜索[Remark:要该修改成分页的查询]
+        /// 根据店铺昵称模糊搜索
         /// </summary>
         /// <param name="shopName"></param>
         /// <returns></returns>

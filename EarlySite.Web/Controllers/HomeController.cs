@@ -15,12 +15,24 @@
         public ActionResult Index()
         {
             ViewBag.Account = base.CurrentAccount;
-
-            //Result<IList<DishShare>> dishResult = ServiceObjectContainer.Get<IDishService>().SearchDishInfoByMealTime(Model.Enum.MealTime.All);
-            ViewBag.DishList = null;
-
+            
             return View();
         }
+
+        /// <summary>
+        /// 单品推荐分布视图
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult PushDishInfoPartialView()
+        {
+
+
+            return PartialView();
+
+        }
+
+
+
         
     }
 }
