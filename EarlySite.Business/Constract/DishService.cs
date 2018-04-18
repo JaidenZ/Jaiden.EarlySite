@@ -47,26 +47,68 @@
 
             return result;
         }
-
+        
         /// <summary>
-        /// 根据用餐时间获取单品食物
+        /// 根据名称模糊获取单品食物
         /// </summary>
-        /// <param name="time">用餐时间</param>
+        /// <param name="searchName">查询名字</param>
         /// <returns></returns>
-        public Result<PageList<Dish>> SearchDishInfoByMealTime(MealTime time,PageSearchParam param)
+        public Result<PageList<Dish>> SearchDishInfoByName(string searchName,PageSearchParam param)
         {
             Result<PageList<Dish>> result = new Result<PageList<Dish>>()
             {
                 Data = null,
                 Status = true
             };
+
+            param.SearchCode = searchName;
+            param.SearchType = 1;
+
             result.Data = new PageList<Dish>();
             result.Data.PageIndex = param.PageIndex;
             result.Data.PageNumer = param.PageNumer;
-            
+
             try
             {
+                //查询符合条件的数据总条数
+                result.Data.Count = DBConnectionManager.Instance.Reader.Count(new DishCountForSelectPageSpefication(param).Satifasy());
+                //查询数据集合
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectPagesPefication(param).Satifasy());
+                result.Data.List = dish.CopyList<DishInfo, Dish>();
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoByName() .DishService"), LogType.ErrorLog);
+            }
 
+            return result;
+        }
+
+        /// <summary>
+        /// 根据用餐时间获取单品食物
+        /// </summary>
+        /// <param name="time">用餐时间</param>
+        /// <returns></returns>
+        public Result<PageList<Dish>> SearchDishInfoByMealTime(MealTime time, PageSearchParam param)
+        {
+            Result<PageList<Dish>> result = new Result<PageList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+
+            param.SearchCode = time.GetHashCode().ToString();
+            param.SearchType = 2;
+
+            result.Data = new PageList<Dish>();
+            result.Data.PageIndex = param.PageIndex;
+            result.Data.PageNumer = param.PageNumer;
+
+            try
+            {
                 //查询符合条件的数据总条数
                 result.Data.Count = DBConnectionManager.Instance.Reader.Count(new DishCountForSelectPageSpefication(param).Satifasy());
                 //查询数据集合
@@ -83,50 +125,34 @@
 
             return result;
         }
-        /// <summary>
-        /// 根据名称模糊获取单品食物
-        /// </summary>
-        /// <param name="searchName">查询名字</param>
-        /// <returns></returns>
-        public Result<IList<Dish>> SearchDishInfoByName(string searchName)
-        {
-            Result<IList<Dish>> result = new Result<IList<Dish>>()
-            {
-                Data = null,
-                Status = true
-            };
-            try
-            {
-                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(searchName, 1).Satifasy());
-                result.Data = dish.CopyList<DishInfo, Dish>();
-            }
-            catch (Exception ex)
-            {
-                result.Status = false;
-                result.Message = "查询单品食物出错:" + ex.Message;
-                result.StatusCode = "SD001";
-                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:SearchDishInfoByName() .DishService"), LogType.ErrorLog);
-            }
-
-            return result;
-        }
 
         /// <summary>
         /// 根据单品食品类型获取信息
         /// </summary>
         /// <param name="type">类型</param>
         /// <returns></returns>
-        public Result<IList<Dish>> SearchDishInfoByType(DishType type)
+        public Result<PageList<Dish>> SearchDishInfoByType(DishType type,PageSearchParam param)
         {
-            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            Result<PageList<Dish>> result = new Result<PageList<Dish>>()
             {
                 Data = null,
                 Status = true
             };
+
+            param.SearchCode = type.GetHashCode().ToString();
+            param.SearchType = 3;
+
+            result.Data = new PageList<Dish>();
+            result.Data.PageIndex = param.PageIndex;
+            result.Data.PageNumer = param.PageNumer;
+
             try
             {
-                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(type.GetHashCode().ToString(), 3).Satifasy());
-                result.Data = dish.CopyList<DishInfo, Dish>();
+                //查询符合条件的数据总条数
+                result.Data.Count = DBConnectionManager.Instance.Reader.Count(new DishCountForSelectPageSpefication(param).Satifasy());
+                //查询数据集合
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectPagesPefication(param).Satifasy());
+                result.Data.List = dish.CopyList<DishInfo, Dish>();
             }
             catch (Exception ex)
             {
@@ -298,6 +324,44 @@
                 result.StatusCode = "CD001";
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:CollectDishInfo() .DishService"), LogType.ErrorLog);
             }
+            return result;
+        }
+
+        /// <summary>
+        /// 获取单品分页信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public Result<PageList<Dish>> GetPageDishInfo(PageSearchParam param)
+        {
+            Result<PageList<Dish>> result = new Result<PageList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+
+            param.SearchType = 0;
+
+            result.Data = new PageList<Dish>();
+            result.Data.PageIndex = param.PageIndex;
+            result.Data.PageNumer = param.PageNumer;
+
+            try
+            {
+                //查询符合条件的数据总条数
+                result.Data.Count = DBConnectionManager.Instance.Reader.Count(new DishCountForSelectPageSpefication(param).Satifasy());
+                //查询数据集合
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectPagesPefication(param).Satifasy());
+                result.Data.List = dish.CopyList<DishInfo, Dish>();
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询单品食物出错:" + ex.Message;
+                result.StatusCode = "SD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetPageDishInfo() .DishService"), LogType.ErrorLog);
+            }
+
             return result;
         }
     }
