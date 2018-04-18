@@ -11,6 +11,12 @@
     /// </summary>
     public interface IRecipesService: IServiceBase
     {
+        /// <summary>
+        /// 获取分页食谱信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        Result<PageList<Recipes>> GetPageRecipes(PageSearchParam param);
 
         /// <summary>
         /// 根据手机号获取食谱集

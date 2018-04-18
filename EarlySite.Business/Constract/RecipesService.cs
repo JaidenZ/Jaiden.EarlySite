@@ -284,5 +284,41 @@
 
             return result;
         }
+
+        /// <summary>
+        /// 获取分页食谱信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        public Result<PageList<Recipes>> GetPageRecipes(PageSearchParam param)
+        {
+            Result<PageList<Recipes>> pagelistresult = new Result<PageList<Recipes>>()
+            {
+                Status = true
+            };
+            pagelistresult.Data = new PageList<Recipes>();
+            pagelistresult.Data.PageIndex = param.PageIndex;
+            pagelistresult.Data.PageNumer = param.PageNumer;
+
+
+            try
+            {
+                //获取总数
+                pagelistresult.Data.Count = DBConnectionManager.Instance.Reader.Count(new RecipesCountForSelectPageSpefication(param).Satifasy());
+
+                //获取分页信息
+                IList<RecipesInfo> selectresult = DBConnectionManager.Instance.Reader.Select<RecipesInfo>(new RecipesSelectPageSpefication(param).Satifasy());
+                pagelistresult.Data.List = selectresult.CopyList<RecipesInfo, Recipes>();
+
+            }
+            catch (Exception ex)
+            {
+                pagelistresult.Status = false;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetPageRecipes() .RecipesService"), LogType.ErrorLog);
+            }
+
+
+            return pagelistresult;
+        }
     }
 }

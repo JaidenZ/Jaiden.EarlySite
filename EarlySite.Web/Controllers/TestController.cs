@@ -75,7 +75,7 @@
 
             Recipes recipesmodel = new Recipes();
             recipesmodel.RecipesId = Generation.GenerationId();
-            recipesmodel.Name = "喜欢的食谱";
+            recipesmodel.Name = "清淡的";
             recipesmodel.IsPrivate = false;
             recipesmodel.Phone = 18502850589;
             recipesmodel.Description = "测试食谱";
