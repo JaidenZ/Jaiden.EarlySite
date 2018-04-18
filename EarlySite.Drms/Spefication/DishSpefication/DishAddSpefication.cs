@@ -3,6 +3,9 @@
     using System.Text;
     using EarlySite.Model.Database;
 
+    /// <summary>
+    /// 增加单品规约
+    /// </summary>
     public class DishAddSpefication : SpeficationBase
     {
         private DishInfo _dishInfo;

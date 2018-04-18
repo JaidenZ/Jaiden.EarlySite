@@ -53,17 +53,25 @@
         /// </summary>
         /// <param name="time">用餐时间</param>
         /// <returns></returns>
-        public Result<IList<Dish>> SearchDishInfoByMealTime(MealTime time)
+        public Result<PageList<Dish>> SearchDishInfoByMealTime(MealTime time,PageSearchParam param)
         {
-            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            Result<PageList<Dish>> result = new Result<PageList<Dish>>()
             {
                 Data = null,
                 Status = true
             };
+            result.Data = new PageList<Dish>();
+            result.Data.PageIndex = param.PageIndex;
+            result.Data.PageNumer = param.PageNumer;
+            
             try
             {
-                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(time.GetHashCode().ToString(), 2).Satifasy());
-                result.Data = dish.CopyList<DishInfo, Dish>();
+
+                //查询符合条件的数据总条数
+                result.Data.Count = DBConnectionManager.Instance.Reader.Count(new DishCountForSelectPageSpefication(param).Satifasy());
+                //查询数据集合
+                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectPagesPefication(param).Satifasy());
+                result.Data.List = dish.CopyList<DishInfo, Dish>();
             }
             catch (Exception ex)
             {

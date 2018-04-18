@@ -4,6 +4,9 @@
     using EarlySite.Model.Database;
     using EarlySite.Model.Show;
 
+    /// <summary>
+    /// 食谱数量分页查询规约
+    /// </summary>
     public class RecipesCountForSelectPageSpefication : SpeficationBase
     {
         private PageSearchParam _param = null;

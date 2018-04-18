@@ -1,5 +1,8 @@
 ﻿namespace EarlySite.Drms.Spefication
 {
+    /// <summary>
+    /// 食谱删除规约
+    /// </summary>
     public class RecipesDeleteSpefication : SpeficationBase
     {
         private string _deleteInfo;

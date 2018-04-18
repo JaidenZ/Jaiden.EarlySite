@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="time">用餐时间</param>
         /// <returns></returns>
-        Result<IList<Dish>> SearchDishInfoByMealTime(MealTime time);
+        Result<PageList<Dish>> SearchDishInfoByMealTime(MealTime time,PageSearchParam param);
 
         /// <summary>
         /// 根据单品食品类型获取信息
