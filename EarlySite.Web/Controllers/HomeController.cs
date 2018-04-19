@@ -17,15 +17,6 @@
         {
             ViewBag.Account = base.CurrentAccount;
 
-            return View();
-        }
-
-        /// <summary>
-        /// 单品推荐分布视图
-        /// </summary>
-        /// <returns></returns>
-        public PartialViewResult PushDishInfoPartialView()
-        {
             //根据时间获取单品信息
             DateTime now = DateTime.Now;
             MealTime meal = MealTime.All;
@@ -56,8 +47,18 @@
 
             Result<PageList<Dish>> searchresult = ServiceObjectContainer.Get<IDishService>().SearchDishInfoByMealTime(meal, param);
 
-            return PartialView(searchresult.Data);
+            ViewBag.DishList = searchresult.Data;
 
+            return View();
+        }
+
+        /// <summary>
+        /// 单品推荐分布视图
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult PushDishInfoPartialView(PageList<Dish> pagelist)
+        {
+            return PartialView(pagelist);
         }
 
 

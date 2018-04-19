@@ -1,4 +1,5 @@
 ﻿@using EarlySite.Model.Show;
+@using EarlySite.Model.Common;
 @{
     ViewBag.Title = "EarlySite | Home";
 }
@@ -24,7 +25,7 @@
             </div>
             <div class="warrper-body">
                 @{ 
-                    Html.RenderPartial("PushDishInfoPartialView");
+                    Html.RenderPartial("PushDishInfoPartialView", (PageList<Dish>)ViewBag.DishList);
                 }
             </div>
         </div>
