@@ -25,6 +25,7 @@
         /// </summary>
         public DishType Type { get; set; }
 
+        private string typeName;
         /// <summary>
         /// 类型名称
         /// </summary>
@@ -36,7 +37,7 @@
             }
             set
             {
-                this.TypeName = value;
+                typeName = value;
             }
         }
 

@@ -17,13 +17,19 @@
         {
             ViewBag.Account = base.CurrentAccount;
 
-            //根据时间获取单品信息
-            MealTime meal = GetMealTimeForNow();
+            //创建分页参数
             PageSearchParam param = new PageSearchParam();
             param.PageIndex = 1;
             param.PageNumer = 6;
-            Result<PageList<Dish>> dshresult = ServiceObjectContainer.Get<IDishService>().SearchDishInfoByMealTime(meal, param);
-            ViewBag.DishList = dshresult.Data;
+
+            //获取推荐单品信息
+            MealTime meal = GetMealTimeForNow();
+            Result<PageList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().SearchDishInfoByMealTime(meal, param);
+            ViewBag.DishList = dishresult.Data;
+            
+            //获取推荐食谱信息
+            Result<PageList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetPageRecipes(param);
+            ViewBag.RecipesList = recipesresult.Data;
 
             return View();
         }
@@ -33,6 +39,16 @@
         /// </summary>
         /// <returns></returns>
         public PartialViewResult PushDishInfoPartialView(PageList<Dish> pagelist)
+        {
+            return PartialView(pagelist);
+        }
+
+        /// <summary>
+        /// 食谱推荐分布视图
+        /// </summary>
+        /// <param name="pagelist"></param>
+        /// <returns></returns>
+        public PartialViewResult PushRecipesInfoPartialView(PageList<Recipes> pagelist)
         {
             return PartialView(pagelist);
         }

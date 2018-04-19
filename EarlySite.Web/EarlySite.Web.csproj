@@ -219,6 +219,7 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Home\PushDishInfoPartialView.cshtml" />
+    <Content Include="Views\Home\PushRecipesInfoPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
