@@ -3,8 +3,6 @@
 
 @model PageList<Dish>
 
-
-
 <div class="row warrper-body-list">
     @{
         if (Model != null && Model.List != null && Model.List.Count() > 0)
@@ -33,6 +31,12 @@
                     </div>
                 </div>
             }
+        }
+        else
+        {
+            <h2>
+                暂无推荐单品
+            </h2>
         }
     }
 </div>

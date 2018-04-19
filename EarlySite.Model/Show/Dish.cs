@@ -36,6 +36,10 @@
             {
                 return Enum.GetName(typeof(DishType), this.Type);
             }
+            set
+            {
+                this.TypeName = value;
+            }
         }
 
         /// <summary>
