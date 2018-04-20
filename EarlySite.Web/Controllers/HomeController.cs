@@ -1,10 +1,7 @@
 ﻿namespace EarlySite.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Web.Mvc;
-    using Cache;
-    using EarlySite.Business.Constract;
     using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
     using EarlySite.Model.Common;
@@ -20,7 +17,7 @@
             //创建分页参数
             PageSearchParam param = new PageSearchParam();
             param.PageIndex = 1;
-            param.PageNumer = 6;
+            param.PageNumer = 4;
 
             //获取推荐单品信息
             MealTime meal = GetMealTimeForNow();
