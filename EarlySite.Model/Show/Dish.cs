@@ -38,7 +38,6 @@
             }
             set
             {
-                this.TypeName = value;
             }
         }
 

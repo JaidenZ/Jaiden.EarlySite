@@ -249,7 +249,7 @@
             };
 
             param.SearchType = 0;
-
+            param.SearchCode = "";
             pagelistresult.Data = new PageList<Shop>();
             pagelistresult.Data.PageIndex = param.PageIndex;
             pagelistresult.Data.PageNumer = param.PageNumer;

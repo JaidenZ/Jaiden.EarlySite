@@ -299,7 +299,8 @@
             pagelistresult.Data = new PageList<Recipes>();
             pagelistresult.Data.PageIndex = param.PageIndex;
             pagelistresult.Data.PageNumer = param.PageNumer;
-
+            param.SearchCode = "";
+            param.SearchType = 0;
 
             try
             {

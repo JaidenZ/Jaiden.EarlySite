@@ -22,7 +22,18 @@
         {
             get
             {
-                return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
+                //return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
+
+                return new Account()
+                {
+                    NickName = "测试用户",
+                    Phone = 18502850589,
+                    Sex = Model.Enum.AccountSex.Male,
+                    Email = "272665534@qq.com",
+                    Birthday = DateTime.Now,
+                    CreatTime = Convert.ToDateTime("1900-01-01"),
+                    Avator = ConstInfo.DefaultHeadBase64
+                };
             }
         }
         
