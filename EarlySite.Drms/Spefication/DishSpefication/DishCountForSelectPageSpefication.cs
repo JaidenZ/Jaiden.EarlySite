@@ -1,7 +1,7 @@
 ﻿namespace EarlySite.Drms.Spefication
 {
     using EarlySite.Model.Common;
-    
+    using EarlySite.Model.Enum;
     /// <summary>
     /// 单品总数量分页查询规约
     /// </summary>
@@ -30,8 +30,17 @@
             }
             else if (_param.SearchType == 2)
             {
-                sql = string.Format("select count(1) from which_dish where Enable = '0' and MealTime = 0 or " +
-                    " MealTime = '{0}'  ORDER BY UpdateDate ASC ", _param.SearchCode);
+                if(_param.SearchCode == MealTime.All.GetHashCode().ToString())
+                {
+                    sql = string.Format("select count(1) from which_dish where Enable = '0' " +
+                        "  ORDER BY UpdateDate ASC ");
+                }
+                else
+                {
+                    sql = string.Format("select count(1) from which_dish where Enable = '0' and MealTime = '0' or " +
+                        " MealTime = '{0}'  ORDER BY UpdateDate ASC ", _param.SearchCode);
+                }
+
             }
             else if (_param.SearchType == 3)
             {

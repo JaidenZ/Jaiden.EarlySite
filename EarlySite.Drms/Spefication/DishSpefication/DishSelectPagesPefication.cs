@@ -1,11 +1,12 @@
 ﻿namespace EarlySite.Drms.Spefication
 {
     using EarlySite.Model.Common;
+    using EarlySite.Model.Enum;
 
     /// <summary>
     /// 单品分页查询规约
     /// </summary>
-    public class DishSelectPagesPefication:SpeficationBase
+    public class DishSelectPagesPefication : SpeficationBase
     {
         private PageSearchParam _param = null;
 
@@ -42,8 +43,17 @@
             }
             else if (_param.SearchType == 2)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and MealTime = '0' or  " +
-                    " MealTime = '{0}' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
+                if (_param.SearchCode == MealTime.All.GetHashCode().ToString())
+                {
+                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0'  " +
+                        " ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
+                }
+                else
+                {
+                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0'  and  MealTime = '0' or " +
+                        " MealTime = '{0}' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
+                }
+
             }
             else if (_param.SearchType == 3)
             {
