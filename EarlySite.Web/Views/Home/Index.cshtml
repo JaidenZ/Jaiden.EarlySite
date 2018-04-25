@@ -16,13 +16,27 @@
             </div>
         </div>
     </div>
-
     <div class="row corner">
-
-        <div class="row corner">
-
+        <div class="warrper">
+            <div class="warrper-header">
+                <a class="warrper-header-title efont" href="">今日食</a>
+            </div>
+            <div class="warrper-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        当前时间:<span id="currentdate" class="badge">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span><br />
+                        根据你的喜好，挑选今天的菜单。
+                    </div>
+                </div>
+            </div>
         </div>
 
+
+    </div>
+
+
+
+    <div class="row corner">
 
         <div class="warrper">
             <div class="warrper-header">
@@ -30,7 +44,7 @@
                 <span class="warrper-header-more"><a href="" class="efont">更多</a></span>
             </div>
             <div class="warrper-body">
-                @{ 
+                @{
                     Html.RenderPartial("PushDishInfoPartialView", (PageList<Dish>)ViewBag.DishList);
                 }
             </div>
@@ -38,12 +52,12 @@
 
         <div class="warrper">
             <div class="warrper-header">
-                <a class="warrper-header-title efont" href="">推荐菜单</a>
+                <a class="warrper-header-title efont" href="">推荐食谱</a>
                 <span class="warrper-header-more"><a href="" class="efont">更多</a></span>
             </div>
             <div class="warrper-body">
-                @{ 
-                    Html.RenderPartial("PushRecipesInfoPartialView",(PageList<Recipes>)ViewBag.RecipesList);
+                @{
+                    Html.RenderPartial("PushRecipesInfoPartialView", (PageList<Recipes>)ViewBag.RecipesList);
                 }
             </div>
         </div>
@@ -110,6 +124,32 @@
             $('.amap-logo').css('visibility', 'hidden');
             $('.amap - copyright').css('visibility', 'hidden');
         });
+
+
+        $(function () {
+
+            //设置日期显示
+            setInterval(function () {
+                var time = new Date();
+                // 程序计时的月从0开始取值后+1
+                var m = time.getMonth() + 1;
+                var month = "";
+                if (m < 10) {
+                    month = "0" + m;
+                }
+                else {
+                    month = m;
+                }
+                var t = time.getFullYear() + "-" + month + "-"
+                    + time.getDate() + " " + time.getHours() + ":"
+                    + time.getMinutes() + ":" + time.getSeconds();
+                $('#currentdate').html(t);
+
+            }, 1000);
+
+        })
+
+
 
     </script>
 

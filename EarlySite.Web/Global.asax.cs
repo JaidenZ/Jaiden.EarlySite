@@ -22,8 +22,7 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //获取业务服务程序集
-            Assembly[] loadassemblys = System.AppDomain.CurrentDomain.GetAssemblies();
-            Assembly businessdll = loadassemblys.FirstOrDefault(w => w.FullName.Contains("EarlySite.Business"));
+            Assembly businessdll = Assembly.Load("EarlySite.Business");
             //注册业务服务程序集
             ServiceObjectContainer.Load(businessdll);
             
