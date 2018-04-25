@@ -1,6 +1,7 @@
 ﻿@using EarlySite.Model.Show;
 @using EarlySite.Model.Common;
 @using EarlySite.Model.Enum;
+
 @{
     ViewBag.Title = "EarlySite | Home";
 }
@@ -23,114 +24,9 @@
                 <a class="warrper-header-title efont" href="">今日食</a>
             </div>
             <div class="warrper-body">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        当前时间:<span id="currentdate" class="badge">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span><br />
-                        现在是 @Enum.GetName(typeof(MealTime), ViewBag.Meal) 时间
-                        根据你的喜好，挑选今天的菜单。
-                    </div>
-                </div>
-
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <!--用餐时间-->
-                        <label class="col-sm-1 control-label">用餐时间</label>
-                        <div class="col-sm-4">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @Enum.GetName(typeof(MealTime), ViewBag.Meal) <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    @{
-                                        foreach (var item in Enum.GetNames(typeof(MealTime)))
-                                        {
-                                            <li><a href="javascript:alert(@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode()))">@item</a></li>
-                                        }
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                        <!--口味类型-->
-                        <label class="col-sm-1 control-label">口味类型</label>
-                        <div class="col-sm-4">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @Enum.GetName(typeof(DishType), DishType.小吃快餐) <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    @{
-                                        foreach (var item in Enum.GetNames(typeof(DishType)))
-                                        {
-                                            <li><a href="javascript:alert(@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode()))">@item</a></li>
-                                        }
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <!--用餐人数-->
-                        <label class="col-sm-1 control-label">用餐人数</label>
-                        <div class="col-sm-4">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @Enum.GetName(typeof(MealsNumber), MealsNumber.一人食) <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    @{
-                                        foreach (var item in Enum.GetNames(typeof(MealsNumber)))
-                                        {
-                                            <li><a href="javascript:alert(@(((MealsNumber)Enum.Parse(typeof(MealsNumber), item)).GetHashCode()))">@item</a></li>
-                                        }
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">查一查</button>
-                        </div>
-                    </div>
-                </form>
-
-
+                @{
+                    Html.RenderPartial("TodayDishPartialView");
+                }
             </div>
         </div>
 
@@ -227,30 +123,6 @@
             $('.amap-logo').css('visibility', 'hidden');
             $('.amap - copyright').css('visibility', 'hidden');
         });
-
-
-        $(function () {
-
-            //设置日期显示
-            setInterval(function () {
-                var time = new Date();
-                // 程序计时的月从0开始取值后+1
-                var m = time.getMonth() + 1;
-                var month = "";
-                if (m < 10) {
-                    month = "0" + m;
-                }
-                else {
-                    month = m;
-                }
-                var t = time.getFullYear() + "-" + month + "-"
-                    + time.getDate() + " " + time.getHours() + ":"
-                    + time.getMinutes() + ":" + time.getSeconds();
-                $('#currentdate').html(t);
-
-            }, 1000);
-
-        })
 
 
 

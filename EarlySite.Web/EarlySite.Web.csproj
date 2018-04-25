@@ -220,6 +220,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Home\PushDishInfoPartialView.cshtml" />
     <Content Include="Views\Home\PushRecipesInfoPartialView.cshtml" />
+    <Content Include="Views\Home\TodayDishPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

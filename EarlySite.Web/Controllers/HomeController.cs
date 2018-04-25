@@ -34,6 +34,17 @@
         }
 
         /// <summary>
+        /// 今日食分布式图
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult TodayDishPartialView()
+        {
+            ViewBag.Meal = GetMealTimeForNow();
+            return PartialView();
+        }
+
+
+        /// <summary>
         /// 单品推荐分布视图
         /// </summary>
         /// <returns></returns>

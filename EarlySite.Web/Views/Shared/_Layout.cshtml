@@ -10,6 +10,12 @@
     @Styles.Render("~/Themes/Style")
 </head>
 <body>
+
+    @Scripts.Render("~/Themes/assembly/jquery")
+    @Scripts.Render("~/Themes/assembly/bootstrap")
+    @Scripts.Render("~/Themes/Scripts")
+
+
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -59,16 +65,13 @@
         </div>
     </nav>
 
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - EarlySite</p>
-        </footer>
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - EarlySite</p>
+    </footer>
 
-
-    @Scripts.Render("~/Themes/assembly/jquery")
-    @Scripts.Render("~/Themes/assembly/bootstrap")
-    @Scripts.Render("~/Themes/Scripts")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
