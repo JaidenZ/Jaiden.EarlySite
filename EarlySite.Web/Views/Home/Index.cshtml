@@ -1,5 +1,6 @@
 ﻿@using EarlySite.Model.Show;
 @using EarlySite.Model.Common;
+@using EarlySite.Model.Enum;
 @{
     ViewBag.Title = "EarlySite | Home";
 }
@@ -25,9 +26,58 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         当前时间:<span id="currentdate" class="badge">@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")</span><br />
+                        现在是 @Enum.GetName(typeof(MealTime), ViewBag.Meal) 时间
                         根据你的喜好，挑选今天的菜单。
                     </div>
                 </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-1 control-label">用餐时间</label>
+                        <div class="col-sm-4">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @Enum.GetName(typeof(MealTime),ViewBag.Meal) <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @{ 
+                                        foreach (var item in Enum.GetNames(typeof(MealTime)))
+                                        {
+                                            <li><a href="javascript:alert(@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode()))">@item</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+
+                        <label for="inputEmail3" class="col-sm-1 control-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+
+
             </div>
         </div>
 

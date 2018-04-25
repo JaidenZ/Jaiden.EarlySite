@@ -43,7 +43,7 @@
             }
             else if (_param.SearchType == 2)
             {
-                if (_param.SearchCode == MealTime.All.GetHashCode().ToString())
+                if (_param.SearchCode == MealTime.所有时间段.GetHashCode().ToString())
                 {
                     sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0'  " +
                         " ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);

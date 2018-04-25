@@ -28,6 +28,8 @@
             Result<PageList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetPageRecipes(param);
             ViewBag.RecipesList = recipesresult.Data;
 
+            ViewBag.Meal = meal;
+
             return View();
         }
 
@@ -57,26 +59,26 @@
         private MealTime GetMealTimeForNow()
         {
             DateTime now = DateTime.Now;
-            MealTime meal = MealTime.All;
+            MealTime meal = MealTime.所有时间段;
             if (now.Hour >= 5 && now.Hour < 11)
             {
-                meal = MealTime.BreakFast;
+                meal = MealTime.早餐;
             }
             if (now.Hour >= 11 && now.Hour < 14)
             {
-                meal = MealTime.Lunch;
+                meal = MealTime.午餐;
             }
             if (now.Hour >= 14 && now.Hour < 17)
             {
-                meal = MealTime.TeaTime;
+                meal = MealTime.下午茶;
             }
             if (now.Hour >= 17 && now.Hour < 21)
             {
-                meal = MealTime.Dinner;
+                meal = MealTime.晚餐;
             }
             if (now.Hour >= 21 || now.Hour < 5)
             {
-                meal = MealTime.NightSnack;
+                meal = MealTime.夜宵;
             }
             return meal;
         }

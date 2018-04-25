@@ -30,7 +30,7 @@
             }
             else if (_param.SearchType == 2)
             {
-                if(_param.SearchCode == MealTime.All.GetHashCode().ToString())
+                if(_param.SearchCode == MealTime.所有时间段.GetHashCode().ToString())
                 {
                     sql = string.Format("select count(1) from which_dish where Enable = '0' " +
                         "  ORDER BY UpdateDate ASC ");

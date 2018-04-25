@@ -8,27 +8,27 @@
         /// <summary>
         /// 所有时间段
         /// </summary>
-        All = 0,
+        所有时间段 = 0,
         /// <summary>
         /// 早餐
         /// </summary>
-        BreakFast = 1,
+        早餐 = 1,
         /// <summary>
         /// 午餐
         /// </summary>
-        Lunch = 2,
+        午餐 = 2,
         /// <summary>
         /// 下午茶
         /// </summary>
-        TeaTime = 3,
+        下午茶 = 3,
         /// <summary>
         /// 晚餐
         /// </summary>
-        Dinner = 4,
+        晚餐 = 4,
         /// <summary>
         /// 夜宵
         /// </summary>
-        NightSnack = 5
+        夜宵 = 5
     }
 
 
