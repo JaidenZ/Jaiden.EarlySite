@@ -51,7 +51,16 @@
 
     }
 
-    
-
+    /// <summary>
+    /// 用餐人数
+    /// </summary>
+    public enum MealsNumber
+    {
+        一人食 = 0,
+        双人餐 = 1,
+        三人餐 = 2,
+        四人餐 = 3,
+        全家桶 = 4
+    }
 
 }
