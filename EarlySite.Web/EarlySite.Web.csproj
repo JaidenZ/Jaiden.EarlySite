@@ -164,6 +164,8 @@
     <Content Include="Pictures\pic-09.jpg" />
     <Content Include="Pictures\pic-10.jpg" />
     <Content Include="Pictures\pic-11.jpg" />
+    <Content Include="Themes\expandAssembly\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="Themes\expandAssembly\bootstrap-select\defaults-zh_CN.min.js" />
     <Content Include="Themes\Images\headerBanner-acfun.jpg" />
     <Content Include="Themes\Images\test.jpg" />
     <Content Include="Themes\Scripts\amapScript.js" />
@@ -176,6 +178,7 @@
     <Content Include="Themes\Scripts\earlysiteCommon.js" />
     <Content Include="Themes\Style\AccountForget.css" />
     <Content Include="Themes\Style\AccountLogin.css" />
+    <Content Include="Themes\Style\bootstrap-select.min.css" />
     <Content Include="Themes\Style\bootstrap.css" />
     <Content Include="Themes\Style\bootstrap.min.css" />
     <Content Include="favicon.ico" />

@@ -14,7 +14,9 @@ namespace EarlySite.Web
 
             bundles.Add(new ScriptBundle("~/Themes/assembly/bootstrap").Include(
                       "~/Themes/expandAssembly/bootstrap.js",
-                      "~/Themes/expandAssembly/respond.js"));
+                      "~/Themes/expandAssembly/respond.js",
+                      "~/Themes/expandAssembly/bootstrap-select/bootstrap-select.min.js",
+                      "~/Themes/expandAssembly/bootstrap-select/defaults-zh_CN.min.js"));
 
             bundles.Add(new ScriptBundle("~/Themes/Scripts").Include(
                       "~/Themes/Scripts/earlysiteCommon.js",
@@ -23,6 +25,7 @@ namespace EarlySite.Web
 
             bundles.Add(new StyleBundle("~/Themes/Style").Include(
                       "~/Themes/Style/bootstrap.css",
+                      "~/Themes/Style/bootstrap-select.min.css",
                       "~/Themes/Style/site.css",
                       "~/Themes/Style/common.css"));
         }
