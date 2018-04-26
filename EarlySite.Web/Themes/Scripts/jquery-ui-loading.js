@@ -8,7 +8,7 @@
         var defaultVal = {
             backgroudColor: "#ECECEC",//背景色
             backgroundImage: "/Themes/Images/loading.gif",//背景图片
-            text: "正在加载中....",//文字 
+            text: "拼命加载中....",//文字 
             width: 150,//宽度
             height: 60,//高度
             type:0 //0全部遮，1 局部遮

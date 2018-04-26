@@ -9,32 +9,32 @@
 </div>
 
 
-<div id="selectrow" class=" row">
-    <div class="col-sm-6">
+<div class=" row">
+    <div class="col-sm-12">
         <form class="form-horizontal">
             <div class="form-group">
                 <!--用餐时间-->
-                <label class="col-sm-3 control-label">用餐时间</label>
-                <div class="col-sm-3">
-                    <select id="stmealtime" class="form-control selectpicker" data-size="7">
+                <label class="col-sm-2 control-label">用餐时间</label>
+                <div class="col-sm-4">
+                    <select id="stmealtime" class="form-control selectpicker" data-size="5">
                         @{
-                            foreach (var item in Enum.GetNames(typeof(MealTime)))
-                            {
-                                <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
-                            }
+                        foreach (var item in Enum.GetNames(typeof(MealTime)))
+                        {
+                            <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
+                    }
                         }
                     </select>
                 </div>
 
                 <!--口味类型-->
-                <label class="col-sm-3 control-label">口味类型</label>
-                <div class="col-sm-3">
-                    <select id="stdishtype" class="form-control selectpicker" data-size="7">
+                <label class="col-sm-2 control-label">口味类型</label>
+                <div class="col-sm-4">
+                    <select id="stdishtype" class="form-control selectpicker" data-size="5">
                         @{
-                            foreach (var item in Enum.GetNames(typeof(DishType)))
-                            {
-                                <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
-                            }
+                        foreach (var item in Enum.GetNames(typeof(DishType)))
+                        {
+                            <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
+                    }
                         }
                     </select>
                 </div>
@@ -42,46 +42,85 @@
 
             <div class="form-group">
                 <!--用餐人数-->
-                <label class="col-sm-3 control-label">用餐人数</label>
-                <div class="col-sm-3">
-                    <select id="stmealnum" class="form-control selectpicker" data-size="7">
+                <label class="col-sm-2 control-label">用餐人数</label>
+                <div class="col-sm-4">
+                    <select id="stmealnum" class="form-control selectpicker" data-size="5">
                         @{
-                            foreach (var item in Enum.GetNames(typeof(MealsNumber)))
-                            {
-                                <option value="@(((MealsNumber)Enum.Parse(typeof(MealsNumber), item)).GetHashCode())">@item</option>
-                            }
+                        foreach (var item in Enum.GetNames(typeof(MealsNumber)))
+                        {
+                            <option value="@(((MealsNumber)Enum.Parse(typeof(MealsNumber), item)).GetHashCode())">@item</option>
+                    }
                         }
                     </select>
                 </div>
 
                 <!--花费等级-->
-                <label class="col-sm-3 control-label">花费等级</label>
-                <div class="col-sm-3">
-                    <select id="stspendgrade" class="form-control selectpicker" data-size="7">
+                <label class="col-sm-2 control-label">花费等级</label>
+                <div class="col-sm-4">
+                    <select id="stspendgrade" class="form-control selectpicker" data-size="5">
                         @{
-                            foreach (var item in Enum.GetNames(typeof(SpendGrade)))
-                            {
-                                <option value="@(((SpendGrade)Enum.Parse(typeof(SpendGrade), item)).GetHashCode())">@item</option>
-                            }
+                        foreach (var item in Enum.GetNames(typeof(SpendGrade)))
+                        {
+                            var spend = ((SpendGrade)Enum.Parse(typeof(SpendGrade), item)).GetHashCode();
+                            <option value="@spend">@item (￥@spend 以下)</option>
+                    }
                         }
                     </select>
                 </div>
             </div>
 
+            <div class="form-group">
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-11">
+                    <div class="alert alert-info" role="alert">
+                        <span class="label label-primary">あなたの立場</span>
+                        根据处境做出选择,开启一次食物匹配之旅.
+                    </div>
+                </div>
+
+            </div>
+
             <!--按钮-->
             <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-9">
-                    <button id="btnsearch" type="button" class="btn btn-default">查一查</button>
+                <div class="col-sm-offset-9 col-sm-3">
+                    <button id="btnsearch" type="button" class="btn btn-default">刀を抜く</button>
                 </div>
             </div>
         </form>
 
     </div>
 
-    <div class="col-sm-6">
-        222
-    </div>
 
+
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+                <a href="javascript:alert('SB点我')" class="thumbnail">
+                    <img src="~/Pictures/pic-05.jpg" alt="...">
+                </a>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">单品信息</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
@@ -105,6 +144,7 @@
                 $(this).EaLoading("destroy");
 
             }, 3000);
+            
 
         });
 
