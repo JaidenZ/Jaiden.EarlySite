@@ -166,7 +166,9 @@
     <Content Include="Pictures\pic-11.jpg" />
     <Content Include="Themes\expandAssembly\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Themes\expandAssembly\bootstrap-select\defaults-zh_CN.min.js" />
+    <Content Include="Themes\expandAssembly\jquery.browser.js" />
     <Content Include="Themes\Images\headerBanner-acfun.jpg" />
+    <Content Include="Themes\Images\loading.gif" />
     <Content Include="Themes\Images\test.jpg" />
     <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
@@ -176,6 +178,7 @@
     <Content Include="Themes\Images\errow_icon.png" />
     <Content Include="Themes\Images\signback.png" />
     <Content Include="Themes\Scripts\earlysiteCommon.js" />
+    <Content Include="Themes\Scripts\jquery-ui-loading.js" />
     <Content Include="Themes\Style\AccountForget.css" />
     <Content Include="Themes\Style\AccountLogin.css" />
     <Content Include="Themes\Style\bootstrap-select.min.css" />

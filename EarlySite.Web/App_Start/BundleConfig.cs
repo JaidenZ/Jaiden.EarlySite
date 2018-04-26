@@ -10,6 +10,7 @@ namespace EarlySite.Web
         {
             bundles.Add(new ScriptBundle("~/Themes/assembly/jquery").Include(
                         "~/Themes/expandAssembly/jquery-{version}.js",
+                        "~/Themes/expandAssembly/jquery.browser.js",
                         "~/Themes/expandAssembly/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/Themes/assembly/bootstrap").Include(
@@ -20,7 +21,8 @@ namespace EarlySite.Web
 
             bundles.Add(new ScriptBundle("~/Themes/Scripts").Include(
                       "~/Themes/Scripts/earlysiteCommon.js",
-                      "~/Themes/Scripts/amapScript.js"));
+                      "~/Themes/Scripts/amapScript.js",
+                      "~/Themes/Scripts/jquery-ui-loading.js"));
 
 
             bundles.Add(new StyleBundle("~/Themes/Style").Include(
