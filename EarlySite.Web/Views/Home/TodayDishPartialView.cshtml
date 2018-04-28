@@ -18,10 +18,10 @@
                 <div class="col-sm-4">
                     <select id="stmealtime" class="form-control selectpicker" data-size="5">
                         @{
-                        foreach (var item in Enum.GetNames(typeof(MealTime)))
-                        {
-                            <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
-                    }
+                            foreach (var item in Enum.GetNames(typeof(MealTime)))
+                            {
+                                <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
+                            }
                         }
                     </select>
                 </div>
@@ -31,10 +31,10 @@
                 <div class="col-sm-4">
                     <select id="stdishtype" class="form-control selectpicker" data-size="5">
                         @{
-                        foreach (var item in Enum.GetNames(typeof(DishType)))
-                        {
-                            <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
-                    }
+                            foreach (var item in Enum.GetNames(typeof(DishType)))
+                            {
+                                <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
+                            }
                         }
                     </select>
                 </div>
@@ -46,10 +46,10 @@
                 <div class="col-sm-4">
                     <select id="stmealnum" class="form-control selectpicker" data-size="5">
                         @{
-                        foreach (var item in Enum.GetNames(typeof(MealsNumber)))
-                        {
-                            <option value="@(((MealsNumber)Enum.Parse(typeof(MealsNumber), item)).GetHashCode())">@item</option>
-                    }
+                            foreach (var item in Enum.GetNames(typeof(MealsNumber)))
+                            {
+                                <option value="@(((MealsNumber)Enum.Parse(typeof(MealsNumber), item)).GetHashCode())">@item</option>
+                            }
                         }
                     </select>
                 </div>
@@ -59,11 +59,11 @@
                 <div class="col-sm-4">
                     <select id="stspendgrade" class="form-control selectpicker" data-size="5">
                         @{
-                        foreach (var item in Enum.GetNames(typeof(SpendGrade)))
-                        {
-                            var spend = ((SpendGrade)Enum.Parse(typeof(SpendGrade), item)).GetHashCode();
-                            <option value="@spend">@item (￥@spend 以下)</option>
-                    }
+                            foreach (var item in Enum.GetNames(typeof(SpendGrade)))
+                            {
+                                var spend = ((SpendGrade)Enum.Parse(typeof(SpendGrade), item)).GetHashCode();
+                                <option value="@spend">@item (￥@spend 以下)</option>
+                            }
                         }
                     </select>
                 </div>
@@ -97,9 +97,9 @@
 
     <div id="todayDishView" class="col-sm-12">
         <div class="col-sm-6">
-                <a href="javascript:alert('SB点我')" class="thumbnail">
-                    <img src="~/Pictures/pic-05.jpg" alt="...">
-                </a>
+            <a href="javascript:alert('SB点我')" class="thumbnail">
+                <img src="~/Pictures/pic-05.jpg" alt="...">
+            </a>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default">
@@ -134,16 +134,35 @@
         $("#btnsearch").click(function () {
 
             $(this).EaLoading();
+            $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("ShakeTodayDish", "Home")',
+                    data: {
+                        MealTime: $('#stmealtime').val(),
+                        DishType: $('#stdishtype').val(),
+                        MealNumber: $('#stmealnum').val(),
+                        SpendGrade: $('#stspendgrade').val()
+                    },
+                    success: function (result) {
+                        setTimeout(function () {
+                            $(this).EaLoading("destroy");
+                        }, 1500);
 
-            setTimeout(function () {
+                        if (result.Status) {
+                            alert('操作成功');
+                        }
+                        else {
 
-                $(this).EaLoading("destroy");
-
-            }, 3000);
-            
-
+                            alert('操作失败');
+                        }
+                    },
+                    error: function (error) {
+                        $(this).EaLoading("destroy");
+                        alert("Ajax send error");
+                    }
+            });
         });
-
     });
 
     /**

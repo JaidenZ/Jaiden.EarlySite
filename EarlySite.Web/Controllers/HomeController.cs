@@ -94,5 +94,16 @@
             return meal;
         }
 
+        /// <summary>
+        /// 摇一摇获取今日的菜谱
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult ShakeTodayDish(ShakeParam param)
+        {
+            Result result = new Result();
+            result.Status = true;
+            return Json(result);
+        }
+
     }
 }
