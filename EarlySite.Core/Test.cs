@@ -17,7 +17,7 @@ namespace EarlySite.Core
                 Console.WriteLine(VerificationUtils.GetVefication());
             }
 
-            
+            //
 
 
             Console.ReadKey(false);
