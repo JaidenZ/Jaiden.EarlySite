@@ -8,7 +8,7 @@
     /// <summary>
     /// 筛选服务
     /// </summary>
-    public class IShakeService:IServiceBase
+    public interface IShakeService:IServiceBase
     {
     }
 }

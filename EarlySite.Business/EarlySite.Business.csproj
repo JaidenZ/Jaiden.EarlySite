@@ -44,6 +44,7 @@
     <Compile Include="Constract\AccountService.cs" />
     <Compile Include="Constract\DishService.cs" />
     <Compile Include="Constract\RecipesService.cs" />
+    <Compile Include="Constract\ShakeService.cs" />
     <Compile Include="Constract\ShopService.cs" />
     <Compile Include="IService\IAccount.cs" />
     <Compile Include="IService\IDishService.cs" />
