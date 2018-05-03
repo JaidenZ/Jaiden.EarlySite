@@ -48,6 +48,7 @@
     <Compile Include="IService\IAccount.cs" />
     <Compile Include="IService\IDishService.cs" />
     <Compile Include="IService\IRecipesService.cs" />
+    <Compile Include="IService\IShakeService.cs" />
     <Compile Include="IService\IShopService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
