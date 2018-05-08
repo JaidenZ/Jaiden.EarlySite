@@ -188,6 +188,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Themes\Style\common.css" />
+    <Content Include="Themes\Style\Profile.css" />
     <Content Include="Themes\Style\Site.css" />
     <Content Include="Themes\expandAssembly\bootstrap.js" />
     <Content Include="Themes\expandAssembly\bootstrap.min.js" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Home\PushDishInfoPartialView.cshtml" />
     <Content Include="Views\Home\PushRecipesInfoPartialView.cshtml" />
     <Content Include="Views\Home\TodayDishPartialView.cshtml" />
+    <Content Include="Views\Profile\RecipesPatialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
