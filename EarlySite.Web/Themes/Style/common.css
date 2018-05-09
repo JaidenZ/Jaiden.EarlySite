@@ -2,15 +2,16 @@
     padding-top: 65px;
     background-color: #F3F3F3;
 }
+
 a {
     text-decoration: none;
-    color:black;
+    color: black;
 }
 
-a:hover{
-    text-decoration:none;
-    color:black;
-}
+    a:hover {
+        text-decoration: none;
+        color: black;
+    }
 
 .efont {
     font-family: 'Lato';
@@ -248,20 +249,19 @@ a:hover{
 }
 
 .ProfileBoard {
-    padding:0 8px;
+    padding: 0 8px;
     text-align: center;
     line-height: 1.6;
     border-left: 1px solid #e7eaf1;
-
 }
 
-.ProfileBoard a {
-    text-decoration: none;
-}
-
-    .ProfileBoard a :hover {
-        color: #175199;
+    .ProfileBoard a {
+        text-decoration: none;
     }
+
+        .ProfileBoard a :hover {
+            color: #175199;
+        }
 
 .ProfileBoard-title {
     font-size: 16px;
@@ -269,7 +269,7 @@ a:hover{
 }
 
 .ProfileBoard-number {
-    font-size:16px;
+    font-size: 16px;
     color: black;
 }
 
@@ -515,3 +515,167 @@ html[data-theme=dark] .Button--link {
 .Button--withIcon.Button--withLabel .Button-zi {
     margin-right: 4px
 }
+
+#footer {
+    *zoom: 1;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 12px;
+}
+
+.footgap {
+    overflow: hidden;
+    min-width: 984px;
+    padding: 0 20px;
+    border-top: 1px solid #e6e6e6;
+    background-color: #FFF
+}
+
+.footwrapper {
+    overflow: hidden;
+    width: auto;
+    _width: 980px;
+    max-width: 1100px;
+    min-width: 980px;
+    margin: 0 auto;
+    padding: 20px 0;
+    color: #999;
+}
+
+.footerwrapper .footcontent {
+    _zoom: 1;
+    overflow: hidden;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #CCC
+}
+
+.footcontent .footsitemap {
+    float: left
+}
+
+.footsitemap dl {
+    float: left;
+    padding: 0 30px 0 10px;
+    line-height: 22px
+}
+
+    .footsitemap dl dt {
+        position: relative;
+        margin: 0 0 5px;
+        font-weight: bold;
+        color: #666
+    }
+
+    .footsitemap dl a {
+        font-size: 12px;
+        color: #999
+    }
+
+        .footsitemap dl a:hover {
+            color: #DB3838;
+        }
+
+    .footsitemap dl .hot {
+        position: absolute;
+        width: 19px;
+        height: 11px;
+        background: url('//img.xiami.net/res/v3/img/sup_hot.gif') no-repeat
+    }
+
+.footcooperation {
+    float: right;
+    width: 430px
+}
+
+    .footcooperation p {
+        overflow: hidden;
+        background: url('//img.xiami.net/static/img/common/partners_icon.jpg') no-repeat right top
+    }
+
+    .footcooperation span {
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 150px;
+        padding-top: 15px
+    }
+
+    .footcooperation a {
+        float: left;
+        width: 40px;
+        height: 40px;
+        margin: 0 0 7px 5px;
+        text-decoration: none
+    }
+
+
+.footali_group {
+    clear: left;
+    overflow: hidden;
+    border-top: 1px dashed #CCC;
+    border-bottom: 1px dashed #CCC
+}
+
+    .footali_group a {
+        float: left;
+        margin: 10px 0 10px -1px;
+        padding: 0 10px;
+        border-left: 1px solid #EEE;
+        color: #999;
+        line-height: 18px;
+
+    }
+
+        .footali_group a :hover {
+            color: #DB3838;
+        }
+
+.footextra {
+    clear: both;
+    margin-top: 15px
+}
+
+    .footextra .sns {
+        float: left;
+        text-indent: 10px;
+        vertical-align: middle
+    }
+
+        .footextra .sns .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            background: url('//img.xiami.net/res/v3/img/sync-ico_v15.gif') no-repeat;
+            vertical-align: middle
+        }
+
+        .footextra .sns .sina {
+            background-position: 0 -16px
+        }
+
+        .footextra .sns a:hover .sina {
+            background-position: 0 0
+        }
+
+
+
+.copyright {
+    float: right;
+    color: #AAA;
+    text-align: right
+}
+
+    .copyright a {
+        color: #AAA
+    }
+
+    .copyright strong {
+        display: inline-block;
+        overflow: hidden;
+        width: 117px;
+        height: 25px;
+        margin-left: 15px;
+        background-image: url('//img.xiami.net/res/v3/img/xiami_motto.png');
+        text-indent: 100%;
+        line-height: 25px;
+        vertical-align: middle
+    }
