@@ -29,8 +29,7 @@ namespace EarlySite.Web
                       "~/Themes/Style/bootstrap.css",
                       "~/Themes/Style/bootstrap-select.min.css",
                       "~/Themes/Style/site.css",
-                      "~/Themes/Style/common.css",
-                      "~/Themes/Style/Profile.css"));
+                      "~/Themes/Style/common.css"));
         }
     }
 }
