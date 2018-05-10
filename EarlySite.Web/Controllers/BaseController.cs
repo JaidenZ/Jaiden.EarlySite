@@ -22,7 +22,7 @@
         {
             get
             {
-                return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
+                //return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
 
                 return new Account()
                 {
@@ -32,7 +32,8 @@
                     Email = "272665534@qq.com",
                     Birthday = DateTime.Now,
                     CreatTime = Convert.ToDateTime("1900-01-01"),
-                    Avator = ConstInfo.DefaultHeadBase64
+                    Avator = ConstInfo.DefaultHeadBase64,
+                    BackCorver = ConstInfo.DefaultBackCover
                 };
             }
         }

@@ -50,6 +50,7 @@
     <Compile Include="AOP\Data\DataModelProxyConverter.cs" />
     <Compile Include="AOP\Proxy\InterfaceProxy.cs" />
     <Compile Include="AOP\Proxy\InvocationHandler.cs" />
+    <Compile Include="Cryptography\Base64Image.cs" />
     <Compile Include="DDD\Service\IoCContainerBase.cs" />
     <Compile Include="DDD\Service\IServiceBase.cs" />
     <Compile Include="DDD\Service\ServiceBaseContainer.cs" />

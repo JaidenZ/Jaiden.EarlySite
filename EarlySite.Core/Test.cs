@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EarlySite.Core.Utils;
-using System.Threading;
-using System.IO;
-using System.Drawing;
+using EarlySite.Core.Cryptography;
 namespace EarlySite.Core
 {
     class Test
@@ -21,9 +14,8 @@ namespace EarlySite.Core
 
             ////
             string path = @"D://TestCode//Jaiden.EarlySite//EarlySite.Web//Themes//Images//profileback.jpg";
-            Image image = new Bitmap(path);
 
-
+            string base64 = Base64Image.GetBase64FromImage(path);
 
 
             Console.ReadKey(false);
