@@ -179,7 +179,7 @@ namespace EarlySite.Core.AOP.Data
                             {
                                 prop = prop.GetEnumUnderlyingType();
                             }
-                            if (ValueTypeUnit.IsFloatType(prop))
+                            if (ValueTypeUtils.IsFloatType(prop))
                             {
                                 args = ValueTypeFormatter.Parse(Convert.ToString(args), prop, NumberStyles.Number | NumberStyles.Float);
                             }

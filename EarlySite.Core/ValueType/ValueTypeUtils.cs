@@ -9,7 +9,7 @@
     /// <summary>
     /// 值类型单元
     /// </summary>
-    public static partial class ValueTypeUnit
+    public static partial class ValueTypeUtils
     {
         private static IList<Type> m_numberType = new Type[] {
                                                   typeof(long),
@@ -57,8 +57,8 @@
         /// <returns></returns>
         public static bool IsBasicType(Type type)
         {
-            return type == typeof(IPAddress) || ValueTypeUnit.IsDateTime(type) ||
-                ValueTypeUnit.IsNumberType(type) || TypeUtils.IsString(type) || ValueTypeUnit.IsFloatType(type);
+            return type == typeof(IPAddress) || ValueTypeUtils.IsDateTime(type) ||
+                ValueTypeUtils.IsNumberType(type) || TypeUtils.IsString(type) || ValueTypeUtils.IsFloatType(type);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@
             }
             if (o is ValueType)
             {
-                return ValueTypeUnit.IsNumberType(o.GetType());
+                return ValueTypeUtils.IsNumberType(o.GetType());
             }
             return false;
         }
@@ -113,7 +113,7 @@
             }
             if (o is ValueType)
             {
-                return ValueTypeUnit.IsFloatType(o.GetType());
+                return ValueTypeUtils.IsFloatType(o.GetType());
             }
             return false;
         }
@@ -131,7 +131,7 @@
             }
             if (o is ValueType)
             {
-                return ValueTypeUnit.IsFloatType(o.GetType());
+                return ValueTypeUtils.IsFloatType(o.GetType());
             }
             return false;
         }
@@ -184,7 +184,7 @@
         }
     }
 
-    public static partial class ValueTypeUnit
+    public static partial class ValueTypeUtils
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static IList<Type> m_type = new Type[] { typeof(double), typeof(float), typeof(long), typeof(ulong), typeof(byte), typeof(sbyte), typeof(short), typeof(ushort), typeof(char), typeof(int), typeof(uint), typeof(bool), typeof(DateTime), typeof(IPAddress) };
@@ -280,7 +280,7 @@
         public static byte[] BinaryBy(Type type, long value, int size)
         {
             if (size < 0)
-                size = ValueTypeUnit.SizeBy(type);
+                size = ValueTypeUtils.SizeBy(type);
             byte[] buffer = new byte[size];
             unchecked
             {
@@ -311,7 +311,7 @@
         /// <returns></returns>
         public static byte[] BinaryBy(ulong value)
         {
-            return ValueTypeUnit.BinaryBy(typeof(long), Convert.ToInt64(value), sizeof(ulong));
+            return ValueTypeUtils.BinaryBy(typeof(long), Convert.ToInt64(value), sizeof(ulong));
         }
     }
 }

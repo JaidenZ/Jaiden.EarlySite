@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="AccountInfoCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EarlySite.Core\EarlySite.Core.csproj">
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\EarlySite.Model\EarlySite.Model.csproj">
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
       <Name>EarlySite.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jaiden.Redis\Jaiden.Redis.csproj">
+      <Project>{8586eb64-b723-456f-af3a-a22df03702bf}</Project>
+      <Name>Jaiden.Redis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

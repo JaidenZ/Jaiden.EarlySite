@@ -34,6 +34,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ssc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ssc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -58,6 +62,14 @@
     <Compile Include="DDD\Service\ServiceFilterContainer.cs" />
     <Compile Include="DDD\Service\ServiceObjectAttribute.cs" />
     <Compile Include="DDD\Service\ServiceObjectContainer.cs" />
+    <Compile Include="Serialization\AdvancedObjectFormatter.cs" />
+    <Compile Include="Serialization\AdvancedObjectMarshalAsAttribute.cs" />
+    <Compile Include="Serialization\BinaryFormatter.cs" />
+    <Compile Include="Serialization\FixedLengthFormatter.cs" />
+    <Compile Include="Serialization\NBinaryFormatter.cs" />
+    <Compile Include="Serialization\StringFormatter.cs" />
+    <Compile Include="Serialization\WebSerializer.cs" />
+    <Compile Include="Serialization\XmlSerializer.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Collection\SafetyList.cs" />
     <Compile Include="Component\WorkThreadDictionary.cs" />
@@ -73,20 +85,24 @@
     <Compile Include="MailSender\OpporunMail.cs" />
     <Compile Include="MailSender\OpporunMailConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AttributeUnit.cs" />
     <Compile Include="Utils\ListUtils.cs" />
     <Compile Include="Utils\LoggerUtils.cs" />
     <Compile Include="Utils\CookieUtils.cs" />
     <Compile Include="Utils\JsonExtension\JsonAttribute.cs" />
     <Compile Include="Utils\ModelUtils.cs" />
+    <Compile Include="Utils\SSCUtils.cs" />
     <Compile Include="Utils\ThreadUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />
     <Compile Include="Utils\VerificationUtils.cs" />
     <Compile Include="ValueType\ValueTypeFormatter.cs" />
-    <Compile Include="ValueType\ValueTypeUnit.cs" />
+    <Compile Include="ValueType\ValueTypeUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component\Contract.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="lib\ssc.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -22,7 +22,7 @@
         {
             get
             {
-                //return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
+                return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
 
                 return new Account()
                 {
