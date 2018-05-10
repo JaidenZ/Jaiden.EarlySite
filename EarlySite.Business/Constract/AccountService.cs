@@ -421,6 +421,19 @@
                 StatusCode = "UA001"
             };
 
+            try
+            {
+                AccountInfo info = account.Copy<AccountInfo>();
+                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateInfoSpefication(info).Satifasy());
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "修改账户信息出错" + ex.Message;
+                result.StatusCode = "UA000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:UpdateAccountInfo() .AccountService"), LogType.ErrorLog);
+            }
+
             return result;
         }
 
@@ -438,6 +451,17 @@
                 Message = "更改背景图成功",
                 StatusCode = "UB001"
             };
+            try
+            {
+                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(backCoverbase64str,account,1).Satifasy());
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "修改背景图出错" + ex.Message;
+                result.StatusCode = "UB000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:UpdateBackCover() .AccountService"), LogType.ErrorLog);
+            }
 
             return result;
         }
@@ -456,7 +480,17 @@
                 Message = "更改头像成功",
                 StatusCode = "UH001"
             };
-
+            try
+            {
+                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(headBase64str, account, 0).Satifasy());
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "修改头像出错" + ex.Message;
+                result.StatusCode = "UH000";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:UpdateHead() .AccountService"), LogType.ErrorLog);
+            }
             return result;
         }
     }

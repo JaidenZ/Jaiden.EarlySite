@@ -54,6 +54,8 @@
     <Compile Include="Spefication\AccountSpefication\AccountResetPassSpefication.cs" />
     <Compile Include="Spefication\AccountSpefication\AccountSelectSpefication.cs" />
     <Compile Include="Spefication\AccountSpefication\AccountRequireSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountUpdateImageSpefication.cs" />
+    <Compile Include="Spefication\AccountSpefication\AccountUpdateInfoSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishAddSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishCountForSelectPageSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishDeleteSpefication.cs" />
