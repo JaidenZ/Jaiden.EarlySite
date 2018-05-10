@@ -4,7 +4,7 @@
     {
 
         private string _base64str = "";
-        private string _phone = 0;
+        private string _phone = "";
         private int _type = 0;
         /// <summary>
         /// 账户修改图片(头像,背景图)规约

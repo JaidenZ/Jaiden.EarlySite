@@ -20,7 +20,7 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#target-menu">
-                    <span class="sr-only">qieh</span>
+                    <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Index", "Profile")">
+                        <a href="@Url.Action("Index", "Profile",new {phone = ViewBag.Account.Phone })">
                             我的
                         </a>
                     </li>
@@ -50,13 +50,13 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="@Url.Action("Index", "Profile")" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="@Url.Action("Index", "Profile",new {@phone = ViewBag.Account.Phone})" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img width="20" height="20" src="data:image/png;base64,@(ViewBag.Account == null ? "" : ViewBag.Account.Avator)" />
                             @(ViewBag.Account == null ? "无" : ViewBag.Account.NickName)
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="@Url.Action("Index", "Profile")">我的</a></li>
-                            <li><a href="@Url.Action("Setting","Profile")">设置</a></li>
+                            <li><a href="@Url.Action("Index", "Profile",new {@phone = ViewBag.Account.Phone})">我的</a></li>
+                            <li><a href="@Url.Action("Setting","Profile",new { @phone = ViewBag.Account.Phone})">设置</a></li>
                             <li><a href="javascript:signOut('@(ViewBag.Account == null ? "0" : ViewBag.Account.Phone)')">退出</a></li>
                         </ul>
                     </li>
@@ -124,6 +124,5 @@
     </footer>
 
     @RenderSection("scripts", required: false)
-
 </body>
 </html>

@@ -85,6 +85,13 @@
         Result ResetPassword(string account, string securityCode, int type);
 
         /// <summary>
+        /// 根据手机号获取账户信息
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Result<Account> GetAccountInfo(long phone);
+
+        /// <summary>
         /// 修改账户资料(头像 背景图除外)
         /// </summary>
         /// <param name="account"></param>

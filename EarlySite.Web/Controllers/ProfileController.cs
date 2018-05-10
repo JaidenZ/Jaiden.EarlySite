@@ -13,14 +13,13 @@
     public class ProfileController : BaseController
     {
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(long phone)
         {
-
-            ViewBag.Account = base.CurrentAccount;
-            ViewBag.Titile = "EarlySite | Profile";
-
+            //获取用户数据
+            ViewBag.Account = ServiceObjectContainer.Get<IAccount>().GetAccountInfo(phone).Data;
+            
             //获取用户的食谱列表
-            Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(base.CurrentAccount.Phone);
+            Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
             ViewBag.Recipes = recipesresult.Data;
 
             return View();
@@ -38,10 +37,26 @@
 
 
         [HttpGet]
-        public ActionResult Setting()
+        public ActionResult Setting(long phone)
         {
+            //获取用户数据
+            ViewBag.Account = ServiceObjectContainer.Get<IAccount>().GetAccountInfo(phone).Data;
             return View();
         }
+
+        /// <summary>
+        /// 改变账户信息
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ChangeAccountInfo(Account account)
+        {
+
+            return null;
+        }
+
+
 
     }
 }

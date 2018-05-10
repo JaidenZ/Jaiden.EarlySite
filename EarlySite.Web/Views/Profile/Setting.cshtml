@@ -1,7 +1,7 @@
 ﻿@using EarlySite.Model.Show
 @using EarlySite.Model.Enum
 @{
-    ViewBag.Title = ViewBag.Title;
+    ViewBag.Title = "编辑个人资料";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
@@ -41,6 +41,9 @@
                                 <h1 class="ProfileHeader-title">
                                     <span class="ProfileHeader-name">@(ViewBag.Account != null ? ViewBag.Account.NickName : "")</span>
                                 </h1>
+                                <div class="ProfileEdit-expandActions">
+                                    <a class="Button Button--plain" type="button" href="@Url.Action("Index","Profile",new { @phone = ViewBag.Account.Phone})"></a>
+                                </div>
                             </div>
                             <div class="ProfileHeader-contentBody" style="height:52px">
                                 <span>
@@ -83,18 +86,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-sm-3">
-            <div class="row corner">
-                left
-            </div>
-        </div>
-
-        <div class="col-sm-8 col-sm-offset-1">
-            <div class="row corner">
-                right
             </div>
         </div>
     </div>

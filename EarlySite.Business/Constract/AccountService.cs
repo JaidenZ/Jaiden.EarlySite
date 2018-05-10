@@ -493,5 +493,38 @@
             }
             return result;
         }
+
+
+        /// <summary>
+        /// 根据手机号获取账户信息
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public Result<Account> GetAccountInfo(long phone)
+        {
+            Result<Account> result = new Result<Account>()
+            {
+                Status = true,
+                Message = "获取信息成功",
+                StatusCode = "GA001",
+                Data = new Account()
+            };
+
+            try
+            {
+                IList<AccountInfo> accounts = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0,phone.ToString()).Satifasy());
+                result.Data = accounts[0].Copy<Account>();
+                
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "获取信息失败";
+                result.StatusCode = "GA000";
+                result.Data = null;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetAccountInfo() .AccountService"), LogType.ErrorLog);
+            }
+            return result;
+        }
     }
 }
