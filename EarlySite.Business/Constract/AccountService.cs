@@ -69,7 +69,7 @@
             account.CreatDate = DateTime.Now;
             account.BirthdayDate = DateTime.Parse("2000-01-01");
             account.Avator = ConstInfo.DefaultHeadBase64;
-            //account.BackCorver = ConstInfo.DefaultBackCover;
+            account.BackCorver = ConstInfo.DefaultBackCover;
             account.Sex = Model.Enum.AccountSex.Male;
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
             account.Description = "";

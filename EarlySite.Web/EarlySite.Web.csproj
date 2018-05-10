@@ -169,6 +169,7 @@
     <Content Include="Themes\expandAssembly\jquery.browser.js" />
     <Content Include="Themes\Images\headerBanner-acfun.jpg" />
     <Content Include="Themes\Images\loading.gif" />
+    <Content Include="Themes\Images\profileback.jpg" />
     <Content Include="Themes\Images\test.jpg" />
     <Content Include="Themes\Scripts\amapScript.js" />
   </ItemGroup>
