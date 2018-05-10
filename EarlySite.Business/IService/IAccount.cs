@@ -83,5 +83,29 @@
         /// </param>
         /// <returns></returns>
         Result ResetPassword(string account, string securityCode, int type);
+
+        /// <summary>
+        /// 修改账户资料(头像 背景图除外)
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Result UpdateAccountInfo(Account account);
+
+        /// <summary>
+        /// 更新背景图片
+        /// </summary>
+        /// <param name="BackCoverbase64str"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Result UpdateBackCover(string backCoverbase64str, string account);
+
+        /// <summary>
+        /// 更新头像
+        /// </summary>
+        /// <param name="headBase64str"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        Result UpdateHead(string headBase64str, string account);
     }
+
 }

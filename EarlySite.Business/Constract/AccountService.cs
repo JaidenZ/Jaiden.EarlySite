@@ -407,5 +407,57 @@
             return result;
         }
 
+        /// <summary>
+        /// 更新账户信息 (不包括背景图像和头像)
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public Result UpdateAccountInfo(Account account)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "更新账户信息成功",
+                StatusCode = "UA001"
+            };
+
+            return result;
+        }
+
+        /// <summary>
+        /// 更改背景图
+        /// </summary>
+        /// <param name="backCoverbase64str"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public Result UpdateBackCover(string backCoverbase64str, string account)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "更改背景图成功",
+                StatusCode = "UB001"
+            };
+
+            return result;
+        }
+
+        /// <summary>
+        /// 更改头像
+        /// </summary>
+        /// <param name="headBase64str"></param>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public Result UpdateHead(string headBase64str, string account)
+        {
+            Result result = new Result()
+            {
+                Status = true,
+                Message = "更改头像成功",
+                StatusCode = "UH001"
+            };
+
+            return result;
+        }
     }
 }
