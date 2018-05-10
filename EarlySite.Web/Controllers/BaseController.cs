@@ -12,7 +12,7 @@
     {
         public BaseController()
         {
-            ViewBag.Title = "EarlySite";
+            ViewBag.Title = "哪儿吃";
         }
         
         /// <summary>

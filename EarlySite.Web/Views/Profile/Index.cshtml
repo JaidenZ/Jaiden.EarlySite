@@ -1,8 +1,9 @@
 ﻿@using EarlySite.Model.Show
 @using EarlySite.Model.Enum
 @{
-    ViewBag.Title = ViewBag.Title;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var nick = "用户";
+    nick = ViewBag.Account == null ? "用户":ViewBag.Account.NickName;
+    ViewBag.Title = nick;
 }
 <div class="container">
 
