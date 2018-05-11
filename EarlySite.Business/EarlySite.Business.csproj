@@ -43,12 +43,15 @@
   <ItemGroup>
     <Compile Include="Constract\AccountService.cs" />
     <Compile Include="Constract\DishService.cs" />
+    <Compile Include="Constract\LoggerService.cs" />
     <Compile Include="Constract\RecipesService.cs" />
     <Compile Include="Constract\ShakeService.cs" />
     <Compile Include="Constract\ShopService.cs" />
+    <Compile Include="Filter\AccountServiceFilter.cs" />
     <Compile Include="Filter\RecipesServiceFilter.cs" />
     <Compile Include="IService\IAccount.cs" />
     <Compile Include="IService\IDishService.cs" />
+    <Compile Include="IService\ILoggerService.cs" />
     <Compile Include="IService\IRecipesService.cs" />
     <Compile Include="IService\IShakeService.cs" />
     <Compile Include="IService\IShopService.cs" />

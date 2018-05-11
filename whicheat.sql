@@ -10,10 +10,24 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2018-05-10 09:59:10
+Date: 2018-05-11 11:47:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for logger
+-- ----------------------------
+DROP TABLE IF EXISTS `logger`;
+CREATE TABLE `logger` (
+  `Category` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '日志类别',
+  `Message` text COLLATE utf8_bin NOT NULL COMMENT '日志信息',
+  `CreateDate` datetime NOT NULL COMMENT '创建日期'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of logger
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for relation_favorite
