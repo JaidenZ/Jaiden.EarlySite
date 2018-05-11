@@ -22,7 +22,20 @@
         {
             get
             {
-                return AccountInfoCache.Instance.CurrentAccount.Copy<Account>();
+
+                Account account = null;
+
+                if(HttpContext.Session["CurrentAccount"] != null)
+                {
+                    long phone = (long)HttpContext.Session["CurrentAccount"];
+                    AccountInfo accountinfo = OnlineAccountCache.GetOnlineAccountInfoByPhone(phone);
+                    if(accountinfo != null)
+                    {
+                        account = accountinfo.Copy<Account>();
+                    }
+                }
+
+                return account;
 
                 return new Account()
                 {

@@ -105,8 +105,24 @@
         public Result<Account> SignIn(string signInCode, string securityCode)
         {
             Result<Account> result = new Result<Account>();
+            AccountInfo accountinfo = null;
             try
             {
+
+                //1.检查是否已经登录
+
+                accountinfo = OnlineAccountCache.GetOnlineAccountInfoByPhone(signInCode);
+
+                if (accountinfo == null)
+                {
+                    accountinfo = OnlineAccountCache.GetOnlineAccountInfoByEmail(signInCode);
+                }
+
+                if(accountinfo == null)
+                {
+                    //
+                }
+
                 string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
 
                 IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3 ,signInCode, securityCodeMD5).Satifasy());
@@ -114,9 +130,9 @@
                 {
                     result.Status = true;
                     result.Data = inforesult[0].Copy<Account>();
-                    
+
                     //保存到缓存
-                    AccountInfoCache.Instance.CurrentAccount = result.Data;
+                    OnlineAccountCache.SaveOnlineAccountInfoToCache(inforesult[0]);
                 }
                 else
                 {

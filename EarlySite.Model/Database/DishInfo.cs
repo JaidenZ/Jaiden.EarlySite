@@ -3,7 +3,7 @@
     using EarlySite.Model.Enum;
     using System;
 
-    public class DishInfo
+    public class DishInfo:IKeyNameSpecification
     {
         /// <summary>
         /// 食物编号
@@ -66,5 +66,10 @@
         /// </summary>
         public string Description { get; set; }
 
+        public string GetKeyName()
+        {
+            //DB_DI_编号_类型_用餐时间_商店编号
+            return string.Format("DB_DI_{0}_{1}_{2}_{3}", this.DIshId, this.Type.GetHashCode(), this.MealTime.GetHashCode(), this.ShopId);
+        }
     }
 }
