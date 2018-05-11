@@ -96,7 +96,7 @@
             //登录操作
             if (loginresult.Status)
             {
-                loginresult = ServiceObjectContainer.Get<IAccount>().SignIn(account.LoginUsername, account.LoginSecurity);
+                loginresult = ServiceObjectContainer.Get<IAccountService>().SignIn(account.LoginUsername, account.LoginSecurity);
             }
 
 
@@ -139,7 +139,7 @@
                 result.StatusCode = "SO002";
             }
 
-            result = ServiceObjectContainer.Get<IAccount>().SignOut(signoutphone);
+            result = ServiceObjectContainer.Get<IAccountService>().SignOut(signoutphone);
 
             return Json(result);
         }
@@ -178,7 +178,7 @@
 
             if (registresult.Status)
             {
-                IAccount service = ServiceObjectContainer.Get<IAccount>();
+                IAccountService service = ServiceObjectContainer.Get<IAccountService>();
                 Result<Account> accountresult = service.RegistInfo(regist);
                 if (!accountresult.Status)
                 {
@@ -210,7 +210,7 @@
             };
             if (!string.IsNullOrEmpty(mail))
             {
-                registresult.Status = ServiceObjectContainer.Get<IAccount>().CheckMailRegisted(mail).Status;
+                registresult.Status = ServiceObjectContainer.Get<IAccountService>().CheckMailRegisted(mail).Status;
             }
             return Json(registresult);
         }
@@ -231,7 +231,7 @@
             };
             if (!string.IsNullOrEmpty(phone))
             {
-                registresult.Status = ServiceObjectContainer.Get<IAccount>().CheckPhoneRegisted(phone).Status;
+                registresult.Status = ServiceObjectContainer.Get<IAccountService>().CheckPhoneRegisted(phone).Status;
             }
             return Json(registresult);
         }
@@ -250,7 +250,7 @@
             };
 
             //生成验证码发送到邮箱 加入缓存
-            result.Status = ServiceObjectContainer.Get<IAccount>().SendForgetVerificationCode(mail).Status;
+            result.Status = ServiceObjectContainer.Get<IAccountService>().SendForgetVerificationCode(mail).Status;
             return Json(result);
         }
 
@@ -269,7 +269,7 @@
                 Message = "验证码不正确",
                 StatusCode = "FV000"
             };
-            result = ServiceObjectContainer.Get<IAccount>().VerificationForgetCode(mail, code);
+            result = ServiceObjectContainer.Get<IAccountService>().VerificationForgetCode(mail, code);
 
             return Json(result);
         }
@@ -290,7 +290,7 @@
                 StatusCode = "RP000"
             };
             
-            result = ServiceObjectContainer.Get<IAccount>().ResetPassword(mail, code, 0);
+            result = ServiceObjectContainer.Get<IAccountService>().ResetPassword(mail, code, 0);
             
             return Json(result);
         }
@@ -309,7 +309,7 @@
             {
                 if(code == codesave)
                 {
-                    ServiceObjectContainer.Get<IAccount>().RequireAccount(Int64.Parse(phone));
+                    ServiceObjectContainer.Get<IAccountService>().RequireAccount(Int64.Parse(phone));
                 }
 
             }

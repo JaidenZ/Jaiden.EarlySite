@@ -2,24 +2,29 @@
 {
     using System;
     using System.Reflection;
+    using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
 
     public class RecipesServiceFilter : ServiceFilter
     {
-        public RecipesServiceFilter(IServiceBase service) : base(service)
-        {
+        ILoggerService _logger;
 
+        public RecipesServiceFilter(IRecipesService service, ILoggerService logger) : base(service)
+        {
+            _logger = logger;
         }
 
         protected override object InvokeMember(IServiceBase service, MethodBase method, params object[] args)
         {
             try
             {
-                return method.Invoke(null, args);
+                _logger.AddRunningLog("RecipesService", method.Name);
+                return method.Invoke(service, args);
             }
-            catch(Exception ex)
+            catch(TargetInvocationException e)
             {
-
+                Exception exception = e.InnerException;
+                _logger.AddExceptionLog(exception, args);
             }
             return null;
             

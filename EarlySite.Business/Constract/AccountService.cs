@@ -15,7 +15,7 @@
     using EarlySite.Drms.DBManager;
     using EarlySite.Drms.Spefication;
 
-    public class AccountService : IAccount
+    public class AccountService : IAccountService
     {
 
         /// <summary>

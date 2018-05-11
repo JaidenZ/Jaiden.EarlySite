@@ -3,8 +3,10 @@
     using Model.Show;
     using Model.Common;
     using Core.DDD.Service;
+    using EarlySite.Business.Filter;
 
-    public interface IAccount : IServiceBase
+    [ServiceObject(ServiceName = "账户操作服务", ServiceFilter = typeof(AccountServiceFilter))]
+    public interface IAccountService : IServiceBase
     {
         /// <summary>
         /// 账户登录

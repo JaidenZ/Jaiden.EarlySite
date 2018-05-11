@@ -49,7 +49,7 @@
     <Compile Include="Constract\ShopService.cs" />
     <Compile Include="Filter\AccountServiceFilter.cs" />
     <Compile Include="Filter\RecipesServiceFilter.cs" />
-    <Compile Include="IService\IAccount.cs" />
+    <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IDishService.cs" />
     <Compile Include="IService\ILoggerService.cs" />
     <Compile Include="IService\IRecipesService.cs" />

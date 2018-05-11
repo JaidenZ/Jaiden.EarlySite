@@ -16,7 +16,7 @@
         public ActionResult Index(long phone)
         {
             //获取用户数据
-            ViewBag.Account = ServiceObjectContainer.Get<IAccount>().GetAccountInfo(phone).Data;
+            ViewBag.Account = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone).Data;
             
             //获取用户的食谱列表
             Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
@@ -40,7 +40,7 @@
         public ActionResult Setting(long phone)
         {
             //获取用户数据
-            ViewBag.Account = ServiceObjectContainer.Get<IAccount>().GetAccountInfo(phone).Data;
+            ViewBag.Account = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone).Data;
             return View();
         }
 
