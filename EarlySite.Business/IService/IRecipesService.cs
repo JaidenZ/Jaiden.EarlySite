@@ -5,10 +5,11 @@
     using Model.Enum;
     using System.Collections.Generic;
     using Core.DDD.Service;
-
+    using Filter;
     /// <summary>
     /// 食谱操作服务
     /// </summary>
+    [ServiceObject(ServiceName ="食谱操作服务",ServiceFilter = typeof(RecipesServiceFilter))]
     public interface IRecipesService: IServiceBase
     {
         /// <summary>
