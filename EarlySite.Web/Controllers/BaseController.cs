@@ -27,7 +27,7 @@
 
                 if(HttpContext.Session["CurrentAccount"] != null)
                 {
-                    long phone = (long)HttpContext.Session["CurrentAccount"];
+                    string phone = (string)HttpContext.Session["CurrentAccount"];
                     AccountInfo accountinfo = OnlineAccountCache.GetOnlineAccountInfoByPhone(phone);
                     if(accountinfo != null)
                     {

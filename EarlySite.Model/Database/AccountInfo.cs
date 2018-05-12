@@ -65,7 +65,7 @@
 
         public string GetKeyName()
         {
-            //DB_AC_手机号_邮箱号_昵称_性别
+            //DB_AI_手机号_邮箱号_昵称_性别
             return string.Format("DB_AI_{0}_{1}_{2}",this.Phone,this.Email,this.NickName,this.Sex.GetHashCode());
         }
     }
