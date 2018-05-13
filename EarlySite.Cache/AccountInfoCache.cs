@@ -54,8 +54,11 @@
             return issuccess;
         }
 
-
-
+        public static bool DeleteAcccountInfoFromCache(string key)
+        {
+            return false;
+        }
+            
 
         private static AccountInfoCache _instance;
 
