@@ -54,9 +54,17 @@
             return issuccess;
         }
 
-        public static bool DeleteAcccountInfoFromCache(string key)
+        /// <summary>
+        /// 从缓存删除账户信息
+        /// </summary>
+        /// <returns><c>true</c>, if acccount info from cache was deleted, <c>false</c> otherwise.</returns>
+        /// <param name="key">Key.</param>
+        public static bool DeleteAcccountInfoFromCache(AccountInfo account)
         {
-            return false;
+            string key = account.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Remove(key);
+            return issuccess;
         }
             
 
