@@ -5,6 +5,8 @@
     using Model.Show;
     using Model.Database;
     using System.Collections.Generic;
+    using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
 
     public class AccountInfoCache
     {
@@ -66,7 +68,43 @@
             issuccess = Session.Current.Remove(key);
             return issuccess;
         }
-            
+        
+
+        /// <summary>
+        /// 根据手机号获取信息
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public static AccountInfo GetAccountInfoByPhone(string phone)
+        {
+            AccountInfo result = null;
+            string key = string.Format("DB_AI_{0}", phone);
+            result = Session.Current.Get<AccountInfo>(key);
+            if(result == null)
+            {
+                result = GetAccountInfoByPhoneFromDB(phone);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据手机号从数据库获取信息
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        private static AccountInfo GetAccountInfoByPhoneFromDB(string phone)
+        {
+            AccountInfo result = null;
+            IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone).Satifasy());
+            if (inforesult != null && inforesult.Count > 0)
+            {
+                result = inforesult[0];
+                //保存到缓存
+                SaveAccountInfoToCache(result);
+            }
+            return result;
+        }
+
 
         private static AccountInfoCache _instance;
 
