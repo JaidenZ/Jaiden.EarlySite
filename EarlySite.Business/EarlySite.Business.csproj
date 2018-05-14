@@ -48,7 +48,10 @@
     <Compile Include="Constract\ShakeService.cs" />
     <Compile Include="Constract\ShopService.cs" />
     <Compile Include="Filter\AccountServiceFilter.cs" />
+    <Compile Include="Filter\DishServiceFilter.cs" />
     <Compile Include="Filter\RecipesServiceFilter.cs" />
+    <Compile Include="Filter\ShakeServiceFilter.cs" />
+    <Compile Include="Filter\ShopServiceFilter.cs" />
     <Compile Include="IService\IAccountService.cs" />
     <Compile Include="IService\IDishService.cs" />
     <Compile Include="IService\ILoggerService.cs" />

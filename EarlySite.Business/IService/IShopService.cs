@@ -5,10 +5,12 @@
     using Model.Enum;
     using System.Collections.Generic;
     using Core.DDD.Service;
+    using EarlySite.Business.Filter;
 
     /// <summary>
     /// 门店操作服务
     /// </summary>
+    [ServiceObject(ServiceName = "门店操作服务", ServiceFilter = typeof(ShopServiceFilter))]
     public interface IShopService : IServiceBase
     {
         /// <summary>

@@ -3,12 +3,13 @@
     using Model.Show;
     using Model.Common;
     using Model.Enum;
-    using System.Collections.Generic;
     using Core.DDD.Service;
+    using EarlySite.Business.Filter;
 
     /// <summary>
     /// 单品食物服务
     /// </summary>
+    [ServiceObject(ServiceName = "单品食物服务", ServiceFilter = typeof(DishServiceFilter))]
     public interface IDishService: IServiceBase
     {
         /// <summary>
