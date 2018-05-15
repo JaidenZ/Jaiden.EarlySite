@@ -36,7 +36,7 @@
             {
                 result.Status = true;
                 //Todo:记录数据库
-                
+
 
                 AccountInfoCache.Instance.CurrentAccount = null;
                 result.Status = true;
@@ -74,7 +74,7 @@
             account.RequiredStatus = Model.Enum.AccountRequiredStatus.UnRequired;
             account.Description = "";
             account.NickName = request.Phone;
-            
+
 
             //加入数据库
             try
@@ -84,7 +84,7 @@
 
                 result.Data = account.Copy<Account>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
@@ -92,7 +92,7 @@
                 result.StatusCode = "EX000";
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RegistInfo() .AccountService"), LogType.ErrorLog);
             }
-            
+
 
             return result;
         }
@@ -118,29 +118,28 @@
                     accountinfo = OnlineAccountCache.GetOnlineAccountInfoByEmail(signInCode);
                 }
 
-                if(accountinfo == null)
+                if (accountinfo == null)
                 {
-                    //
-                }
+                    //直接从数据库拿数据
+                    string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
 
-                string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
+                    IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3, signInCode, securityCodeMD5).Satifasy());
+                    if (inforesult != null && inforesult.Count > 0)
+                    {
+                        result.Status = true;
+                        result.Data = inforesult[0].Copy<Account>();
 
-                IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3 ,signInCode, securityCodeMD5).Satifasy());
-                if (inforesult != null && inforesult.Count > 0)
-                {
-                    result.Status = true;
-                    result.Data = inforesult[0].Copy<Account>();
-
-                    //保存到缓存
-                    OnlineAccountCache.SaveOnlineAccountInfoToCache(inforesult[0]);
-                }
-                else
-                {
-                    result.Message = "用户名或密码错误";
-                    result.StatusCode = "LG000";
+                        //保存到缓存
+                        OnlineAccountCache.SaveOnlineAccountInfoToCache(inforesult[0]);
+                    }
+                    else
+                    {
+                        result.Message = "用户名或密码错误";
+                        result.StatusCode = "LG000";
+                    }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Data = null;
@@ -165,7 +164,7 @@
                 Message = "发送邮件成功",
                 StatusCode = "SR000"
             };
-            
+
             try
             {
                 //生成code码加入缓存 设置时效日期
@@ -221,10 +220,10 @@
             try
             {
                 //更改数据库
-                if(DBConnectionManager.Instance.Writer.Update(new AccountRequireSpefication(true, phone).Satifasy(), null))
+                if (DBConnectionManager.Instance.Writer.Update(new AccountRequireSpefication(true, phone).Satifasy(), null))
                 {
                     IList<AccountInfo> accountlist = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
-                    if(accountlist != null && accountlist.Count > 0)
+                    if (accountlist != null && accountlist.Count > 0)
                     {
                         Account returnaccount = accountlist[0].Copy<Account>();
                         AccountInfoCache.Instance.CurrentAccount = returnaccount;
@@ -238,7 +237,7 @@
                     result.StatusCode = "RA001";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Message = string.Format("验证账户出错/r/n {0}", ex.Message);
@@ -258,17 +257,17 @@
         {
             Result result = new Result()
             {
-                Status = true,  
+                Status = true,
             };
             try
             {
                 int resultcount = DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(mail, 1).Satifasy());
-                if(resultcount > 0)
+                if (resultcount > 0)
                 {
                     result.Status = false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Message = "邮箱验证出错" + ex.Message;
@@ -337,7 +336,7 @@
                     {
                         sendinfo.Content = sr.ReadToEnd();
                     }
-                    sendinfo.Title = string.Format("你此次重置密码的验证码是:{0}",code);
+                    sendinfo.Title = string.Format("你此次重置密码的验证码是:{0}", code);
                     if (!string.IsNullOrEmpty(sendinfo.Content))
                     {
                         sendinfo.Content = sendinfo.Content.Replace("(手机)", mail);
@@ -413,7 +412,7 @@
                     result.Message = "重置密码失败";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Message = "修改密码出错" + ex.Message;
@@ -442,7 +441,7 @@
                 AccountInfo info = account.Copy<AccountInfo>();
                 result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateInfoSpefication(info).Satifasy());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Message = "修改账户信息出错" + ex.Message;
@@ -469,7 +468,7 @@
             };
             try
             {
-                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(backCoverbase64str,account,1).Satifasy());
+                result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(backCoverbase64str, account, 1).Satifasy());
             }
             catch (Exception ex)
             {
@@ -528,11 +527,11 @@
 
             try
             {
-                IList<AccountInfo> accounts = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0,phone.ToString()).Satifasy());
+                IList<AccountInfo> accounts = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
                 result.Data = accounts[0].Copy<Account>();
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Status = false;
                 result.Message = "获取信息失败";

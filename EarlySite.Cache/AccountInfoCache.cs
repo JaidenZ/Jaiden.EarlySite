@@ -68,6 +68,21 @@
             issuccess = Session.Current.Remove(key);
             return issuccess;
         }
+
+        /// <summary>
+        /// 根据邮箱获取信息
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
+        public static AccountInfo GetAccountInfoByEmail(string mail)
+        {
+            AccountInfo result = null;
+            string key = string.Format("DB_AI_*_{0}", mail);
+            result = Session.Current.Get<AccountInfo>(key);
+
+            return result;
+        }
+
         
 
         /// <summary>
@@ -104,7 +119,7 @@
             }
             return result;
         }
-
+        
 
         private static AccountInfoCache _instance;
 
