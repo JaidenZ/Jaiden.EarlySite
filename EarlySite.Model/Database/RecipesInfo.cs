@@ -5,7 +5,7 @@
     /// <summary>
     /// 食谱信息
     /// </summary>
-    public class RecipesInfo
+    public class RecipesInfo : IKeyNameSpecification
     {
         /// <summary>
         /// 食谱编号
@@ -46,5 +46,10 @@
         /// 是否私有
         /// </summary>
         public bool IsPrivate { get; set; }
+
+        public string GetKeyName()
+        {
+            return string.Format("DB_RI_")
+        }
     }
 }
