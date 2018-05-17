@@ -14,13 +14,29 @@
     public class RecipesCache
     {
 
-        public bool SaveRecipesI(RecipesInfo recipes)
+        public bool SaveRecipes(RecipesInfo recipes)
         {
             bool result = false;
             string key = string.Format(recipes.GetKeyName());
             result = Session.Current.Set(key,recipes);
 
             return result;
+        }
+
+
+        public bool SaveRecipes(IList<RecipesInfo> recipes)
+        {
+            if(recipes == null)
+            {
+                return false;
+            }
+
+            foreach (RecipesInfo item in recipes)
+            {
+                SaveRecipes(item);
+            }
+
+            return true;
         }
     }
 }
