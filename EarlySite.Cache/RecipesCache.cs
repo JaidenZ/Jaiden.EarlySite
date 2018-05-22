@@ -14,7 +14,7 @@
     public class RecipesCache
     {
 
-        public bool SaveRecipes(RecipesInfo recipes)
+        public bool SaveRecipesToCache(RecipesInfo recipes)
         {
             bool result = false;
             string key = string.Format(recipes.GetKeyName());
@@ -24,7 +24,7 @@
         }
 
 
-        public bool SaveRecipes(IList<RecipesInfo> recipes)
+        public bool SaveRecipesToCache(IList<RecipesInfo> recipes)
         {
             if(recipes == null)
             {
@@ -33,7 +33,7 @@
 
             foreach (RecipesInfo item in recipes)
             {
-                SaveRecipes(item);
+                SaveRecipesToCache(item);
             }
 
             return true;
