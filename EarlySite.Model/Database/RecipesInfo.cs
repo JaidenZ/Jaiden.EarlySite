@@ -49,7 +49,7 @@
 
         public string GetKeyName()
         {
-            return string.Format("DB_RI_")
+            return string.Format("DB_RI_");
         }
     }
 }

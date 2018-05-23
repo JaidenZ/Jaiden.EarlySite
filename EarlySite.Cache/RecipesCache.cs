@@ -14,7 +14,7 @@
     public class RecipesCache
     {
 
-        public bool SaveRecipesToCache(RecipesInfo recipes)
+        public static bool SaveRecipesToCache(RecipesInfo recipes)
         {
             bool result = false;
             string key = string.Format(recipes.GetKeyName());
@@ -24,7 +24,7 @@
         }
 
 
-        public bool SaveRecipesToCache(IList<RecipesInfo> recipes)
+        public static bool SaveRecipesToCache(IList<RecipesInfo> recipes)
         {
             if(recipes == null)
             {
@@ -38,5 +38,16 @@
 
             return true;
         }
+
+        public static RecipesInfo GetRecipesFromCacheById(int recipesId)
+        {
+            RecipesInfo result = null;
+
+            string key = string.Format("DB_AI_*_{0}", recipesId);
+            result = Session.Current.Get<RecipesInfo>(key);
+            
+            return result;
+        }
+
     }
 }
