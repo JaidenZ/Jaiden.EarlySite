@@ -39,7 +39,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountInfoCache.cs" />
+    <Compile Include="CacheBase\Cache.cs" />
     <Compile Include="DishInfoCache.cs" />
+    <Compile Include="CacheBase\ICache.cs" />
     <Compile Include="OnlineAccountCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesCache.cs" />

@@ -21,7 +21,7 @@
             Type type = typeof(T);
             foreach (PropertyInfo pi in clazz.GetProperties())
             {
-                PropertyInfo pp = type.GetProperty(pi.Name);
+                PropertyInfo pp = type.GetProperty(pi.Name,BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                 if (pp != null && !pp.PropertyType.IsGenericType)
                 {
                     object val = pi.GetValue(value, null);
@@ -45,7 +45,7 @@
             var obj = Activator.CreateInstance(objtype);
             foreach (PropertyInfo pi in objtype.GetProperties())
             {
-                PropertyInfo pp = objtype.GetProperty(pi.Name);
+                PropertyInfo pp = objtype.GetProperty(pi.Name,BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                 if (pp != null && !pp.PropertyType.IsGenericType)
                 {
                     object val = pi.GetValue(value, null);
@@ -76,7 +76,7 @@
                 Type type = typeof(O);
                 foreach (PropertyInfo pi in clazz.GetProperties())
                 {
-                    var pp = type.GetProperty(pi.Name);
+                    var pp = type.GetProperty(pi.Name,BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                     if (pp != null)
                     {
                         object val = pi.GetValue(item, null);
@@ -111,7 +111,7 @@
             Type type = typeof(T);
             foreach (PropertyInfo pi in clazz.GetProperties())
             {
-                PropertyInfo pp = type.GetProperty(pi.Name);
+                PropertyInfo pp = type.GetProperty(pi.Name,BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                 if (pp != null)
                 {
                     object val = null;
@@ -159,7 +159,7 @@
                 var outmodel = Activator.CreateInstance(oelementtype);
                 foreach (var pi in inelementtype.GetProperties())
                 {
-                    PropertyInfo pp = oelementtype.GetProperty(pi.Name);
+                    PropertyInfo pp = oelementtype.GetProperty(pi.Name,BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                     if (pp != null)
                     {
                         object val = pi.GetValue(item, null);
@@ -224,7 +224,7 @@
             List<PropertyInfo> imodelPropertyInfo = imodel.GetProperties().ToList();
             foreach (var item in imodel.GetProperties())
             {
-                var pp = omodel.GetProperty(item.Name);
+                var pp = omodel.GetProperty(item.Name, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase);
                 if (pp != null)
                 {
                     object val = item.GetValue(value, null);
