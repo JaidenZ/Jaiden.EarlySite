@@ -35,11 +35,11 @@ namespace EarlySite.Cache.CacheBase
         bool RemoveInfo(T param);
 
         /// <summary>
-        /// 添加到缓存
+        /// 保存到缓存
         /// </summary>
         /// <param name="param">对象</param>
         /// <returns></returns>
-        bool AddInfo(T param);
+        bool SaveInfo(T param);
 
     }
 }

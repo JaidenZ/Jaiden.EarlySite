@@ -9,17 +9,17 @@
     using EarlySite.Drms.Spefication;
     using EarlySite.Cache.CacheBase;
 
-    public class AccountInfoCache : Cache,ICache<AccountInfo>
+    public class AccountInfoCache : Cache, ICache<AccountInfo>
     {
         /**
          * 账户信息缓存Redis Key格式
          * DB_AI_手机号_邮箱号_昵称_性别
          * */
-         
+
 
         void ICache<AccountInfo>.LoadCache()
         {
-            
+
 
 
 
@@ -27,22 +27,52 @@
 
         AccountInfo ICache<AccountInfo>.SearchInfoByKey(string key)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("key can not be null");
+            }
+            AccountInfo result = null;
+            result = Session.Current.Get<AccountInfo>(key);
+            return result;
         }
 
         bool ICache<AccountInfo>.RemoveInfo(string key)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("key can not be null");
+            }
+            bool issuccess = false;
+            if (Session.Current.Contains(key))
+            {
+                issuccess = Session.Current.Remove(key);
+            }
+            return issuccess;
         }
 
         bool ICache<AccountInfo>.RemoveInfo(AccountInfo param)
         {
-            throw new NotImplementedException();
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Remove(key);
+            return issuccess;
         }
 
-        bool ICache<AccountInfo>.AddInfo(AccountInfo param)
+        bool ICache<AccountInfo>.SaveInfo(AccountInfo param)
         {
-            throw new NotImplementedException();
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Set(key, param);
+            Session.Current.Expire(key, ExpireTime);
+            return issuccess;
         }
 
 
