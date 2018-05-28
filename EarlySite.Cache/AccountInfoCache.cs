@@ -84,7 +84,7 @@
                 /// 保存账户信息集合到缓存
                 /// </summary>
                 /// <param name="accounts"></param>
-                public static void SaveAccountInfoToCache(IList<AccountInfo> accounts)
+                public static void SaveAccountInfoToCache(IList<AccountInfo> accounts) 33
                 {
                     if(accounts != null && accounts.Count > 0)
                     {
