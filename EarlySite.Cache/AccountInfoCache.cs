@@ -9,14 +9,18 @@
     using EarlySite.Drms.Spefication;
     using EarlySite.Cache.CacheBase;
 
+    /// <summary>
+    /// 账户信息缓存
+    /// <!--Redis Key格式-->
+    /// DB_AI_手机号_邮箱号_昵称_性别
+    /// </summary>
     public class AccountInfoCache : Cache, ICache<AccountInfo>
     {
-        /**
-         * 账户信息缓存Redis Key格式
-         * DB_AI_手机号_邮箱号_昵称_性别
-         * */
 
 
+        /// <summary>
+        /// 加载缓存
+        /// </summary>
         void ICache<AccountInfo>.LoadCache()
         {
 
@@ -25,6 +29,11 @@
 
         }
 
+        /// <summary>
+        /// 根据键值搜索账户缓存信息
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         AccountInfo ICache<AccountInfo>.SearchInfoByKey(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -36,6 +45,11 @@
             return result;
         }
 
+        /// <summary>
+        /// 根据键值移除账户缓存信息
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         bool ICache<AccountInfo>.RemoveInfo(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -50,6 +64,11 @@
             return issuccess;
         }
 
+        /// <summary>
+        /// 移除账户缓存信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         bool ICache<AccountInfo>.RemoveInfo(AccountInfo param)
         {
             if (param == null)
@@ -62,6 +81,11 @@
             return issuccess;
         }
 
+        /// <summary>
+        /// 保存账户信息到缓存
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         bool ICache<AccountInfo>.SaveInfo(AccountInfo param)
         {
             if (param == null)

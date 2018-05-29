@@ -1,68 +1,94 @@
 ﻿namespace EarlySite.Cache
 {
-    using Model.Database;
     using System;
-    using System.Collections.Generic;
-    public class OnlineAccountCache
+    using Model.Database;
+    using EarlySite.Cache.CacheBase;
+
+    /// <summary>
+    /// 在线账户缓存
+    /// <!--Redis Key格式-->
+    /// OnlineAI_手机号_邮箱号
+    /// </summary>
+    public class OnlineAccountCache: Cache, ICache<OnlineAccountInfo>
     {
-        
-        /**
-         * 在线账户缓存Redis Key格式
-         * OnlineAI_手机号_邮箱号
-         * */
-
-
-
         /// <summary>
-        /// 有效时间
+        /// 加载缓存
         /// </summary>
-        private const int EffectiveTime = 7;
-
-        /// <summary>
-        /// 失效时间
-        /// </summary>
-        private static DateTime ExpireTime { get { return DateTime.Now.AddDays(EffectiveTime); } }
-
-        /// <summary>
-        /// 根据手机号码获取缓存在线用户信息
-        /// </summary>
-        /// <param name="phone"></param>
-        /// <returns></returns>
-        public static AccountInfo GetOnlineAccountInfoByPhone(string phone)
+        void ICache<OnlineAccountInfo>.LoadCache()
         {
-            AccountInfo accountinfo = Session.Current.Get<AccountInfo>(string.Format("OnlineAI_{0}",phone));
-
-            return accountinfo;   
+            //在线账户无加载
         }
 
         /// <summary>
-        /// 根据邮箱获取缓存在线用户信息
+        /// 根据键值搜索账户信息
         /// </summary>
-        /// <param name="phone"></param>
+        /// <param name="key"></param>
         /// <returns></returns>
-        public static AccountInfo GetOnlineAccountInfoByEmail(string email)
+        OnlineAccountInfo ICache<OnlineAccountInfo>.SearchInfoByKey(string key)
         {
-            AccountInfo accountinfo = Session.Current.Get<AccountInfo>(string.Format("OnlineAI_*_{0}", email));
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("search key can not be null");
+            }
 
-            return accountinfo;
+            OnlineAccountInfo result = null;
+            result = Session.Current.Get<OnlineAccountInfo>(key);
+            return result;
+
         }
 
-        
-
         /// <summary>
-        /// 保存在线用户缓存
+        /// 根据键值移除缓存数据
         /// </summary>
-        /// <param name="account"></param>
+        /// <param name="key"></param>
         /// <returns></returns>
-        public static bool SaveOnlineAccountInfoToCache(AccountInfo account)
+        bool ICache<OnlineAccountInfo>.RemoveInfo(string key)
         {
-            string key = string.Format("OnlineAI_{0}_{1}", account.Phone, account.Email);
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("key can not be null");
+            }
             bool issuccess = false;
-            issuccess = Session.Current.Set(key, account);
-            Session.Current.Expire(key, ExpireTime);
+            if (Session.Current.Contains(key))
+            {
+                issuccess = Session.Current.Remove(key);
+            }
             return issuccess;
         }
 
+        /// <summary>
+        /// 移除在线账户信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        bool ICache<OnlineAccountInfo>.RemoveInfo(OnlineAccountInfo param)
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Remove(key);
+            return issuccess;
+        }
 
+        /// <summary>
+        /// 保存在线账户信息
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        bool ICache<OnlineAccountInfo>.SaveInfo(OnlineAccountInfo param)
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Set(key, param);
+            Session.Current.Expire(key, ExpireTime);
+            return issuccess;
+        }
     }
 }

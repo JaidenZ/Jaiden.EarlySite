@@ -14,6 +14,8 @@
     using System.Collections.Generic;
     using EarlySite.Drms.DBManager;
     using EarlySite.Drms.Spefication;
+    using EarlySite.Core.DDD.Service;
+    using EarlySite.Cache.CacheBase;
 
     public class AccountService : IAccountService
     {
@@ -32,18 +34,21 @@
                 StatusCode = "SO001"
             };
 
-            if (AccountInfoCache.Instance.CurrentAccount != null && AccountInfoCache.Instance.CurrentAccount.Phone == phone)
+            ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+            string key = string.Format("OnlineAI_{0}", phone);
+            if (service.SearchInfoByKey(key) != null)
             {
-                result.Status = true;
-                //Todo:记录数据库
+                if (service.RemoveInfo(key))
+                {
+                    result.Status = true;
+                    result.Message = "登出成功";
+                    result.StatusCode = "SO000";
+                    //Todo :记录数据库 登出日志
 
+                }
 
-                AccountInfoCache.Instance.CurrentAccount = null;
-                result.Status = true;
-                result.Message = "登出成功";
-                result.StatusCode = "SO101";
             }
-
+            
             return result;
         }
         /// <summary>
@@ -79,10 +84,26 @@
             //加入数据库
             try
             {
-                result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
-                DBConnectionManager.Instance.Writer.Commit();
+                ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
 
-                result.Data = account.Copy<Account>();
+                if (service.SearchInfoByKey(account.GetKeyName()) == null)
+                {
+                    //入库
+                    result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
+                    DBConnectionManager.Instance.Writer.Commit();
+
+                    //加入缓存
+                    service.SaveInfo(account);
+
+                    result.Data = account.Copy<Account>();
+                    
+                }
+                else
+                {
+                    result.Status = false;
+                    result.Message = "当前账户已存在";
+                    result.StatusCode = "RR001";
+                }
             }
             catch (Exception ex)
             {
@@ -104,23 +125,32 @@
         /// <returns></returns>
         public Result<Account> SignIn(string signInCode, string securityCode)
         {
-            Result<Account> result = new Result<Account>();
-            AccountInfo accountinfo = null;
+            Result<Account> result = new Result<Account>()
+            {
+                Status = false
+            };
+
             try
             {
 
                 //1.检查是否已经登录
+                ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
 
-                accountinfo = OnlineAccountCache.GetOnlineAccountInfoByPhone(signInCode);
+                string phonekey = string.Format("OnlineAI_{0}", signInCode);
+                string emailkey = string.Format("OnlineAI_*_{0}", signInCode);
 
-                if (accountinfo == null)
+                OnlineAccountInfo onlineinfo = null;
+
+                onlineinfo = service.SearchInfoByKey(phonekey);
+
+                if(onlineinfo == null)
                 {
-                    accountinfo = OnlineAccountCache.GetOnlineAccountInfoByEmail(signInCode);
+                    onlineinfo = service.SearchInfoByKey(emailkey);
                 }
 
-                if (accountinfo == null)
+                if(onlineinfo == null)
                 {
-                    //直接从数据库拿数据
+                    //2.直接从数据库拿数据
                     string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
 
                     IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3, signInCode, securityCodeMD5).Satifasy());
@@ -130,7 +160,8 @@
                         result.Data = inforesult[0].Copy<Account>();
 
                         //保存到缓存
-                        OnlineAccountCache.SaveOnlineAccountInfoToCache(inforesult[0]);
+                        service.SaveInfo(result.Data.Copy<OnlineAccountInfo>());
+
                     }
                     else
                     {
@@ -138,6 +169,12 @@
                         result.StatusCode = "LG000";
                     }
                 }
+                else
+                {
+                    //返回结果
+                    result.Data = onlineinfo.Copy<Account>();
+                }
+
             }
             catch (Exception ex)
             {
@@ -225,8 +262,14 @@
                     IList<AccountInfo> accountlist = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
                     if (accountlist != null && accountlist.Count > 0)
                     {
-                        Account returnaccount = accountlist[0].Copy<Account>();
-                        AccountInfoCache.Instance.CurrentAccount = returnaccount;
+
+                        ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                        ICache<OnlineAccountInfo> onlineservice = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+
+                        //同步缓存信息
+                        service.SaveInfo(accountlist[0]);
+                        onlineservice.SaveInfo(accountlist[0].Copy<OnlineAccountInfo>());
+                        
                     }
                     DBConnectionManager.Instance.Writer.Commit();
                 }
@@ -440,6 +483,13 @@
             {
                 AccountInfo info = account.Copy<AccountInfo>();
                 result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateInfoSpefication(info).Satifasy());
+
+                if (result.Status)
+                {
+                    //更新缓存
+                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    service.SaveInfo(info);
+                }
             }
             catch (Exception ex)
             {
@@ -469,6 +519,18 @@
             try
             {
                 result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(backCoverbase64str, account, 1).Satifasy());
+                if (result.Status)
+                {
+                    //更新缓存
+                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
+                    if(accountcache != null)
+                    {
+                        accountcache.BackCorver = backCoverbase64str;
+                        //保存
+                        service.SaveInfo(accountcache);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -498,6 +560,18 @@
             try
             {
                 result.Status = DBConnectionManager.Instance.Writer.Update(new AccountUpdateImageSpefication(headBase64str, account, 0).Satifasy());
+                if (result.Status)
+                {
+                    //更新缓存
+                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
+                    if (accountcache != null)
+                    {
+                        accountcache.Avator = headBase64str;
+                        //保存
+                        service.SaveInfo(accountcache);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -527,8 +601,28 @@
 
             try
             {
-                IList<AccountInfo> accounts = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
-                result.Data = accounts[0].Copy<Account>();
+                ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", phone));
+
+                if(accountcache == null)
+                {
+                    IList<AccountInfo> accounts = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(0, phone.ToString()).Satifasy());
+                    if(accounts != null && accounts.Count > 0)
+                    {
+                        accountcache = accounts[0];
+                        service.SaveInfo(accountcache);
+                    }
+                }
+                
+                if(accountcache != null)
+                {
+                    result.Data = accountcache.Copy<Account>();
+                }
+                else
+                {
+                    result.Message = "未能找到此账号的信息,请确认后再试";
+                    result.Data = null;
+                }
 
             }
             catch (Exception ex)
