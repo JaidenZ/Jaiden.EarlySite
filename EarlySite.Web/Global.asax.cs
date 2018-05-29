@@ -35,9 +35,11 @@
         {
             //获取业务服务程序集
             Assembly businessdll = Assembly.Load("EarlySite.Business");
+            //获取业务服务程序集
+            Assembly cachedll = Assembly.Load("EarlySite.Cache");
             //注册业务服务程序集
             ServiceObjectContainer.Load(businessdll);
-
+            ServiceObjectContainer.Load(cachedll);
 
             Thread work = Thread.CurrentThread;
             lock (work)
@@ -45,7 +47,8 @@
                 if(WorkThreadDictionary.Get(work) == null)
                 {
                     WorkThreadDictionary.Create(Thread.CurrentThread);
-                    EarlySite.Cache.Session.Deployment();
+                    //EarlySite.Cache.Session.Deployment();
+                    EarlySite.Cache.Session.DeploymentForWeb();
                 }
             }
 

@@ -136,9 +136,9 @@
                 //1.检查是否已经登录
                 IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
 
-                string phonekey = string.Format("OnlineAI_{0}", signInCode);
+                string phonekey = string.Format("OnlineAI_{0}_*", signInCode);
                 string emailkey = string.Format("OnlineAI_*_{0}", signInCode);
-
+                string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
                 OnlineAccountInfo onlineinfo = null;
 
                 onlineinfo = service.SearchInfoByKey(phonekey);
@@ -151,8 +151,6 @@
                 if(onlineinfo == null)
                 {
                     //2.直接从数据库拿数据
-                    string securityCodeMD5 = MD5Engine.ToMD5String(securityCode);
-
                     IList<AccountInfo> inforesult = DBConnectionManager.Instance.Reader.Select<AccountInfo>(new AccountSelectSpefication(3, signInCode, securityCodeMD5).Satifasy());
                     if (inforesult != null && inforesult.Count > 0)
                     {
@@ -160,7 +158,7 @@
                         result.Data = inforesult[0].Copy<Account>();
 
                         //保存到缓存
-                        service.SaveInfo(result.Data.Copy<OnlineAccountInfo>());
+                        service.SaveInfo(inforesult[0].Copy<OnlineAccountInfo>());
 
                     }
                     else
@@ -171,8 +169,19 @@
                 }
                 else
                 {
-                    //返回结果
-                    result.Data = onlineinfo.Copy<Account>();
+                    //校验密码
+                    if(onlineinfo.SecurityCode != securityCodeMD5)
+                    {
+                        result.Message = "密码错误";
+                        result.StatusCode = "LG000";
+                        result.Data = null;
+                    }
+                    else
+                    {
+                        //返回结果
+                        result.Status = true;
+                        result.Data = onlineinfo.Copy<Account>();
+                    }
                 }
 
             }

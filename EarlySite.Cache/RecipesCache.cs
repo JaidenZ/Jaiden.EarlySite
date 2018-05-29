@@ -3,6 +3,7 @@
     using System;
     using Model.Database;
     using EarlySite.Cache.CacheBase;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 食谱信息缓存
@@ -86,7 +87,11 @@
             }
 
             RecipesInfo result = null;
-            result = Session.Current.Get<RecipesInfo>(key);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<RecipesInfo>(keys[0]);
+            }
             return result;
         }
     }

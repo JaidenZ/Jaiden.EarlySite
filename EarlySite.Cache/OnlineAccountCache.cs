@@ -3,6 +3,7 @@
     using System;
     using Model.Database;
     using EarlySite.Cache.CacheBase;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 在线账户缓存
@@ -54,7 +55,11 @@
             }
 
             OnlineAccountInfo result = null;
-            result = Session.Current.Get<OnlineAccountInfo>(key);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if(keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<OnlineAccountInfo>(keys[0]);
+            }
             return result;
 
         }

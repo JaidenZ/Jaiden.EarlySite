@@ -1,11 +1,11 @@
-﻿using EarlySite.Core.Collection;
-
-namespace EarlySite.Cache.CacheBase
+﻿namespace EarlySite.Cache.CacheBase
 {
+    using Core.DDD.Service;
+
     /// <summary>
     /// 缓存接口
     /// </summary>
-    public interface ICache<T>
+    public interface ICache<T> : IServiceBase
     {
         
         /// <summary>

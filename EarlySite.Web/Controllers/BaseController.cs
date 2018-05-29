@@ -29,9 +29,9 @@
 
                 if(HttpContext.Session["CurrentAccount"] != null)
                 {
-                    string phone = (string)HttpContext.Session["CurrentAccount"];
+                    string phone = HttpContext.Session["CurrentAccount"].ToString();
                     IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
-                    OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}",phone));
+                    OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}_*",phone));
                     if(accountinfo != null)
                     {
                         account = accountinfo.Copy<Account>();
@@ -46,8 +46,8 @@
                     Phone = 18502850589,
                     Sex = Model.Enum.AccountSex.Male,
                     Email = "272665534@qq.com",
-                    Birthday = DateTime.Now,
-                    CreatTime = Convert.ToDateTime("1900-01-01"),
+                    BirthdayDate = DateTime.Now,
+                    CreatDate = Convert.ToDateTime("1900-01-01"),
                     Avator = ConstInfo.DefaultHeadBase64,
                     BackCorver = ConstInfo.DefaultBackCover
                 };

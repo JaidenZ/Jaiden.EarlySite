@@ -4,6 +4,7 @@
     using System;
     using Model.Database;
     using EarlySite.Cache.CacheBase;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 门店信息缓存
@@ -84,7 +85,11 @@
             }
 
             ShopInfo result = null;
-            result = Session.Current.Get<ShopInfo>(key);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<ShopInfo>(keys[0]);
+            }
             return result;
         }
     }

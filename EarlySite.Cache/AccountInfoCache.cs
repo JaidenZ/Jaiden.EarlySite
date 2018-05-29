@@ -3,6 +3,7 @@
     using System;
     using Model.Database;
     using EarlySite.Cache.CacheBase;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 账户信息缓存
@@ -61,7 +62,11 @@
                 throw new ArgumentNullException("key can not be null");
             }
             AccountInfo result = null;
-            result = Session.Current.Get<AccountInfo>(key);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<AccountInfo>(keys[0]);
+            }
             return result;
         }
 

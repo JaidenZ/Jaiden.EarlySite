@@ -97,9 +97,11 @@
             if (loginresult.Status)
             {
                 loginresult = ServiceObjectContainer.Get<IAccountService>().SignIn(account.LoginUsername, account.LoginSecurity);
+                if (loginresult.Status)
+                {
+                    HttpContext.Session["CurrentAccount"] = loginresult.Data.Phone;
+                }
             }
-
-
             return Json(loginresult);
         }
 

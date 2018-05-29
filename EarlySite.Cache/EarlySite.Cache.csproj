@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1088A62A-80AF-42FE-BF6A-24254DB8ABDF}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EarlySite.Cache</RootNamespace>
     <AssemblyName>EarlySite.Cache</AssemblyName>
@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
     <Reference Include="System" />
@@ -44,6 +47,7 @@
     <Compile Include="CacheBase\IOnlineAccountCache.cs" />
     <Compile Include="CacheBase\IRecipesCache.cs" />
     <Compile Include="CacheBase\IShopCache.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="DishInfoCache.cs" />
     <Compile Include="CacheBase\ICache.cs" />
     <Compile Include="OnlineAccountCache.cs" />

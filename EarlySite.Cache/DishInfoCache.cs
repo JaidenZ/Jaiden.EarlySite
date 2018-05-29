@@ -3,6 +3,7 @@
     using EarlySite.Model.Database;
     using EarlySite.Cache.CacheBase;
     using System;
+    using System.Collections.Generic;
 
 
     /// <summary>
@@ -111,7 +112,11 @@
                 throw new ArgumentNullException("key can not be null");
             }
             DishInfo result = null;
-            result = Session.Current.Get<DishInfo>(key);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<DishInfo>(keys[0]);
+            }
             return result;
         }
         

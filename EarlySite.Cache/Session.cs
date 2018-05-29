@@ -239,9 +239,31 @@
         {
             get
             {
-                return Session.Deployment();
+                if(_deploymentStyle == 0)
+                {
+                    return Session.Deployment();
+                }
+                else if(_deploymentStyle == 1)
+                {
+                    return _sessionP;
+                }
+                return null;
             }
         }
+
+        private static Session _sessionP = null;
+        private static int _deploymentStyle = 0;
+        
+        public static Session DeploymentForWeb()
+        {
+            if(_sessionP == null)
+            {
+                _sessionP = new Session();
+                _deploymentStyle = 1;
+            }
+            return _sessionP;
+        }
+
 
         IEnumerator IEnumerable.GetEnumerator()
         {
