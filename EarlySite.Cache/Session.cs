@@ -6,7 +6,6 @@
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using System.Text;
 
     /// <summary>
     /// 服务器会话状态

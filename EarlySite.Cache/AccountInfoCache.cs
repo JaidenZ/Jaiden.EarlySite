@@ -1,12 +1,7 @@
 ﻿namespace EarlySite.Cache
 {
     using System;
-    using Core.Collection;
-    using Model.Show;
     using Model.Database;
-    using System.Collections.Generic;
-    using EarlySite.Drms.DBManager;
-    using EarlySite.Drms.Spefication;
     using EarlySite.Cache.CacheBase;
 
     /// <summary>

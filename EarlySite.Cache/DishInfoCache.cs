@@ -1,6 +1,5 @@
 ﻿namespace EarlySite.Cache
 {
-    using System.Collections.Generic;
     using EarlySite.Model.Database;
     using EarlySite.Cache.CacheBase;
     using System;
