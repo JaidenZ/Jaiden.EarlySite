@@ -2,59 +2,119 @@
 {
     using System.Collections.Generic;
     using EarlySite.Model.Database;
+    using EarlySite.Cache.CacheBase;
     using System;
+
 
     /// <summary>
     /// 单品信息缓存
+    /// <!--Redis Key格式-->
+    /// DBDish_单品编号
     /// </summary>
-    public class DishInfoCache
+    public partial class DishInfoCache : IDishCache
     {
-        /**
-         * 单品信息缓存Redis Key格式
-         * DBDish_单品编号
-         * */
+        void IDishCache.Test()
+        {
+            throw new NotImplementedException();
+        }
+    }
 
+
+    /// <summary>
+    /// 单品信息缓存
+    /// <!--Redis Key格式-->
+    /// DBDish_单品编号
+    /// </summary>
+    public partial class DishInfoCache :  IDishCache
+    {
 
         /// <summary>
         /// 有效时间
         /// </summary>
-        private const int EffectiveTime = 7;
-
+        public const int EffectiveTime = 15;
+        
         /// <summary>
         /// 失效时间
         /// </summary>
-        private static DateTime ExpireTime { get { return DateTime.Now.AddDays(EffectiveTime); } }
+        public static DateTime ExpireTime { get { return DateTime.Now.AddDays(EffectiveTime); } }
 
         /// <summary>
-        /// 保存单品信息到缓存
+        /// 加载缓存
         /// </summary>
-        /// <param name="dish">单品信息</param>
-        /// <returns></returns>
-        public static bool SaveDishInfoToCache(DishInfo dish)
+        void ICache<DishInfo>.LoadCache()
         {
+            throw new NotImplementedException();
+        }
 
-            string key = dish.GetKeyName();
+        /// <summary>
+        /// 通过键值移除单品信息缓存
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        bool ICache<DishInfo>.RemoveInfo(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("key can not be null");
+            }
             bool issuccess = false;
-            issuccess = Session.Current.Set(key, dish);
-            Session.Current.Expire(key, ExpireTime);
+            if (Session.Current.Contains(key))
+            {
+                issuccess = Session.Current.Remove(key);
+            }
+            return issuccess;
+        }
+
+        /// <summary>
+        /// 移除单品信息缓存
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        bool ICache<DishInfo>.RemoveInfo(DishInfo param)
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Remove(key);
             return issuccess;
         }
 
         /// <summary>
         /// 保存单品信息到缓存
         /// </summary>
-        /// <param name="dish">单品信息集合</param>
-        public static void SaveDishInfoToCache(IList<DishInfo> dish)
+        /// <param name="param"></param>
+        /// <returns></returns>
+        bool ICache<DishInfo>.SaveInfo(DishInfo param)
         {
-            if(dish == null)
+            if (param == null)
             {
-                throw new ArgumentNullException("DishInfo collection is null");
+                throw new ArgumentNullException("account info can not be null");
             }
-            foreach (DishInfo item in dish)
-            {
-                SaveDishInfoToCache(item);
-            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Set(key, param);
+            Session.Current.Expire(key, ExpireTime);
+            return issuccess;
         }
 
+        /// <summary>
+        /// 根据键值搜索单品缓存信息
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        DishInfo ICache<DishInfo>.SearchInfoByKey(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("key can not be null");
+            }
+            DishInfo result = null;
+            result = Session.Current.Get<DishInfo>(key);
+            return result;
+        }
+        
     }
 }

@@ -34,7 +34,7 @@
                 StatusCode = "SO001"
             };
 
-            ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+            IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
             string key = string.Format("OnlineAI_{0}", phone);
             if (service.SearchInfoByKey(key) != null)
             {
@@ -84,7 +84,7 @@
             //加入数据库
             try
             {
-                ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
 
                 if (service.SearchInfoByKey(account.GetKeyName()) == null)
                 {

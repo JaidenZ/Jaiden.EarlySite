@@ -9,8 +9,30 @@
     /// <!--Redis Key格式-->
     /// OnlineAI_手机号_邮箱号
     /// </summary>
-    public class OnlineAccountCache: Cache, ICache<OnlineAccountInfo>
+    public partial class OnlineAccountCache : IOnlineAccountCache
     {
+
+    }
+
+    /// <summary>
+    /// 在线账户缓存
+    /// <!--Redis Key格式-->
+    /// OnlineAI_手机号_邮箱号
+    /// </summary>
+    public partial class OnlineAccountCache: IOnlineAccountCache
+    {
+
+        /// <summary>
+        /// 有效时间
+        /// </summary>
+        public const int EffectiveTime = 15;
+
+
+        /// <summary>
+        /// 失效时间
+        /// </summary>
+        public static DateTime ExpireTime { get { return DateTime.Now.AddDays(EffectiveTime); } }
+
         /// <summary>
         /// 加载缓存
         /// </summary>

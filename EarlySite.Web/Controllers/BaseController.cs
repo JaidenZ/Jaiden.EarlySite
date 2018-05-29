@@ -2,6 +2,8 @@
 {
     using Core.Utils;
     using EarlySite.Cache;
+    using EarlySite.Cache.CacheBase;
+    using EarlySite.Core.DDD.Service;
     using EarlySite.Model.Common;
     using EarlySite.Model.Database;
     using EarlySite.Model.Show;
@@ -28,7 +30,8 @@
                 if(HttpContext.Session["CurrentAccount"] != null)
                 {
                     string phone = (string)HttpContext.Session["CurrentAccount"];
-                    AccountInfo accountinfo = OnlineAccountCache.GetOnlineAccountInfoByPhone(phone);
+                    ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+                    OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}",phone));
                     if(accountinfo != null)
                     {
                         account = accountinfo.Copy<Account>();
