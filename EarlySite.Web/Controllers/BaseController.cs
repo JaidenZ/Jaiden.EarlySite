@@ -30,7 +30,7 @@
                 if(HttpContext.Session["CurrentAccount"] != null)
                 {
                     string phone = (string)HttpContext.Session["CurrentAccount"];
-                    ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+                    IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
                     OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}",phone));
                     if(accountinfo != null)
                     {
