@@ -134,7 +134,7 @@
             {
 
                 //1.检查是否已经登录
-                ICache<OnlineAccountInfo> service = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+                IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
 
                 string phonekey = string.Format("OnlineAI_{0}", signInCode);
                 string emailkey = string.Format("OnlineAI_*_{0}", signInCode);
@@ -263,8 +263,8 @@
                     if (accountlist != null && accountlist.Count > 0)
                     {
 
-                        ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
-                        ICache<OnlineAccountInfo> onlineservice = ServiceObjectContainer.Get<ICache<OnlineAccountInfo>>();
+                        IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
+                        IOnlineAccountCache onlineservice = ServiceObjectContainer.Get<IOnlineAccountCache>();
 
                         //同步缓存信息
                         service.SaveInfo(accountlist[0]);
@@ -487,7 +487,7 @@
                 if (result.Status)
                 {
                     //更新缓存
-                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
                     service.SaveInfo(info);
                 }
             }
@@ -522,7 +522,7 @@
                 if (result.Status)
                 {
                     //更新缓存
-                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
                     AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
                     if(accountcache != null)
                     {
@@ -563,7 +563,7 @@
                 if (result.Status)
                 {
                     //更新缓存
-                    ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                    IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
                     AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
                     if (accountcache != null)
                     {
@@ -601,7 +601,7 @@
 
             try
             {
-                ICache<AccountInfo> service = ServiceObjectContainer.Get<ICache<AccountInfo>>();
+                IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
                 AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", phone));
 
                 if(accountcache == null)

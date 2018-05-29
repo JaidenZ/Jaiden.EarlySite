@@ -1,53 +1,93 @@
 ﻿namespace EarlySite.Cache
 {
     using System;
-    using Core.Collection;
-    using Model.Show;
     using Model.Database;
-    using System.Collections.Generic;
-    using EarlySite.Drms.DBManager;
-    using EarlySite.Drms.Spefication;
+    using EarlySite.Cache.CacheBase;
 
     /// <summary>
     /// 食谱信息缓存
+    /// <!--Redis Key格式-->
+    /// DB_RI_食谱编号_手机号
     /// </summary>
-    public class RecipesCache
+    public partial class RecipesCache : IRecipesCache
     {
 
-        public static bool SaveRecipesToCache(RecipesInfo recipes)
-        {
-            bool result = false;
-            string key = string.Format(recipes.GetKeyName());
-            result = Session.Current.Set(key,recipes);
+    }
 
-            return result;
+
+    /// <summary>
+    /// 食谱信息缓存
+    /// <!--Redis Key格式-->
+    /// DB_RI_食谱编号_手机号
+    /// </summary>
+    public partial class RecipesCache : IRecipesCache
+    {
+        /// <summary>
+        /// 有效时间
+        /// </summary>
+        public const int EffectiveTime = 15;
+
+
+        /// <summary>
+        /// 失效时间
+        /// </summary>
+        public static DateTime ExpireTime { get { return DateTime.Now.AddDays(EffectiveTime); } }
+
+
+        void ICache<RecipesInfo>.LoadCache()
+        {
+            throw new NotImplementedException();
         }
 
-
-        public static bool SaveRecipesToCache(IList<RecipesInfo> recipes)
+        bool ICache<RecipesInfo>.RemoveInfo(string key)
         {
-            if(recipes == null)
+            if (string.IsNullOrEmpty(key))
             {
-                return false;
+                throw new ArgumentNullException("key can not be null");
             }
-
-            foreach (RecipesInfo item in recipes)
+            bool issuccess = false;
+            if (Session.Current.Contains(key))
             {
-                SaveRecipesToCache(item);
+                issuccess = Session.Current.Remove(key);
             }
-
-            return true;
+            return issuccess;
         }
 
-        public static RecipesInfo GetRecipesFromCacheById(int recipesId)
+        bool ICache<RecipesInfo>.RemoveInfo(RecipesInfo param)
         {
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Remove(key);
+            return issuccess;
+        }
+
+        bool ICache<RecipesInfo>.SaveInfo(RecipesInfo param)
+        {
+            if (param == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            string key = param.GetKeyName();
+            bool issuccess = false;
+            issuccess = Session.Current.Set(key, param);
+            Session.Current.Expire(key, ExpireTime);
+            return issuccess;
+        }
+
+        RecipesInfo ICache<RecipesInfo>.SearchInfoByKey(string key)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                throw new ArgumentNullException("search key can not be null");
+            }
+
             RecipesInfo result = null;
-
-            string key = string.Format("DB_AI_*_{0}", recipesId);
             result = Session.Current.Get<RecipesInfo>(key);
-            
             return result;
         }
-
     }
 }

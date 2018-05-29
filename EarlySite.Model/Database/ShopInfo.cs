@@ -5,7 +5,7 @@
     /// <summary>
     /// 门店信息
     /// </summary>
-    public class ShopInfo
+    public class ShopInfo : IKeyNameSpecification
     {
         /// <summary>
         /// 门店编号
@@ -37,5 +37,9 @@
         /// </summary>
         public string Description { get; set; }
 
+        public string GetKeyName()
+        {
+            return string.Format("DB_SI_{0}_{1}",this.ShopId,this.ShopName);
+        }
     }
 }
