@@ -143,6 +143,11 @@
 
             result = ServiceObjectContainer.Get<IAccountService>().SignOut(signoutphone);
 
+            if (result.Status)
+            {
+                HttpContext.Session["CurrentAccount"] = "";
+            }
+
             return Json(result);
         }
 
