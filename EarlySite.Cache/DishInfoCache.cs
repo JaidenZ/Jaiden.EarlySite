@@ -38,6 +38,7 @@
                     //同步到缓存
                     result = dishlist[0];
                     Session.Current.Set(result.GetKeyName(), result);
+                    Session.Current.Expire(result.GetKeyName(), ExpireTime);
                 }
             }
             return result;
