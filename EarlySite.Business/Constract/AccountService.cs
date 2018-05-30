@@ -90,13 +90,14 @@
                 {
                     //入库
                     result.Status = DBConnectionManager.Instance.Writer.Insert(new AccountAddSpefication(account).Satifasy());
-                    DBConnectionManager.Instance.Writer.Commit();
 
-                    //加入缓存
-                    service.SaveInfo(account);
-
-                    result.Data = account.Copy<Account>();
-                    
+                    if (result.Status)
+                    {
+                        DBConnectionManager.Instance.Writer.Commit();
+                        //加入缓存
+                        service.SaveInfo(account);
+                        result.Data = account.Copy<Account>();
+                    }
                 }
                 else
                 {
