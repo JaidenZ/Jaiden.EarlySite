@@ -316,7 +316,8 @@
             {
                 //检验缓存是否存在
                 IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
-                result.Status = service.CheckMailExists(mail);
+                //存在,返回结果为false
+                result.Status = !service.CheckMailExists(mail);
 
             }
             catch (Exception ex)
@@ -344,7 +345,8 @@
             {
                 //检验缓存是否存在
                 IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
-                result.Status = service.CheckPhoneExists(phone);
+                //存在,返回结果为false
+                result.Status = !service.CheckPhoneExists(phone);
             }
             catch (Exception ex)
             {
