@@ -14,6 +14,11 @@
     /// </summary>
     public partial class AccountInfoCache : IAccountInfoCache
     {
+        /// <summary>
+        /// 检查邮箱是否存在
+        /// </summary>
+        /// <param name="mail"></param>
+        /// <returns></returns>
         bool IAccountInfoCache.CheckMailExists(string mail)
         {
             if (string.IsNullOrEmpty(mail))
@@ -36,6 +41,11 @@
 
         }
 
+        /// <summary>
+        /// 检查电话是否存在
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         bool IAccountInfoCache.CheckPhoneExists(string phone)
         {
             if (string.IsNullOrEmpty(phone))

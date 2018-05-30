@@ -10,6 +10,9 @@
     using EarlySite.Model.Show;
     using EarlySite.Model.Database;
     using EarlySite.Core.Utils;
+    using EarlySite.Cache.CacheBase;
+    using EarlySite.Core.DDD.Service;
+
     public class DishService : IDishService
     {
 
@@ -27,10 +30,13 @@
             };
             try
             {
-                IList<DishInfo> dish = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(dishId.ToString(), 0).Satifasy());
-                if (dish != null && dish.Count > 0)
+
+                IDishCache service = ServiceObjectContainer.Get<IDishCache>();
+                DishInfo dishinfo = service.GetDishInfoById(dishId);
+                if(dishinfo != null)
                 {
-                    result.Data = dish[0].Copy<Dish>();
+                    result.Data = dishinfo.Copy<Dish>();
+                    result.Status = true;
                 }
                 else
                 {

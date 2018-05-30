@@ -4,18 +4,43 @@
     using EarlySite.Cache.CacheBase;
     using System;
     using System.Collections.Generic;
+    using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
 
 
     /// <summary>
     /// 单品信息缓存
     /// <!--Redis Key格式-->
-    /// DBDish_单品编号
+    /// DB_DI_编号_类型_用餐时间_商店编号
     /// </summary>
     public partial class DishInfoCache : IDishCache
     {
-        void IDishCache.Test()
+        /// <summary>
+        /// 获取单个单品信息
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        DishInfo IDishCache.GetDishInfoById(int dishId)
         {
-            throw new NotImplementedException();
+            DishInfo result = null;
+            string key = string.Format("DB_DI_{0}_*", dishId);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.Get<DishInfo>(keys[0]);
+            }
+            else
+            {
+                //从数据库拿取
+                IList<DishInfo> dishlist = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(dishId.ToString(), 0).Satifasy());
+                if(dishlist != null && dishlist.Count > 0)
+                {
+                    //同步到缓存
+                    result = dishlist[0];
+                    Session.Current.Set(result.GetKeyName(), result);
+                }
+            }
+            return result;
         }
     }
 
@@ -23,7 +48,7 @@
     /// <summary>
     /// 单品信息缓存
     /// <!--Redis Key格式-->
-    /// DBDish_单品编号
+    /// DB_DI_编号_类型_用餐时间_商店编号
     /// </summary>
     public partial class DishInfoCache :  IDishCache
     {
