@@ -314,11 +314,10 @@
             };
             try
             {
-                int resultcount = DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(mail, 1).Satifasy());
-                if (resultcount > 0)
-                {
-                    result.Status = false;
-                }
+                //检验缓存是否存在
+                IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
+                result.Status = service.CheckMailExists(mail);
+
             }
             catch (Exception ex)
             {
@@ -343,11 +342,9 @@
             };
             try
             {
-                int resultcount = DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(phone, 0).Satifasy());
-                if (resultcount > 0)
-                {
-                    result.Status = false;
-                }
+                //检验缓存是否存在
+                IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
+                result.Status = service.CheckPhoneExists(phone);
             }
             catch (Exception ex)
             {

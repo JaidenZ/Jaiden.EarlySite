@@ -4,6 +4,8 @@
     using Model.Database;
     using EarlySite.Cache.CacheBase;
     using System.Collections.Generic;
+    using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
 
     /// <summary>
     /// 账户信息缓存
@@ -12,9 +14,47 @@
     /// </summary>
     public partial class AccountInfoCache : IAccountInfoCache
     {
-        bool IAccountInfoCache.Test()
+        bool IAccountInfoCache.CheckMailExists(string mail)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(mail))
+            {
+                throw new ArgumentNullException("exists mail can no be null");
+            }
+            string key = string.Format("DB_AI_*_{0}", mail);
+            IList<string> list = Session.Current.ScanAllKeys(key);
+            if(list != null && list.Count > 0)
+            {
+                return true;
+            }
+
+            if(DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(mail,1).Satifasy()) > 0)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+
+        bool IAccountInfoCache.CheckPhoneExists(string phone)
+        {
+            if (string.IsNullOrEmpty(phone))
+            {
+                throw new ArgumentNullException("exists phone can no be null");
+            }
+            string key = string.Format("DB_AI_{0}_*", phone);
+            IList<string> list = Session.Current.ScanAllKeys(key);
+            if (list != null && list.Count > 0)
+            {
+                return true;
+            }
+
+            if (DBConnectionManager.Instance.Reader.Count(new AccountCheckSpefication(phone, 0).Satifasy()) > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 
