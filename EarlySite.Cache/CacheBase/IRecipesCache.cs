@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Cache.CacheBase
 {
+    using System.Collections.Generic;
     using EarlySite.Model.Database;
 
     /// <summary>
@@ -14,6 +15,19 @@
         /// <returns></returns>
         RecipesInfo GetRecipesInfoById(int recipesId);
 
+        /// <summary>
+        /// 根据手机号获食谱集
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
+        IList<RecipesInfo> GetRecipesInfoByPhone(long phone);
+
+        /// <summary>
+        /// 根据手机号获取喜爱的食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        IList<RecipesInfo> GetFavoriteRecipesByPhone(long phone);
 
     }
 }

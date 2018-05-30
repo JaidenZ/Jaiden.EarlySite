@@ -49,6 +49,7 @@
 
         public string GetKeyName()
         {
+            //DB_RI_食谱编号_手机号
             return string.Format("DB_RI_{0}_{1}",this.RecipesId,this.Phone);
         }
     }

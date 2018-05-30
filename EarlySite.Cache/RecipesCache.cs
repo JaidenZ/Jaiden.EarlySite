@@ -6,7 +6,7 @@
     using System.Collections.Generic;
     using EarlySite.Drms.DBManager;
     using EarlySite.Drms.Spefication;
-
+    using Core.Utils;
     /// <summary>
     /// 食谱信息缓存
     /// <!--Redis Key格式-->
@@ -14,6 +14,21 @@
     /// </summary>
     public partial class RecipesCache : IRecipesCache
     {
+        /// <summary>
+        /// 根据手机号获取喜爱的食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        IList<RecipesInfo> IRecipesCache.GetFavoriteRecipesByPhone(long phone)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 根据食谱编号获取缓存
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
         RecipesInfo IRecipesCache.GetRecipesInfoById(int recipesId)
         {
             string key = string.Format("DB_RI_{0}_*", recipesId);
@@ -36,6 +51,41 @@
                     result = recipeslist[0];
                     Session.Current.Set(result.GetKeyName(), result);
                     Session.Current.Expire(result.GetKeyName(), ExpireTime);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据手机号获食谱集
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
+        IList<RecipesInfo> IRecipesCache.GetRecipesInfoByPhone(long phone)
+        {
+            string key = string.Format("DB_RI_*_{0}", phone);
+
+            IList<RecipesInfo> result = null;
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                result = Session.Current.GetAll<RecipesInfo>(keys).ToList<RecipesInfo>();
+            }
+            if (result == null)
+            {
+
+                //从数据库获取数据
+                result = DBConnectionManager.Instance.Reader.Select<RecipesInfo>(new RecipesSelectSpefication(phone.ToString(), 2).Satifasy());
+
+                if (result != null && result.Count > 0)
+                {
+                    //更新缓存
+                    IDictionary<string, RecipesInfo> dictionary = new Dictionary<string, RecipesInfo>();
+                    foreach (RecipesInfo item in result)
+                    {
+                        dictionary.Add(item.GetKeyName(), item);
+                    }
+                    Session.Current.SetAll<RecipesInfo>(dictionary);
                 }
             }
             return result;

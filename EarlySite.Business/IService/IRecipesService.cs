@@ -27,6 +27,13 @@
         Result<IList<Recipes>> GetRecipesByPhone(long phone);
 
         /// <summary>
+        /// 根据手机号获取喜爱的食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Result<IList<Recipes>> GetFavoriteRecipesByPhone(long phone);
+
+        /// <summary>
         /// 根据食谱编号获取食谱集
         /// </summary>
         /// <param name="phone"></param>

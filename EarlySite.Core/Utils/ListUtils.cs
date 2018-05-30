@@ -30,5 +30,26 @@ namespace EarlySite.Core.Utils
             return value.Split(separator: separator);
         }
 
+        /// <summary>
+        /// 字典转泛型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="dic"></param>
+        /// <returns></returns>
+        public static IList<T> ToList<T>(this IDictionary<string, T> dic) where T : class, new()
+        {
+            if (dic == null)
+            {
+                return null;
+            }
+            IList<T> result = new List<T>();
+            foreach (KeyValuePair<string, T> item in dic)
+            {
+                result.Add(item.Value);
+            }
+            return result;
+        }
+
+
     }
 }

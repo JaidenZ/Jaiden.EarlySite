@@ -8,12 +8,17 @@
     using EarlySite.Drms.Spefication;
     using EarlySite.Model.Common;
     using EarlySite.Model.Database;
-    using EarlySite.Model.Enum;
     using EarlySite.Model.Show;
-
+    using EarlySite.Cache.CacheBase;
+    using EarlySite.Core.DDD.Service;
 
     public class RecipesService : IRecipesService
     {
+        /// <summary>
+        /// 创建一个食谱
+        /// </summary>
+        /// <param name="recipes"></param>
+        /// <returns></returns>
         public Result CreatRecipes(Recipes recipes)
         {
             Result result = new Result()
@@ -21,11 +26,13 @@
                 Status = true,
                 Message = "创建食谱成功"
             };
-
+            
             try
             {
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+                
                 RecipesInfo addinfo = recipes.Copy<RecipesInfo>();
-
                 if (addinfo == null)
                 {
                     throw new ArgumentNullException("新增食谱信息,参数不能为空");
@@ -36,6 +43,8 @@
                 if (result.Status)
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+                    //更新缓存
+                    recipesservice.SaveInfo(addinfo);
                 }
                 else
                 {
@@ -56,6 +65,53 @@
             return result;
         }
 
+        /// <summary>
+        /// 根据手机号获取喜爱的食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public Result<IList<Recipes>> GetFavoriteRecipesByPhone(long phone)
+        {
+            Result<IList<Recipes>> result = new Result<IList<Recipes>>()
+            {
+                Status = true,
+                Message = "查找食谱成功"
+            };
+            try
+            {
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+                if (phone == 0)
+                {
+                    throw new ArgumentException("获取食谱,参数非法");
+                }
+
+                IList<RecipesInfo> favoriteRecipes = recipesservice.GetFavoriteRecipesByPhone(phone);
+
+                if(favoriteRecipes != null && favoriteRecipes.Count > 0)
+                {
+                    result.Data = favoriteRecipes.CopyList<RecipesInfo, Recipes>();
+                    result.Status = true;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查找食谱出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetFavoriteRecipesByPhone() .RecipesService"), LogType.ErrorLog);
+            }
+
+            return result;
+
+        }
+
+
+        /// <summary>
+        /// 根据手机号获取用户的食谱集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public Result<IList<Recipes>> GetRecipesByPhone(long phone)
         {
             Result<IList<Recipes>> result = new Result<IList<Recipes>>()
@@ -65,15 +121,17 @@
             };
             try
             {
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
                 if (phone == 0)
                 {
                     throw new ArgumentException("获取食谱,参数非法");
                 }
 
-                IList<Recipes> recipeslist = DBConnectionManager.Instance.Reader.Select<Recipes>(new RecipesSelectSpefication(phone.ToString(), 2).Satifasy());
+                IList<RecipesInfo> recipeslist = recipesservice.GetRecipesInfoByPhone(phone);
                 if (recipeslist != null && recipeslist.Count > 0)
                 {
-                    result.Data = recipeslist;
+                    result.Data = recipeslist.CopyList<RecipesInfo,Recipes>();
                 }
                 else
                 {
@@ -93,9 +151,9 @@
             return result;
         }
         /// <summary>
-        /// 根据手机号获取食谱集
+        /// 根据食谱编号获取单个食谱信息
         /// </summary>
-        /// <param name="phone"></param>
+        /// <param name="recipesId"></param>
         /// <returns></returns>
         public Result<Recipes> GetRecipesById(int recipesId)
         {
@@ -106,22 +164,25 @@
             };
             try
             {
-                if(recipesId == 0)
+
+                if (recipesId == 0)
                 {
                     throw new ArgumentException("获取食谱,参数非法");
                 }
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
 
-                IList<Recipes> recipeslist = DBConnectionManager.Instance.Reader.Select<Recipes>(new RecipesSelectSpefication(recipesId.ToString(), 0).Satifasy());
-                if(recipeslist != null && recipeslist.Count > 0)
+                RecipesInfo recipe = recipesservice.GetRecipesInfoById(recipesId);
+
+                if(recipe != null)
                 {
-                    result.Data = recipeslist[0];
+                    result.Data = recipe.Copy<Recipes>();
                 }
                 else
                 {
                     result.Status = false;
                     result.Message = "获取食谱失败,未找到对应食谱";
                 }
-
             }
             catch(Exception ex)
             {
