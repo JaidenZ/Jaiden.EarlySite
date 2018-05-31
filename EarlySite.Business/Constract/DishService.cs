@@ -192,7 +192,7 @@
                 DishInfo dishinfo = share.DishInfo.Copy<DishInfo>();
                 ShopInfo updateshop = share.ShopInfo.Copy<ShopInfo>();
                 RecipesInfo updaterecipes = share.RecipesInfo.Copy<RecipesInfo>();
-
+                IList<RelationShareInfo> shareinfo = null;
                 if (dishinfo == null)
                 {
                     throw new ArgumentNullException("创建食物,单品食物参数不能为空");
@@ -212,7 +212,7 @@
                 if (cannext)
                 {
                     cannext = false;
-                    IList<RelationShareInfo> shareinfo = new List<RelationShareInfo>();
+                    shareinfo = new List<RelationShareInfo>();
                     RelationShareInfo sharerelation = new RelationShareInfo()
                     {
                         DishId = dishinfo.DIshId,
@@ -248,6 +248,13 @@
                     DBConnectionManager.Instance.Writer.Commit();
 
                     //更新缓存
+                    IRelationShareInfoCache shareservice = ServiceObjectContainer.Get<IRelationShareInfoCache>();
+                    foreach (RelationShareInfo item in shareinfo)
+                    {
+                        shareservice.SaveInfo(item);
+                    }
+                    
+
                     IDishCache dishservice = ServiceObjectContainer.Get<IDishCache>();
                     dishservice.SaveInfo(dishinfo);
 
@@ -287,7 +294,9 @@
             try
             {
                 IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+                IRelationShareInfoCache relationservice = ServiceObjectContainer.Get<IRelationShareInfoCache>();
                 RecipesInfo updaterecipes = null;
+                IList<RelationShareInfo> shareinfo = null;
                 //新增一条单品记录
                 bool cannext = false;
                 
@@ -295,7 +304,7 @@
                 if (cannext)
                 {
                     cannext = false;
-                    IList<RelationShareInfo> shareinfo = new List<RelationShareInfo>();
+                    shareinfo = new List<RelationShareInfo>();
                     RelationShareInfo sharerelation = new RelationShareInfo()
                     {
                         DishId = collect.DIshId,
@@ -332,6 +341,12 @@
                     DBConnectionManager.Instance.Writer.Commit();
                     //更新缓存
                     recipesservice.SaveInfo(updaterecipes);
+
+                    foreach (RelationShareInfo item in shareinfo)
+                    {
+                        relationservice.SaveInfo(item);
+                    }
+
                 }
             }
             catch (Exception ex)

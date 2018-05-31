@@ -29,5 +29,18 @@
         /// <returns></returns>
         IList<RecipesInfo> GetFavoriteRecipesByPhone(long phone);
 
+
+        /// <summary>
+        /// 设置食谱禁用启用状态
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <param name="enable">
+        /// 启用true
+        /// 禁用false
+        /// </param>
+        /// <returns></returns>
+        bool SetRecipesEnable(int recipesId, bool enable);
+
+
     }
 }

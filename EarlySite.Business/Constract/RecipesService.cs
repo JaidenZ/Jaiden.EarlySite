@@ -195,7 +195,11 @@
             return result;
         }
 
-
+        /// <summary>
+        /// 根据食谱编号移除整个食谱信息
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
         public Result RemoveRecipesById(int recipesId)
         {
             Result result = new Result()
@@ -213,7 +217,7 @@
 
                 //食谱缓存服务
                 IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
-
+                IRelationShareInfoCache relationservice = ServiceObjectContainer.Get<IRelationShareInfoCache>();
                 //删除食谱绑定关系
                 bool cannext = false;
                 cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(recipesId.ToString(), 0).Satifasy());
@@ -235,6 +239,10 @@
                 else
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+
+                    
+
+
                 }
 
 

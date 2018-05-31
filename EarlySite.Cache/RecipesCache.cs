@@ -15,6 +15,40 @@
     public partial class RecipesCache : IRecipesCache
     {
         /// <summary>
+        /// 设置食谱禁启用状态
+        /// </summary>
+        /// <param name="recipesId">食谱编号</param>
+        /// <param name="enable">
+        /// true:启用
+        /// false:禁用
+        /// </param>
+        /// <returns></returns>
+        public bool SetRecipesEnable(int recipesId, bool enable)
+        {
+            if(recipesId == 0)
+            {
+                throw new ArgumentNullException("recipesId can not be zero");
+            }
+            bool result = false;
+
+            string key = string.Format("DB_RI_{0}_*", recipesId);
+
+            RecipesInfo updateinfo = null;
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                updateinfo = Session.Current.Get<RecipesInfo>(keys[0]);
+            }
+            if(updateinfo != null)
+            {
+                updateinfo.
+            }
+
+
+            return result;
+        }
+
+        /// <summary>
         /// 根据手机号获取喜爱的食谱集
         /// </summary>
         /// <param name="phone"></param>
@@ -135,7 +169,7 @@
         {
             if (param == null)
             {
-                throw new ArgumentNullException("account info can not be null");
+                throw new ArgumentNullException("Recipes info can not be null");
             }
             string key = param.GetKeyName();
             bool issuccess = false;
@@ -147,7 +181,7 @@
         {
             if (param == null)
             {
-                throw new ArgumentNullException("account info can not be null");
+                throw new ArgumentNullException("Recipes info can not be null");
             }
             string key = param.GetKeyName();
             bool issuccess = false;
