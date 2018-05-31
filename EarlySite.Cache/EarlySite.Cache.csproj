@@ -45,6 +45,7 @@
     <Compile Include="CacheBase\IAccountInfoCache.cs" />
     <Compile Include="CacheBase\IDishCache.cs" />
     <Compile Include="CacheBase\IOnlineAccountCache.cs" />
+    <Compile Include="CacheBase\IRelationShareInfoCache.cs" />
     <Compile Include="CacheBase\IRecipesCache.cs" />
     <Compile Include="CacheBase\IShopCache.cs" />
     <Compile Include="Debug.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="OnlineAccountCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipesCache.cs" />
+    <Compile Include="RelationShareInfoCache.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="ShopInfoCache.cs" />
   </ItemGroup>

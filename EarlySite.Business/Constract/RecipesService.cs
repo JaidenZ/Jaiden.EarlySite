@@ -210,6 +210,10 @@
                 {
                     throw new ArgumentNullException("删除食谱,参数非法");
                 }
+
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+
                 //删除食谱绑定关系
                 bool cannext = false;
                 cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(recipesId.ToString(), 0).Satifasy());
@@ -313,13 +317,18 @@
 
             try
             {
+                
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+
                 RecipesInfo info = recipes.Copy<RecipesInfo>();
                 if (info == null)
                 {
                     throw new ArgumentNullException("更新食谱,参数非法");
                 }
-                info.UpdateDate = DateTime.Now;
 
+                info.UpdateDate = DateTime.Now;
+                
                 result.Status = DBConnectionManager.Instance.Writer.Update(new RecipesUpdateSpefication(info).Satifasy());
 
                 if (!result.Status)
@@ -331,6 +340,8 @@
                 else
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+                    //更新缓存
+                    recipesservice.SaveInfo(info);
                 }
             }
             catch (Exception ex)
