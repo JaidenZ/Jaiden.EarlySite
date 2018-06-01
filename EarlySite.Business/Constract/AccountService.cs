@@ -51,6 +51,7 @@
             
             return result;
         }
+
         /// <summary>
         /// 注册账户信息
         /// </summary>
@@ -118,6 +119,7 @@
 
             return result;
         }
+
         /// <summary>
         /// 登陆
         /// </summary>
@@ -198,6 +200,7 @@
             }
             return result;
         }
+
         /// <summary>
         /// 发送注册邮件
         /// </summary>
@@ -250,6 +253,7 @@
 
             return result;
         }
+
         /// <summary>
         /// 认证账户
         /// </summary>

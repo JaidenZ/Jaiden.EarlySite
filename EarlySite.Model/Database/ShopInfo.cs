@@ -37,6 +37,11 @@
         /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool Enable { get; set; }
+
         public string GetKeyName()
         {
             return string.Format("DB_SI_{0}_{1}",this.ShopId,this.ShopName);

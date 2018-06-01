@@ -43,6 +43,35 @@
             }
             return result;
         }
+
+        /// <summary>
+        /// 更新单品信息中门店名称
+        /// </summary>
+        /// <param name="shopid">门店编号</param>
+        /// <param name="name">更新的门店名称</param>
+        void IDishCache.UpdateDishInfoByChangeShopName(int shopid, string name)
+        {
+            if(shopid ==0 || string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("shopid or name can not be null");
+            }
+            string key = string.Format("DB_DI_*_*_*_{0}", shopid);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if(keys != null && keys.Count > 0)
+            {
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    DishInfo dish = Session.Current.Get<DishInfo>(keys[i]);
+                    if(dish != null)
+                    {
+                        dish.ShopName = name;
+
+                        Session.Current.Set(dish.GetKeyName(), dish);
+                        Session.Current.Expire(dish.GetKeyName(), ExpireTime);
+                    }
+                }
+            }
+        }
     }
 
 

@@ -14,6 +14,11 @@
         /// <returns>单品信息</returns>
         DishInfo GetDishInfoById(int dishId);
 
-
+        /// <summary>
+        /// 更新单品信息中门店名称
+        /// </summary>
+        /// <param name="shopid">门店编号</param>
+        /// <param name="name">更新的门店名称</param>
+        void UpdateDishInfoByChangeShopName(int shopid, string name);
     }
 }

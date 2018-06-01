@@ -4,15 +4,21 @@
     using System.Collections.Generic;
     using Business.IService;
     using EarlySite.Core.Utils;
+    using EarlySite.Core.DDD.Service;
     using EarlySite.Drms.DBManager;
     using EarlySite.Drms.Spefication;
     using EarlySite.Model.Common;
     using EarlySite.Model.Database;
-    using EarlySite.Model.Enum;
+    using EarlySite.Cache.CacheBase;
     using EarlySite.Model.Show;
 
     public class ShopService : IShopService
     {
+        /// <summary>
+        /// 创建门店信息
+        /// </summary>
+        /// <param name="shopInfo"></param>
+        /// <returns></returns>
         public Result CreatShopInfo(Shop shopInfo)
         {
             Result result = new Result()
@@ -28,12 +34,17 @@
                 {
                     throw new ArgumentNullException("创建门店,参数不能为空");
                 }
+
+                IShopCache shopservice = ServiceObjectContainer.Get<IShopCache>();
+
                 info.UpdateDate = DateTime.Now;
                 result.Status = DBConnectionManager.Instance.Writer.Insert(new ShopAddSpefication(info).Satifasy());
 
                 if(result.Status)
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+                    //同步缓存
+                    shopservice.SaveInfo(info);
                 }
                 else
                 {
@@ -64,8 +75,8 @@
         {
             Result<Shop> result = new Result<Shop>()
             {
-                Status = true,
-                Message = "获取门店信息成功"
+                Status = false,
+                Message = "没有获取到对应信息"
             };
             
             try
@@ -74,12 +85,14 @@
                 {
                     throw new ArgumentException("查询门店信息,参数非法");
                 }
-                //根据门店编号获取门店信息
-                IList<ShopInfo> shopinfolist = DBConnectionManager.Instance.Reader.Select<ShopInfo>(new ShopSelectSpefication(shopId.ToString(), 0).Satifasy());
+                IShopCache shopservice = ServiceObjectContainer.Get<IShopCache>();
 
-                if(shopinfolist != null && shopinfolist.Count > 0)
+                ShopInfo shopcache = shopservice.GetshopInfoByShopId(shopId);
+
+                if(shopcache != null)
                 {
-                    result.Data = shopinfolist[0].Copy<Shop>();
+                    result.Data = shopcache.Copy<Shop>();
+                    result.Status = true;
                 }
                 else
                 {
@@ -118,6 +131,7 @@
                 {
                     throw new ArgumentException("查询门店信息,参数非法");
                 }
+                IShopCache shopservice = ServiceObjectContainer.Get<IShopCache>();
 
                 bool execstatus = DBConnectionManager.Instance.Writer.Update(new ShopDeleteSpefication(shopId).Satifasy());
 
@@ -125,11 +139,20 @@
                 {
                     result.Status = false;
                     result.Message = "删除门店操作失败,请检查参数数据";
+                    DBConnectionManager.Instance.Writer.Rollback();
+                }
+                else
+                {
+                    //提交
+                    DBConnectionManager.Instance.Writer.Commit();
+                    //同步缓存
+                    shopservice.SetShopInfoEnable(shopId, false);
                 }
 
             }
             catch(Exception ex)
             {
+                DBConnectionManager.Instance.Writer.Rollback();
                 result.Status = false;
                 result.Message = "获取门店信息出错:" + ex.Message;
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:RemoveShopInfoById() .ShopService"), LogType.ErrorLog);
@@ -139,7 +162,7 @@
         }
 
         /// <summary>
-        /// 
+        /// 模糊查询门店名称分页
         /// </summary>
         /// <param name="shopName"></param>
         /// <param name="param"></param>
@@ -201,6 +224,10 @@
                 {
                     throw new ArgumentNullException("更新门店,参数不能为空");
                 }
+
+                IShopCache shopservice = ServiceObjectContainer.Get<IShopCache>();
+                IDishCache dishservice = ServiceObjectContainer.Get<IDishCache>();
+
                 info.UpdateDate = DateTime.Now;
                 //更新门店信息
                 cannext = DBConnectionManager.Instance.Writer.Update(new ShopUpdateSpefication(info).Satifasy());
@@ -221,6 +248,9 @@
                 else
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+                    //同步缓存
+                    shopservice.SaveInfo(info);
+                    dishservice.UpdateDishInfoByChangeShopName(shopInfo.ShopId, shopInfo.ShopName);
                 }
 
             }
