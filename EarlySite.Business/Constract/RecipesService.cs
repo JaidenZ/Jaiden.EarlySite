@@ -199,8 +199,9 @@
         /// 根据食谱编号移除整个食谱信息
         /// </summary>
         /// <param name="recipesId"></param>
+        /// <param name="phone"></param>
         /// <returns></returns>
-        public Result RemoveRecipesById(int recipesId)
+        public Result RemoveRecipesById(int recipesId,long phone)
         {
             Result result = new Result()
             {
@@ -220,7 +221,7 @@
                 IRelationShareInfoCache relationservice = ServiceObjectContainer.Get<IRelationShareInfoCache>();
                 //删除食谱绑定关系
                 bool cannext = false;
-                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(recipesId.ToString(), 0).Satifasy());
+                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(recipesId.ToString(),phone, 0).Satifasy());
 
                 if (cannext)
                 {
@@ -240,8 +241,8 @@
                 {
                     DBConnectionManager.Instance.Writer.Commit();
 
-                    
-
+                    relationservice.RemoveRelationShareByRecipes(recipesId, phone);
+                    recipesservice.SetRecipesEnable(recipesId, false);
 
                 }
 
@@ -258,7 +259,11 @@
 
             return result;
         }
-
+        /// <summary>
+        /// 移除用户的所有食谱信息
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         public Result RemoveRecipesByPhone(long phone)
         {
             Result result = new Result()
@@ -273,9 +278,13 @@
                 {
                     throw new ArgumentNullException("删除食谱,参数非法");
                 }
+                //食谱缓存服务
+                IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
+                IRelationShareInfoCache relationservice = ServiceObjectContainer.Get<IRelationShareInfoCache>();
+
                 //删除食谱绑定关系
                 bool cannext = false;
-                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication(phone.ToString(), 2).Satifasy());
+                cannext = DBConnectionManager.Instance.Writer.Update(new RelationShareDeleteSpefication("",phone, 2).Satifasy());
 
                 if (cannext)
                 {
@@ -283,8 +292,6 @@
                     //修改食谱信息为禁用
                     cannext = DBConnectionManager.Instance.Writer.Update(new RecipesDeleteSpefication(phone.ToString(), 1).Satifasy());
                 }
-
-
                 if (!cannext)
                 {
                     DBConnectionManager.Instance.Writer.Rollback();
@@ -294,9 +301,10 @@
                 else
                 {
                     DBConnectionManager.Instance.Writer.Commit();
+
+                    relationservice.RemoveRelationShareByPhone(phone);
+                    recipesservice.SetRecipesEnable(phone, false);
                 }
-
-
             }
             catch (Exception ex)
             {

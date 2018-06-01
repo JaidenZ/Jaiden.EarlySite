@@ -12,7 +12,27 @@
     /// </summary>
     public partial class RelationShareInfoCache : IRelationShareInfoCache
     {
+        /// <summary>
+        /// 根据食谱编号 手机号移除缓存关系
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        bool IRelationShareInfoCache.RemoveRelationShareByRecipes(int recipesId, long phone)
+        {
+            if(recipesId == 0 ||  phone == 0)
+            {
+                throw new ArgumentNullException("recipesid or phone can not be zero");
+            }
 
+            bool result = false;
+            string key = string.Format("DB_RS_{0}_*_{1}", recipesId, phone);
+            if (Session.Current.Contains(key))
+            {
+                result = Session.Current.Remove(key);
+            }
+            return result;
+        }
     }
 
 

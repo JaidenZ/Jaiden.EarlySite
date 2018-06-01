@@ -47,6 +47,11 @@
         /// </summary>
         public bool IsPrivate { get; set; }
 
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool Enable { get; set; }
+
         public string GetKeyName()
         {
             //DB_RI_食谱编号_手机号

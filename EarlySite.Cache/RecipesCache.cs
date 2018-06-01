@@ -41,11 +41,38 @@
             }
             if(updateinfo != null)
             {
-                updateinfo.
+                updateinfo.Enable = enable;
+                result = Session.Current.Set(updateinfo.GetKeyName(), updateinfo);
             }
-
-
             return result;
+        }
+
+
+        /// <summary>
+        /// 设置食谱禁用(设置当前用户全部食谱)
+        /// </summary>
+        /// <param name="phone"></param>
+        public void SetRecipesEnable(long phone,bool enable)
+        {
+            if (phone == 0)
+            {
+                throw new ArgumentNullException("phone can not be zero");
+            }
+            string key = string.Format("DB_RI_*_{0}", phone);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                RecipesInfo updateinfo = null;
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    updateinfo = Session.Current.Get<RecipesInfo>(keys[i]);
+                }
+                if (updateinfo != null)
+                {
+                    updateinfo.Enable = enable;
+                    Session.Current.Set(updateinfo.GetKeyName(), updateinfo);
+                }
+            }
         }
 
         /// <summary>

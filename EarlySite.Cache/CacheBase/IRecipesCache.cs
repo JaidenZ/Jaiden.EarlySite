@@ -41,6 +41,11 @@
         /// <returns></returns>
         bool SetRecipesEnable(int recipesId, bool enable);
 
-
+        /// <summary>
+        /// 设置食谱禁用(设置当前用户全部食谱)
+        /// </summary>
+        /// <param name="phone"></param>
+        ///  <param name="enable"></param>
+        void SetRecipesEnable(long phone, bool enable);
     }
 }

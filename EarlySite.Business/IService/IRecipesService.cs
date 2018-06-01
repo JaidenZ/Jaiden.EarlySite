@@ -58,8 +58,9 @@
         /// 根据食谱编号删除食谱信息
         /// </summary>
         /// <param name="recipesId">食谱编号</param>
+        /// <param name="phone">手机编号</param>
         /// <returns></returns>
-        Result RemoveRecipesById(int recipesId);
+        Result RemoveRecipesById(int recipesId,long phone);
 
         /// <summary>
         /// 根据手机号删除用户所有食谱信息
