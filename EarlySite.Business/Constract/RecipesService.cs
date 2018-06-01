@@ -385,9 +385,11 @@
             {
                 Status = true
             };
-            pagelistresult.Data = new PageList<Recipes>();
-            pagelistresult.Data.PageIndex = param.PageIndex;
-            pagelistresult.Data.PageNumer = param.PageNumer;
+            pagelistresult.Data = new PageList<Recipes>
+            {
+                PageIndex = param.PageIndex,
+                PageNumer = param.PageNumer
+            };
             param.SearchCode = "";
             param.SearchType = 0;
 

@@ -177,9 +177,11 @@
             param.SearchType = 1;
             param.SearchCode = shopName;
 
-            pagelistresult.Data = new PageList<Shop>();
-            pagelistresult.Data.PageIndex = param.PageIndex;
-            pagelistresult.Data.PageNumer = param.PageNumer;
+            pagelistresult.Data = new PageList<Shop>()
+            {
+                PageIndex = param.PageIndex,
+                PageNumer = param.PageNumer
+            };
 
 
             try
@@ -280,10 +282,12 @@
 
             param.SearchType = 0;
             param.SearchCode = "";
-            pagelistresult.Data = new PageList<Shop>();
-            pagelistresult.Data.PageIndex = param.PageIndex;
-            pagelistresult.Data.PageNumer = param.PageNumer;
-            
+            pagelistresult.Data = new PageList<Shop>
+            {
+                PageIndex = param.PageIndex,
+                PageNumer = param.PageNumer
+            };
+
 
             try
             {

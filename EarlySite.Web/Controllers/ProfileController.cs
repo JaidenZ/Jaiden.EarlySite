@@ -52,8 +52,8 @@
         [HttpPost]
         public JsonResult ChangeAccountInfo(Account account)
         {
-
-            return null;
+            Result result = ServiceObjectContainer.Get<IAccountService>().UpdateAccountInfo(account);
+            return Json(result);
         }
 
 
