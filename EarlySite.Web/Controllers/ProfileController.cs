@@ -40,10 +40,16 @@
         public ActionResult Setting(long phone)
         {
             //获取用户数据
-            ViewBag.Account = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone).Data;
-            return View();
-        }
+            Account account = null;
 
+            Result<Account> result = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone);
+            if (result.Status)
+            {
+                account = result.Data;
+            }
+            return View(account);
+        }
+        
         /// <summary>
         /// 改变账户信息
         /// </summary>
