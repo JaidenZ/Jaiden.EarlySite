@@ -138,6 +138,7 @@
 
                 //1.检查是否已经登录
                 IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
+                IAccountInfoCache accountservice = ServiceObjectContainer.Get<IAccountInfoCache>();
 
                 string phonekey = string.Format("OnlineAI_{0}_*", signInCode);
                 string emailkey = string.Format("OnlineAI_*_{0}", signInCode);
@@ -162,7 +163,7 @@
 
                         //保存到缓存
                         service.SaveInfo(inforesult[0].Copy<OnlineAccountInfo>());
-
+                        accountservice.SaveInfo(inforesult[0]);
                     }
                     else
                     {
@@ -502,6 +503,10 @@
                     //更新缓存
                     IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
                     service.SaveInfo(info);
+
+                    IOnlineAccountCache onlineservice = ServiceObjectContainer.Get<IOnlineAccountCache>();
+                    onlineservice.SaveInfo(info.Copy<OnlineAccountInfo>());
+
                 }
             }
             catch (Exception ex)
@@ -536,12 +541,15 @@
                 {
                     //更新缓存
                     IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
+                    IOnlineAccountCache onlineservice = ServiceObjectContainer.Get<IOnlineAccountCache>();
+
                     AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
                     if(accountcache != null)
                     {
                         accountcache.BackCorver = backCoverbase64str;
                         //保存
                         service.SaveInfo(accountcache);
+                        onlineservice.SaveInfo(accountcache.Copy<OnlineAccountInfo>());
                     }
                 }
             }
@@ -577,12 +585,15 @@
                 {
                     //更新缓存
                     IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
+                    IOnlineAccountCache onlineservice = ServiceObjectContainer.Get<IOnlineAccountCache>();
+
                     AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", account));
                     if (accountcache != null)
                     {
                         accountcache.Avator = headBase64str;
                         //保存
                         service.SaveInfo(accountcache);
+                        onlineservice.SaveInfo(accountcache.Copy<OnlineAccountInfo>());
                     }
                 }
             }
@@ -615,7 +626,7 @@
             try
             {
                 IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
-                AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}", phone));
+                AccountInfo accountcache = service.SearchInfoByKey(string.Format("DB_AI_{0}_*", phone));
 
                 if(accountcache == null)
                 {

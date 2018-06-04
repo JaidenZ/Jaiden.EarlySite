@@ -62,7 +62,7 @@
             if (single)
                 writer.Write((sbyte)len);
             else
-                writer.Write((ushort)len);
+                writer.Write((UInt32)len);//writer.Write((ushort)len);
         }
 
         private static bool AddStringToStream(Type type, string value, BinaryWriter writer, bool single)
@@ -211,7 +211,8 @@
 
         private static int Len(BinaryReader reader, bool single)
         {
-            return single ? reader.ReadByte() : reader.ReadUInt16();
+            //return single ? reader.ReadByte() : reader.ReadUInt16();
+            return single ? reader.ReadByte() : (int)reader.ReadUInt32();
         }
 
         private static bool Null(int len, bool single)

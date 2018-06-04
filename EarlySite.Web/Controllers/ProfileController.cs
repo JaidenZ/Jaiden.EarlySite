@@ -16,13 +16,14 @@
         public ActionResult Index(long phone)
         {
             //获取用户数据
-            ViewBag.Account = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone).Data;
-            
+            ViewBag.Account = base.CurrentAccount;
+
+            Account viewaccount = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone).Data;
             //获取用户的食谱列表
             Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
             ViewBag.Recipes = recipesresult.Data;
 
-            return View();
+            return View(viewaccount);
         }
 
         /// <summary>
@@ -37,17 +38,10 @@
 
 
         [HttpGet]
-        public ActionResult Setting(long phone)
+        public ActionResult Setting()
         {
-            //获取用户数据
-            Account account = null;
-
-            Result<Account> result = ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone);
-            if (result.Status)
-            {
-                account = result.Data;
-            }
-            return View(account);
+            ViewBag.Account = CurrentAccount;
+            return View(base.CurrentAccount);
         }
         
         /// <summary>

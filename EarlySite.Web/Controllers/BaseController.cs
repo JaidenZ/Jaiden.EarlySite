@@ -26,7 +26,8 @@
             {
 
                 Account account = null;
-
+                if (HttpContext == null)
+                    return null;
                 if(HttpContext.Session["CurrentAccount"] != null)
                 {
                     string phone = HttpContext.Session["CurrentAccount"].ToString();
