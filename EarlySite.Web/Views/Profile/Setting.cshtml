@@ -47,12 +47,48 @@
                                 </div>
                             </div>
 
+                            <div class="ProfileEdit-fields">
+                                <div class="Field">
+                                    <h3 class="Field-label">昵称</h3>
+                                    <div class="Field-content">
+                                        <div>
+                                            <span class="Field-text">@Model.NickName</span>
+                                            <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Field">
+                                    <h3 class="Field-label">性别</h3>
+                                    <div class="Field-content">
+                                        <div>
+                                            <span class="Field-text">
+                                                @(Model.Sex == AccountSex.FeMale ? "女" : "男")
+                                            </span>
+                                            <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
+                                        </div>
 
-                            <div class="ProfileHeader-contentFooter">
-                                <div class="ProfileButtonGroup ProfileHeader-buttons">
-                                    <button class="btn btn-default" type="button">
-                                        <!-- react-text: 11490 -->编辑<!-- /react-text --><!-- react-text: 11491 -->个人<!-- /react-text --><!-- react-text: 11492 -->资料<!-- /react-text -->
-                                    </button>
+                                    </div>
+                                </div>
+                                <div class="Field">
+                                    <h3 class="Field-label">生日</h3>
+                                    <div class="Field-content">
+                                        <div>
+                                            <span class="Field-text">@Model.BirthdayDate.ToString("MM-dd")</span>
+                                            <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="Field">
+                                    <h3 class="Field-label">描述</h3>
+                                    <div class="Field-content">
+                                        <div>
+                                            <span class="Field-text">@Model.Description </span>
+                                            <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -61,5 +97,18 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.Field-modify').hover(function () {
+            $(this).removeClass('Field-modify-hidden');
+        }, function () {
+            $(this).addClass('Field-modify-hidden');
+        });
+
+
+    });
+
+
+</script>

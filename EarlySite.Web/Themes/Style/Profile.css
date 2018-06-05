@@ -295,6 +295,7 @@ html[data-theme=dark] .Profile-createOrgAccount {
 .Profile-createOrgAccountTip {
     text-align: center
 }
+
 .List .EmptyState {
     padding: 70px 0
 }
@@ -762,3 +763,20 @@ html[data-theme=dark] .IconGraf-icon {
     fill: #606a80
 }
 
+.ProfileEdit-fields {
+    clear: both;
+}
+
+.Field {
+    padding: 30px 0;
+    border-bottom: 1px solid #ebebeb
+}
+
+.Field-label {
+    position: absolute;
+    font-size: 15px;
+    font-weight: 600;
+    font-synthesis: style;
+    line-height: 36px;
+    color: #444
+}
