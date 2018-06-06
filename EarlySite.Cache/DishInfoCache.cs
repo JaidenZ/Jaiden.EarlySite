@@ -65,7 +65,8 @@
                     if(dish != null)
                     {
                         dish.ShopName = name;
-
+                        //移除之前的
+                        Session.Current.Remove(keys[i]);
                         Session.Current.Set(dish.GetKeyName(), dish);
                         Session.Current.Expire(dish.GetKeyName(), ExpireTime);
                     }

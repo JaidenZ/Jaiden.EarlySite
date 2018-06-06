@@ -40,7 +40,7 @@
                         <div class="ProfileHeader-content">
                             <div class="ProfileHeader-contentHead">
                                 <h1 class="ProfileHeader-title">
-                                    <span class="ProfileHeader-name">@(Model != null ? Model.NickName : "")</span>
+                                    <span class="ProfileHeader-name" id="titleNickname">@(Model != null ? Model.NickName : "")</span>
                                 </h1>
                                 <div class="ProfileEdit-expandActions">
                                     <a class="Button Button--plain" type="button" href="@Url.Action("Index", "Profile", new { @phone = Model.Phone })">返回我的主页</a>
@@ -190,35 +190,38 @@
         return info;
     }
 
-
+    /**
+     *修改昵称
+     */
     function changeNickName() {
         var info = getModel();
         var editname = $('#editnickname').val();
         info.NickName = editname;
-
-        sendToUpdate(info);
-    }
-
-
-
-    function sendToUpdate(info) {
+        
         $.ajax({
             type: "POST",
             dataType: "json",
             url: '@Url.Action("ChangeAccountInfo", "Profile")',
             data: {account : info},
             success: function (result) {
-
-                console.log(result);
-
+                if (result.Status) {
+                    var showedit = $('#editnickname').parent().prev();
+                    showedit.children("span").html(editname);
+                    showedit.show();
+                    $('#editnickname').parent().addClass('Field-modify-hidden');
+                    $('#titleNickname').html(editname);
+                }
             },
             error: function (error) {
-
                 alert("Ajax send error");
             }
-
-
         });
+    }
+
+
+
+    function sendToUpdate(info) {
+
 
 
     }

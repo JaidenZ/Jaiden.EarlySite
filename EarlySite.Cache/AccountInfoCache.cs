@@ -90,6 +90,9 @@
                 infocache.Description = account.Description;
                 infocache.BirthdayDate = account.BirthdayDate;
 
+                //移除之前的
+                Session.Current.Remove(list[0]);
+
                 //保存
                 Session.Current.Set(infocache.GetKeyName(), infocache);
                 Session.Current.Expire(infocache.GetKeyName(), ExpireTime);

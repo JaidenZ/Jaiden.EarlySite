@@ -42,6 +42,8 @@
             if(updateinfo != null)
             {
                 updateinfo.Enable = enable;
+                //移除之前的
+                Session.Current.Remove(keys[0]);
                 result = Session.Current.Set(updateinfo.GetKeyName(), updateinfo);
             }
             return result;
