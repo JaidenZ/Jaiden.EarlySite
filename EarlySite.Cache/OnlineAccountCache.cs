@@ -12,7 +12,35 @@
     /// </summary>
     public partial class OnlineAccountCache : IOnlineAccountCache
     {
+        
+        /// <summary>
+        /// 更新在线账户信息缓存
+        /// </summary>
+        /// <param name="online"></param>
+        void IOnlineAccountCache.UpdateOnlineAccount(OnlineAccountInfo online)
+        {
+            if (online == null)
+            {
+                throw new ArgumentNullException("onlinecache info can not be null");
+            }
+            //从缓存中拿数据
+            string key = string.Format("OnlineAI_{0}_*", online.Phone);
+            IList<string> list = Session.Current.ScanAllKeys(key);
+            if (list != null && list.Count > 0)
+            {
+                OnlineAccountInfo infocache = Session.Current.Get<OnlineAccountInfo>(list[0]);
 
+                //修改数据
+                infocache.NickName = online.NickName;
+                infocache.Sex = online.Sex;
+                infocache.Description = online.Description;
+                infocache.BirthdayDate = online.BirthdayDate;
+
+                //保存
+                Session.Current.Set(infocache.GetKeyName(), infocache);
+                Session.Current.Expire(infocache.GetKeyName(), ExpireTime);
+            }
+        }
     }
 
     /// <summary>

@@ -500,12 +500,14 @@
 
                 if (result.Status)
                 {
+                    DBConnectionManager.Instance.Writer.Commit();
+
                     //更新缓存
                     IAccountInfoCache service = ServiceObjectContainer.Get<IAccountInfoCache>();
-                    service.SaveInfo(info);
+                    service.UpdateAccount(info);
 
                     IOnlineAccountCache onlineservice = ServiceObjectContainer.Get<IOnlineAccountCache>();
-                    onlineservice.SaveInfo(info.Copy<OnlineAccountInfo>());
+                    onlineservice.UpdateOnlineAccount(info.Copy<OnlineAccountInfo>());
 
                 }
             }

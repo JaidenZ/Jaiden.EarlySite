@@ -56,8 +56,8 @@
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
                                         <div class="form-inline Field-modify-hidden">
-                                            <input class="form-control" type="text" value="@Model.NickName" />
-                                            <button class="btn btn-primary">确认</button>
+                                            <input id="editnickname" class="form-control" type="text" value="@Model.NickName" />
+                                            <button class="btn btn-primary" onclick="changeNickName()">确认</button>
                                             <button class="btn btn-default Field-edit-cancle">取消</button>
                                         </div>
                                     </div>
@@ -70,13 +70,18 @@
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
                                         <div class="form-inline Field-modify-hidden">
-                                            @{ 
-                                                var malecheck = Model.Sex == AccountSex.Male ? "checked" : "unchecked";
-                                                var femalecheck = Model.Sex == AccountSex.FeMale ? "checked" : "unchecked";
+                                            @{
+                                                if (Model.Sex == AccountSex.Male)
+                                                {
+                                                    <input type="radio" name="sex" checked="checked" value="@AccountSex.Male.GetHashCode()" /><span>男</span>
+                                                    <input type = "radio" name = "sex" value = "@AccountSex.FeMale.GetHashCode()" /><span>女</span>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" name="sex" value="@AccountSex.Male.GetHashCode()" /><span>男</span>
+                                                    <input type = "radio"  name = "sex" checked="checked" value = "@AccountSex.FeMale.GetHashCode()" /><span>女</span>
+                                                }
                                             }
-
-                                            <input type="radio" name="sex" checked="@malecheck" value="@AccountSex.Male.GetHashCode()" />男
-                                            <input type="radio" name="sex" checked="@femalecheck"value="@AccountSex.FeMale.GetHashCode()" />女
                                             <button class="btn btn-primary">确认</button>
                                             <button class="btn btn-default Field-edit-cancle">取消</button>
                                         </div>
@@ -100,7 +105,7 @@
                                     </div>
 
                                 </div>
-                                <div class="Field"  style="height:194px">
+                                <div class="Field" style="height:194px">
                                     <h3 class="Field-label">描述</h3>
                                     <div class="Field-content">
                                         <div>
@@ -172,6 +177,51 @@
 
     });
 
+    function getModel() {
+        var info = {};
+        info.NickName = '@Model.NickName';
+        info.Sex = @Model.Sex.GetHashCode();
+        info.Description ='@Model.Description';
+        info.BirthdayDate = '@Model.BirthdayDate.ToString("yyyy-MM-dd")';
+        info.CreatDate = '@Model.CreatDate.ToString("yyyy-MM-dd")';
+        info.Phone = @Model.Phone;
+        info.Email = '@Model.Email';
+
+        return info;
+    }
+
+
+    function changeNickName() {
+        var info = getModel();
+        var editname = $('#editnickname').val();
+        info.NickName = editname;
+
+        sendToUpdate(info);
+    }
+
+
+
+    function sendToUpdate(info) {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '@Url.Action("ChangeAccountInfo", "Profile")',
+            data: {account : info},
+            success: function (result) {
+
+                console.log(result);
+
+            },
+            error: function (error) {
+
+                alert("Ajax send error");
+            }
+
+
+        });
+
+
+    }
 
 
 </script>

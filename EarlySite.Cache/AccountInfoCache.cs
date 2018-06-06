@@ -66,6 +66,35 @@
 
             return false;
         }
+
+        /// <summary>
+        /// 更新账户信息缓存
+        /// </summary>
+        /// <param name="account"></param>
+        void IAccountInfoCache.UpdateAccount(AccountInfo account)
+        {
+            if(account == null)
+            {
+                throw new ArgumentNullException("account info can not be null");
+            }
+            //从缓存中拿数据
+            string key = string.Format("DB_AI_{0}_*", account.Phone);
+            IList<string> list = Session.Current.ScanAllKeys(key);
+            if (list != null && list.Count > 0)
+            {
+                AccountInfo infocache = Session.Current.Get<AccountInfo>(list[0]);
+
+                //修改数据
+                infocache.NickName = account.NickName;
+                infocache.Sex = account.Sex;
+                infocache.Description = account.Description;
+                infocache.BirthdayDate = account.BirthdayDate;
+
+                //保存
+                Session.Current.Set(infocache.GetKeyName(), infocache);
+                Session.Current.Expire(infocache.GetKeyName(), ExpireTime);
+            }
+        }
     }
 
 

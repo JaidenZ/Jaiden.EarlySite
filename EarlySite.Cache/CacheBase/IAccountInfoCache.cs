@@ -20,5 +20,12 @@
         /// <returns></returns>
         bool CheckMailExists(string mail);
 
+        /// <summary>
+        /// 更新账户信息缓存
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        void UpdateAccount(AccountInfo account);
+
     }
 }
