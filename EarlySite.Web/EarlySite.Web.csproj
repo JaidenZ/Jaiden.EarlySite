@@ -164,6 +164,8 @@
     <Content Include="Pictures\pic-09.jpg" />
     <Content Include="Pictures\pic-10.jpg" />
     <Content Include="Pictures\pic-11.jpg" />
+    <Content Include="Themes\expandAssembly\bootstrap-datetimepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Themes\expandAssembly\bootstrap-datetimepicker\bootstrap-datetimepicker.zh-CN.js" />
     <Content Include="Themes\expandAssembly\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Themes\expandAssembly\bootstrap-select\defaults-zh_CN.min.js" />
     <Content Include="Themes\expandAssembly\jquery.browser.js" />
@@ -182,6 +184,7 @@
     <Content Include="Themes\Scripts\jquery-ui-loading.js" />
     <Content Include="Themes\Style\AccountForget.css" />
     <Content Include="Themes\Style\AccountLogin.css" />
+    <Content Include="Themes\Style\bootstrap-datetimepicker.min.css" />
     <Content Include="Themes\Style\bootstrap-select.min.css" />
     <Content Include="Themes\Style\bootstrap.css" />
     <Content Include="Themes\Style\bootstrap.min.css" />

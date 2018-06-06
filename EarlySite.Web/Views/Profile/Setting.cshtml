@@ -22,7 +22,7 @@
                                 编辑封面图片
                             </button>
                             <div class="UserCover">
-                                <img class="UserCover-image" src="data:image/png;base64,@(Model != null ? Model.BackCorver:"")" alt="用户封面" , width="1000" />
+                                <img class="UserCover-image" src="data:image/png;base64,@(Model != null ? Model.BackCorver : "")" alt="用户封面" , width="1000" />
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <!--左边头像-->
                         <div class="ProfileHeader-avatar">
                             <div class="UserAvatar">
-                                <img class="Avatar UserAvatar-inner" src="data:image/png;base64,@(Model != null?Model.Avator:"")" width="160" height="160" />
+                                <img class="Avatar UserAvatar-inner" src="data:image/png;base64,@(Model != null ? Model.Avator : "")" width="160" height="160" />
                             </div>
                         </div>
 
@@ -43,7 +43,7 @@
                                     <span class="ProfileHeader-name">@(Model != null ? Model.NickName : "")</span>
                                 </h1>
                                 <div class="ProfileEdit-expandActions">
-                                    <a class="Button Button--plain" type="button" href="@Url.Action("Index","Profile",new { @phone = Model.Phone})">返回我的主页</a>
+                                    <a class="Button Button--plain" type="button" href="@Url.Action("Index", "Profile", new { @phone = Model.Phone })">返回我的主页</a>
                                 </div>
                             </div>
 
@@ -55,28 +55,43 @@
                                             <span class="Field-text">@Model.NickName</span>
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
+                                        <div class="form-inline Field-modify-hidden">
+                                            <input class="form-control" type="text" value="@Model.NickName" />
+                                            <button class="btn btn-primary">确认</button>
+                                            <button class="btn btn-default Field-edit-cancle">取消</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="Field">
                                     <h3 class="Field-label">性别</h3>
                                     <div class="Field-content">
                                         <div>
-                                            <span class="Field-text">
-                                                @(Model.Sex == AccountSex.FeMale ? "女" : "男")
-                                            </span>
+                                            <span class="Field-text">@(Model.Sex == AccountSex.FeMale ? "女" : "男")</span>
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
-
+                                        <div class="form-inline Field-modify-hidden">
+                                            <input type="radio" name="sex" value="@AccountSex.Male.GetHashCode()" />男
+                                            <input type="radio" name="sex" value="@AccountSex.FeMale.GetHashCode()" />女
+                                            <button class="btn btn-primary">确认</button>
+                                            <button class="btn btn-default Field-edit-cancle">取消</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="Field">
                                     <h3 class="Field-label">生日</h3>
                                     <div class="Field-content">
                                         <div>
-                                            <span class="Field-text">@Model.BirthdayDate.ToString("MM-dd")</span>
+                                            <span class="Field-text">@Model.BirthdayDate.ToString("yyyy-MM-dd")</span>
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
-
+                                        <div class="form-inline Field-modify-hidden">
+                                            <div class="input-group date form_date col-md-5" data-date="@Model.BirthdayDate.ToString("yyyy-MM-dd")" data-date-format="yyyy-mm-dd">
+                                                <input class="form-control" size="16" type="text" value="@Model.BirthdayDate.ToString("yyyy-MM-dd")" readonly>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                            </div>
+                                            <button class="btn btn-primary">确认</button>
+                                            <button class="btn btn-default Field-edit-cancle">取消</button>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -84,8 +99,13 @@
                                     <h3 class="Field-label">描述</h3>
                                     <div class="Field-content">
                                         <div>
-                                            <span class="Field-text">@Model.Description </span>
+                                            <span class="Field-text">@Model.Description 111</span>
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
+                                        </div>
+                                        <div class="Field-modify-hidden">
+                                            <textarea class="DescriptionField-input TextArea" rows="3">@Model.Description</textarea>
+                                            <button class="btn btn-primary">确认</button>
+                                            <button class="btn btn-default Field-edit-cancle">取消</button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,6 +125,32 @@
         }, function () {
             $(this).addClass('Field-modify-hidden');
         });
+
+        $('.Field-modify').click(function () {
+            $(this).parent().hide();
+            $(this).parent().next().removeClass('Field-modify-hidden');
+        });
+
+        $('.Field-edit-cancle').click(function () {
+            $(this).parent().addClass('Field-modify-hidden');
+            $(this).parent().prev().show();
+
+
+        });
+
+
+        $('.date').datetimepicker({
+            language: 'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            minView: 2,
+            showMeridian: 1
+        });
+
     });
 
 

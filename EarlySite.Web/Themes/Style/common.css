@@ -313,6 +313,28 @@ a {
     opacity: 0
 }
 
+.DescriptionField-input {
+    width: 540px
+}
+
+.TextArea {
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: inherit;
+    line-height: 26px;
+    background: #f6f6f6;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    outline: none;
+    box-sizing: border-box;
+    transition: background .2s;
+    resize: none
+}
+
+    .TextArea:focus {
+        background: #fff
+    }
 
 
 .Button {
