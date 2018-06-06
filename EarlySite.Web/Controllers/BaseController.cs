@@ -28,18 +28,18 @@
                 Account account = null;
                 if (HttpContext == null)
                     return null;
-                //if(HttpContext.Session["CurrentAccount"] != null)
-                //{
-                //    string phone = HttpContext.Session["CurrentAccount"].ToString();
-                //    IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
-                //    OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}_*",phone));
-                //    if(accountinfo != null)
-                //    {
-                //        account = accountinfo.Copy<Account>();
-                //    }
-                //}
+                if (HttpContext.Session["CurrentAccount"] != null)
+                {
+                    string phone = HttpContext.Session["CurrentAccount"].ToString();
+                    IOnlineAccountCache service = ServiceObjectContainer.Get<IOnlineAccountCache>();
+                    OnlineAccountInfo accountinfo = service.SearchInfoByKey(string.Format("OnlineAI_{0}_*", phone));
+                    if (accountinfo != null)
+                    {
+                        account = accountinfo.Copy<Account>();
+                    }
+                }
 
-                //return account;
+                return account;
 
                 return new Account()
                 {
