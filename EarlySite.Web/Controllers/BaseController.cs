@@ -45,7 +45,7 @@
                 {
                     NickName = "测试用户",
                     Phone = 18502850589,
-                    Sex = Model.Enum.AccountSex.Male,
+                    Sex = Model.Enum.AccountSex.Male.GetHashCode(),
                     Email = "272665534@qq.com",
                     BirthdayDate = DateTime.Now,
                     CreatDate = Convert.ToDateTime("1900-01-01"),

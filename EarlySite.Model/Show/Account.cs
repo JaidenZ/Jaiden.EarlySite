@@ -47,7 +47,7 @@
         /// <summary>
         /// 性别
         /// </summary>
-        public AccountSex Sex { get; set; }
+        public int Sex { get; set; }
 
         /// <summary>
         /// 个人描述

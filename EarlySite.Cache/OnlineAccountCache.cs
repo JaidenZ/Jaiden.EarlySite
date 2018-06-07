@@ -36,7 +36,7 @@
                 infocache.Description = online.Description;
                 infocache.BirthdayDate = online.BirthdayDate;
                 //移除之前的
-                Session.Current.Remove(list[0]);
+                bool removed = Session.Current.Remove(list[0]);
 
 
                 //保存

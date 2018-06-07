@@ -51,12 +51,12 @@
         /// <summary>
         /// 账户认证状态
         /// </summary>
-        public AccountRequiredStatus RequiredStatus { get; set; }
+        public int RequiredStatus { get; set; }
 
         /// <summary>
         /// 性别
         /// </summary>
-        public AccountSex Sex { get; set; }
+        public int Sex { get; set; }
 
         /// <summary>
         /// 个人描述
