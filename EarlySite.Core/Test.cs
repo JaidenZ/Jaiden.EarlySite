@@ -13,7 +13,7 @@ namespace EarlySite.Core
             //}
 
             ////
-            string path = @"D://TestCode//Jaiden.EarlySite//EarlySite.Web//Themes//Images//profileback.jpg";
+            string path = @"D://temp//Tim.jpg";
 
             string base64 = Base64Image.GetBase64FromImage(path);
 

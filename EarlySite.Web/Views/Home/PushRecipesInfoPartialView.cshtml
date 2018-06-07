@@ -16,7 +16,7 @@
                         <div class="boxlist-item_box">
                             <div class="boxlist-cover">
                                 <a class="boxlist-a" href="javascript:alert(1)">
-                                    <img class="boxlist-pic" src="~/Pictures/DontLike.jpg" alt="xxx" />
+                                    <img class="boxlist-pic" src="data:image/png;base64,@recipe.Cover" alt="xxx" />
                                 </a>
                             </div>
                             <div class="boxlist-title">
@@ -27,7 +27,7 @@
                             <div class="boxlist-user" title="@recipe.Phone">
                                 <a class="boxlist-a" href="">@recipe.Phone</a>
                             </div>
-                            <div class="boxlist-other">@recipe.UpdateDate</div>
+                            <div class="boxlist-other">@recipe.UpdateDate.ToString("yyyy-MM-dd")</div>
                         </div>
                     </li>
                 }
