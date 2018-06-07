@@ -4,33 +4,34 @@
 @model PageList<Dish>
 
 <div class="row warrper-body-list">
+
     @{
         if (Model != null && Model.List != null && Model.List.Count() > 0)
         {
-
-            for (int i = 0; i < Model.List.Count(); i++)
-            {
-                Dish dish = Model.List[i];
-                <div class="col-sm-3 warrper-body-list-item">
-                    <div class="warrper-body-list-item-pic">
-                        <a class="warrper-body-list-item-mask" href="" title=""></a>
-                        <img src="~/Pictures/pic-10.jpg" />
-                    </div>
-                    <div class="warrper-body-list-item-text">
-                        <a class="efont" href="">@dish.Name</a>
-                    </div>
-                    <div class="efont warrper-body-list-item-bottom">
-                        <span class="left m-right">
-                            <i class="glyphicon glyphicon-heart"></i>
-                            0
-                        </span>
-                        <span class="left">
-                            <i class="glyphicon glyphicon-briefcase"></i>
-                            @dish.ShopName
-                        </span>
-                    </div>
-                </div>
-            }
+            <ul class="boxlist">
+                @for (int i = 0; i < Model.List.Count(); i++)
+                {
+                    Dish dish = Model.List[i];
+                    <li class="boxlist-item">
+                        <div class="boxlist-item_box">
+                            <div class="boxlist-cover">
+                                <a class="boxlist-a" href="javascript:alert(1)">
+                                    <img class="boxlist-pic" src="~/Pictures/pic-06.jpg" alt="xxx" />
+                                </a>
+                            </div>
+                            <div class="boxlist-title">
+                                <span class="boxlist-title-txt">
+                                    <a class="boxlist-a" href="javascript:alert(1)" title="@dish.Name">@dish.Name</a>
+                                </span>
+                            </div>
+                            <div class="boxlist-user" title="@dish.ShopName">
+                                <a class="boxlist-a" href="">@dish.ShopName</a>
+                            </div>
+                            <div class="boxlist-other">@dish.UpdateDate</div>
+                        </div>
+                    </li>
+                }
+            </ul>
         }
         else
         {
@@ -39,4 +40,5 @@
             </h4>
         }
     }
+
 </div>

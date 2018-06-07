@@ -161,6 +161,23 @@ textarea {
     margin-bottom: 15px
 }
 
+    .boxlist-cover:hover .boxlist-pic {
+        -webkit-transform: scale(1.07) translateZ(0);
+        -webkit-transition: -webkit-transform .75s cubic-bezier(0,1,.75,1)
+    }
+
+@supports (transform:scale(1)) {
+    .boxlist-pic {
+        transform: scale(1) translateZ(0);
+        transition: transform .75s
+    }
+
+    .boxlist-cover:hover .boxlist-pic {
+        transform: scale(1.07) translateZ(0);
+        transition: transform .75s cubic-bezier(0,1,.75,1)
+    }
+}
+
 .boxlist-pic {
     position: absolute;
     top: 0;

@@ -3,39 +3,42 @@
 
 @model PageList<Recipes>
 <div class="row warrper-body-list">
-    @{
-        if (Model != null && Model.List != null && Model.List.Count > 0)
-        {
-            for (int i = 0; i < Model.List.Count; i++)
-            {
-                Recipes recipe = Model.List[i];
-                <div class="col-sm-3 warrper-body-list-item">
-                    <div class="warrper-body-list-item-pic">
-                        <a class="warrper-body-list-item-mask" href="" title=""></a>
-                        <img src="~/Pictures/pic-08.jpg" />
-                    </div>
-                    <div class="warrper-body-list-item-text">
-                        <a class="efont" href="">@recipe.Name</a>
-                    </div>
-                    <div class="efont warrper-body-list-item-bottom">
-                        <span class="left m-right">
-                            <i class="glyphicon glyphicon-cutlery"></i>
-                            @recipe.Description
-                        </span>
-                        <span class="left">
-                            <i class="glyphicon glyphicon-phone"></i>
-                            @recipe.Phone
-                        </span>
-                    </div>
-                </div>
-            }
+    <ul class="boxlist">
 
+        @{
+            if (Model != null && Model.List != null && Model.List.Count > 0)
+            {
+                for (int i = 0; i < Model.List.Count; i++)
+                {
+                    Recipes recipe = Model.List[i];
+
+                    <li class="boxlist-item">
+                        <div class="boxlist-item_box">
+                            <div class="boxlist-cover">
+                                <a class="boxlist-a" href="javascript:alert(1)">
+                                    <img class="boxlist-pic" src="~/Pictures/DontLike.jpg" alt="xxx" />
+                                </a>
+                            </div>
+                            <div class="boxlist-title">
+                                <span class="boxlist-title-txt">
+                                    <a class="boxlist-a" href="javascript:alert(1)" title="@recipe.Name">@recipe.Name</a>
+                                </span>
+                            </div>
+                            <div class="boxlist-user" title="@recipe.Phone">
+                                <a class="boxlist-a" href="">@recipe.Phone</a>
+                            </div>
+                            <div class="boxlist-other">@recipe.UpdateDate</div>
+                        </div>
+                    </li>
+                }
+
+            }
+            else
+            {
+                <h4 style="color:#808080">
+                    暂无推荐菜谱
+                </h4>
+            }
         }
-        else
-        {
-            <h4 style="color:#808080">
-                暂无推荐菜谱
-            </h4>
-        }
-    }
+    </ul>
 </div>
