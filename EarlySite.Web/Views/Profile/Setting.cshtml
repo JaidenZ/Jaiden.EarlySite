@@ -74,12 +74,12 @@
                                                 if (Model.Sex == AccountSex.Male.GetHashCode())
                                                 {
                                                     <input type="radio" name="sex" checked="checked" value="@AccountSex.Male.GetHashCode()" /><span>男</span>
-                                                    <input type = "radio" name = "sex" value = "@AccountSex.FeMale.GetHashCode()" /><span>女</span>
+                                                    <input type="radio" name="sex" value="@AccountSex.FeMale.GetHashCode()" /><span>女</span>
                                                 }
                                                 else
                                                 {
                                                     <input type="radio" name="sex" value="@AccountSex.Male.GetHashCode()" /><span>男</span>
-                                                    <input type = "radio"  name = "sex" checked="checked" value = "@AccountSex.FeMale.GetHashCode()" /><span>女</span>
+                                                    <input type="radio" name="sex" checked="checked" value="@AccountSex.FeMale.GetHashCode()" /><span>女</span>
                                                 }
                                             }
                                             <button class="btn btn-primary" onclick="changeSex()">确认</button>
@@ -96,10 +96,10 @@
                                         </div>
                                         <div class="form-inline Field-modify-hidden">
                                             <div class="input-group date form_date col-md-5" data-date="@Model.BirthdayDate.ToString("yyyy-MM-dd")" data-date-format="yyyy-mm-dd">
-                                                <input class="form-control" size="16" type="text" value="@Model.BirthdayDate.ToString("yyyy-MM-dd")" readonly>
+                                                <input id="editBirthday" class="form-control" size="16" type="text" value="@Model.BirthdayDate.ToString("yyyy-MM-dd")" readonly>
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                                             </div>
-                                            <button class="btn btn-primary">确认</button>
+                                            <button class="btn btn-primary" onclick="changeBirthday()">确认</button>
                                             <button class="btn btn-default Field-edit-cancle">取消</button>
                                         </div>
                                     </div>
@@ -127,8 +127,8 @@
                                             <button class="Button ModifyButton Field-modify Field-modify-hidden Button--link" type="button">修改</button>
                                         </div>
                                         <div class="Field-modify-hidden">
-                                            <textarea class="DescriptionField-input TextArea" rows="3">@Model.Description</textarea>
-                                            <button class="btn btn-primary">确认</button>
+                                            <textarea id="editDes" class="DescriptionField-input TextArea" rows="3">@Model.Description</textarea>
+                                            <button class="btn btn-primary" onclick="changeDes()">确认</button>
                                             <button class="btn btn-default Field-edit-cancle">取消</button>
                                         </div>
                                     </div>
@@ -177,11 +177,14 @@
 
     });
 
+    /**
+     * 获取模型
+     */
     function getModel() {
         var info = {};
         info.NickName = '@Model.NickName';
         info.Sex = @Model.Sex.GetHashCode();
-        info.Description ='@Model.Description';
+        info.Description ="@Model.Description";
         info.BirthdayDate = '@Model.BirthdayDate.ToString("yyyy-MM-dd")';
         info.CreatDate = '@Model.CreatDate.ToString("yyyy-MM-dd")';
         info.Phone = @Model.Phone;
@@ -190,8 +193,9 @@
         return info;
     }
 
+
     /**
-     *修改昵称
+     * 修改昵称
      */
     function changeNickName() {
         var info = getModel();
@@ -219,13 +223,13 @@
         });
     }
 
+    /**
+     * 修改性别
+     */
     function changeSex() {
         var info = getModel();
         var sexcheced = $("input[name='sex']:checked");
         info.Sex = sexcheced.val();
-
-
-
 
         $.ajax({
             type: "POST",
@@ -248,10 +252,63 @@
                 alert("Ajax send error");
             }
         });
-
-
     }
 
+    /**
+     *修改生日
+     */
+    function changeBirthday() {
+        var info = getModel();
+        var date = $('#editBirthday');
+        info.BirthdayDate = date.val();
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '@Url.Action("ChangeAccountInfo", "Profile")',
+            data: {account : info},
+            success: function (result) {
+                if (result.Status) {
+
+                    var showedit = $('#editBirthday').parent().parent().prev();
+                    showedit.children("span").html(info.BirthdayDate);
+                    showedit.show();
+
+                    $('#editBirthday').parent().parent().addClass('Field-modify-hidden');
+                }
+            },
+            error: function (error) {
+                alert("Ajax send error");
+            }
+        });
+    }
+
+    /**
+     * 修改描述
+     */
+    function changeDes() {
+        var info = getModel();
+        var editdes = $('#editDes').val();
+        info.Description = editdes;
+
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '@Url.Action("ChangeAccountInfo", "Profile")',
+            data: {account : info},
+            success: function (result) {
+                if (result.Status) {
+                    var showedit = $('#editDes').parent().prev();
+                    showedit.children("span").html($('#editDes').val());
+                    showedit.show();
+                    $('#editDes').parent().addClass('Field-modify-hidden');
+                }
+            },
+            error: function (error) {
+                alert("Ajax send error" + error.statusText);
+            }
+        });
+    }
 
 
 </script>
