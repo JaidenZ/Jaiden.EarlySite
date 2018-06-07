@@ -128,8 +128,72 @@ textarea {
     border-bottom: 1px solid #cccbd4;
 }
 
+.boxlist{
+    padding:0px;
+    list-style:none;
+}
+
+.boxlist-item {
+    margin:0;
+    float:left;
+    display:block;
+    width: 25%;
+    padding-bottom: 44px;
+    overflow: hidden;
+    font-size: 14px;
+    vertical-align: top;
+}
+.boxlist-item_box{
+    position:relative;
+    margin-right:20px;/*间距*/
+}
+
+.boxlist-a:hover {
+    color: #db3838;
+}
+
+
+.boxlist-cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-top: 100%;
+    margin-bottom: 15px
+}
+
+.boxlist-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transform: scale(1) translateZ(0);
+    -webkit-transition: -webkit-transform .75s
+}
+.boxlist-title{
+    overflow:hidden;
+}
+.boxlist-title-txt {
+    float: left;
+    max-width: 100%;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 22px;
+    max-height: 44px
+}
+
+.boxlist-user, .boxlist-user a, .boxlist-other {
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 22px
+}
+
+
+
 .warrper-body-list {
-    padding:20px;
+    padding: 20px;
 }
 
 .warrper-body-list-item {

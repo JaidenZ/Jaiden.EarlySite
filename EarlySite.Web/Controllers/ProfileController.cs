@@ -22,7 +22,8 @@
             //获取用户的食谱列表
             Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
             ViewBag.Recipes = recipesresult.Data;
-
+            //获取用户分享的单品列表
+            //ServiceObjectContainer.Get<IDishService>().
             return View(viewaccount);
         }
 

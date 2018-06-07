@@ -152,6 +152,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="ForgetVerificationMail.html" />
+    <Content Include="Pictures\DontLike.jpg" />
     <Content Include="Pictures\pic-00.jpg" />
     <Content Include="Pictures\pic-01.jpg" />
     <Content Include="Pictures\pic-02.jpg" />

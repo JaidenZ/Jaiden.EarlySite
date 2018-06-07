@@ -167,15 +167,9 @@
                 </div>
             </div>
             <div class="row corner">
-                <div class="warrper">
-                    <div class="warrper-header">
-                        <a class="warrper-header-title efont" href="">我的食谱</a>
-                        <span class="warrper-header-more">拥有13本个人食谱</span>
-                    </div>
-                    <div class="warrper-body">
-
-                    </div>
-                </div>
+                @{
+                    Html.RenderPartial("RecipesPatialView", (IList<Recipes>)ViewBag.Recipes);
+                }
             </div>
             <div class="row corner">
                 <div class="warrper">
