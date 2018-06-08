@@ -304,8 +304,6 @@
                 pagelistresult.Status = false;
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetShopPageList() .ShopService"), LogType.ErrorLog);
             }
-
-
             return pagelistresult;
         }
 
