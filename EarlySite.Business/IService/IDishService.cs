@@ -5,6 +5,7 @@
     using Model.Enum;
     using Core.DDD.Service;
     using EarlySite.Business.Filter;
+    using System.Collections.Generic;
 
     /// <summary>
     /// 单品食物服务
@@ -60,5 +61,13 @@
         /// <param name="share"></param>
         /// <returns></returns>
         Result CollectDishInfo(DishCollect collect);
+
+        /// <summary>
+        /// 根据手机号获取分享的单品集合
+        /// </summary>
+        /// <param name="phone">手机号</param>
+        /// <returns></returns>
+        Result<IList<Dish>> GetShareDishList(long phone);
+
     }
 }

@@ -391,9 +391,39 @@
             {
                 result.Status = false;
                 result.Message = "查询单品食物出错:" + ex.Message;
-                result.StatusCode = "SD001";
+                result.StatusCode = "GPD001";
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetPageDishInfo() .DishService"), LogType.ErrorLog);
             }
+
+            return result;
+        }
+
+        /// <summary>
+        /// 根据当前手机号分享的单品信息集合
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        public Result<IList<Dish>> GetShareDishList(long phone)
+        {
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Data = null,
+                Status = true
+            };
+
+            try
+            {
+
+
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询分享单品食物出错:" + ex.Message;
+                result.StatusCode = "GSD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetShareDishList() .DishService"), LogType.ErrorLog);
+            }
+
 
             return result;
         }
