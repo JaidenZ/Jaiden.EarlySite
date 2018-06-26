@@ -151,6 +151,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Themes\Scripts\JToast.js" />
+    <Content Include="Themes\Style\JToast.css" />
     <Content Include="ForgetVerificationMail.html" />
     <Content Include="Pictures\DontLike.jpg" />
     <Content Include="Pictures\pic-00.jpg" />

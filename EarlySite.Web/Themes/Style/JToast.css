@@ -1,0 +1,45 @@
+﻿.Jtoast-wrap {
+    opacity: 0;
+    position: fixed;
+    bottom: 35%;
+    color: #fff;
+    font-size:14px;
+    width: 100%;
+    text-align: center;
+}
+
+.Jtoast-msg {
+    background-color: rgba(0,0,0,0.7);
+    padding: 20px 15px;
+    border-radius: 5px;
+}
+
+.JtoastAnimate {
+    animation: toastKF 2s;
+}
+
+@keyframes toastKF {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+        z-index: 9999
+    }
+
+    50% {
+        opacity: 1;
+        z-index: 9999
+    }
+
+    75% {
+        opacity: 1;
+        z-index: 9999
+    }
+
+    100% {
+        opacity: 0;
+        z-index: 0
+    }
+}

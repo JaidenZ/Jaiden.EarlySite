@@ -24,7 +24,8 @@ namespace EarlySite.Web
             bundles.Add(new ScriptBundle("~/Themes/Scripts").Include(
                       "~/Themes/Scripts/earlysiteCommon.js",
                       "~/Themes/Scripts/amapScript.js",
-                      "~/Themes/Scripts/jquery-ui-loading.js"));
+                      "~/Themes/Scripts/jquery-ui-loading.js",
+                      "~/Themes/Scripts/JToast.js"));
 
 
             bundles.Add(new StyleBundle("~/Themes/Style").Include(
@@ -32,7 +33,8 @@ namespace EarlySite.Web
                       "~/Themes/Style/bootstrap-select.min.css",
                       "~/Themes/Style/bootstrap-datetimepicker.min.css",
                       "~/Themes/Style/site.css",
-                      "~/Themes/Style/common.css"));
+                      "~/Themes/Style/common.css",
+                      "~/Themes/Style/JToast.css"));
         }
     }
 }
