@@ -557,3 +557,41 @@ html[data-theme=dark] .ContentItem-time {
 html[data-theme=dark] .ContentItem-cell > span:first-child {
     color: #606a80
 }
+
+
+
+.QuickButtonSpan{
+    display:-webkit-box;
+    display:-ms-flexbox;
+    display:flex;
+    -webkit-box-pack:justify;
+    -ms-flex-pack:justify;
+    justify-content:space-between;
+    line-height:58px;
+    padding:0 20px;
+}
+.QuickButtonSpan a{
+    text-decoration:none;
+}
+
+.QuickButtonSpan-navItem{
+    display:inline-block;
+    transition:color .2s ease-in;
+    font-size:16px;
+    color:#1a1a1a;
+}
+
+.QuickButtonSpan-navItem .Icon{
+    margin-right:8px;
+}
+
+.QuickButtonSpan-navItem:hover{
+    color:#175199;
+    cursor:pointer;
+}
+
+.QuickButtonSpan-navItem+.QuickButtonSpan-navItem{
+    margin-left:40px;
+}
+
+
