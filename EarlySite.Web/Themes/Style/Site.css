@@ -582,7 +582,7 @@ html[data-theme=dark] .ContentItem-cell > span:first-child {
 }
 
 .QuickButtonSpan-navItem .Icon{
-    margin-right:8px;
+    margin-right:2px;
 }
 
 .QuickButtonSpan-navItem:hover{
