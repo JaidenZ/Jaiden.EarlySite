@@ -8,7 +8,7 @@
             <div class="row corner">
                 <div class="QuickButtonSpan">
                     <div class="QuickButtonSpan-nav">
-                        <a class="QuickButtonSpan-navItem" href="" target="_blank" title="分享单品">
+                        <a class="QuickButtonSpan-navItem" href="javascript:void(0)" onclick="GenerateDish()" title="分享单品">
                             <svg class="Icon" viewBox="0 0 18 18" width="16" height="16" aria-hidden="true" style="height: 16px; width: 16px;">
                                 <title></title>
                                 <g fill="none" fill-rule="evenodd">
@@ -19,7 +19,7 @@
                             </svg>
                             分享单品
                         </a>
-                        <a class="QuickButtonSpan-navItem" href="" target="_blank" title="创建食谱">
+                        <a class="QuickButtonSpan-navItem" href="javascript:void()" target="_blank" title="创建食谱">
                             <svg class="Icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" style="height: 18px; width: 18px;">
                                 <title></title>
                                 <g fill="#8590A6">
@@ -31,6 +31,9 @@
                     </div>
                 </div>
             </div>
+
+            <!--模态弹出框-->
+            <div id="generateDishmodal" class="modal fade col-lg-12" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
             <div class="row corner">
                 <div class="warrper">
@@ -45,16 +48,56 @@
             </div>
         </div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-3 col-sm-offset-1">
             <div class="row col-sm-12">
                 <div class="row corner">
                     右边
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
 </div>
+
+<script>
+
+    $(function () {
+
+        //模态框加载时
+        $('#generateDishmodal').on("loaded.bs.modal", function () {
+            console.log("模态框加载中");
+        });
+
+        //模态框show后
+        $('#generateDishmodal').on("show.bs.modal", function () {
+            console.log("模态框将要展示");
+        });
+
+        //模态框完全展示后
+        $('#generateDishmodal').on("shown.bs.modal", function () {
+            console.log("模态框已展示");
+        });
+
+        //模态框隐藏时
+        $('#generateDishmodal').on("hidden.bs.modal", function () {
+            $(this).removeData('bs.modal');
+            $(this).find('.modal-content').children().remove();
+            console.log("模态框已关闭");
+        });
+    });
+
+
+
+    function GenerateDish() {
+
+        //模态框初始化
+        $('#generateDishmodal').modal({
+            remote: "@Url.Action("GenerateDishShareView", "Component")",
+            keyboard: true,
+            backdrop:"static"
+
+        });
+
+    }
+
+
+</script>

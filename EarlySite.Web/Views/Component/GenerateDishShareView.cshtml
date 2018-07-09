@@ -1,0 +1,63 @@
+﻿@using EarlySite.Model.Enum;
+@{
+    Layout = null;
+}
+
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">分享单品</h4>
+        </div>
+        <div class="modal-body">
+
+
+            <div class="form-group">
+                <!--用餐时间-->
+                <label class="col-sm-2 control-label">用餐时间</label>
+                <div class="col-sm-4">
+                    <select id="stmealtime" class="form-control selectpicker" data-size="5">
+                        @{
+                            foreach (var item in Enum.GetNames(typeof(MealTime)))
+                            {
+                                <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <!--口味类型-->
+                <label class="col-sm-2 control-label">口味类型</label>
+                <div class="col-sm-4">
+                    <select id="stdishtype" class="form-control selectpicker" data-size="5">
+                        @{
+                            foreach (var item in Enum.GetNames(typeof(DishType)))
+                            {
+                                <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+
+
+<script>
+
+    $(function () {
+        var mealtimeval = @(((MealTime)ViewBag.Meal).GetHashCode());
+        $('#stmealtime').selectpicker('val', mealtimeval);
+
+    });
+
+
+
+
+</script>
