@@ -1536,6 +1536,78 @@ html[data-theme=dark] .Popover-content {
         transform: translateX(-8px)
     }
 
+
+.Enditable-picModal-uploader {
+    color:#999;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 220px;
+    border: 2px dashed #ebebeb;
+    border-radius: 10px;
+    cursor: pointer
+}
+.Enditable-picModal-uploader:hover{
+    border-color:#8590a6;
+}
+    .Enditable-picModal-uploader:hover .Zi {
+        fill: #8590a6
+    }
+    .Enditable-picModal-uploader input {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        -ms-filter: 'alpha(opacity=0)';
+        opacity: 0;
+    }
+    .Enditable-picModal-uploader-icon{
+        text-align:center;
+        display:block;
+    }
+    .Enditable-picModal-uploader-icon .Zi{
+        vertical-align:middle;
+        fill:#ebebeb;
+    }
+    .Enditable-picModal-uploader-text{
+        margin-top:10px;
+        font-size:18px;
+        line-height:30px;
+        text-align:center;
+    }
+    .Enditable-picModal-uploader-tip {
+        font-size: 14px;
+        line-height: 30px;
+        text-align: center;
+        color: #8590a6;
+    }
+
+    .UploadpicModal{
+        width:200px;
+        height:200px;
+        margin:0 auto;
+        text-align:center;
+    }
+    .UploadpicModal-img {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .UploadpicModal span{
+        display:inline-block;
+        width:0;
+        height:100%;
+        vertical-align:middle;
+    }
 /**弹出搜索样式结束*/
 
 
