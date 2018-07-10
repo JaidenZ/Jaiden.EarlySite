@@ -25,6 +25,21 @@
             get
             {
 
+#if DEBUG
+                return new Account()
+                {
+                    NickName = "不爱我就拉倒",
+                    Phone = 18502850589,
+                    Sex = Model.Enum.AccountSex.Male.GetHashCode(),
+                    Email = "272665534@qq.com",
+                    BirthdayDate = DateTime.Now,
+                    CreatDate = Convert.ToDateTime("2018-03-08 15:47:05"),
+                    Avator = ConstInfo.DefaultHeadBase64,
+                    BackCorver = ConstInfo.DefaultBackCover
+                };
+#endif
+
+
                 Account account = null;
                 if (HttpContext == null)
                     return null;
@@ -40,18 +55,7 @@
                 }
 
                 return account;
-
-                return new Account()
-                {
-                    NickName = "测试用户",
-                    Phone = 18502850589,
-                    Sex = Model.Enum.AccountSex.Male.GetHashCode(),
-                    Email = "272665534@qq.com",
-                    BirthdayDate = DateTime.Now,
-                    CreatDate = Convert.ToDateTime("1900-01-01"),
-                    Avator = ConstInfo.DefaultHeadBase64,
-                    BackCorver = ConstInfo.DefaultBackCover
-                };
+                
             }
         }
         

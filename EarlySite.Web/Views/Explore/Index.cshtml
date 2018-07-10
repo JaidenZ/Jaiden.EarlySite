@@ -8,7 +8,7 @@
             <div class="row corner">
                 <div class="QuickButtonSpan">
                     <div class="QuickButtonSpan-nav">
-                        <a class="QuickButtonSpan-navItem" href="javascript:void(0)" onclick="GenerateDish()" title="分享单品">
+                        <button type="button" class="QuestionAskButton QuickButtonSpan-navItem Button--plain" onclick="GenerateDish()" title="分享单品">
                             <svg class="Icon" viewBox="0 0 18 18" width="16" height="16" aria-hidden="true" style="height: 16px; width: 16px;">
                                 <title></title>
                                 <g fill="none" fill-rule="evenodd">
@@ -18,8 +18,19 @@
                                 </g>
                             </svg>
                             分享单品
-                        </a>
-                        <a class="QuickButtonSpan-navItem" href="javascript:void()" target="_blank" title="创建食谱">
+                        </button>
+                        <button type="button" class="QuestionAskButton QuickButtonSpan-navItem Button--plain" onclick="GenerateDish()" title="分享单品">
+                            <svg class="Icon" viewBox="0 0 18 18" width="16" height="16" aria-hidden="true" style="height: 16px; width: 16px;">
+                                <title></title>
+                                <g fill="none" fill-rule="evenodd">
+                                    <path d="M9.595 2.023H4.842c-2.22 0-4.01 1.793-4.01 4.005v7.62c0 2.21 1.796 4.003 4.01 4.003h7.316c2.22 0 4.01-1.792 4.01-4.003v-7.11.51L14.523 8.72v4.253c0 1.66-1.336 3.004-3.01 3.004h-6.03c-1.66 0-3.008-1.338-3.008-3.004V6.7c0-1.657 1.336-3.002 3.01-3.002h2.467L9.595 2.03v-.007z" fill="#8590A6"></path>
+                                    <path d="M6.372 11.08c-.185-.915.2-2.238.85-2.888l6.616-6.616c.565-.565 1.472-.567 2.038 0 .56.56.56 1.477 0 2.038L9.258 10.23c-.652.65-1.975 1.034-2.888.85z" stroke="#8590A6" stroke-width="1.5"></path>
+                                    <path fill="#8590A6" d="M13.04 2.088l2.324 2.324-.987.986-2.323-2.324z"></path>
+                                </g>
+                            </svg>
+                            发布商家
+                        </button>
+                        <button class="QuestionAskButton QuickButtonSpan-navItem Button--plain" title="创建食谱">
                             <svg class="Icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" style="height: 18px; width: 18px;">
                                 <title></title>
                                 <g fill="#8590A6">
@@ -27,7 +38,7 @@
                                 </g>
                             </svg>
                             创建食谱
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -38,7 +49,7 @@
             <div class="row corner">
                 <div class="warrper">
                     <div class="warrper-header">
-                        <a class="warrper-header-title efont" href="">推荐食谱</a>
+                        <a class="warrper-header-title efont" href="">附近商家</a>
                         <span class="warrper-header-more"><a href="" class="efont">更多</a></span>
                     </div>
                     <div class="warrper-body">
@@ -79,8 +90,8 @@
 
         //模态框隐藏时
         $('#generateDishmodal').on("hidden.bs.modal", function () {
-            $(this).removeData('bs.modal');
-            $(this).find('.modal-content').children().remove();
+            //$(this).removeData('bs.modal');
+            //$(this).find('.modal-content').children().remove();
             console.log("模态框已关闭");
         });
     });

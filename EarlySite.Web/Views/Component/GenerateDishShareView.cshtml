@@ -10,11 +10,75 @@
         <div class="Modal-content">
             <div class="QuestionAsk">
                 <form novalidate="">
+                    <!--名称-->
+                    <div class="QuestionAsk-section">
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+                                    <input id="" class="Input" placeholder="单品名称" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--单品属性-->
+                    <div class="QuestionAsk-section">
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+
+                                    <div class="col-sm-6">
+                                        <div class="QuestionAsk-sectionHeader">
+                                            <span class="QuestionAsk-label">用餐时间：</span>
+                                        </div>
+                                        <select id="generate_stmealtime" class="form-control selectpicker" data-size="5">
+                                            @{
+                                                foreach (var item in Enum.GetNames(typeof(MealTime)))
+                                                {
+                                                    <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="QuestionAsk-sectionHeader">
+                                            <span class="QuestionAsk-label">口味类型：</span>
+                                        </div>
+                                        <select id="generate_stdishtype" class="form-control selectpicker" data-size="5">
+                                            @{
+                                                foreach (var item in Enum.GetNames(typeof(DishType)))
+                                                {
+                                                    <option value="@(((DishType)Enum.Parse(typeof(DishType), item)).GetHashCode())">@item</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--店铺设置-->
+                    <div class="QuestionAsk-section">
+                        <div class="TagInput TagInput--empty">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+                                    <input class="Input" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-haspopup="true" id="Popover100-toggle" aria-owns="Popover100-content" placeholder="选择商家" value="" />
+                                    <div class="Input-after">
+                                        <svg class="Zi Zi--Search" fill="#afbdcf" viewBox="0 0 24 24" width="18" height="18"><path d="M17.068 15.58a8.377 8.377 0 0 0 1.774-5.159 8.421 8.421 0 1 0-8.42 8.421 8.38 8.38 0 0 0 5.158-1.774l3.879 3.88c.957.573 2.131-.464 1.488-1.49l-3.879-3.878zm-6.647 1.157a6.323 6.323 0 0 1-6.316-6.316 6.323 6.323 0 0 1 6.316-6.316 6.323 6.323 0 0 1 6.316 6.316 6.323 6.323 0 0 1-6.316 6.316z" fill-rule="evenodd"></path></svg>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                     <div class="QuestionAsk-section">
                         <div class="QuestionAsk-title">
                             <div class="Popover">
                                 <div class="Input-wrapper Input-wrapper--spread Input-wrapper--multiline Input-wrapper--large">
-                                    <textarea required="" rows="2" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-activedescendant="AutoComplete160--1" id="Popover159-toggle" aria-haspopup="true" aria-owns="Popover159-content" class="Input" placeholder="问题标题"></textarea>
+                                    <textarea required="" rows="2" autocomplete="off" role="combobox" aria-expanded="false" aria-autocomplete="list" aria-activedescendant="AutoComplete160--1" id="Popover159-toggle" aria-haspopup="true" aria-owns="Popover159-content" class="Input" placeholder="单品描述"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -32,14 +96,41 @@
     </button>
 
 </div><!-- /.modal-dialog -->
+<div>
+    <div id="Popover100-content" class="Popover-content popover-content--null" style="top:291px;left:532.5px;" aria-labelledby="Popover100-toggle">
+        <div class="Menu Autocomplete-menu" style="max-height:256px; overflow:scroll" role="listbox">
+            <div class="Menu-item" role="option">
+                <div class="AutoComplete-DefaultItem">商家一</div>
+            </div>
+            <div class="Menu-item" role="option">
+                <div class="AutoComplete-DefaultItem">商家二</div>
+            </div>
+            <div class="Menu-item" role="option">
+                <div class="AutoComplete-DefaultItem">商家三</div>
+            </div>
+        </div>
+    </div>
 
+</div>
 
 
 <script>
 
     $(function () {
+
+        //渲染焦点效果
+        $('.Input').on('focus', function () {
+            $(this).parent().addClass('is-focus');
+        });
+        $('.Input').on('blur', function () {
+            $(this).parent().removeClass('is-focus');
+        });
+
+
         var mealtimeval = @(((MealTime)ViewBag.Meal).GetHashCode());
-        $('#stmealtime').selectpicker('val', mealtimeval);
+        $('#generate_stmealtime').selectpicker('val', mealtimeval);
+
+        $('#generate_stdishtype').selectpicker();
 
     });
 

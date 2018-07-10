@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 1024px;
 }
 
 .left {
@@ -1303,7 +1303,7 @@ html[data-theme=dark] .Input-wrapper {
     background: transparent;
     border: none;
     outline: none;
-    resize: none
+    resize: none;
 }
 
 input.Input {
@@ -1399,6 +1399,144 @@ html[data-theme=dark] .Input--validationError::placeholder {
     Modal部分结束
 */
 
+
+/**
+    弹出层列表搜索弹出样式
+*/
+
+.Menu {
+    padding: 6px 0
+}
+
+.Menu-item {
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box
+}
+
+    .Menu-item.is-active {
+        background: #f6f6f6
+    }
+
+html[data-theme=dark] .Menu-item.is-active {
+    background: #2e2e2e
+}
+
+.Menu-item--noActive {
+    cursor: default
+}
+
+.Menu-divider {
+    margin: 8px 0;
+    border-bottom: 1px solid #ebebeb
+}
+
+html[data-theme=dark] .Menu-divider {
+    border-bottom: 1px solid #444
+}
+
+.Popover-content {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    box-shadow: 0 5px 20px rgba(26,26,26,.1);
+    z-index: 203
+}
+
+.Popover-content-enter {
+    opacity: .01
+}
+
+.Popover-content-enter-active {
+    transition: opacity .2s ease-out,-webkit-transform .2s ease-out;
+    transition: transform .2s ease-out,opacity .2s ease-out;
+    transition: transform .2s ease-out,opacity .2s ease-out,-webkit-transform .2s ease-out
+}
+
+.Popover-content-enter-active, .Popover-content-leave {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
+}
+
+.Popover-content-leave-active {
+    opacity: .01;
+    transition: opacity .2s ease-out,-webkit-transform .2s ease-out;
+    transition: transform .2s ease-out,opacity .2s ease-out;
+    transition: transform .2s ease-out,opacity .2s ease-out,-webkit-transform .2s ease-out
+}
+
+.Popover-content--fixed {
+    position: fixed
+}
+
+html[data-theme=dark] .Popover-content {
+    background: #1a1a1a;
+    border: 1px solid #2e2e2e;
+    box-shadow: 0 5px 20px rgba(0,0,0,.1)
+}
+
+.Popover-content--top {
+    -webkit-transform-origin: bottom center;
+    transform-origin: bottom center;
+    margin-top: -8px
+}
+
+    .Popover-content--top.Popover-content--arrowed {
+        margin-top: -16px
+    }
+
+    .Popover-content--top.Popover-content--enter, .Popover-content--top.Popover-content-leave-active {
+        -webkit-transform: translateY(8px);
+        transform: translateY(8px)
+    }
+
+.Popover-content--bottom {
+    margin-top: 8px
+}
+
+    .Popover-content--bottom.Popover-content--arrowed {
+        margin-top: 16px
+    }
+
+    .Popover-content--bottom.Popover-content--enter, .Popover-content--bottom.Popover-content-leave-active {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px)
+    }
+
+.Popover-content--left {
+    -webkit-transform-origin: right center;
+    transform-origin: right center;
+    margin-left: -8px
+}
+
+    .Popover-content--left.Popover-content--arrowed {
+        margin-left: -16px
+    }
+
+    .Popover-content--left.Popover-content--enter, .Popover-content--left.Popover-content-leave-active {
+        -webkit-transform: translateX(8px);
+        transform: translateX(8px)
+    }
+
+.Popover-content--right {
+    margin-left: 8px
+}
+
+    .Popover-content--right.Popover-content--arrowed {
+        margin-left: 16px
+    }
+
+    .Popover-content--right.Popover-content--enter, .Popover-content--right.Popover-content-leave-active {
+        -webkit-transform: translateX(-8px);
+        transform: translateX(-8px)
+    }
+
+/**弹出搜索样式结束*/
 
 
 .QuickButtonSpan{
