@@ -1536,6 +1536,13 @@ html[data-theme=dark] .Popover-content {
         transform: translateX(-8px)
     }
 
+.AutoComplete-menu--hidden {
+    visibility: hidden
+}
+.AutoComplete-DefaultItem {
+    line-height: 40px
+}
+
 
 .Enditable-picModal-uploader {
     color:#999;

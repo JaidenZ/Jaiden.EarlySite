@@ -156,12 +156,12 @@
                         }
                         else {
 
-                            alert('操作失败');
+                            toast('操作失败');
                         }
                     },
                     error: function (error) {
                         $(this).EaLoading("destroy");
-                        alert("Ajax send error");
+                        toast("Ajax send error");
                     }
             });
         });

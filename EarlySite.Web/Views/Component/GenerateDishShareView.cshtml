@@ -66,21 +66,9 @@
                                         <svg class="Zi Zi--Search" fill="#afbdcf" viewBox="0 0 24 24" width="18" height="18"><path d="M17.068 15.58a8.377 8.377 0 0 0 1.774-5.159 8.421 8.421 0 1 0-8.42 8.421 8.38 8.38 0 0 0 5.158-1.774l3.879 3.88c.957.573 2.131-.464 1.488-1.49l-3.879-3.878zm-6.647 1.157a6.323 6.323 0 0 1-6.316-6.316 6.323 6.323 0 0 1 6.316-6.316 6.323 6.323 0 0 1 6.316 6.316 6.323 6.323 0 0 1-6.316 6.316z" fill-rule="evenodd"></path></svg>
                                     </div>
                                 </div>
-                                <!--
-                                <div id="Popover100-content" class="Popover-content popover-content--null" style="z-index:9999">
-                                    <div class="Menu Autocomplete-menu" style="overflow:scroll">
-                                        <div class="Menu-item" role="option">
-                                            <div class="AutoComplete-DefaultItem">商家一</div>
-                                        </div>
-                                        <div class="Menu-item" role="option">
-                                            <div class="AutoComplete-DefaultItem">商家二</div>
-                                        </div>
-                                        <div class="Menu-item" role="option">
-                                            <div class="AutoComplete-DefaultItem">商家三</div>
-                                        </div>
-                                    </div>
+                                <div id="generateshop-content" class="Popover-content Popover-content-leave-active">
+                                    <div id="shopcontentscroll" class="Menu Autocomplete-menu" style="max-height:265px;overflow:scroll"></div>
                                 </div>
-                                -->
                             </div>
                         </div>
                     </div>
@@ -157,23 +145,65 @@
 
 
         //动态搜索框初始化
-        $('#generate_shop').on('change', function () {
-
-
+        $('#generate_shop').on('input', function () {
+            var val = $.trim($(this).val());
+            if (val == null || val == "")
+                return;
+            var content = $('#generateshop-content');
+            //ajax search
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("SearchKeyforShopInfo","Component")',
+                data: {
+                    search: val
+                },
+                success: function (result) {
+                    var contenthtml = "";
+                    var data = eval('(' + result + ')');
+                    if (data.Status) {
+                        var info = data.Data.List;
+                        for (var i = 0; i < info.length; i++) {
+                            var itemc = info[i];
+                            contenthtml += '<div class="Menu-item" role="option" data-shopid="' + itemc.ShopId + '" data-shopname="' + itemc.ShopName + '"><div class="AutoComplete-DefaultItem">' + itemc.ShopName + '</div ></div>';
+                        }
+                    }
+                    else {
+                        contenthtml += '<div class="Menu-item" role="option"><div class="AutoComplete-DefaultItem">没有合适的商家,请先发布一条商家信息吧.</div ></div>';
+                    }
+                    $(content).children().html('');
+                    $(content).children().append(contenthtml);
+                    content.removeClass('Popover-content-leave-active');
+                    //渲染商家搜索选择框效果
+                    $('.Menu-item').hover(function () {
+                        $(this).addClass('is-active');
+                    }, function () {
+                        $(this).removeClass('is-active');
+                    });
+                    //绑定数据框选择事件赋值
+                    $('.Menu-item').on('click', function () {
+                        var text = $(this).data('shopname');
+                        $('#generate_shop').val(text);
+                    });
+                },
+                error: function (error) {
+                    toast("Ajax send error : " + error);
+                }
+            });
         });
-
+        
         //图片上传器初始化
         $('#picModaluploader').on('change', function (e) {
             console.log($(e.currentTarget));
         });
-        
 
-        //渲染商家搜索选择框效果
-        $('.Menu-item').hover(function () {
-            $(this).addClass('is-active');
-        },function () {
-            $(this).removeClass('is-active');
-        });
+        //监听面板点击事件判断数据选择面板的显示
+        $("body").click(function (e) {
+            if ($(e.target).parent().attr("id") != "generate_shop" || $(e.target).attr("id") != "generate_shop") {
+                $('#generateshop-content').addClass('Popover-content-leave-active');
+            }
+        })
+
+
     });
 
 
