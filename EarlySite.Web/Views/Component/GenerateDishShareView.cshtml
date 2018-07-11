@@ -155,12 +155,12 @@
                 method: 'POST',
                 url: '@Url.Action("SearchKeyforShopInfo","Component")',
                 data: {
-                    search: val
+                    key: val
                 },
                 success: function (result) {
                     var contenthtml = "";
                     var data = eval('(' + result + ')');
-                    if (data.Status) {
+                    if (data.Status && data.Data.List.length>0) {
                         var info = data.Data.List;
                         for (var i = 0; i < info.length; i++) {
                             var itemc = info[i];
@@ -168,7 +168,7 @@
                         }
                     }
                     else {
-                        contenthtml += '<div class="Menu-item" role="option"><div class="AutoComplete-DefaultItem">没有合适的商家,请先发布一条商家信息吧.</div ></div>';
+                        contenthtml += '<div class="Menu-item" role="option"><div class="AutoComplete-DefaultItem">没有找到合适的商家,请先发布一条商家信息吧.</div ></div>';
                     }
                     $(content).children().html('');
                     $(content).children().append(contenthtml);
@@ -181,8 +181,11 @@
                     });
                     //绑定数据框选择事件赋值
                     $('.Menu-item').on('click', function () {
-                        var text = $(this).data('shopname');
-                        $('#generate_shop').val(text);
+                        var id = $(this).data('shopid');
+                        var name = $(this).data('shopname');
+                        $('#generate_shop').attr('data-shopid', id);
+                        $('#generate_shop').attr('data-shopname', name);
+                        $('#generate_shop').val(name);
                     });
                 },
                 error: function (error) {
