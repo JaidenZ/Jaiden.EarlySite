@@ -1599,13 +1599,13 @@ html[data-theme=dark] .Popover-content {
 
     .UploadpicModal{
         width:200px;
-        height:200px;
+        max-height:200px;
         margin:0 auto;
         text-align:center;
     }
     .UploadpicModal-img {
-        width: 200px;
-        height: 200px;
+        max-width: 200px;
+        max-height: 200px;
         display: inline-block;
         vertical-align: middle;
     }

@@ -91,8 +91,8 @@
                                 <div class="Enditable-picModal-uploader-tip">请上传大小不超过2MB的图片，并确保是图片格式</div>
                                 <input id="picModaluploader" type="file" name="picmodal" />
                             </div>
-                            <div class="UploadpicModal" hidden="hidden">
-                                <img class="UploadpicModal-img" src="~/Themes/Images/defaultHead.png" />
+                            <div class="UploadpicModal" hidden="hidden" >
+                                <img id="uploadpicshow" class="UploadpicModal-img" alt="图片预览" src="" />
                                 <span></span>
                             </div>
                         </div>
@@ -194,9 +194,22 @@
             });
         });
         
-        //图片上传器初始化
+        //图片上传器监听
         $('#picModaluploader').on('change', function (e) {
-            console.log($(e.currentTarget));
+
+            var fileup = document.querySelector("#picModaluploader").files[0];
+            var preview = document.querySelector("#uploadpicshow");
+            var reader = new FileReader();
+            //通过FileReader读取图片的数据
+            reader.addEventListener("load", function () {
+                preview.src = reader.result;
+                $(".Enditable-picModal-uploader").hide();
+                $(".UploadpicModal").show();
+            }, false);
+
+            if (fileup) {
+                reader.readAsDataURL(fileup);
+            }
         });
 
         //监听面板点击事件判断数据选择面板的显示
@@ -209,6 +222,35 @@
 
     });
 
+    //获取对象节点的绝对地址
+    function getObjectURL(node) {
+        var imgURL = "";
+        try {
+            var file = null;
+            if (node.files && node.files[0]) {
+                file = node.files[0];
+            } else if (node.files && node.files.item(0)) {
+                file = node.files.item(0);
+            }
+            try {
+                //firefox 7.0
+                imgURL = file.getAsDataURL();
+            } catch (e) {
+                //firefox 8.0以上
+                imgURL = window.URL.createObjectURL(file);
+            }
+        } catch (e) {
+            //支持html5的浏览器,高版本的firefox\chorme\ie10 报异常
+            if (node.files && node.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imgURL = e.target.result;
+                };
+                reader.readAsDataURL(node.files[0]);
+            }
+        }
+        return imgURL;
+    }
 
     //打开文件选择
     function OpenFileSelect() {
