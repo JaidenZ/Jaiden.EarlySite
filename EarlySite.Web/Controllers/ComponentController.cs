@@ -6,6 +6,7 @@
     using EarlySite.Model.Show;
     using EarlySite.Core.DDD.Service;
     using EarlySite.Business.IService;
+    using EarlySite.Model.Enum;
     using System;
 
     /// <summary>
@@ -21,8 +22,9 @@
         [HttpGet]
         public ActionResult GenerateDishShareView()
         {
-
-            ViewBag.Meal = 1;
+            //获取当前用户的食谱集
+            ViewBag.Recipes = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(CurrentAccount.Phone).Data;
+            ViewBag.Meal = (int)MealTime.所有时间段;
             return View();
         }
 
@@ -37,7 +39,7 @@
             Result<PageList<Shop>> result = ServiceObjectContainer.Get<IShopService>().SearchShopInfoByName(key, new PageSearchParam() { PageIndex = 1, PageNumer = 5 });   
             return Json(result);
         }
-
+        
         /// <summary>
         /// 分享单品食物信息
         /// </summary>

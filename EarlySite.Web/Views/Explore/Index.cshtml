@@ -90,6 +90,7 @@
 
         //模态框隐藏时
         $('#generateDishmodal').on("hidden.bs.modal", function () {
+            ////关闭移除弹出框数据
             //$(this).removeData('bs.modal');
             //$(this).find('.modal-content').children().remove();
             console.log("模态框已关闭");
@@ -104,7 +105,6 @@
         $('#generateDishmodal').modal({
             remote: "@Url.Action("GenerateDishShareView", "Component")",
             keyboard: true,
-
         });
 
     }

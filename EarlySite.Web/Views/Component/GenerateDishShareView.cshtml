@@ -1,12 +1,15 @@
 ﻿@using EarlySite.Model.Enum;
+@using EarlySite.Model.Show;
 @{
     Layout = null;
+
+    IList<Recipes> Recipes = ViewBag.Recipes;
 }
 
 <div class="modal-dialog" role="document">
     <div class="Modal-inner">
         <h3 class="Modal-title">分享单品</h3>
-        <div class="Modal-subtitle">动人的描述更易打动人们的心</div>
+        <div class="Modal-subtitle">食物更容易拉近你我的距离</div>
         <div class="Modal-content">
             <div class="QuestionAsk">
                 <form novalidate="">
@@ -68,15 +71,20 @@
 
                                         <select id="generate_recipe" class="form-control selectpicker" data-size="5">
                                             @{
-            foreach (var item in Enum.GetNames(typeof(MealTime)))
-            {
-                                    <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
-}
+                                                if (Recipes != null)
+                                                {
+                                                    foreach (var item in Recipes)
+                                                    {
+                                                        <option value="@item.RecipesId">@item.Name</option>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <option value="0">暂未创建食谱,无食谱信息</option>
+                                                }
                                             }
                                         </select>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -270,7 +278,7 @@
             }
             var recipe = $('#generate_recipe').data("recipeid");
             if (recipe == 0 || recipe == undefined) {
-                toast("请选择单品所在的店铺！");
+                toast("请选择要分享的食谱！");
                 return;
             }
 
