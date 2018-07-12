@@ -6,6 +6,7 @@
     using EarlySite.Model.Show;
     using EarlySite.Core.DDD.Service;
     using EarlySite.Business.IService;
+    using System;
 
     /// <summary>
     /// 组件控制器
@@ -37,6 +38,35 @@
             return Json(result);
         }
 
+        /// <summary>
+        /// 分享单品食物信息
+        /// </summary>
+        /// <param name="dish"></param>
+        /// <param name="shopid"></param>
+        /// <param name="recipeid"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult DishShare(Dish dish,int shopid,int recipeid)
+        {
+            IDishService dishservice = ServiceObjectContainer.Get<IDishService>();
+            IRecipesService recipesservice = ServiceObjectContainer.Get<IRecipesService>();
+            IShopService shopservice = ServiceObjectContainer.Get<IShopService>();
+            Shop shopselect = shopservice.GetShopInfoById(shopid).Data;
+            Recipes recipesselect = recipesservice.GetRecipesById(recipeid).Data;
+
+            Dish dishmodel = new Dish();
+            dishmodel.DIshId = Generation.GenerationId();
+            dishmodel.UpdateDate = DateTime.Now;
+            dishmodel.ShopId = shopselect.ShopId;
+            dishmodel.ShopName = shopselect.ShopName;
+
+            DishShare share = new DishShare();
+            share.DishInfo = dishmodel;
+            share.RecipesInfo = recipesselect;
+            share.ShopInfo = shopselect;
+
+            return Json(dishservice.ShareDishInfo(share));
+        }
 
 
     }

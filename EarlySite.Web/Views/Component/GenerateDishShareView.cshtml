@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="ModalButtonGroup QuestionAsk-buttonGroup ModalButtonGroup--vertical">
-                        <button class="Button Button--primary Button--red" type="button">提交</button>
+                        <button class="Button Button--primary Button--red" type="button" id="btn_commit">提交</button>
                     </div>
                 </form>
             </div>
@@ -193,7 +193,7 @@
                 }
             });
         });
-        
+
         //图片上传器监听
         $('#picModaluploader').on('change', function (e) {
 
@@ -217,44 +217,90 @@
             if ($(e.target).parent().attr("id") != "generate_shop" || $(e.target).attr("id") != "generate_shop") {
                 $('#generateshop-content').addClass('Popover-content-leave-active');
             }
-        })
+        });
+
+
+
+        $("#btn_commit").click(function () {
+
+            //数据验证
+            var dishname = $('#generate_dishname').val();
+            if (dishname == null || dishname == "") {
+                toast("请填上单品的名字！");
+                return;
+            }
+            var shopid = $('#generate_shop').data("shopid");
+            var shopname = $('#generate_shop').data("shopname");
+            if (shopid == 0 || shopid == undefined || shopname == "" || shopname == null) {
+                toast("请选择单品所在的店铺！");
+                return;
+            }
+            var dishpic = $('#uploadpicshow').attr("src");
+            if (dishpic == null || dishpic == "") {
+                toast("请上传一张单品图片！");
+                return;
+            }
+
+            var recipe = 0;
+
+            //禁用提交按钮 防止重复提交
+            var _this = $(this);
+            _this.prop('disabled', true);
+
+            var dishinfo = {};
+            dishinfo.Name = dishname;
+            dishinfo.Type = $('#generate_stdishtype').val();
+            dishinfo.MealTime = $('#generate_stmealtime').val();
+            dishinfo.ShopId = shopid;
+            dishinfo.ShopName = shopname;
+            dishinfo.Image = dishpic;
+            dishinfo.Description = $('#generate_des').val();
+            
+            $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: '@Url.Action("DishShare", "Component")',
+                    data: {
+                        dish: dishinfo,
+                        shopid: shopid,
+                        recipeid: recipe
+                    },
+                    success: function (data) {
+
+                        //启用提交按钮
+                        _this.prop('disabled', false);
+                        console.log(data);
+                        var result = eval('(' + data + ')');
+                        if (result.Status) {
+
+                            toast(result.Message);
+                        }
+                        else {
+                            toast(result.Message);
+                        }
+                    },
+                    error: function (error) {
+                        toast("Ajax send error");
+                    }
+            });
+        });
 
 
     });
 
-    //获取对象节点的绝对地址
-    function getObjectURL(node) {
-        var imgURL = "";
-        try {
-            var file = null;
-            if (node.files && node.files[0]) {
-                file = node.files[0];
-            } else if (node.files && node.files.item(0)) {
-                file = node.files.item(0);
-            }
-            try {
-                //firefox 7.0
-                imgURL = file.getAsDataURL();
-            } catch (e) {
-                //firefox 8.0以上
-                imgURL = window.URL.createObjectURL(file);
-            }
-        } catch (e) {
-            //支持html5的浏览器,高版本的firefox\chorme\ie10 报异常
-            if (node.files && node.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    imgURL = e.target.result;
-                };
-                reader.readAsDataURL(node.files[0]);
-            }
-        }
-        return imgURL;
-    }
-
     //打开文件选择
     function OpenFileSelect() {
         $('#picModaluploader')[0].click();
+    }
+
+    //获取单品分享数据
+    function CommitDishShare() {
+
+
+
+        var dish = {};
+
+
     }
 
 
