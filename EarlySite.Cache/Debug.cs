@@ -13,12 +13,8 @@ namespace EarlySite.Cache
     {
         public static void Main(string[] args)
         {
-
             Session.DeploymentForWeb();
-
-
             
-
             OnlineAccountInfo online = new OnlineAccountInfo();
             online.BackCorver = ConstInfo.DefaultBackCover;
             online.Phone = 11111111111;

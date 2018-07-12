@@ -56,6 +56,31 @@
                             </div>
                         </div>
                     </div>
+                    <!--食谱设置-->
+                    <div class="QuestionAsk-section">
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+                                    <div class="col-sm-12">
+                                        <div class="QuestionAsk-sectionHeader">
+                                            <span class="QuestionAsk-label">选择食谱：</span>
+                                        </div>
+
+                                        <select id="generate_recipe" class="form-control selectpicker" data-size="5">
+                                            @{
+            foreach (var item in Enum.GetNames(typeof(MealTime)))
+            {
+                                    <option value="@(((MealTime)Enum.Parse(typeof(MealTime), item)).GetHashCode())">@item</option>
+}
+                                            }
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--店铺设置-->
                     <div class="QuestionAsk-section">
                         <div class="TagInput TagInput--empty">
@@ -91,7 +116,7 @@
                                 <div class="Enditable-picModal-uploader-tip">请上传大小不超过2MB的图片，并确保是图片格式</div>
                                 <input id="picModaluploader" type="file" name="picmodal" />
                             </div>
-                            <div class="UploadpicModal" hidden="hidden" >
+                            <div class="UploadpicModal" hidden="hidden">
                                 <img id="uploadpicshow" class="UploadpicModal-img" alt="图片预览" src="" />
                                 <span></span>
                             </div>
@@ -143,8 +168,9 @@
         $('#generate_stmealtime').selectpicker('val', mealtimeval);
         $('#generate_stdishtype').selectpicker();
 
+        $('#generate_recipe').selectpicker();
 
-        //动态搜索框初始化
+        //动态店铺搜索框初始化
         $('#generate_shop').on('input', function () {
             var val = $.trim($(this).val());
             if (val == null || val == "")
@@ -194,6 +220,8 @@
             });
         });
 
+
+
         //图片上传器监听
         $('#picModaluploader').on('change', function (e) {
 
@@ -240,8 +268,11 @@
                 toast("请上传一张单品图片！");
                 return;
             }
-
-            var recipe = 0;
+            var recipe = $('#generate_recipe').data("recipeid");
+            if (recipe == 0 || recipe == undefined) {
+                toast("请选择单品所在的店铺！");
+                return;
+            }
 
             //禁用提交按钮 防止重复提交
             var _this = $(this);
@@ -255,7 +286,7 @@
             dishinfo.ShopName = shopname;
             dishinfo.Image = dishpic;
             dishinfo.Description = $('#generate_des').val();
-            
+
             $.ajax({
                     type: "POST",
                     dataType: "json",
