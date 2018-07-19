@@ -271,14 +271,20 @@
                 toast("请选择单品所在的店铺！");
                 return;
             }
+            var recipe = $('#generate_recipe').val();
+            if (recipe == 0 || recipe == undefined) {
+                toast("请选择要分享的食谱！");
+                return;
+            }
             var dishpic = $('#uploadpicshow').attr("src");
             if (dishpic == null || dishpic == "") {
                 toast("请上传一张单品图片！");
                 return;
             }
-            var recipe = $('#generate_recipe').data("recipeid");
-            if (recipe == 0 || recipe == undefined) {
-                toast("请选择要分享的食谱！");
+            var reg = /^data:image\/(jpeg|png|gif);base64,/;
+            var result = reg.test(dishpic);
+            if (!result) {
+                toast("请上传正确格式的图片！");
                 return;
             }
 
@@ -305,17 +311,17 @@
                         recipeid: recipe
                     },
                     success: function (data) {
-
+                        console.log(data);
                         //启用提交按钮
                         _this.prop('disabled', false);
-                        console.log(data);
-                        var result = eval('(' + data + ')');
-                        if (result.Status) {
-
-                            toast(result.Message);
+                        if (data.Status) {
+                            toast(data.Message);
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 1000);
                         }
                         else {
-                            toast(result.Message);
+                            toast(data.Message);
                         }
                     },
                     error: function (error) {
@@ -332,15 +338,6 @@
         $('#picModaluploader')[0].click();
     }
 
-    //获取单品分享数据
-    function CommitDishShare() {
-
-
-
-        var dish = {};
-
-
-    }
 
 
 

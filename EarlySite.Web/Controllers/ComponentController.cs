@@ -56,14 +56,20 @@
             Shop shopselect = shopservice.GetShopInfoById(shopid).Data;
             Recipes recipesselect = recipesservice.GetRecipesById(recipeid).Data;
 
-            Dish dishmodel = new Dish();
-            dishmodel.DIshId = Generation.GenerationId();
-            dishmodel.UpdateDate = DateTime.Now;
-            dishmodel.ShopId = shopselect.ShopId;
-            dishmodel.ShopName = shopselect.ShopName;
+            dish.DIshId = Generation.GenerationId();
+            dish.UpdateDate = DateTime.Now;
+            dish.ShopId = shopselect.ShopId;
+            dish.ShopName = shopselect.ShopName;
+            if (!string.IsNullOrEmpty(dish.Image))
+            {
+                int substringindex = dish.Image.LastIndexOf(',') + 1;
+                dish.Image = dish.Image.Substring(substringindex, dish.Image.Length - substringindex);
+            }
+
+
 
             DishShare share = new DishShare();
-            share.DishInfo = dishmodel;
+            share.DishInfo = dish;
             share.RecipesInfo = recipesselect;
             share.ShopInfo = shopselect;
 

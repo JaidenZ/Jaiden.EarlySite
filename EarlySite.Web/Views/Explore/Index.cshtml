@@ -19,7 +19,7 @@
                             </svg>
                             分享单品
                         </button>
-                        <button type="button" class="QuestionAskButton QuickButtonSpan-navItem Button--plain" onclick="GenerateDish()" title="分享单品">
+                        <button type="button" class="QuestionAskButton QuickButtonSpan-navItem Button--plain" onclick="GenerateStore()" title="发布商家">
                             <svg class="Icon" viewBox="0 0 18 18" width="16" height="16" aria-hidden="true" style="height: 16px; width: 16px;">
                                 <title></title>
                                 <g fill="none" fill-rule="evenodd">
@@ -30,7 +30,7 @@
                             </svg>
                             发布商家
                         </button>
-                        <button class="QuestionAskButton QuickButtonSpan-navItem Button--plain" title="创建食谱">
+                        <button type="button" class="QuestionAskButton QuickButtonSpan-navItem Button--plain" onclick="GenerateRecipe()" title="创建食谱">
                             <svg class="Icon" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" style="height: 18px; width: 18px;">
                                 <title></title>
                                 <g fill="#8590A6">
@@ -45,7 +45,8 @@
 
             <!--模态弹出框-->
             <div id="generateDishmodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-
+            <div id="generateStoremodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+            <div id="generateRecipemodal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
             <div class="row corner">
                 <div class="warrper">
                     <div class="warrper-header">
@@ -73,20 +74,20 @@
 
     $(function () {
 
-        //模态框加载时
-        $('#generateDishmodal').on("loaded.bs.modal", function () {
-            console.log("模态框加载中");
-        });
+        ////模态框加载时
+        //$('#generateDishmodal').on("loaded.bs.modal", function () {
+        //    console.log("模态框加载中");
+        //});
 
-        //模态框show后
-        $('#generateDishmodal').on("show.bs.modal", function () {
-            console.log("模态框将要展示");
-        });
+        ////模态框show后
+        //$('#generateDishmodal').on("show.bs.modal", function () {
+        //    console.log("模态框将要展示");
+        //});
 
-        //模态框完全展示后
-        $('#generateDishmodal').on("shown.bs.modal", function () {
-            console.log("模态框已展示");
-        });
+        ////模态框完全展示后
+        //$('#generateDishmodal').on("shown.bs.modal", function () {
+        //    console.log("模态框已展示");
+        //});
 
         //模态框隐藏时
         $('#generateDishmodal').on("hidden.bs.modal", function () {
@@ -95,18 +96,31 @@
             //$(this).find('.modal-content').children().remove();
             console.log("模态框已关闭");
         });
+
     });
 
 
 
     function GenerateDish() {
-
         //模态框初始化
         $('#generateDishmodal').modal({
             remote: "@Url.Action("GenerateDishShareView", "Component")",
             keyboard: true,
         });
-
+    }
+    function GenerateStore() {
+        //模态框初始化
+        $('#generateStoremodal').modal({
+            remote: "@Url.Action("GenerateDishShareView", "Component")",
+            keyboard: true,
+        });
+    }
+    function GenerateRecipe() {
+        //模态框初始化
+        $('#generateRecipemodal').modal({
+            remote: "@Url.Action("GenerateDishShareView", "Component")",
+            keyboard: true,
+        });
     }
 
 
