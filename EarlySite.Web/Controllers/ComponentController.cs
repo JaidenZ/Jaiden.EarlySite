@@ -44,7 +44,7 @@
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult GenerateStoreView()
+        public ActionResult GenerateShopView()
         {
             return View();
         }
@@ -115,5 +115,23 @@
 
             return Json(result);
         }
+
+        /// <summary>
+        /// 创建门店信息
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GenerateShop(Shop shop)
+        {
+            IShopService shopservice = ServiceObjectContainer.Get<IShopService>();
+            shop.ShopId = Generation.GenerationId();
+            shop.UpdateDate = DateTime.Now;
+
+            Result result = shopservice.CreatShopInfo(shop);
+
+            return Json(result);
+        }
+
     }
 }

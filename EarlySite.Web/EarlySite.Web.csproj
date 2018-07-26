@@ -241,6 +241,7 @@
     <Content Include="Views\Explore\Index.cshtml" />
     <Content Include="Views\Component\GenerateDishShareView.cshtml" />
     <Content Include="Views\Component\GenerateRecipesView.cshtml" />
+    <Content Include="Views\Component\GenerateShopView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
