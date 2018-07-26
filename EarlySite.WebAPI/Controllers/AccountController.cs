@@ -15,6 +15,7 @@ namespace EarlySite.WebAPI.Controllers
         /// </summary>
         /// <param name="phone"></param>
         /// <returns></returns>
+        [HttpPost]
         public Result<Account> GetAccountInfoByPhone(long phone)
         {
             return ServiceObjectContainer.Get<IAccountService>().GetAccountInfo(phone);
