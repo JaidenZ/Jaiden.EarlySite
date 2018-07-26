@@ -50,7 +50,7 @@
                         <div class="QuestionAsk-title">
                             <div class="Popover">
                                 <div class="Input-wrapper Input-wrapper--spread Input-wrapper--multiline Input-wrapper--large">
-                                    <textarea id="generate_des" rows="2" autocomplete="off" class="Input" placeholder="食谱描述"></textarea>
+                                    <textarea id="generate_recipe_des" rows="2" autocomplete="off" class="Input" placeholder="食谱描述"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
             var recipe = {};
             recipe.Name = dishname;
             recipe.Cover = coverpic;
-            recipe.Description = $('#generate_des').val();
+            recipe.Description = $('#generate_recipe_des').val();
 
             $.ajax({
                     type: "POST",

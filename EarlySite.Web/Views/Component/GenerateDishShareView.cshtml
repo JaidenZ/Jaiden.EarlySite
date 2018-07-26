@@ -135,7 +135,7 @@
                         <div class="QuestionAsk-title">
                             <div class="Popover">
                                 <div class="Input-wrapper Input-wrapper--spread Input-wrapper--multiline Input-wrapper--large">
-                                    <textarea id="generate_des" rows="2" autocomplete="off" class="Input" placeholder="单品描述"></textarea>
+                                    <textarea id="generate_dish_des" rows="2" autocomplete="off" class="Input" placeholder="单品描述"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -299,7 +299,7 @@
             dishinfo.ShopId = shopid;
             dishinfo.ShopName = shopname;
             dishinfo.Image = dishpic;
-            dishinfo.Description = $('#generate_des').val();
+            dishinfo.Description = $('#generate_dish_des').val();
 
             $.ajax({
                     type: "POST",

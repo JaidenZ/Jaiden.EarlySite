@@ -15,33 +15,17 @@
                         <div class="QuestionAsk-title">
                             <div class="Popover">
                                 <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
-                                    <input id="generate_recipename" autocomplete="off" class="Input" placeholder="门店名称" value="" />
+                                    <input id="generate_shopname" autocomplete="off" class="Input" placeholder="门店名称" value="" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--图片设置-->
                     <div class="QuestionAsk-section">
-                        <div class="QuestionAsk-sectionHeader">
-                            <span class="QuestionAsk-label">封面设置：</span>
-                            <div class="QuestionAsk-sectionHeaderRight">
-                                <button class="Button Editable-control Button--plain" data-tooltip="上传图片" data-tooltip-position="bottom" type="button" onclick="OpenCoverFileSelect()">
-                                    <svg class="Zi Zi--InsertImage" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M21 17.444C21 18.3 20.1 19 19 19H5c-1.1 0-2-.7-2-1.556V6.556C3 5.7 3.9 5 5 5h14c1.1 0 2 .7 2 1.556v10.888zm-9.437-3.919a.5.5 0 0 1-.862.013l-1.26-2.065a.5.5 0 0 0-.861.012l-2.153 3.767a.5.5 0 0 0 .435.748h10.292a.5.5 0 0 0 .438-.741L14.573 9.78a.5.5 0 0 0-.872-.006l-2.138 3.75z" fill-rule="evenodd"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="Modal-content">
-                            <div class="Enditable-picModal-uploader" onclick="OpenCoverFileSelect()">
-                                <div class="Enditable-picModal-uploader-icon">
-                                    <svg class="Zi Zi--BackToTop" fill="currentColor" viewBox="0 0 24 24" width="70" height="70"><path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path></svg>
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div id="mapContainer" class="Input-wrapper Input-wrapper--spread Input-wrapper--multiline Input-wrapper--large" style="height:0px;padding-bottom:80%">
                                 </div>
-                                <div class="Enditable-picModal-uploader-text">选择要上传的图片</div>
-                                <div class="Enditable-picModal-uploader-tip">请上传大小不超过2MB的图片，并确保是图片格式</div>
-                                <input id="coverpicModaluploader" type="file" name="covermodal" />
-                            </div>
-                            <div class="UploadpicModal" hidden="hidden">
-                                <img id="coverpicshow" class="UploadpicModal-img" alt="图片预览" src="" />
-                                <span></span>
                             </div>
                         </div>
                     </div>
@@ -50,13 +34,13 @@
                         <div class="QuestionAsk-title">
                             <div class="Popover">
                                 <div class="Input-wrapper Input-wrapper--spread Input-wrapper--multiline Input-wrapper--large">
-                                    <textarea id="generate_des" rows="2" autocomplete="off" class="Input" placeholder="门店描述"></textarea>
+                                    <textarea id="generate_shop_des" rows="2" autocomplete="off" class="Input" placeholder="门店描述"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="ModalButtonGroup QuestionAsk-buttonGroup ModalButtonGroup--vertical">
-                        <button class="Button Button--primary Button--red" type="button" id="recipebtn_commit">提交</button>
+                        <button class="Button Button--primary Button--red" type="button" id="shopbtn_commit">提交</button>
                     </div>
                 </form>
             </div>
@@ -66,8 +50,103 @@
     <button type="button" class="Button Button--plain Modal-closeButton" aria-label="关闭" data-dismiss="modal">
         <svg class="modal-closeIcon" fill="#fff" viewBox="0 0 24 24" width="24" height="24"><path d="M13.486 12l5.208-5.207a1.048 1.048 0 0 0-.006-1.483 1.046 1.046 0 0 0-1.482-.005L12 10.514 6.793 5.305a1.048 1.048 0 0 0-1.483.005 1.046 1.046 0 0 0-.005 1.483L10.514 12l-5.208 5.207a1.048 1.048 0 0 0 .006 1.483 1.046 1.046 0 0 0 1.482.005L12 13.486l5.207 5.208a1.048 1.048 0 0 0 1.483-.006 1.046 1.046 0 0 0 .005-1.482L13.486 12z" fill-rule="evenodd"></path></svg>
     </button>
-
 </div><!-- /.modal-dialog -->
+
+<div id="markicon" hidden="hidden">
+    <svg  fill="red" viewBox="0 0 24 24" width="32" height="32"><path d="M13.693 10.354l1.634-7.542c.195-.901-.16-1.083-.798-.39l-9.18 9.97c-.638.693-.377 1.254.582 1.254h5.376l-1.634 7.542c-.195.901.16 1.083.798.39l9.18-9.97c.638-.693.377-1.254-.582-1.254h-5.376z"></path></svg>
+</div>
+
+<script type="text/javascript">
+
+    var marker = null;
+
+    var scale = new AMap.Scale({
+        visible: false
+    }),
+        toolBar = new AMap.ToolBar({
+            visible: false
+        }),
+        overView = new AMap.OverView({
+            visible: false
+        }),
+        map = new AMap.Map("mapContainer", {
+            resizeEnable: true
+        });
+    map.addControl(scale);
+    map.addControl(toolBar);
+    map.addControl(overView);
+    var geolocation;
+
+    map.plugin('AMap.Geolocation', function () {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            buttonOffset: new AMap.Pixel(-40, -40),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+            buttonPosition: 'RB'
+        });
+        map.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+
+
+    //右键点击 选中目标创建标记
+    map.on('rightclick', function (e) {
+
+        //获取门店名称
+        var shopname = $("#generate_shopname").val();
+        if (shopname == null || shopname == "" || shopname == undefined) {
+            toast('请先输入门店名称');
+            return;
+        }
+
+        if (marker != null || marker != undefined) {
+            map.remove(marker);
+        }
+
+        var content = $("#markicon").html();
+        console.log(content);
+        marker = new AMap.Marker({
+            content: content,
+            position: new AMap.LngLat(e.lnglat.lng, e.lnglat.lat),   // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+            title: shopname,
+            offset: new AMap.Pixel(-30, -64) // 相对于基点的偏移位置
+        });
+
+        map.add(marker);
+
+    });
+
+    //解析定位结果
+    function onComplete(data) {
+
+        var str = ['定位成功'];
+        str.push('经度：' + data.position.getLng());
+        str.push('纬度：' + data.position.getLat());
+        if (data.accuracy) {
+            str.push('精度：' + data.accuracy + ' 米');
+        }//如为IP精确定位结果则没有精度信息
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        console.log(str);
+
+        $("#mapContainer").attr("data-lng", data.position.getLng());
+        $("#mapContainer").attr("data-lat", data.position.getLat());
+    }
+
+    //解析定位错误信息
+    function onError(data) {
+        console.log('定位失败');
+    }
+
+    map.on('complete', function () {
+        $('.amap-logo').css('visibility', 'hidden');
+        $('.amap - copyright').css('visibility', 'hidden');
+    });
+
+
+</script>
 
 <script>
     $(function () {
@@ -80,43 +159,20 @@
         });
 
 
-
-        //图片上传器监听
-        $('#coverpicModaluploader').on('change', function (e) {
-            var coverfileup = document.querySelector("#coverpicModaluploader").files[0];
-            var coverpreview = document.querySelector("#coverpicshow");
-            var coverreader = new FileReader();
-            //通过FileReader读取图片的数据
-            coverreader.addEventListener("load", function () {
-                coverpreview.src = coverreader.result;
-                $(".receipemodal").find(".Enditable-picModal-uploader").hide();
-                $(".receipemodal").find(".UploadpicModal").show();
-            }, false);
-
-            if (coverfileup) {
-                coverreader.readAsDataURL(coverfileup);
-            }
-        });
-
         //提交
-        $("#recipebtn_commit").click(function () {
+        $("#shopbtn_commit").click(function () {
 
             //数据验证
-            var recipename = $('#generate_recipename').val();
-            if (recipename == null || recipename == "") {
-                toast("请填上食谱的名字！");
+            var shopname = $('#generate_shopname').val();
+            if (shopname == null || shopname == "") {
+                toast("请填上门店的名字！");
                 return;
             }
+            var longitude = $("#mapContainer").attr("data-lng");
+            var latitude = $("#mapContainer").attr("data-lat");
 
-            var coverpic = $('#coverpicshow').attr("src");
-            if (coverpic == null || coverpic == "") {
-                toast("请上传一张封面图！");
-                return;
-            }
-            var reg = /^data:image\/(jpeg|png|gif);base64,/;
-            var result = reg.test(coverpic);
-            if (!result) {
-                toast("请上传正确格式的图片！");
+            if (longitude == 0 || longitude == null || longitude == undefined || latitude == 0 || latitude == null || latitude == undefined) {
+                toast("请在地图上选择门店的地址进行定位！");
                 return;
             }
 
@@ -124,17 +180,18 @@
             var _this = $(this);
             _this.prop('disabled', true);
 
-            var recipe = {};
-            recipe.Name = dishname;
-            recipe.Cover = coverpic;
-            recipe.Description = $('#generate_des').val();
+            var shop = {};
+            shop.Longitude = longitude;
+            shop.Latitude = latitude;
+            shop.Name = shopname;
+            shop.Description = $('#generate_shop_des').val();
 
             $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: '@Url.Action("GenerateRecipe", "Component")',
+                    url: '@Url.Action("GenerateShop", "Component")',
                     data: {
-                        recipe: recipe
+                        shop: shop
                     },
                     success: function (data) {
                         console.log(data);
@@ -156,10 +213,5 @@
             });
         });
     });
-
-    //打开文件选择
-    function OpenCoverFileSelect() {
-        $('#coverpicModaluploader')[0].click();
-    }
 
 </script>
