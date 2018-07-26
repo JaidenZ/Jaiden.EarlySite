@@ -6,7 +6,7 @@
     IList<Recipes> Recipes = ViewBag.Recipes;
 }
 
-<div class="modal-dialog" role="document">
+<div class="modal-dialog dishmodal" role="document">
     <div class="Modal-inner">
         <h3 class="Modal-title">分享单品</h3>
         <div class="Modal-subtitle">食物更容易拉近你我的距离</div>
@@ -110,13 +110,13 @@
                         <div class="QuestionAsk-sectionHeader">
                             <span class="QuestionAsk-label">图片设置：</span>
                             <div class="QuestionAsk-sectionHeaderRight">
-                                <button class="Button Editable-control Button--plain" data-tooltip="上传图片" data-tooltip-position="bottom" type="button" onclick="OpenFileSelect()">
+                                <button class="Button Editable-control Button--plain" data-tooltip="上传图片" data-tooltip-position="bottom" type="button" onclick="OpenDishFileSelect()">
                                     <svg class="Zi Zi--InsertImage" fill="currentColor" viewBox="0 0 24 24" width="24" height="24"><path d="M21 17.444C21 18.3 20.1 19 19 19H5c-1.1 0-2-.7-2-1.556V6.556C3 5.7 3.9 5 5 5h14c1.1 0 2 .7 2 1.556v10.888zm-9.437-3.919a.5.5 0 0 1-.862.013l-1.26-2.065a.5.5 0 0 0-.861.012l-2.153 3.767a.5.5 0 0 0 .435.748h10.292a.5.5 0 0 0 .438-.741L14.573 9.78a.5.5 0 0 0-.872-.006l-2.138 3.75z" fill-rule="evenodd"></path></svg>
                                 </button>
                             </div>
                         </div>
                         <div class="Modal-content">
-                            <div class="Enditable-picModal-uploader" onclick="OpenFileSelect()">
+                            <div class="Enditable-picModal-uploader" onclick="OpenDishFileSelect()">
                                 <div class="Enditable-picModal-uploader-icon">
                                     <svg class="Zi Zi--BackToTop" fill="currentColor" viewBox="0 0 24 24" width="70" height="70"><path d="M16.036 19.59a1 1 0 0 1-.997.995H9.032a.996.996 0 0 1-.997-.996v-7.005H5.03c-1.1 0-1.36-.633-.578-1.416L11.33 4.29a1.003 1.003 0 0 1 1.412 0l6.878 6.88c.782.78.523 1.415-.58 1.415h-3.004v7.005z"></path></svg>
                                 </div>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <div class="ModalButtonGroup QuestionAsk-buttonGroup ModalButtonGroup--vertical">
-                        <button class="Button Button--primary Button--red" type="button" id="btn_commit">提交</button>
+                        <button class="Button Button--primary Button--red" type="button" id="dishbtn_commit">提交</button>
                     </div>
                 </form>
             </div>
@@ -239,8 +239,8 @@
             //通过FileReader读取图片的数据
             reader.addEventListener("load", function () {
                 preview.src = reader.result;
-                $(".Enditable-picModal-uploader").hide();
-                $(".UploadpicModal").show();
+                $(".dishmodal").find(".Enditable-picModal-uploader").hide();
+                $(".dishmodal").find(".UploadpicModal").show();
             }, false);
 
             if (fileup) {
@@ -257,7 +257,7 @@
 
 
 
-        $("#btn_commit").click(function () {
+        $("#dishbtn_commit").click(function () {
 
             //数据验证
             var dishname = $('#generate_dishname').val();
@@ -334,7 +334,7 @@
     });
 
     //打开文件选择
-    function OpenFileSelect() {
+    function OpenDishFileSelect() {
         $('#picModaluploader')[0].click();
     }
 

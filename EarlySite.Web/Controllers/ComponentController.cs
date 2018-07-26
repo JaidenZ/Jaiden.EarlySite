@@ -29,6 +29,28 @@
         }
 
         /// <summary>
+        /// 生成食谱组件界面
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GenerateRecipesView()
+        {
+
+            return View();
+        }
+
+        /// <summary>
+        /// 生成商家信息组件界面
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult GenerateStoreView()
+        {
+            return View();
+        }
+
+
+        /// <summary>
         /// 模糊搜索门店信息
         /// </summary>
         /// <param name="key"></param>
@@ -76,6 +98,22 @@
             return Json(dishservice.ShareDishInfo(share));
         }
 
+        /// <summary>
+        /// 创建食谱信息
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GenerateRecipe(Recipes recipe)
+        {
+            IRecipesService recipesservice = ServiceObjectContainer.Get<IRecipesService>();
+            recipe.RecipesId = Generation.GenerationId();
+            recipe.UpdateDate = DateTime.Now;
+            recipe.Phone = CurrentAccount.Phone;
 
+            Result result = recipesservice.CreatRecipes(recipe);
+
+            return Json(result);
+        }
     }
 }

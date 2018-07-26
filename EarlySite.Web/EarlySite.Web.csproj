@@ -240,6 +240,7 @@
     <Content Include="Views\Profile\RecipesPatialView.cshtml" />
     <Content Include="Views\Explore\Index.cshtml" />
     <Content Include="Views\Component\GenerateDishShareView.cshtml" />
+    <Content Include="Views\Component\GenerateRecipesView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
