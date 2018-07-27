@@ -57,6 +57,11 @@
         public string ShopName { get; set; }
 
         /// <summary>
+        /// 单品价格
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
         /// 配图
         /// </summary>
         public string Image { get; set; }
