@@ -111,6 +111,12 @@
             recipe.UpdateDate = DateTime.Now;
             recipe.Phone = CurrentAccount.Phone;
 
+            if (!string.IsNullOrEmpty(recipe.Cover))
+            {
+                int substringindex = recipe.Cover.LastIndexOf(',') + 1;
+                recipe.Cover = recipe.Cover.Substring(substringindex, recipe.Cover.Length - substringindex);
+            }
+
             Result result = recipesservice.CreatRecipes(recipe);
 
             return Json(result);

@@ -1652,4 +1652,45 @@ html[data-theme=dark] .Popover-content {
     margin-left:40px;
 }
 
-
+.MakerIcon {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    color: currentColor;
+    width: 75px;
+}
+.MakerIcon-svg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+.MakerIcon-lable {
+    font-size: 13px;
+    text-align: center;
+    line-height: 13px;
+    width: 100% !important;
+    float: left !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: normal !important;
+}
