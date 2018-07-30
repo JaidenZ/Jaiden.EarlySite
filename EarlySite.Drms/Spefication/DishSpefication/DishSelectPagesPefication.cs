@@ -33,31 +33,31 @@
 
             if (_param.SearchType == 0)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' " +
                     "  ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
             else if (_param.SearchType == 1)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " Name like '%{0}%' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
             else if (_param.SearchType == 2)
             {
                 if (_param.SearchCode == MealTime.所有时间段.GetHashCode().ToString())
                 {
-                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0'  " +
+                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0'  " +
                         " ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
                 }
                 else
                 {
-                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0'  and  MealTime = '0' or " +
+                    sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0'  and  MealTime = '0' or " +
                         " MealTime = '{0}' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
                 }
 
             }
             else if (_param.SearchType == 3)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " Type = '{0}' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
 

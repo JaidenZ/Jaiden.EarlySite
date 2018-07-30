@@ -32,22 +32,22 @@
 
             if(_type == 0)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where " +
                     " DishId = '{0}'", _searchCode);
             }
             else if(_type == 1)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " Name like '%{0}%'", _searchCode);
             }
             else if(_type == 2)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " MealTime = '{0}'", _searchCode);
             }
             else if (_type == 3)
             {
-                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Image,Description from which_dish where Enable = '0' and " +
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " Type = '{0}'", _searchCode);
             }
             return sql;
