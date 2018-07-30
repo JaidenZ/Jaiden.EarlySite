@@ -89,6 +89,17 @@
                             </div>
                         </div>
                     </div>
+                    <!--价格设置-->
+                    <div class="QuestionAsk-section">
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+                                    ￥<input id="generate_dishprice" autocomplete="off" class="Input" placeholder="单品价格" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!--店铺设置-->
                     <div class="QuestionAsk-section">
                         <div class="TagInput TagInput--empty">
@@ -265,6 +276,18 @@
                 toast("请填上单品的名字！");
                 return;
             }
+
+            var dishprice = $("#generate_dishprice").val();
+            if (dishprice == 0 || dishprice == undefined || dishprice == "" || dishprice == null) {
+                toast("请填写单品的价格！");
+                return;
+            }
+            if (isNaN(dishprice)) {
+                toast("请填写正确的价格！")
+                return;
+            }
+
+
             var shopid = $('#generate_shop').data("shopid");
             var shopname = $('#generate_shop').data("shopname");
             if (shopid == 0 || shopid == undefined || shopname == "" || shopname == null) {
@@ -299,6 +322,7 @@
             dishinfo.ShopId = shopid;
             dishinfo.ShopName = shopname;
             dishinfo.Image = dishpic;
+            dishinfo.Price = price
             dishinfo.Description = $('#generate_dish_des').val();
 
             $.ajax({
