@@ -1,6 +1,7 @@
 ﻿namespace EarlySite.Business.Constract
 {
     using System.Collections.Generic;
+    using EarlySite.Model.Common;
     using EarlySite.Model.Show;
     using IService;
 
@@ -9,12 +10,14 @@
     /// </summary>
     public class ShakeService : IShakeService
     {
-        Dish IShakeService.ShakeDish(ShakeParam param)
+       
+        Result<Dish> IShakeService.ShakeDish(ShakeParam param)
         {
             throw new System.NotImplementedException();
         }
+        
 
-        IList<Shop> IShakeService.ShakeNearShops(ShakeParam param)
+        Result<IList<Shop>> IShakeService.ShakeNearShops(ShakeParam param)
         {
             throw new System.NotImplementedException();
         }

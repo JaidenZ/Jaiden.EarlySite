@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        IList<Shop> ShakeNearShops(ShakeParam param);
+        Result<IList<Shop>> ShakeNearShops(ShakeParam param);
 
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        Dish ShakeDish(ShakeParam param);
+        Result<Dish> ShakeDish(ShakeParam param);
 
 
 
