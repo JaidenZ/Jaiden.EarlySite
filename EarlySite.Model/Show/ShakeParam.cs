@@ -26,5 +26,20 @@
         /// 花费
         /// </summary>
         public int SpendGrade { get; set; }
+
+        /// <summary>
+        /// 当前定位经度
+        /// </summary>
+        public double Longitude { get; set; }
+
+        /// <summary>
+        /// 当前定位纬度
+        /// </summary>
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// 筛选附近的距离
+        /// </summary>
+        public int NearDistance { get; set; }
     }
 }
