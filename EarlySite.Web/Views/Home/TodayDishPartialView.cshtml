@@ -142,22 +142,50 @@
                         MealTime: $('#stmealtime').val(),
                         DishType: $('#stdishtype').val(),
                         MealNumber: $('#stmealnum').val(),
-                        SpendGrade: $('#stspendgrade').val()
+                        SpendGrade: $('#stspendgrade').val(),
+                        Longitude: $("#mapContainer").attr("data-longitude"),
+                        Latitude: $("#mapContainer").attr("data-latitude"),
+                        NearDistance : 100
+
                     },
                     success: function (result) {
                         setTimeout(function () {
                             $(this).EaLoading("destroy");
                         }, 1500);
 
-                        if (result.Status) {
-                            //alert('操作成功');
+                        console.log(result);
 
-                            toast('操作成功');
-                        }
-                        else {
 
-                            toast('操作失败');
-                        }
+                        var southWest = new AMap.LngLat(result.t1, result.t2)
+                        var northEast = new AMap.LngLat(result.t3, result.t4)
+
+                        var bounds = new AMap.Bounds(southWest, northEast)
+
+                        var rectangle = new AMap.Rectangle({
+                            map: map,
+                            bounds: bounds,
+                            strokeColor: 'red',
+                            strokeWeight: 5,
+                            strokeOpacity: 0.5,
+                            strokeDasharray: [30, 10],
+                            strokeStyle: 'solid',
+                            fillColor: '',
+                            fillOpacity: 0.5,
+                            zIndex: 10,
+                            bubble: true,
+                            cursor: 'pointer',
+                            bubble: false
+                        });
+                        
+                        //if (result.Status) {
+                        //    //alert('操作成功');
+
+                        //    toast('操作成功');
+                        //}
+                        //else {
+
+                        //    toast('操作失败');
+                        //}
                     },
                     error: function (error) {
                         $(this).EaLoading("destroy");

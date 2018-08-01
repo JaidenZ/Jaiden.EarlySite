@@ -40,6 +40,6 @@
         /// <summary>
         /// 筛选附近的距离
         /// </summary>
-        public int NearDistance { get; set; }
+        public double NearDistance { get; set; }
     }
 }

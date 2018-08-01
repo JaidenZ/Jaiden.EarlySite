@@ -46,7 +46,7 @@
              * */
 
             //距离
-            float distance = param.NearDistance / 1000;
+            double distance = param.NearDistance / 1000;
 
             //获取左上角坐标
             double lefttoplongitude = param.Longitude + ((distance * Math.Sin(135 * Math.PI / 180)) / (111 * Math.Cos(param.Latitude * Math.PI / 180)));
