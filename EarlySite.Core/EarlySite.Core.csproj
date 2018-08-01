@@ -91,6 +91,7 @@
     <Compile Include="Utils\CookieUtils.cs" />
     <Compile Include="Utils\JsonExtension\JsonAttribute.cs" />
     <Compile Include="Utils\ModelUtils.cs" />
+    <Compile Include="Utils\PositionUtils.cs" />
     <Compile Include="Utils\SSCUtils.cs" />
     <Compile Include="Utils\ThreadUtils.cs" />
     <Compile Include="Utils\TypeUtils.cs" />

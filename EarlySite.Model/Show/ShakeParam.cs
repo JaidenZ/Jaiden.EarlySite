@@ -30,12 +30,12 @@
         /// <summary>
         /// 当前定位经度
         /// </summary>
-        public decimal Longitude { get; set; }
+        public double Longitude { get; set; }
 
         /// <summary>
         /// 当前定位纬度
         /// </summary>
-        public decimal Latitude { get; set; }
+        public double Latitude { get; set; }
 
         /// <summary>
         /// 筛选附近的距离

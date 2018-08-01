@@ -115,6 +115,22 @@
             }//如为IP精确定位结果则没有精度信息
             str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
             console.log(str);
+
+            
+
+            var circle = new AMap.Circle({
+                center: new AMap.LngLat(data.position.getLng(), data.position.getLat()),// 圆心位置
+                radius: 1000, //半径
+                strokeColor: "#F33", //线颜色
+                strokeOpacity: 1, //线透明度
+                strokeWeight: 3, //线粗细度
+                fillColor: "#ee2200", //填充颜色
+                fillOpacity: 0.35//填充透明度
+            });
+            circle.setMap(map);
+
+
+
         }
         //解析定位错误信息
         function onError(data) {

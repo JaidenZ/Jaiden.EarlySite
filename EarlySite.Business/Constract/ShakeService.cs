@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Business.Constract
 {
+    using System;
     using System.Collections.Generic;
     using EarlySite.Model.Common;
     using EarlySite.Model.Show;
@@ -44,9 +45,15 @@
              *                   
              * */
 
-            //60 * 0.2034 = 12.204
-            //60 * 0.204 = 12.24
-            //经纬度100.2034 = 100度 12分 12.24秒 
+            //距离
+            float distance = param.NearDistance / 1000;
+
+            //获取左上角坐标
+            double lefttoplongitude = param.Longitude + ((distance * Math.Sin(135 * Math.PI / 180)) / (111 * Math.Cos(param.Latitude * Math.PI / 180)));
+            double lefttoplatitude = param.Latitude + ((distance * Math.Cos(135 * Math.PI / 180)) / 111);
+            //获取右下角坐标
+            double rightdownlongitude = param.Longitude + ((distance * Math.Sin(270 * Math.PI / 180)) / (111 * Math.Cos(param.Latitude * Math.PI / 180)));
+            double rightdownlatitude = param.Latitude + ((distance * Math.Cos(270 * Math.PI / 180)) / 111);
 
 
 
