@@ -29,6 +29,16 @@
                             </div>
                         </div>
                     </div>
+                    <!--门店地址-->
+                    <div class="QuestionAsk-section">
+                        <div class="QuestionAsk-title">
+                            <div class="Popover">
+                                <div class="Input-wrapper Input-wrapper--spread Input-wrapper--large">
+                                    <input id="generate_shopaddress" autocomplete="off" class="Input" placeholder="详细地址" value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--门店描述-->
                     <div class="QuestionAsk-section">
                         <div class="QuestionAsk-title">
@@ -69,6 +79,9 @@
     var marker = null;
     var markerlnglat = null;
 
+    //地图显示图层
+    var features = [];
+
     var scale = new AMap.Scale({
         visible: false
     }),
@@ -81,6 +94,11 @@
         map = new AMap.Map("mapContainer", {
             resizeEnable: true
         });
+
+    features.push("bg");
+    features.push("road");
+
+    map.setFeatures(features);
     map.addControl(scale);
     map.addControl(toolBar);
     map.addControl(overView);
@@ -111,7 +129,10 @@
             return;
         }
         markerlnglat = e.lnglat;
+
         setmarker(shopname, markerlnglat.lng, markerlnglat.lat);
+        regeocoder(markerlnglat.lng, markerlnglat.lat);
+
         $("#mapContainer").attr("data-lng", markerlnglat.lng);
         $("#mapContainer").attr("data-lat", markerlnglat.lat);
     });
@@ -156,6 +177,24 @@
         $('.amap - copyright').css('visibility', 'hidden');
     });
 
+    //地图经纬度位置信息解析
+    function regeocoder(lng, lat) {  //逆地理编码
+
+        var lnglatXY = [lng, lat];
+
+        var geocoder = new AMap.Geocoder({
+            radius: 1000,
+            extensions: "all"
+        });
+        geocoder.getAddress(lnglatXY, function (status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+                var address = result.regeocode.formattedAddress;
+
+                //设置位置信息
+                $("#generate_shopaddress").val(address);
+            }
+        });
+    }
 
 </script>
 
@@ -194,6 +233,11 @@
                 toast("请在地图上选择门店的地址进行定位！");
                 return;
             }
+            var shopaddress = $('#generate_shopaddress').val();
+            if (shopaddress == null || shopaddress == "") {
+                toast("请重新定位,未能解析到店铺点位地址！");
+                return;
+            }
 
             //禁用提交按钮 防止重复提交
             var _this = $(this);
@@ -203,6 +247,7 @@
             shop.Longitude = longitude;
             shop.Latitude = latitude;
             shop.ShopName = shopname;
+            shop.ShopAddress = shopaddress;
             shop.Description = $('#generate_shop_des').val();
 
             $.ajax({

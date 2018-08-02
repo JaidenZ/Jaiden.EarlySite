@@ -28,6 +28,11 @@
         public double Latitude { get; set; }
 
         /// <summary>
+        /// 门店详细地址
+        /// </summary>
+        public string ShopAddress { get; set; }
+
+        /// <summary>
         /// 最后更新时间
         /// </summary>
         public DateTime UpdateDate { get; set; }

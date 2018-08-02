@@ -28,11 +28,11 @@
 
             if (_param.SearchType == 0)
             {
-                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Enable = '0' ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
+                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,ShopAddress,UpdateDate,Description from which_shop where Enable = '0' ORDER BY UpdateDate ASC LIMIT {0},{1}", (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
             else if (_param.SearchType == 1)
             {
-                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Enable = '0' and ShopName like '%{0}%' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
+                sql = string.Format(" select ShopId,ShopName,Longitude,Latitude,ShopAddress,UpdateDate,Description from which_shop where Enable = '0' and ShopName like '%{0}%' ORDER BY UpdateDate ASC LIMIT {1},{2}", _param.SearchCode, (_param.PageIndex - 1) * _param.PageNumer, _param.PageNumer);
             }
 
             return sql;
