@@ -45,6 +45,42 @@
         }
 
         /// <summary>
+        /// 获取门店的单品信息
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns></returns>
+        IList<DishInfo> IDishCache.GetDishInfoByShop(int shopId)
+        {
+            IList<DishInfo> result = null;
+            string key = string.Format("DB_DI_*_*_*_{0}", shopId);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if(keys != null && keys.Count > 0)
+            {
+                result = new List<DishInfo>();
+                for (int i = 0; i < keys.Count; i++)
+                {
+                    DishInfo cache = Session.Current.Get<DishInfo>(keys[i]);
+                    result.Add(cache);
+                }
+            }
+            else
+            {
+                //从数据库拿取
+                result = DBConnectionManager.Instance.Reader.Select<DishInfo>(new DishSelectSpefication(shopId.ToString(), 4).Satifasy());
+                if (result != null && result.Count > 0)
+                {
+                    foreach (DishInfo item in result)
+                    {
+                        //同步到缓存
+                        Session.Current.Set(item.GetKeyName(), item);
+                        Session.Current.Expire(item.GetKeyName(), ExpireTime);
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// 更新单品信息中门店名称
         /// </summary>
         /// <param name="shopid">门店编号</param>

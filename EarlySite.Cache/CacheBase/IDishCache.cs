@@ -1,6 +1,8 @@
 ﻿namespace EarlySite.Cache.CacheBase
 {
     using EarlySite.Model.Database;
+    using System.Collections.Generic;
+
     /// <summary>
     /// 单品信息缓存接口
     /// </summary>
@@ -13,6 +15,13 @@
         /// <param name="dishId">单品编号</param>
         /// <returns>单品信息</returns>
         DishInfo GetDishInfoById(int dishId);
+
+        /// <summary>
+        /// 获取店铺的单品集合
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns></returns>
+        IList<DishInfo> GetDishInfoByShop(int shopId);
 
         /// <summary>
         /// 更新单品信息中门店名称

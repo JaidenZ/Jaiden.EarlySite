@@ -54,6 +54,7 @@
     <Compile Include="Show\LoginRequest.cs" />
     <Compile Include="Common\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Show\NearShop.cs" />
     <Compile Include="Show\Recipes.cs" />
     <Compile Include="Show\RegistRequest.cs" />
     <Compile Include="Show\ShakeParam.cs" />

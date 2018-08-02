@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Configuration;
     using System.Web.Mvc;
     using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
@@ -125,8 +124,8 @@
 
             //筛选附近店铺
             Result<IList<Shop>> shoplist = ServiceObjectContainer.Get<IShakeService>().ShakeNearShops(param);
-
-            return Json(shoplist);
+            
+            return Json(shoplist, JsonRequestBehavior.AllowGet);
         }
 
     }

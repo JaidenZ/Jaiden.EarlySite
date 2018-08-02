@@ -31,7 +31,12 @@
         /// <returns></returns>
         Result<Dish> ShakeDish(ShakeParam param);
 
-
+        /// <summary>
+        /// 筛选门店热门食物
+        /// </summary>
+        /// <param name="shopId">门店编号</param>
+        /// <returns></returns>
+        Result<IList<Dish>> ShakePopDishForShop(int shopId);
 
     }
 }

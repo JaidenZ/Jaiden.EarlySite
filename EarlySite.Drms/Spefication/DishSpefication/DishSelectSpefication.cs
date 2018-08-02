@@ -19,6 +19,7 @@
         /// 1:根据名字模糊查询
         /// 2:根据用餐时间查询
         /// 3:根据食物类型查询
+        /// 4:根据门店编号查询
         /// </param>
         public DishSelectSpefication(string searchCode,int searchType)
         {
@@ -49,6 +50,11 @@
             {
                 sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
                     " Type = '{0}'", _searchCode);
+            }
+            else if (_type == 4)
+            {
+                sql = string.Format("select DishId,Name,UpdateDate,Type,TypeName,MealTime,ShopId,ShopName,Price,Image,Description from which_dish where Enable = '0' and " +
+                    " ShopId = '{0}'", _searchCode);
             }
             return sql;
         }

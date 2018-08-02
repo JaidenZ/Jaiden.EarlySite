@@ -48,10 +48,26 @@
         /// </summary>
         /// <param name="nearshops"></param>
         /// <returns></returns>
+        [HttpGet]
         public PartialViewResult NearShopPartialView(IList<Shop> nearshops)
         {
             return PartialView(nearshops);
         }
+
+
+        /// <summary>
+        /// 获取门店热门单品
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ShopPopDish(int shopId)
+        {
+            Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<IShakeService>().ShakePopDishForShop(shopId);
+
+            return Json(dishlist);
+        }
+
 
 
     }
