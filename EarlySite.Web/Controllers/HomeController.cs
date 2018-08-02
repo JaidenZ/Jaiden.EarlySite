@@ -1,6 +1,7 @@
 ﻿namespace EarlySite.Web.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
@@ -98,14 +99,30 @@
         /// 摇一摇获取今日的菜谱
         /// </summary>
         /// <returns></returns>
+        [HttpPost]
         public JsonResult ShakeTodayDish(ShakeParam param)
         {
-            Result result = new Result();
-            result.Status = true;
+            param.NearDistance = 1000;
+            //筛选附近店铺
+            Result<IList<Shop>> dishresult = ServiceObjectContainer.Get<IShakeService>().ShakeNearShops(param);
+            
+            return Json(dishresult);
+        }
 
-            //获取今日菜谱
 
-            return Json(null);
+        /// <summary>
+        /// 摇一摇附近商铺
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ShakeNearShop(ShakeParam param)
+        {
+            param.NearDistance = 1000;
+            //筛选附近店铺
+            Result<IList<Shop>> shoplist = ServiceObjectContainer.Get<IShakeService>().ShakeNearShops(param);
+
+            return Json(shoplist);
         }
 
     }
