@@ -1,4 +1,6 @@
-﻿@{
+﻿@using EarlySite.Model.Show;
+@using EarlySite.Model.Common;
+@{
     ViewBag.Title = "发现";
 }
 
@@ -54,7 +56,9 @@
                         <span class="warrper-header-more"><a href="" class="efont">更多</a></span>
                     </div>
                     <div class="warrper-body">
-
+                        @{
+                            Html.RenderPartial("NearShopPartialView", (IList<Shop>)ViewBag.NearShop);
+                        }
                     </div>
                 </div>
             </div>

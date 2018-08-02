@@ -1693,4 +1693,5 @@ html[data-theme=dark] .Popover-content {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: normal !important;
+    color:#7420d3
 }

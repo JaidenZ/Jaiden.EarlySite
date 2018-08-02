@@ -8,6 +8,7 @@
     using EarlySite.Model.Database;
     using EarlySite.Model.Show;
     using System;
+    using System.Configuration;
     using System.Web.Mvc;
 
     public class BaseController : Controller
@@ -59,6 +60,43 @@
             }
         }
         
+        /// <summary>
+        /// 当前用户定位坐标
+        /// </summary>
+        protected Position CurrentPosition
+        {
+            get
+            {
+                Position current = new Position();
+                if (HttpContext == null)
+                    return null;
+                if (HttpContext.Session["Position"] != null)
+                {
+                    string positon = HttpContext.Session["Position"].ToString();
+                    
+                    current.Longitude =Convert.ToDouble(positon.Split(',')[0]);
+                    current.Latitude = Convert.ToDouble(positon.Split(',')[1]);
+                }
+                return current;
+            }
+        }
+
+        /// <summary>
+        /// 搜索距离 单位M
+        /// </summary>
+        protected double SearchDistance
+        {
+            get
+            {
+                double dis = 0;
+                string distance = ConfigurationManager.AppSettings["SearchDistance"];
+                if (!string.IsNullOrEmpty(distance))
+                {
+                    dis = Convert.ToDouble(distance);
+                }
+                return dis;
+            }
+        }
 
         /// <summary>
         /// 重写调用方法前操作

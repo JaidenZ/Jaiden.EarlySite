@@ -27,7 +27,7 @@
 
         public override string Satifasy()
         {
-            string sql = string.Format("select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Latitude >= '{0}' and Latitude <= '{1}' and Longitude >= '{2}' and Longitude <= '{3}' ", _southwest.Latitude, _northeast.Latitude, _southwest.Longitude, _northeast.Longitude);
+            string sql = string.Format("select ShopId,ShopName,Longitude,Latitude,UpdateDate,Description from which_shop where Latitude >= {0} and Latitude <= {1} and Longitude >= {2} and Longitude <= {3} ", _southwest.Latitude, _northeast.Latitude, _southwest.Longitude, _northeast.Longitude);
 
             return sql.ToString();
         }

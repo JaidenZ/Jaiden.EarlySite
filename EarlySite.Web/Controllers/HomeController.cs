@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Web.Mvc;
     using EarlySite.Business.IService;
     using EarlySite.Core.DDD.Service;
@@ -118,7 +119,10 @@
         [HttpPost]
         public JsonResult ShakeNearShop(ShakeParam param)
         {
-            param.NearDistance = 1000;
+            param.NearDistance = base.SearchDistance;
+            //存放当前定位
+            HttpContext.Session["Position"] = string.Format("{0},{1}", param.Longitude, param.Latitude);
+
             //筛选附近店铺
             Result<IList<Shop>> shoplist = ServiceObjectContainer.Get<IShakeService>().ShakeNearShops(param);
 

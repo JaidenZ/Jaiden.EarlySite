@@ -44,6 +44,7 @@
         /// </summary>
         public double Latitude { get; set; }
 
+        
     }
 
 }
