@@ -105,28 +105,7 @@
 
             //获取今日菜谱
 
-            //距离
-            double distance = param.NearDistance / 1000;
-            //获取左下角坐标
-            double leftlongitude = param.Longitude + ((distance * Math.Sin(225 * Math.PI / 180)) / (111 * Math.Cos(param.Latitude * Math.PI / 180)));
-            double leftlatitude = param.Latitude + ((distance * Math.Cos(225 * Math.PI / 180)) / 111);
-            //获取右上角坐标
-            double rightlongitude = param.Longitude + ((distance * Math.Sin(45 * Math.PI / 180)) / (111 * Math.Cos(param.Latitude * Math.PI / 180)));
-            double rightlatitude = param.Latitude + ((distance * Math.Cos(45 * Math.PI / 180)) / 111);
-
-
-            var point = new
-            {
-                t1 = leftlongitude,
-                t2 = leftlatitude,
-                t3 = rightlongitude,
-                t4 = rightlatitude
-
-
-            };
-            
-
-            return Json(point);
+            return Json(null);
         }
 
     }
