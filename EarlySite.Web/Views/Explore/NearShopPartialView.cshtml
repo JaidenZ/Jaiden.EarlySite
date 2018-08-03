@@ -4,46 +4,6 @@
 @model IList<Shop>
 
 
-@{
-    if (Model != null && Model.Count > 0)
-    {
-        for (int i = 0; i < Model.Count; i++)
-        {
-            Shop shop = Model[i];
-            <div class="row warrper-body-list">
-                <ul class="boxlist">
-                    <li class="boxlist-item">
-                        <div class="boxlist-item_box">
-                            <div class="boxlist-cover">
-                                <a class="boxlist-a" href="javascript:alert(1)">
-
-                                </a>
-                            </div>
-                            <div class="boxlist-title">
-                                <span class="boxlist-title-txt">
-                                    <a class="boxlist-a" href="javascript:alert(1)" title="@shop.ShopName">@shop.ShopName</a>
-                                </span>
-                            </div>
-                            <div class="boxlist-user" title="@shop.ShopAddress">
-                                <a class="boxlist-a" href="">@shop.Description</a>
-                            </div>
-                            <div class="boxlist-other">@shop.UpdateDate.ToString("yyyy-MM-dd")</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        }
-
-    }
-    else
-    {
-        <h4 style="color:#808080">
-            附近暂无商家
-        </h4>
-    }
-}
-
-
 
 
 <script type="text/javascript">
