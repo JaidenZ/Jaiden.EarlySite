@@ -72,6 +72,7 @@
     <Compile Include="Spefication\RecipesSpefication\RecipesUpdateSpefication.cs" />
     <Compile Include="Spefication\RelationSpefication\RelationShareAddSpefication.cs" />
     <Compile Include="Spefication\RelationSpefication\RelationShareDeleteSpefication.cs" />
+    <Compile Include="Spefication\RelationSpefication\RelationShareSelectSpefication.cs" />
     <Compile Include="Spefication\ShakeSpefication\ShakeNearShopSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopAddSpefication.cs" />
     <Compile Include="Spefication\ShopSpefication\ShopCountForSelectPageSpefication.cs" />

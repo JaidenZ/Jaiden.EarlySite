@@ -1,5 +1,6 @@
 ﻿namespace EarlySite.Cache.CacheBase
 {
+    using System.Collections.Generic;
     using EarlySite.Model.Database;
 
     /// <summary>
@@ -23,5 +24,15 @@
         /// <param name="phone"></param>
         /// <returns></returns>
         bool RemoveRelationShareByPhone(long phone);
+
+
+        /// <summary>
+        /// 获取手机用户的分享关系集合
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        IList<RelationShareInfo> GetRelationShareByPhone(long phone);
+        
+
     }
 }

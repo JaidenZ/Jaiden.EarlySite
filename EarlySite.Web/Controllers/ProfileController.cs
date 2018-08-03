@@ -23,7 +23,7 @@
             Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
             ViewBag.Recipes = recipesresult.Data;
             //获取用户分享的单品列表
-            //ServiceObjectContainer.Get<IDishService>().
+            Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
             return View(viewaccount);
         }
 

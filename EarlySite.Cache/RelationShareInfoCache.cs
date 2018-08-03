@@ -1,6 +1,8 @@
 ﻿namespace EarlySite.Cache
 {
     using CacheBase;
+    using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication.RelationSpefication;
     using EarlySite.Model.Database;
     using System;
     using System.Collections.Generic;
@@ -12,6 +14,40 @@
     /// </summary>
     public partial class RelationShareInfoCache : IRelationShareInfoCache
     {
+        IList<RelationShareInfo> IRelationShareInfoCache.GetRelationShareByPhone(long phone)
+        {
+            IList<RelationShareInfo> result = new List<RelationShareInfo>();
+
+            if(phone == 0)
+            {
+                throw new ArgumentNullException("phone can not be zero");
+            }
+            string key = string.Format("DB_RS_*_*_{0}",phone);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                foreach (string k in keys)
+                {
+                    result.Add(Session.Current.Get<RelationShareInfo>(k));
+                }
+            }
+            else
+            {
+                //从数据库拿取
+                result = DBConnectionManager.Instance.Reader.Select<RelationShareInfo>(new RelationShareSelectSpefication(phone.ToString(), 0).Satifasy());
+                if (result != null && result.Count > 0)
+                {
+                    foreach (RelationShareInfo item in result)
+                    {
+                        //同步到缓存
+                        Session.Current.Set(item.GetKeyName(), item);
+                        Session.Current.Expire(item.GetKeyName(), ExpireTime);
+                    }
+                }
+            }
+            return result;
+        }
+
         /// <summary>
         /// 解除用户的食谱关系
         /// </summary>

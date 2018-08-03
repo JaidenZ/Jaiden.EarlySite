@@ -413,6 +413,10 @@
 
             try
             {
+                //获取分享关系集合
+                IRelationShareInfoCache relationcache = ServiceObjectContainer.Get<IRelationShareInfoCache>();
+                IList<RelationShareInfo> relationshares = relationcache.GetRelationShareByPhone(phone);
+
 
 
             }
