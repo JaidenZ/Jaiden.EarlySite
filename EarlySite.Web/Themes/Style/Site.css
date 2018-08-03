@@ -1698,3 +1698,102 @@ html[data-theme=dark] .Popover-content {
 
 
 /**ShopList*/
+.ShopBoxItem{
+
+    padding:0px 0px 0px 0px;
+    margin:10px 0px 0px 0px;
+    height:auto;
+
+}
+
+.ShopBoxBottom{
+    height:25px;
+    text-align:center;
+    line-height:25px;
+    font-family:'Microsoft YaHei';
+    font-size:10px;
+    color:#999;
+}
+
+.shopboxlist {
+    padding: 0px;
+    list-style: none;
+}
+
+.shopboxlist-item {
+    margin: 0;
+    float: left;
+    display: block;
+    width: 25%;
+    padding-bottom: 5px;
+    overflow: hidden;
+    font-size: 14px;
+    vertical-align: top;
+
+}
+
+.shopboxlist-item_box {
+    position: relative;
+    margin-right: 5px; /*间距*/
+}
+
+.shopboxlist-a:hover {
+    color: #db3838;
+}
+
+
+.shopboxlist-cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-top: 100%;
+    margin-bottom: 10px
+}
+
+    .shopboxlist-cover:hover .shopboxlist-pic {
+        -webkit-transform: scale(1.07) translateZ(0);
+        -webkit-transition: -webkit-transform .75s cubic-bezier(0,1,.75,1)
+    }
+
+@supports (transform:scale(1)) {
+    .shopboxlist-pic {
+        transform: scale(1) translateZ(0);
+        transition: transform .75s
+    }
+
+    .shopboxlist-cover:hover .shopboxlist-pic {
+        transform: scale(1.07) translateZ(0);
+        transition: transform .75s cubic-bezier(0,1,.75,1)
+    }
+}
+
+.shopboxlist-pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-transform: scale(1) translateZ(0);
+    -webkit-transition: -webkit-transform .75s
+}
+
+.shopboxlist-title {
+    overflow: hidden;
+}
+
+.shopboxlist-title-txt {
+    float: left;
+    max-width: 100%;
+    font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 15px;
+    max-height: 15px
+}
+
+.shopboxlist-user, .shopboxlist-user a, .shopboxlist-other {
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 15px
+}
