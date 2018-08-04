@@ -407,7 +407,8 @@
         {
             Result<IList<Dish>> result = new Result<IList<Dish>>()
             {
-                Data = null,
+                Data = new List<Dish>(),
+                Message = "查询单品信息集合成功",
                 Status = true
             };
 
@@ -415,10 +416,20 @@
             {
                 //获取分享关系集合
                 IRelationShareInfoCache relationcache = ServiceObjectContainer.Get<IRelationShareInfoCache>();
+               
                 IList<RelationShareInfo> relationshares = relationcache.GetRelationShareByPhone(phone);
 
-
-
+                //查询单品信息
+                if(relationshares != null && relationshares.Count > 0)
+                {
+                    IDishCache dishcache = ServiceObjectContainer.Get<IDishCache>();
+                    IList<int> dishIds = new List<int>();
+                    foreach (var share in relationshares)
+                    {
+                        DishInfo dish = dishcache.GetDishInfoById(share.DishId);
+                        result.Data.Add(dish.Copy<Dish>());
+                    }
+                }
             }
             catch(Exception ex)
             {
