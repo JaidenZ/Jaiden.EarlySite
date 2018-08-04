@@ -3,11 +3,16 @@
 
 @model IList<Recipes>
 
+@{ 
+    //食谱总数
+    var recipesCount = Model == null ? 0:Model.Count;
+
+}
 
 <div class="warrper">
     <div class="warrper-header">
         <a class="warrper-header-title efont" href="">我的食谱</a>
-        <span class="warrper-header-more">拥有 @Model.Count 本个人食谱</span>
+        <span class="warrper-header-more">拥有 @recipesCount 本个人食谱</span>
     </div>
     <div class="warrper-body">
         <div class="row warrper-body-list">

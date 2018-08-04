@@ -10,6 +10,7 @@
     using EarlySite.Drms.DBManager.Provider;
     using EarlySite.Drms.Spefication;
     using IService;
+    using Core.Utils;
 
     [TypeLibType(TypeLibTypeFlags.FRestricted | TypeLibTypeFlags.FLicensed)]
     public sealed class LoggerService : ILoggerService
@@ -89,9 +90,11 @@
                     DBConnectionManager.Instance.Writer.Commit(); // 提交更改
                 }
             }
-            catch (Exception) // 
+            catch (Exception ex) // 
             {
-                DBConnectionManager.Instance.Writer.Rollback(); // 回滚更改
+                LoggerUtils.ColectExceptionMessage(ex, "At service:AddRunningLog() .LoggerService");
+
+                //DBConnectionManager.Instance.Writer.Rollback(); // 回滚更改
             }
         }
     }

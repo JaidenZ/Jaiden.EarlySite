@@ -136,6 +136,7 @@
                 {
                     result.Status = false;
                     result.Message = "获取食谱失败,未找到对应食谱";
+                    result.Data = new List<Recipes>();
                 }
 
             }
