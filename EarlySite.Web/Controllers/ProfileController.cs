@@ -24,6 +24,7 @@
             ViewBag.Recipes = recipesresult.Data;
             //获取用户分享的单品列表
             Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
+            ViewBag.Dishs = dishresult.Data;
             return View(viewaccount);
         }
 
@@ -32,9 +33,21 @@
         /// </summary>
         /// <param name="recipes"></param>
         /// <returns></returns>
+        [HttpGet]
         public PartialViewResult RecipesPatialView(IList<Recipes> recipes)
         {
             return PartialView(recipes);
+        }
+
+        /// <summary>
+        /// 单品分布视图
+        /// </summary>
+        /// <param name="dishs"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult DishPatialView(IList<Dish> dishs)
+        {
+            return PartialView(dishs);
         }
 
 

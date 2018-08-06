@@ -172,15 +172,9 @@
                 }
             </div>
             <div class="row corner">
-                <div class="warrper">
-                    <div class="warrper-header">
-                        <a class="warrper-header-title efont" href="">我的分享</a>
-                        <span class="warrper-header-more">进行了23次食物分享</span>
-                    </div>
-                    <div class="warrper-body">
-
-                    </div>
-                </div>
+                @{
+                    Html.RenderPartial("DishPatialView", (IList<Dish>)ViewBag.Dishs);
+                }
             </div>
         </div>
 
