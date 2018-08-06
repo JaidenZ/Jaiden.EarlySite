@@ -1797,3 +1797,32 @@ html[data-theme=dark] .Popover-content {
     text-overflow: ellipsis;
     height: 15px
 }
+
+.shopInfoBox {
+    margin: 0;
+    float: left;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: top;
+    font-size:14px;
+}
+.shopInfoBox-title {
+    white-space: nowrap;
+    line-height:22px;
+    height: 22px;
+}
+
+.shopInfoBox-content {
+    color: #999;
+    line-height: 18px;
+    height: auto
+}
+
+.shopInfoBox-des {
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: auto;
+}
