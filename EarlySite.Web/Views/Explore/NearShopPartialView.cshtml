@@ -20,7 +20,7 @@
 
                 </div>
                 <div class="col-sm-8">
-                    <ul class="shopboxlist">
+                    <ul class="shopboxlist" data-shopId="@shopitem.ShopId">
                         <svg width="30%" height="30%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" ><circle cx="50" cy="50"  fill="none" stroke-linecap="round" r="40" stroke-width="4" stroke="#ff727d" stroke-dasharray="62.83185307179586 62.83185307179586"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg>
 
                         @*<li class="shopboxlist-item">
@@ -58,8 +58,29 @@
 <script type="text/javascript">
     $(function () {
 
-        toast("loading");
+        setTimeout(function () {
+            $('.shopboxlist').each(function () {
+
+                setTimeout(setshopitem($(this)), 50000);
+            });
+        },3000)
+
+
     });
 
+    function setshopitem(shopbox) {
+
+        console.log($(shopbox).attr("data-shopId"));
+        var htmlstr = "";
+        htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
+            '<div class="shopboxlist-cover">' +
+            '<a class="shopboxlist-a" href="javascript:alert(1)">' +
+            '<img class="shopboxlist-pic" src=""/ alt="">' +
+            '</a></div><div class="boxlist-title"><span class="boxlist-title-txt">' +
+            '<a class="boxlist-a" href="javascript:alert(1)" title="">单品名称</a>' +
+            '</span></div><div class="shopboxlist-other">川菜</div>' +
+            '<div class="shopboxlist-other">￥25.00</div></div></li>';
+        $(shopbox).html(htmlstr);
+    }
 
 </script>
