@@ -96,8 +96,8 @@
                 IList<Dish> dishlist = dishcache.GetDishInfoByShop(shopId).CopyList<DishInfo, Dish>();
                 if (dishlist != null && dishlist.Count > 0)
                 {
-                    //降序修改时间排列 取前5
-                    result.Data = dishlist.OrderByDescending(o => o.UpdateDate).Take(5).ToList();
+                    //降序修改时间排列 取前4
+                    result.Data = dishlist.OrderByDescending(o => o.UpdateDate).Take(4).ToList();
                 }
             }
             catch (Exception ex)

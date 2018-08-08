@@ -64,22 +64,8 @@
         public JsonResult ShopPopDish(int shopId)
         {
             Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<IShakeService>().ShakePopDishForShop(shopId);
-            Result<IList<int>> dishid = new Result<IList<int>>()
-            {
-                Status = true,
-                Data = new List<int>()
-            };
 
-            if(dishlist.Status && dishlist.Data.Count > 0)
-            {
-                foreach (var dish in dishlist.Data)
-                {
-                    dishid.Data.Add(dish.DIshId);
-                }
-
-            }
-
-            return Json(dishid);
+            return Json(dishlist);
         }
 
 

@@ -87,26 +87,24 @@
                         shopId: shopboxid
                     },
                     success: function (result) {
-                        
+                        console.log(result);
+                        //var data = eval('('+result+')');
+                        //console.log(data);
                         if (result.Status) {
-                            
-
                             var shopbox = $("#shopboxul_" + shopboxid);
                             var htmlstr = "";
                             for (var i = 0; i < result.Data.length; i++) {
                                 htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
                                     '<div class="shopboxlist-cover">' +
                                     '<a class="shopboxlist-a" href="javascript:alert(1)">' +
-                                    '<img class="shopboxlist-pic" src=""/ alt="">' +
+                                    '<img class="shopboxlist-pic" src="data:image/png;base64,' + result.Data[i].Image + '"/ alt="">' +
                                     '</a></div><div class="boxlist-title"><span class="boxlist-title-txt">' +
-                                    '<a class="boxlist-a" href="javascript:alert(1)" title="">单品名称</a>' +
-                                    '</span></div><div class="shopboxlist-other">川菜</div>' +
-                                    '<div class="shopboxlist-other">￥25.00</div></div></li>';
+                                    '<a class="boxlist-a" href="javascript:alert(1)" title="">' + result.Data[i].Name + '</a>' +
+                                    '</span></div><div class="shopboxlist-other">' + result.Data[i].Type + '</div>' +
+                                    '<div class="shopboxlist-other">￥' + result.Data[i].Price + '</div></div></li>';
                             }
                             $(shopbox).html(htmlstr);
                         }
-
-
                     },
                     error: function (error) {
                         $(this).EaLoading("destroy");
