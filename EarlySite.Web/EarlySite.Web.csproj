@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Themes\Scripts\JToast.js" />
+    <Content Include="Themes\Scripts\lazywork.js" />
     <Content Include="Themes\Style\JToast.css" />
     <Content Include="ForgetVerificationMail.html" />
     <Content Include="Pictures\DontLike.jpg" />
