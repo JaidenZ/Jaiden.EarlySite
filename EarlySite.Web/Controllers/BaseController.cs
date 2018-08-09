@@ -112,12 +112,32 @@
                 {
                     filterContext.Result = Json(new
                     {
-                        IsLogout = true
+                        Status = false,
+                        Message = "您还未登录,无法操作"
                     }, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
                     filterContext.Result = Redirect(Url.Action("Login", "Account"));
+                }
+            }
+            else
+            {
+                //验证是否定位
+                if(CurrentPosition == null)
+                {
+                    if (filterContext.HttpContext.Request.IsAjaxRequest())
+                    {
+                        filterContext.Result = Json(new
+                        {
+                            Status = false,
+                            Message = "没有定位数据"
+                        }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        filterContext.Result = Redirect(Url.Action("Index", "Home"));
+                    }
                 }
             }
 
