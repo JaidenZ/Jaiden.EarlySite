@@ -38,6 +38,7 @@
     /// </summary>
     public enum DishType
     {
+        未定类型 = 0,
         饮品甜点 = 1000,
         火锅 = 1001,
         自助餐 = 1002,

@@ -24,8 +24,7 @@
         /// 类型
         /// </summary>
         public DishType Type { get; set; }
-
-        private string typeName;
+        
         /// <summary>
         /// 类型名称
         /// </summary>
@@ -34,10 +33,6 @@
             get
             {
                 return Enum.GetName(typeof(DishType), this.Type);
-            }
-            set
-            {
-                typeName = value;
             }
         }
 

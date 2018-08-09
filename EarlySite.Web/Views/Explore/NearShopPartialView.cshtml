@@ -1,4 +1,5 @@
 ﻿@using EarlySite.Model.Common;
+@using EarlySite.Model.Enum;
 @using EarlySite.Model.Show;
 
 @model IList<Shop>
@@ -62,7 +63,7 @@
 
 
     function setshopitem(shopboxid) {
-        
+
             $.ajax({
                     type: "POST",
                     dataType: "json",
@@ -77,14 +78,16 @@
                         if (result.Status) {
                             var shopbox = $("#shopboxul_" + shopboxid);
                             var htmlstr = "";
+
                             for (var i = 0; i < result.Data.length; i++) {
+                                
                                 htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
                                     '<div class="shopboxlist-cover">' +
                                     '<a class="shopboxlist-a" href="javascript:alert(1)">' +
                                     '<img class="shopboxlist-pic" src="data:image/png;base64,' + result.Data[i].Image + '"/ alt="">' +
                                     '</a></div><div class="boxlist-title"><span class="boxlist-title-txt">' +
                                     '<a class="boxlist-a" href="javascript:alert(1)" title="">' + result.Data[i].Name + '</a>' +
-                                    '</span></div><div class="shopboxlist-other">' + result.Data[i].Type + '</div>' +
+                                    '</span></div><div class="shopboxlist-other">' + result.Data[i].TypeName + '</div>' +
                                     '<div class="shopboxlist-other">￥' + result.Data[i].Price + '</div></div></li>';
                             }
                             $(shopbox).html(htmlstr);
