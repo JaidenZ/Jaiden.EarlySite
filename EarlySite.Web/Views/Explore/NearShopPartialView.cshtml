@@ -75,12 +75,10 @@
                         console.log(result);
                         //var data = eval('('+result+')');
                         //console.log(data);
-                        if (result.Status) {
-                            var shopbox = $("#shopboxul_" + shopboxid);
-                            var htmlstr = "";
-
+                        var shopbox = $("#shopboxul_" + shopboxid);
+                        var htmlstr = "";
+                        if (result.Status && result.Data.length > 0) {
                             for (var i = 0; i < result.Data.length; i++) {
-                                
                                 htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
                                     '<div class="shopboxlist-cover">' +
                                     '<a class="shopboxlist-a" href="javascript:alert(1)">' +
@@ -90,8 +88,15 @@
                                     '</span></div><div class="shopboxlist-other">' + result.Data[i].TypeName + '</div>' +
                                     '<div class="shopboxlist-other">￥' + result.Data[i].Price + '</div></div></li>';
                             }
-                            $(shopbox).html(htmlstr);
                         }
+                        else {
+                            htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
+                                '<div class="shopboxlist-cover">' +
+                                '<div class="boxlist-title"><span class="boxlist-title-txt">暂无热门单品</span></div>' +
+                                '</div></div></li >';
+                        }
+
+                        $(shopbox).html(htmlstr);
                     },
                     error: function (error) {
                         $(this).EaLoading("destroy");

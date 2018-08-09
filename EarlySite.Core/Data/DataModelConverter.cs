@@ -82,7 +82,11 @@
                                 args = ValueTypeFormatter.Parse(Convert.ToString(args), prop);
                             }
                         }
-                        pair.Key.SetValue(model, args, null);
+                        if(pair.Key.SetMethod != null)
+                        {
+                            pair.Key.SetValue(model, args, null);
+                        }
+                        
                     }
                 }
             }

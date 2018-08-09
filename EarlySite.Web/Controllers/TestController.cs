@@ -36,8 +36,8 @@
             Dish dishmodel = new Dish();
             dishmodel.DIshId = Generation.GenerationId();
             dishmodel.Name = "黑椒牛柳";
-            dishmodel.Type = Model.Enum.DishType.川菜;
-            dishmodel.MealTime = Model.Enum.MealTime.午餐;
+            dishmodel.Type = Model.Enum.DishType.川菜.GetHashCode();
+            dishmodel.MealTime = Model.Enum.MealTime.午餐.GetHashCode();
             dishmodel.UpdateDate = DateTime.Now;
             dishmodel.Image = "";
             dishmodel.Description = "测试单品";

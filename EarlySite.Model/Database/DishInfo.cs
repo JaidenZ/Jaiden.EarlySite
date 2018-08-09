@@ -23,7 +23,7 @@
         /// <summary>
         /// 类型
         /// </summary>
-        public DishType Type { get; set; }
+        public int Type { get; set; }
         
         /// <summary>
         /// 类型名称
@@ -39,7 +39,18 @@
         /// <summary>
         /// 用餐时间
         /// </summary>
-        public MealTime MealTime { get; set; }
+        public int MealTime { get; set; }
+
+        /// <summary>
+        /// 用餐事件枚举
+        /// </summary>
+        public string MealTimeName
+        {
+            get
+            {
+                return Enum.GetName(typeof(MealTime),MealTime);
+            }
+        }
 
         /// <summary>
         /// 商店编号
@@ -54,7 +65,7 @@
         /// <summary>
         /// 单品价格
         /// </summary>
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         /// <summary>
         /// 配图
@@ -69,7 +80,7 @@
         public string GetKeyName()
         {
             //DB_DI_编号_类型_用餐时间_商店编号
-            return string.Format("DB_DI_{0}_{1}_{2}_{3}", this.DIshId, this.Type.GetHashCode(), this.MealTime.GetHashCode(), this.ShopId);
+            return string.Format("DB_DI_{0}_{1}_{2}_{3}", this.DIshId, this.Type, this.MealTime, this.ShopId);
         }
     }
 }

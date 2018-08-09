@@ -17,7 +17,7 @@
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static IList<Type> m_mapTabType = new Type[] { typeof(double), typeof(float), typeof(long), typeof(ulong), typeof(byte), 
             typeof(sbyte), typeof(short), typeof(ushort), typeof(char), typeof(int), typeof(uint), typeof(bool), 
-            typeof(DateTime), typeof(IPAddress) };
+            typeof(DateTime), typeof(IPAddress)};
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static IList<byte> m_mapTabSize = new byte[] { 8, 4, 8, 8, 1, 1, 2, 2, 2, 4, 4, 1, 8, 4 };
@@ -276,7 +276,10 @@
             foreach (PropertyInfo prop in type.GetProperties().OrderBy((i) => i.MetadataToken))
             {
                 object value = BinaryFormatter.GetValueFromStream(prop.PropertyType, reader, single);
-                prop.SetValue(key, value, null);
+                if(prop.SetMethod != null)
+                {
+                    prop.SetValue(key, value, null);
+                }
             }
             return key;
         }

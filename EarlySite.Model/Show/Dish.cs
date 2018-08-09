@@ -26,12 +26,13 @@
         /// <summary>
         /// 类型
         /// </summary>
-        public DishType Type { get; set; }
-        
+        public int Type { get; set; }
+
         /// <summary>
         /// 类型名称
         /// </summary>
-        public string TypeName {
+        public string TypeName
+        {
             get
             {
                 return Enum.GetName(typeof(DishType), this.Type);
@@ -41,7 +42,18 @@
         /// <summary>
         /// 用餐时间
         /// </summary>
-        public MealTime MealTime { get; set; }
+        public int MealTime { get; set; }
+
+        /// <summary>
+        /// 用餐事件枚举
+        /// </summary>
+        public string MealTimeName
+        {
+            get
+            {
+                return Enum.GetName(typeof(MealTime), this.MealTime);
+            }
+        }
 
         /// <summary>
         /// 商店编号
@@ -56,7 +68,7 @@
         /// <summary>
         /// 单品价格
         /// </summary>
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         /// <summary>
         /// 配图
