@@ -124,8 +124,9 @@
             else
             {
                 //验证是否定位
-                if(CurrentPosition == null)
+                if(CurrentPosition == null || (CurrentPosition.Latitude == 0 && CurrentPosition.Longitude == 0))
                 {
+                    HttpContext.Session["Position"] = "1,1";
                     if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
                         filterContext.Result = Json(new

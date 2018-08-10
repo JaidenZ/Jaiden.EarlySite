@@ -245,6 +245,7 @@
     <Content Include="Views\Component\GenerateShopView.cshtml" />
     <Content Include="Views\Explore\NearShopPartialView.cshtml" />
     <Content Include="Views\Profile\DishPatialView.cshtml" />
+    <Content Include="Views\Explore\RecipeView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

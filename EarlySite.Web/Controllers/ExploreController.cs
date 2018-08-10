@@ -42,7 +42,7 @@
 
             return View();
         }
-
+        
         /// <summary>
         /// 附近商家分布式图
         /// </summary>
@@ -54,6 +54,18 @@
             return PartialView(nearshops);
         }
 
+        /// <summary>
+        /// 食谱页
+        /// </summary>
+        /// <param name="recipeId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult RecipeView(int recipeId)
+        {
+            Result<Recipes> recipe = ServiceObjectContainer.Get<IRecipesService>().GetRecipesById(recipeId);
+
+            return View(recipe.Data);
+        }
 
         /// <summary>
         /// 获取门店热门单品
