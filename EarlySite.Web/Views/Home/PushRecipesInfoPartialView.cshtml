@@ -12,10 +12,11 @@
                 {
                     Recipes recipe = Model.List[i];
 
+                    var recipeUrl = string.Format("{0}?recipeId={1}", Url.Action("RecipeView", "Explore"), recipe.RecipesId);
                     <li class="boxlist-item">
                         <div class="boxlist-item_box">
                             <div class="boxlist-cover">
-                                <a class="boxlist-a" href="javascript:alert(1)">
+                                <a class="boxlist-a" href="@recipeUrl">
                                     <img class="boxlist-pic" src="data:image/png;base64,@recipe.Cover" alt="xxx" />
                                 </a>
                             </div>

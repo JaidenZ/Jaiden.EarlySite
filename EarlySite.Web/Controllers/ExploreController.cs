@@ -62,6 +62,9 @@
         [HttpGet]
         public ActionResult RecipeView(int recipeId)
         {
+            //获取用户数据
+            ViewBag.Account = base.CurrentAccount;
+
             Result<Recipes> recipe = ServiceObjectContainer.Get<IRecipesService>().GetRecipesById(recipeId);
 
             return View(recipe.Data);

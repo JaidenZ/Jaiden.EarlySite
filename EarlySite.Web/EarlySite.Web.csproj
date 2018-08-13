@@ -153,6 +153,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Themes\Images\album_cover.png" />
+    <Content Include="Themes\Images\icon_sprite.png" />
     <Content Include="Themes\Scripts\JToast.js" />
     <Content Include="Themes\Scripts\lazywork.js" />
     <Content Include="Themes\Style\JToast.css" />
