@@ -9,7 +9,7 @@
     <div class="row">
         <div class="mod_data">
             <span class="data__cover">
-                <img id="recipeImg" class="data__photo" src=""/>
+                <img id="recipeImg" class="data__photo" src="data:image/png;base64,@Model.Cover"/>
                 <i class="data__cover_mask"></i>
             </span>
             <div class="data__cont">
@@ -18,9 +18,14 @@
                 </div>
                 <div class="data__singer">
                     <i class="icon_singer sprite"></i>
-                    <a class="data__singer_txt" href="" >xxx</a>
+                    <a class="data__singer_txt" href="javascript:toast('显示分享人信息');" >@Model.Phone</a>
                 </div>
-                
+                <ul class="data__info">
+                    <li class="data_info__item">创建时间:@Model.UpdateDate.ToString("yyyy-MM-dd")</li>
+                    <li class="data_info__item data_info__item--even">描述:@Model.Description</li>
+                    <li class="data_info__item">是否公开:@(Model.IsPrivate?"私有":"公开")</li>
+                    <li class="data_info__item data_info__item--even">标签:@Model.Tag</li>
+                </ul>
             </div>
         </div>
 

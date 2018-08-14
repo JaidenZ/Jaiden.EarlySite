@@ -1855,9 +1855,11 @@ html[data-theme=dark] .Popover-content {
 .data__name {
     overflow: hidden;
     height: 50px;
-    line-height: 50px
+    line-height: 50px;
 }
 .data__name_txt {
+    margin-top:0px;
+    margin-bottom:0px;
     float: left;
     font-size: 31px;
     line-height: 50px;
@@ -1866,7 +1868,7 @@ html[data-theme=dark] .Popover-content {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 70%;
-    margin-right: 10px
+    margin-right: 10px;
 }
 
 .data__singer {
@@ -1923,6 +1925,8 @@ html[data-theme=dark] .Popover-content {
 .data__info {
     width: 550px;
     overflow: hidden;
+    margin:0;
+    padding:0;
     padding-top: 8px
 }
 
