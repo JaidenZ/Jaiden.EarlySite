@@ -14,6 +14,11 @@
     /// </summary>
     public partial class RelationShareInfoCache : IRelationShareInfoCache
     {
+        /// <summary>
+        /// 根据手机号获取分享集合缓存
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
         IList<RelationShareInfo> IRelationShareInfoCache.GetRelationShareByPhone(long phone)
         {
             IList<RelationShareInfo> result = new List<RelationShareInfo>();
@@ -35,6 +40,45 @@
             {
                 //从数据库拿取
                 result = DBConnectionManager.Instance.Reader.Select<RelationShareInfo>(new RelationShareSelectSpefication(phone.ToString(), 0).Satifasy());
+                if (result != null && result.Count > 0)
+                {
+                    foreach (RelationShareInfo item in result)
+                    {
+                        //同步到缓存
+                        Session.Current.Set(item.GetKeyName(), item);
+                        Session.Current.Expire(item.GetKeyName(), ExpireTime);
+                    }
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 根据食谱编号获取分享集合
+        /// </summary>
+        /// <param name="receipeId"></param>
+        /// <returns></returns>
+        IList<RelationShareInfo> IRelationShareInfoCache.GetRelationShareByReceipId(int receipeId)
+        {
+            IList<RelationShareInfo> result = new List<RelationShareInfo>();
+
+            if (receipeId == 0)
+            {
+                throw new ArgumentNullException("receipeId can not be zero");
+            }
+            string key = string.Format("DB_RS_{0}_*_*", receipeId);
+            IList<string> keys = Session.Current.ScanAllKeys(key);
+            if (keys != null && keys.Count > 0)
+            {
+                foreach (string k in keys)
+                {
+                    result.Add(Session.Current.Get<RelationShareInfo>(k));
+                }
+            }
+            else
+            {
+                //从数据库拿取
+                result = DBConnectionManager.Instance.Reader.Select<RelationShareInfo>(new RelationShareSelectSpefication(receipeId.ToString(), 1).Satifasy());
                 if (result != null && result.Count > 0)
                 {
                     foreach (RelationShareInfo item in result)

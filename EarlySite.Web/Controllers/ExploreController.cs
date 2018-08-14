@@ -64,9 +64,14 @@
         {
             //获取用户数据
             ViewBag.Account = base.CurrentAccount;
-
+            //获取食谱
             Result<Recipes> recipe = ServiceObjectContainer.Get<IRecipesService>().GetRecipesById(recipeId);
-
+            //是否是自己的食谱
+            ViewBag.IsSelf = recipe.Data.Phone == CurrentAccount.Phone;
+            //获取单品集合
+            Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<IDishService>().GetCollectDishList(recipe.Data.RecipesId);
+            ViewBag.DishList = dishlist.Data;
+            
             return View(recipe.Data);
         }
 

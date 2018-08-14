@@ -69,5 +69,12 @@
         /// <returns></returns>
         Result<IList<Dish>> GetShareDishList(long phone);
 
+        /// <summary>
+        /// 根据食谱编号获取收藏的单品集合
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
+        Result<IList<Dish>> GetCollectDishList(int recipesId);
+
     }
 }

@@ -32,7 +32,12 @@
         /// <param name="phone"></param>
         /// <returns></returns>
         IList<RelationShareInfo> GetRelationShareByPhone(long phone);
-        
 
+        /// <summary>
+        /// 获取食谱下的分享关系集合
+        /// </summary>
+        /// <param name="receipeId"></param>
+        /// <returns></returns>
+        IList<RelationShareInfo> GetRelationShareByReceipId(int receipeId);
     }
 }

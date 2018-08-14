@@ -442,5 +442,50 @@
 
             return result;
         }
+
+        /// <summary>
+        /// 根据食谱编号获取收藏的单品集合
+        /// </summary>
+        /// <param name="recipesId"></param>
+        /// <returns></returns>
+        public Result<IList<Dish>> GetCollectDishList(int recipesId)
+        {
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Data = new List<Dish>(),
+                Message = "查询单品信息集合成功",
+                Status = true
+            };
+
+            try
+            {
+                //获取分享关系集合
+                IRelationShareInfoCache relationcache = ServiceObjectContainer.Get<IRelationShareInfoCache>();
+
+                IList<RelationShareInfo> relationshares = relationcache.GetRelationShareByReceipId(recipesId);
+
+                //查询单品信息
+                if (relationshares != null && relationshares.Count > 0)
+                {
+                    IDishCache dishcache = ServiceObjectContainer.Get<IDishCache>();
+                    IList<int> dishIds = new List<int>();
+                    foreach (var share in relationshares)
+                    {
+                        DishInfo dish = dishcache.GetDishInfoById(share.DishId);
+                        result.Data.Add(dish.Copy<Dish>());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "查询分享单品食物出错:" + ex.Message;
+                result.StatusCode = "GSD001";
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetCollectDishList() .DishService"), LogType.ErrorLog);
+            }
+
+
+            return result;
+        }
     }
 }

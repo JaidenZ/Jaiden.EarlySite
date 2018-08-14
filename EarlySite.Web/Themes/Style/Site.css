@@ -1945,3 +1945,122 @@ html[data-theme=dark] .Popover-content {
     width: 300px;
     margin-right: 0
 }
+
+
+.detail_layout {
+    padding-right: 343px
+}
+
+    .detail_layout::after {
+        content: "";
+        display: block;
+        clear: both
+    }
+
+.detail_layout__main {
+    float: left;
+    width: 100%;
+    padding-bottom: 20px
+}
+
+.detail_layout__other {
+    float: right;
+    position: relative;
+    width: 290px;
+    margin-right: -343px;
+    padding-bottom: 20px
+}
+
+.mod_dishlist {
+    padding-bottom: 60px;
+    font-size:14px;
+    overflow:hidden;
+}
+
+.dishlist__list {
+    overflow: hidden;
+    clear: both;
+}
+
+.dishlist__header {
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(0,0,0,.01);
+    color: #999
+}
+
+.dishlist__header, .dishlist__item {
+    position: relative;
+    padding-left: 46px;
+    padding-right: 100px
+}
+.dishlist__header_other, .dishlist__other {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 38px;
+    overflow: inherit
+}
+
+.dishlist__item {
+    clear: both;
+    font-size: 0;
+    overflow: hidden
+}
+
+.dishlist__header_name, .dishlist__name {
+    width: 40%;
+    list-style: none;
+    float: left;
+}
+.dishlist__header_price, .dishlist__price {
+    width: 15%;
+    list-style: none;
+    float: left;
+}
+.dishlist__header_type, .dishlist__type {
+    width: 15%;
+    list-style: none;
+    float: left;
+}
+.dishlist__header_meal, .dishlist__meal {
+    width: 15%;
+    list-style: none;
+    float: left;
+}
+.dishlist__number {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: #999;
+    width: 36px;
+}
+
+.dishlist__number, .dishlist__name, .dishlist__price, .dishlist__type, .dishlist__meal, .dishlist__other {
+    line-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px
+}
+
+
+
+.dishlist__disc {
+    line-height: 50px;
+    font-weight: 400;
+    text-indent: 10px;
+    font-size: 18px
+}
+
+.dishlist__item--musician {
+    line-height: 50px;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #999
+}
+
+.dishlist__item--classical .dishlist__songname_txt {
+    position: relative
+}

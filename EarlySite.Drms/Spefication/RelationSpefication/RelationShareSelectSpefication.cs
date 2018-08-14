@@ -16,7 +16,12 @@
         /// 分享关系搜索规约
         /// </summary>
         /// <param name="search">搜索字段</param>
-        /// <param name="type">搜索类型</param>
+        /// <param name="type">
+        /// 搜索类型
+        /// 0:根据手机号搜索
+        /// 1:根据食谱编号搜索
+        /// 2:根据单品编号搜索
+        /// </param>
         public RelationShareSelectSpefication(string search,int type)
         {
             _searchtext = search;
@@ -27,9 +32,17 @@
         {
             string sql = "";
 
-            if(_type == 0)
+            if (_type == 0)
             {
                 sql = string.Format(" select RecipesId,DishId,Phone,UpdateDate from relation_share where Phone = '{0}' ", _searchtext);
+            }
+            else if (_type == 1)
+            {
+                sql = string.Format(" select RecipesId,DishId,Phone,UpdateDate from relation_share where RecipesId = '{0}' ", _searchtext);
+            }
+            else if (_type == 2)
+            {
+                sql = string.Format(" select RecipesId,DishId,Phone,UpdateDate from relation_share where DishId = '{0}' ", _searchtext);
             }
 
             return sql;

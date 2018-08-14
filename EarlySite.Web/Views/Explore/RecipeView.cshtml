@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container" style="background-color:#fff">
     <div class="row">
         <div class="mod_data">
             <span class="data__cover">
-                <img id="recipeImg" class="data__photo" src="data:image/png;base64,@Model.Cover"/>
+                <img id="recipeImg" class="data__photo" src="data:image/png;base64,@Model.Cover" />
                 <i class="data__cover_mask"></i>
             </span>
             <div class="data__cont">
@@ -18,22 +18,79 @@
                 </div>
                 <div class="data__singer">
                     <i class="icon_singer sprite"></i>
-                    <a class="data__singer_txt" href="javascript:toast('显示分享人信息');" >@Model.Phone</a>
+                    <a class="data__singer_txt" href="javascript:toast('显示分享人信息');">@Model.Phone</a>
                 </div>
                 <ul class="data__info">
                     <li class="data_info__item">创建时间:@Model.UpdateDate.ToString("yyyy-MM-dd")</li>
                     <li class="data_info__item data_info__item--even">描述:@Model.Description</li>
-                    <li class="data_info__item">是否公开:@(Model.IsPrivate?"私有":"公开")</li>
+                    <li class="data_info__item">是否公开:@(Model.IsPrivate ? "私有" : "公开")</li>
                     <li class="data_info__item data_info__item--even">标签:@Model.Tag</li>
                 </ul>
                 <div class="data__actions" role="toolbar">
-                    <a class="mod_btn mod_btn_red" href="javascript:toast('收藏')">
-                        <i class="mod_btn_green__icon_like"></i>
-                        收藏
-                    </a>
+                    @{
+                        if (ViewBag.IsSelf)
+                        {
+                            <!--公开 设为私密 操作-->
+                            <a class="mod_btn" href="">
+                                <i class="@(Model.IsPrivate?"mod_btn__icon_yes":"mod_btn__icon_no")"></i>
+                                @(Model.IsPrivate ? "公開する" : "私密にする")
+                            </a>
+                            <!--删除 操作-->
+                            <a class="mod_btn" href="">
+                                <i class="mod_btn__icon_delete"></i>
+                                删除
+                            </a>
+                        }
+                        else
+                        {
+                            <!--收藏操作-->
+                            <a class="mod_btn mod_btn_red" href="javascript:toast('コレクション')">
+                                <i class="mod_btn_green__icon_like"></i>
+                                コレクション(收藏)
+                            </a>
+                        }
+                    }
                 </div>
             </div>
         </div>
+
+        @{
+            IList<Dish> dishlist = (IList<Dish>)ViewBag.DishList;
+
+            if (dishlist != null && dishlist.Count > 0)
+            {
+                <div class="detail_layout">
+                    <div class="detail_layout__main">
+                        <div class="mod_dishlist">
+                            <ul class="dishlist__header">
+                                <li class="dishlist__header_name">单品名称</li>
+                                <li class="dishlist__header_price">单品价格</li>
+                                <li class="dishlist__header_type">单品类型</li>
+                                <li class="dishlist__header_meal">用餐时间</li>
+                            </ul>
+                            <ul class="dishlist__list">
+                                @{
+                                    for (int i = 0; i < dishlist.Count;i++)
+                                    {
+                                        <li>
+                                            <div class="dishlist__item">
+                                                <div class="dishlist__number">@(i + 1)</div>
+                                                <div class="dishlist__name">@dishlist[i].Name</div>
+                                                <div class="dishlist__price">$@dishlist[i].Price.ToString("0.00")</div>
+                                                <div class="dishlist__type">@dishlist[i].TypeName</div>
+                                                <div class="dishlist__meal">@dishlist[i].MealTimeName</div>
+                                                <div class="dishlist__other"></div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
 
     </div>
 </div>
