@@ -26,6 +26,12 @@
                     <li class="data_info__item">是否公开:@(Model.IsPrivate?"私有":"公开")</li>
                     <li class="data_info__item data_info__item--even">标签:@Model.Tag</li>
                 </ul>
+                <div class="data__actions" role="toolbar">
+                    <a class="mod_btn mod_btn_red" href="javascript:toast('收藏')">
+                        <i class="mod_btn_green__icon_like"></i>
+                        收藏
+                    </a>
+                </div>
             </div>
         </div>
 

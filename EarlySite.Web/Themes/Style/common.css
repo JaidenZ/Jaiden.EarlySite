@@ -10,7 +10,15 @@ a {
 
     a:hover {
         text-decoration: none;
-        color: black;
+        color: currentColor;
+    }
+    a:visited {
+        text-decoration: none;
+        color: currentColor;
+    }
+    a:focus{
+        text-decoration:none;
+        color:currentColor;
     }
 
 .efont {
@@ -750,3 +758,260 @@ html[data-theme=dark] .Button--link {
         line-height: 25px;
         vertical-align: middle
     }
+
+
+.mod_btn, .mod_btn_green {
+    border-radius: 2px;
+    font-size: 14px;
+    margin-right: 6px;
+    padding: 0 23px;
+    height: 38px;
+    line-height: 38px;
+    display: inline-block;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.mod_btn {
+    border: 1px solid #c9c9c9;
+    color: #000
+}
+
+    .mod_btn--hover, .mod_btn:hover {
+        background-color: #ededed;
+        color: #333
+    }
+
+.mod_btn_green {
+    border: 1px solid #31c27c;
+    background-color: #31c27c;
+    color: #fff
+}
+
+    .mod_btn_green:hover {
+        background-color: #2caf6f;
+        border-color: #2caf6f;
+        color: #fff
+    }
+
+    .mod_btn_green:active {
+        background-color: #279c63;
+        border-color: #279c63;
+    }
+
+.mod_btn_red {
+    border: 1px solid #db3838;
+    background-color: #db3838;
+    color: #fff;
+}
+    .mod_btn_red:hover {
+        border: 1px solid #ce3333;
+        background-color: #ce3333;
+        color: #fff;
+    }
+    .mod_btn_red:active {
+        border: 1px solid #ce3333;
+        background-color: #ce3333;
+        color: #fff;
+
+    }
+    .mod_btn_red:focus {
+        border: 1px solid #ce3333;
+        background-color: #ce3333;
+        color: #fff;
+    }
+.mod_btn__icon_add, .mod_btn__icon_batch, .mod_btn__icon_comment, .mod_btn__icon_copy, .mod_btn__icon_delete, .mod_btn__icon_down, .mod_btn__icon_edit, .mod_btn__icon_input, .mod_btn__icon_less, .mod_btn__icon_like, .mod_btn__icon_manage, .mod_btn__icon_menu, .mod_btn__icon_more, .mod_btn__icon_new, .mod_btn__icon_no, .mod_btn__icon_play, .mod_btn__icon_qr, .mod_btn__icon_recovery, .mod_btn__icon_upload, .mod_btn__icon_yes, .mod_btn_green__icon_add, .mod_btn_green__icon_clear, .mod_btn_green__icon_delete, .mod_btn_green__icon_down, .mod_btn_green__icon_like, .mod_btn_green__icon_more, .mod_btn_green__icon_play, .mod_btn_green__icon_radio {
+    display: inline-block;
+    margin-right: 6px;
+    background-image: url(../Images/icon_sprite.png?max_age=2592000&v=07c1fc9fc5592c08947c2049926c9ea1);
+    background-image: -webkit-image-set(url(../Images/icon_sprite.png?max_age=2592000&v=07c1fc9fc5592c08947c2049926c9ea1&v=07c1fc9fc5592c08947c2049926c9ea1) 1x,url(img/icon_sprite@2x.png?max_age=2592000&v=07c1fc9fc5592c08947c2049926c9ea1&v=07c1fc9fc5592c08947c2049926c9ea1&v=436a840da7095677a3d5910557b04015) 2x);
+    background-repeat: no-repeat;
+    vertical-align: -3px
+}
+
+.mod_btn__icon_play {
+    width: 13px;
+    height: 16px;
+    background-position: -60px -220px
+}
+
+.mod_btn__icon_down {
+    width: 16px;
+    height: 16px;
+    background-position: -40px -220px
+}
+
+.mod_btn__icon_add {
+    width: 16px;
+    height: 16px;
+    background-position: -20px 0
+}
+
+.mod_btn__icon_batch {
+    width: 16px;
+    height: 16px;
+    background-position: -120px 0
+}
+
+.mod_btn__icon_more {
+    width: 14px;
+    height: 14px;
+    background-position: -40px -80px;
+    vertical-align: -2px
+}
+
+.mod_btn__icon_less {
+    width: 14px;
+    height: 14px;
+    background-position: -20px -40px;
+    vertical-align: -1px
+}
+
+.mod_btn__icon_copy {
+    width: 16px;
+    height: 14px;
+    background-position: -40px -100px;
+    vertical-align: -2px
+}
+
+.mod_btn__icon_new {
+    width: 16px;
+    height: 16px;
+    background-position: 0 -180px
+}
+
+.mod_btn__icon_yes {
+    width: 16px;
+    height: 16px;
+    background-position: -20px -180px;
+    vertical-align: -4px
+}
+
+.mod_btn__icon_no {
+    width: 14px;
+    height: 14px;
+    background-position: -40px -180px;
+    vertical-align: -2px
+}
+
+.mod_btn__icon_input {
+    width: 16px;
+    height: 16px;
+    background-position: -22px -100px;
+    vertical-align: -4px
+}
+
+.mod_btn__icon_like {
+    width: 16px;
+    height: 16px;
+    background-position: -60px 0;
+    vertical-align: -4px
+}
+
+.mod_btn__icon_menu {
+    width: 16px;
+    height: 16px;
+    background-position: -20px -80px
+}
+
+.mod_btn__icon_qr {
+    width: 16px;
+    height: 16px;
+    background-position: -160px -20px
+}
+
+.mod_btn__icon_upload {
+    width: 16px;
+    height: 16px;
+    background-position: -180px -120px
+}
+
+.mod_btn__icon_delete {
+    width: 16px;
+    height: 16px;
+    background-position: -100px 0
+}
+
+.mod_btn__icon_manage {
+    width: 15px;
+    height: 14px;
+    background-position: -180px -160px;
+    vertical-align: -2px
+}
+
+.mod_btn__icon_edit {
+    width: 16px;
+    height: 16px;
+    background-position: -140px 0;
+    vertical-align: -3px
+}
+
+.mod_btn__icon_recovery {
+    width: 16px;
+    height: 16px;
+    background-position: -100px -300px;
+    vertical-align: -3px
+}
+
+.mod_btn__icon_comment {
+    width: 16px;
+    height: 16px;
+    background-position: -140px -120px;
+    vertical-align: -3px
+}
+
+.mod_btn_green__icon_play {
+    width: 13px;
+    height: 16px;
+    background-position: -80px -220px;
+    vertical-align: -3px
+}
+
+.mod_btn_green__icon_like {
+    width: 16px;
+    height: 16px;
+    background-position: -60px -20px;
+    vertical-align: -4px
+}
+
+.mod_btn_green__icon_add {
+    width: 16px;
+    height: 16px;
+    background-position: -20px -20px
+}
+
+.mod_btn_green__icon_down {
+    width: 16px;
+    height: 16px;
+    background-position: -40px -240px
+}
+
+.mod_btn_green__icon_delete {
+    width: 16px;
+    height: 16px;
+    background-position: -100px -20px
+}
+
+.mod_btn_green__icon_radio {
+    width: 16px;
+    height: 16px;
+    background-position: -80px -20px
+}
+
+.mod_btn_green__icon_more {
+    width: 14px;
+    height: 14px;
+    background-position: -80px -260px;
+    vertical-align: -2px
+}
+
+.mod_btn_green__icon_clear {
+    width: 17px;
+    height: 17px;
+    background-position: -40px -300px
+}
+
+.mod_btn__icon_like--like, .mod_btn_green__icon_like--like {
+    background-position: 0 -80px
+}
