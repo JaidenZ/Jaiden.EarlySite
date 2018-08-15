@@ -2000,6 +2000,7 @@ html[data-theme=dark] .Popover-content {
     right: 0;
     width: 38px;
     overflow: inherit;
+
 }
 
 .dishlist__item {
@@ -2008,8 +2009,9 @@ html[data-theme=dark] .Popover-content {
     overflow: hidden;
 }
 
+
 .dishlist__header_name, .dishlist__name {
-    width: 55%;
+    width: 30%;
     list-style: none;
     float: left;
 }
@@ -2028,6 +2030,11 @@ html[data-theme=dark] .Popover-content {
     list-style: none;
     float: left;
 }
+.dishlist__header_shopname, .dishlist__shopname {
+    width: 25%;
+    list-style: none;
+    float: left;
+}
 .dishlist__number {
     position: absolute;
     top: 0;
@@ -2036,7 +2043,7 @@ html[data-theme=dark] .Popover-content {
     width: 36px;
 }
 
-.dishlist__number, .dishlist__name, .dishlist__price, .dishlist__type, .dishlist__meal, .dishlist__other {
+.dishlist__number, .dishlist__name, .dishlist__price, .dishlist__type, .dishlist__meal,.dishlist__shopname ,.dishlist__other {
     line-height: 50px;
     height: 50px;
     overflow: hidden;
@@ -2086,4 +2093,51 @@ html[data-theme=dark] .Popover-content {
 
 .about__more {
     margin-right: 10px
+}
+
+.other_part {
+    overflow: hidden;
+    margin-bottom: 10px
+}
+
+.other_part__tit {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 46px
+}
+
+.detail_layout__other .mod_dishlist .dishlist__item {
+
+    width: 33.333333%;
+    padding: 0;
+    padding-bottom: 14px;
+    padding-left: 0px;
+}
+
+
+.detail_layout__other .mod_dishlist .dishlist__item_box {
+    position: relative;
+    margin-right: 20px;
+}
+
+.detail_layout__other .dishlist__cover {
+    margin-bottom:4px;
+}
+
+.mod_dishlist .dishlist__cover {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    padding-top: 100%;
+    margin-bottom: 15px;
+}
+
+.mod_dishlist .dishlist__pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    -webkit-transform: scale(1) translateZ(0);
+    -webkit-transition: -webkit-transform .75s;
 }

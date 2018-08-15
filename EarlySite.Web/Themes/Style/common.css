@@ -10,7 +10,7 @@ a {
 
     a:hover {
         text-decoration: none;
-        color: currentColor;
+        color: #db3838;
     }
     a:visited {
         text-decoration: none;
@@ -18,7 +18,7 @@ a {
     }
     a:focus{
         text-decoration:none;
-        color:currentColor;
+        color:#db3838;
     }
 
 .efont {
