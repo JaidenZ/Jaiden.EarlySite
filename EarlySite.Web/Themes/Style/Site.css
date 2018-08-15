@@ -2003,7 +2003,7 @@ html[data-theme=dark] .Popover-content {
 
 }
 
-.dishlist__item {
+.detail_layout__main .dishlist__item {
     clear: both;
     font-size: 0;
     overflow: hidden;
@@ -2107,7 +2107,7 @@ html[data-theme=dark] .Popover-content {
 }
 
 .detail_layout__other .mod_dishlist .dishlist__item {
-
+    float:left;
     width: 33.333333%;
     padding: 0;
     padding-bottom: 14px;
