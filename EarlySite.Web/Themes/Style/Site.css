@@ -1966,7 +1966,7 @@ html[data-theme=dark] .Popover-content {
 .detail_layout__other {
     float: right;
     position: relative;
-    width: 290px;
+    width: 340px;
     margin-right: -343px;
     padding-bottom: 20px
 }
@@ -1986,30 +1986,30 @@ html[data-theme=dark] .Popover-content {
     height: 50px;
     line-height: 50px;
     background-color: rgba(0,0,0,.01);
-    color: #999
+    color: #999;
 }
 
 .dishlist__header, .dishlist__item {
     position: relative;
     padding-left: 46px;
-    padding-right: 100px
+    padding-right: 80px;
 }
 .dishlist__header_other, .dishlist__other {
     position: absolute;
     top: 0;
     right: 0;
     width: 38px;
-    overflow: inherit
+    overflow: inherit;
 }
 
 .dishlist__item {
     clear: both;
     font-size: 0;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .dishlist__header_name, .dishlist__name {
-    width: 40%;
+    width: 55%;
     list-style: none;
     float: left;
 }
@@ -2042,7 +2042,7 @@ html[data-theme=dark] .Popover-content {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 14px
+    font-size: 14px;
 }
 
 
@@ -2063,4 +2063,27 @@ html[data-theme=dark] .Popover-content {
 
 .dishlist__item--classical .dishlist__songname_txt {
     position: relative
+}
+
+
+.mod_about {
+    line-height: 22px;
+    margin-bottom: 25px;
+    margin-top: -8px
+}
+
+.about__tit {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 46px
+}
+
+.about__cont {
+    max-height: 300px;
+    overflow: hidden;
+    padding-right:0px;
+}
+
+.about__more {
+    margin-right: 10px
 }
