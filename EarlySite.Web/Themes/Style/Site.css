@@ -1895,6 +1895,9 @@ html[data-theme=dark] .Popover-content {
     font-size: 16px;
     color: #333
 }
+    .data__singer_txt:hover {
+        color: #db3838
+    }
 
 .data__singer_line {
     padding: 1px 4px
@@ -1906,11 +1909,11 @@ html[data-theme=dark] .Popover-content {
     font-size: 0
 }
 
-    .data__actions .mod_btn, .data__actions .mod_btn_green {
+    .data__actions .mod_btn, .data__actions .mod_btn_green, .data__actions .mod_btn_red {
         min-width: 122px;
         text-align: center;
         padding: 0 18px;
-        font-family: \5FAE\8F6F\96C5\9ED1
+        font-family: \5FAE\8F6F\96C5\9ED1;
     }
 
 .data__cover_mask {
@@ -1946,6 +1949,10 @@ html[data-theme=dark] .Popover-content {
     margin-right: 0
 }
 
+
+/**
+    列表页
+*/
 
 .detail_layout {
     padding-right: 343px
@@ -2072,6 +2079,9 @@ html[data-theme=dark] .Popover-content {
     position: relative
 }
 
+/**
+    右侧关于页
+*/
 
 .mod_about {
     line-height: 22px;

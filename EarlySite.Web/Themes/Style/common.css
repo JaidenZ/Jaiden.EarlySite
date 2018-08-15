@@ -786,7 +786,7 @@ html[data-theme=dark] .Button--link {
 
 .mod_btn {
     border: 1px solid #c9c9c9;
-    color: #000
+    color: #000;
 }
 
     .mod_btn--hover, .mod_btn:hover {

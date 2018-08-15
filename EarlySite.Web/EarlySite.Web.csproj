@@ -248,6 +248,8 @@
     <Content Include="Views\Explore\NearShopPartialView.cshtml" />
     <Content Include="Views\Profile\DishPatialView.cshtml" />
     <Content Include="Views\Explore\RecipeView.cshtml" />
+    <Content Include="Views\Explore\ShopView.cshtml" />
+    <Content Include="Views\Explore\DishView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

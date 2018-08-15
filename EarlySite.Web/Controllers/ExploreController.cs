@@ -55,7 +55,7 @@
         }
 
         /// <summary>
-        /// 食谱页
+        /// 食谱详细页
         /// </summary>
         /// <param name="recipeId"></param>
         /// <returns></returns>
@@ -74,6 +74,42 @@
             
             return View(recipe.Data);
         }
+
+        /// <summary>
+        /// 单品详细页
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult DishView(int dishId)
+        {
+            ViewBag.Account = base.CurrentAccount;
+
+            //获取单品信息
+            Result<Dish> dishinfo = ServiceObjectContainer.Get<IDishService>().SearchDishInfoById(dishId);
+            
+            return View(dishinfo.Data);
+        }
+
+        /// <summary>
+        /// 门店详细页
+        /// </summary>
+        /// <param name="shopId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ShopView(int shopId)
+        {
+            ViewBag.Account = base.CurrentAccount;
+
+            //获取门店信息
+            Result<Shop> shopinfo = ServiceObjectContainer.Get<IShopService>().GetShopInfoById(shopId);
+            //获取单品集合
+            //Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<>().(recipe.Data.RecipesId);
+            //ViewBag.DishList = dishlist.Data;
+
+            return View(shopinfo.Data);
+        }
+
 
         /// <summary>
         /// 获取门店热门单品

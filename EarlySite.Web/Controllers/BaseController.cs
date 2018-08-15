@@ -14,7 +14,7 @@
     public class BaseController : Controller
     {
         public BaseController()
-        {
+        {            
             ViewBag.Title = "哪儿吃";
         }
         
