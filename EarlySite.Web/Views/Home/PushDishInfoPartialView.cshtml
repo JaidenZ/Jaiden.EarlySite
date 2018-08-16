@@ -12,16 +12,19 @@
                 @for (int i = 0; i < Model.List.Count(); i++)
                 {
                     Dish dish = Model.List[i];
+
+                    var dishUrl = string.Format("{0}?dishId={1}", Url.Action("DishView", "Explore"), dish.DIshId);
+
                     <li class="boxlist-item">
                         <div class="boxlist-item_box">
                             <div class="boxlist-cover">
-                                <a class="boxlist-a" href="javascript:alert(1)">
+                                <a class="boxlist-a" href="@dishUrl">
                                     <img class="boxlist-pic" src="data:image/png;base64,@dish.Image" alt="xxx" />
                                 </a>
                             </div>
                             <div class="boxlist-title">
                                 <span class="boxlist-title-txt">
-                                    <a class="boxlist-a" href="javascript:alert(1)" title="@dish.Name">@dish.Name</a>
+                                    <a class="boxlist-a" href="@dishUrl" title="@dish.Name">@dish.Name</a>
                                 </span>
                             </div>
                             <div class="boxlist-user" title="@dish.ShopName">
