@@ -51,7 +51,7 @@
         $('.shopboxlist').each(function () {
             var id = $(this).attr("data-shopId");
             worker.postMessage(id);
-
+            console.log(id);
             console.log("发送信息" + id);
         });
 
