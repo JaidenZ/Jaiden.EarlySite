@@ -11,7 +11,7 @@
         /// <summary>
         /// 食物编号
         /// </summary>
-        public int DIshId { get; set; }
+        public int DishId { get; set; }
 
         /// <summary>
         /// 食物名称

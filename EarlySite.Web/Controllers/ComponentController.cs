@@ -78,7 +78,7 @@
             Shop shopselect = shopservice.GetShopInfoById(shopid).Data;
             Recipes recipesselect = recipesservice.GetRecipesById(recipeid).Data;
 
-            dish.DIshId = Generation.GenerationId();
+            dish.DishId = Generation.GenerationId();
             dish.UpdateDate = DateTime.Now;
             dish.ShopId = shopselect.ShopId;
             dish.ShopName = shopselect.ShopName;

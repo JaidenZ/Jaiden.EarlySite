@@ -21,16 +21,17 @@
                     <ul class="boxlist">
                         @foreach (Recipes item in Model)
                         {
+                            var recipeUrl = string.Format("{0}?recipeId={1}", Url.Action("RecipeView", "Explore"), item.RecipesId);
                             <li class="boxlist-item">
                                 <div class="boxlist-item_box">
                                     <div class="boxlist-cover">
-                                        <a class="boxlist-a" href="javascript:alert(1)">
+                                        <a class="boxlist-a" href="@recipeUrl">
                                             <img class="boxlist-pic" src="data:image/png;base64,@item.Cover" alt="xxx" />
                                         </a>
                                     </div>
                                     <div class="boxlist-title">
                                         <span class="boxlist-title-txt">
-                                            <a class="boxlist-a" href="javascript:alert(1)" title="@item.Name">@item.Name</a>
+                                            <a class="boxlist-a" href="@recipeUrl" title="@item.Name">@item.Name</a>
                                         </span>
                                     </div>
                                     <div class="boxlist-user" title="@item.Phone">

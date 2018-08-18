@@ -60,7 +60,7 @@
                                 @{
                                     for (int i = 0; i < dishlist.Count; i++)
                                     {
-                                        var dishurl = Url.Action("DishView", "Explore") + "?dishId=" + dishlist[i].DIshId;
+                                        var dishurl = Url.Action("DishView", "Explore") + "?dishId=" + dishlist[i].DishId;
                                         var shopurl = Url.Action("ShopView", "Explore") + "?shopId=" + dishlist[i].ShopId;
                                         <li>
                                             <div class="dishlist__item">

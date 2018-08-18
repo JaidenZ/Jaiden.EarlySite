@@ -9,10 +9,11 @@
     {
         foreach (Shop shopitem in Model)
         {
+            var recipeUrl = string.Format("{0}?shopId={1}", Url.Action("ShopView", "Explore"), shopitem.ShopId);
             <div class="row ShopBoxItem">
                 <div class="col-sm-4">
                     <div class="shopInfoBox" id="shopbox_@shopitem.ShopId" data-shopId="@shopitem.ShopId">
-                        <h4>@shopitem.ShopName</h4>
+                        <h4><a class="shopboxlist-a" href="@recipeUrl">@shopitem.ShopName</a></h4>
                         <div class="shopInfoBox-title">店铺地址</div>
                         <div class="shopInfoBox-content">@(string.IsNullOrEmpty(shopitem.ShopAddress) ? "暂无详细地址信息" : shopitem.ShopAddress)</div>
                         <div class="shopInfoBox-title">店铺描述</div>
@@ -70,18 +71,17 @@
                     },
                     success: function (result) {
                         console.log(result);
-                        //var data = eval('('+result+')');
-                        //console.log(data);
+                        var dishurl = '@Url.Action("DishView","Explore")';
                         var shopbox = $("#shopboxul_" + shopboxid);
                         var htmlstr = "";
                         if (result.Status && result.Data.length > 0) {
                             for (var i = 0; i < result.Data.length; i++) {
                                 htmlstr += '<li class="shopboxlist-item"><div class="shopboxlist-item_box">' +
                                     '<div class="shopboxlist-cover">' +
-                                    '<a class="shopboxlist-a" href="javascript:alert(1)">' +
+                                    '<a class="shopboxlist-a" href="' + dishurl +"?dishId=" + result.Data[i].DishId + '">' +
                                     '<img class="shopboxlist-pic" src="data:image/png;base64,' + result.Data[i].Image + '"/ alt="">' +
                                     '</a></div><div class="boxlist-title"><span class="boxlist-title-txt">' +
-                                    '<a class="boxlist-a" href="javascript:alert(1)" title="">' + result.Data[i].Name + '</a>' +
+                                    '<a class="boxlist-a" href="' + dishurl + "?dishId=" + result.Data[i].DishId + '">' + result.Data[i].Name + '</a>' +
                                     '</span></div><div class="shopboxlist-other">' + result.Data[i].TypeName + '</div>' +
                                     '<div class="shopboxlist-other">￥' + result.Data[i].Price + '</div></div></li>';
                             }

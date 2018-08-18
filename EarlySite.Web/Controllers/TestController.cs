@@ -34,7 +34,7 @@
             Recipes recipesselect = recipes.GetRecipesById(recipesId).Data;
 
             Dish dishmodel = new Dish();
-            dishmodel.DIshId = Generation.GenerationId();
+            dishmodel.DishId = Generation.GenerationId();
             dishmodel.Name = "黑椒牛柳";
             dishmodel.Type = Model.Enum.DishType.川菜.GetHashCode();
             dishmodel.MealTime = Model.Enum.MealTime.午餐.GetHashCode();
