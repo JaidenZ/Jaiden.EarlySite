@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// 验证码工具类
+    /// </summary>
     public class VerificationUtils
     {
 
@@ -21,6 +24,37 @@
                 int millisecond = DateTime.Now.Millisecond;
 
                 if(i == 0)
+                {
+                    verificationcode += GetNum();
+                }
+                else
+                {
+                    if (millisecond % i > 0)
+                    {
+                        verificationcode += GetNum();
+                    }
+                    else
+                    {
+                        verificationcode += GetCode();
+                    }
+                }
+            }
+            return verificationcode;
+        }
+
+        /// <summary>
+        /// 获取验证码
+        /// </summary>
+        /// <param name="length">验证码长度</param>
+        /// <returns></returns>
+        public static string GetVefication(int length)
+        {
+            string verificationcode = "";
+            for (int i = 0; i < length; i++)
+            {
+                int millisecond = DateTime.Now.Millisecond;
+
+                if (i == 0)
                 {
                     verificationcode += GetNum();
                 }
