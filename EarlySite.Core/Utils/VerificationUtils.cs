@@ -1,6 +1,9 @@
 ﻿namespace EarlySite.Core.Utils
 {
     using System;
+    using System.IO;
+    using System.Drawing;
+    using System.Drawing.Imaging;
 
     /// <summary>
     /// 验证码工具类
@@ -73,7 +76,54 @@
             return verificationcode;
         }
 
+        /// <summary>
+        /// 获取图形验证码位图
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Bitmap GetVeficationImage(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return null;
+            }
+            Random rand = new Random();
 
+            Bitmap veficationmap = new Bitmap(100, 38);
+            Graphics g = Graphics.FromImage(veficationmap);
+            g.FillRectangle(Brushes.White, new Rectangle(0, 0, veficationmap.Width, veficationmap.Height));
+            for (int i = 0; i < value.Length; i++)
+            {
+                int x = i*20 +  rand.Next(20);
+                int y = 3 +  rand.Next(5);
+                g.DrawString(value.Substring(i,1), new Font("Microsoft YaHei", rand.Next(12,18), rand.Next() > 20? FontStyle.Bold:FontStyle.Italic), Brushes.RoyalBlue, x, y);
+            }
+            return veficationmap;
+        }
+
+        /// <summary>
+        /// 获图形取验证码字节
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static byte[] GetVeficationByte(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return null;
+            }
+
+            Bitmap map = GetVeficationImage(value);
+            MemoryStream ms = new MemoryStream();
+            map.Save(ms, ImageFormat.Bmp);
+            byte[] result = ms.GetBuffer();
+            return result;
+        }
+
+        /// <summary>
+        /// 获取验证码字符
+        /// </summary>
+        /// <returns></returns>
         private static string GetCode()
         {
             int millisecond = DateTime.Now.Millisecond;
@@ -82,7 +132,10 @@
 
             return code;
         }
-        
+        /// <summary>
+        /// 获取随机数
+        /// </summary>
+        /// <returns></returns>
         private static string GetNum()
         {
             byte[] bytes = new byte[4];
@@ -92,6 +145,6 @@
             
             return Math.Abs(result).ToString();
         }
-
+        
     }
 }

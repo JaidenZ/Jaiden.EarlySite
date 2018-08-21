@@ -9,6 +9,7 @@
     using EarlySite.Core.DDD.Service;
     using EarlySite.Model.Common;
     using EarlySite.Model.Show;
+    using EarlySite.Core.Utils;
     using System.Linq;
 
     public class TestController : Controller
@@ -22,6 +23,15 @@
         public JsonResult GenerationId()
         {
             return Json(Generation.GenerationId());
+        }
+
+        public ActionResult Verificationcode()
+        {
+            string code = VerificationUtils.GetVefication(4);
+
+            byte[] file = VerificationUtils.GetVeficationByte(code);
+
+            return File(file, "image/Jpeg");
         }
 
 

@@ -13,6 +13,11 @@
 <body class="body-content">
 
     <div class="row">
+        <h2>验证码</h2>
+        <img src="@Url.Action("Verificationcode")" onclick="this.src = this.src + '?'" style="height: 44px;" />
+    </div>
+
+    <div class="row">
         <h2>测试操作</h2>
         <button id="store" class="Button" type="button">创建门店</button>
         <button id="recipes" class="Button" type="button">创建食谱</button>
