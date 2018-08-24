@@ -107,6 +107,16 @@
             //Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<>().(recipe.Data.RecipesId);
             //ViewBag.DishList = dishlist.Data;
 
+            //获取附近门店信息
+            
+            ViewBag.NearShop = ServiceObjectContainer.Get<IShakeService>().ShakeNearShops(new ShakeParam()
+            {
+                Longitude = shopinfo.Data.Longitude,
+                Latitude = shopinfo.Data.Latitude,
+                NearDistance = base.SearchDistance
+            }).Data;
+
+
             return View(shopinfo.Data);
         }
 
