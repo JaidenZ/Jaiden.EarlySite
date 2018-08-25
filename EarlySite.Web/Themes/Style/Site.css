@@ -2142,6 +2142,13 @@ html[data-theme=dark] .Popover-content {
     margin-bottom: 15px;
 }
 
+
+.mod_dishlist .dishlist__title_txt {
+    font-size:16px;
+    font-weight:300;
+}
+
+
 .mod_dishlist .dishlist__pic {
     position: absolute;
     top: 0;

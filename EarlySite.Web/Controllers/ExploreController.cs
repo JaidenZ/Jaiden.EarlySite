@@ -87,7 +87,11 @@
 
             //获取单品信息
             Result<Dish> dishinfo = ServiceObjectContainer.Get<IDishService>().SearchDishInfoById(dishId);
-            
+
+            //获取其他包含此单品的食谱
+            Result<IList<Recipes>> recipes = ServiceObjectContainer.Get<IRecipesService>().GetSomeRecpiesByDishId(dishId, 8);
+            ViewBag.Recipes = recipes.Data;
+
             return View(dishinfo.Data);
         }
 

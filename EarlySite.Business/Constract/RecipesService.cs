@@ -1,6 +1,7 @@
 ﻿namespace EarlySite.Business.Constract
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using Business.IService;
     using EarlySite.Core.Utils;
@@ -412,6 +413,53 @@
 
 
             return pagelistresult;
+        }
+
+        /// <summary>
+        /// 根据单品编号获取包含此单品的食谱集
+        /// </summary>
+        /// <param name="dishId">单品编号</param>
+        /// <param name="num">获取食谱集数量</param>
+        /// <returns></returns>
+        public Result<IList<Recipes>> GetSomeRecpiesByDishId(int dishId, int num)
+        {
+            Result<IList<Recipes>> result = new Result<IList<Recipes>>()
+            {
+                Status = true,
+                Data = new List<Recipes>(),
+                Message = "成功获取包含此单品的食谱集"
+            };
+            if(dishId == 0 || num == 0)
+            {
+                result.Status = false;
+                result.Message = "获取食谱失败,请检查参数合法性";
+                return result;
+            }
+            try
+            {
+                //获取包含单品编号的关系集合
+                IList<RelationShareInfo> shareinfo = ServiceObjectContainer.Get<IRelationShareInfoCache>().GetRelationShareByDishId(dishId).OrderByDescending(t =>t.UpdateDate).Take(num).ToList();
+                
+                if(shareinfo != null && shareinfo.Count > 0)
+                {
+                    //获取食谱集合信息
+                    IRecipesCache cacheservice = ServiceObjectContainer.Get<IRecipesCache>();
+
+                    foreach (var item in shareinfo)
+                    {
+                        Recipes recipe = cacheservice.GetRecipesInfoById(item.RecipesId).Copy<Recipes>();
+                        result.Data.Add(recipe);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "获取食谱集异常:" + ex.Message;
+                result.StatusCode = "6000001";
+            }
+
+            return result;
         }
     }
 }

@@ -39,5 +39,12 @@
         /// <param name="receipeId"></param>
         /// <returns></returns>
         IList<RelationShareInfo> GetRelationShareByReceipId(int receipeId);
+
+        /// <summary>
+        /// 获取单品下的分享关系集合
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        IList<RelationShareInfo> GetRelationShareByDishId(int dishId);
     }
 }
