@@ -107,9 +107,6 @@
 
             //获取门店信息
             Result<Shop> shopinfo = ServiceObjectContainer.Get<IShopService>().GetShopInfoById(shopId);
-            //获取单品集合
-            //Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<>().(recipe.Data.RecipesId);
-            //ViewBag.DishList = dishlist.Data;
 
             //获取附近门店信息
             
