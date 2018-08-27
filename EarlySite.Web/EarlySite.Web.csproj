@@ -154,6 +154,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Pictures\store.jpg" />
     <Content Include="Themes\Images\album_cover.png" />
     <Content Include="Themes\Images\icon_sprite.png" />
     <Content Include="Themes\Scripts\JToast.js" />

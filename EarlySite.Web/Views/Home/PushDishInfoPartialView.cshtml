@@ -14,7 +14,7 @@
                     Dish dish = Model.List[i];
 
                     var dishUrl = string.Format("{0}?dishId={1}", Url.Action("DishView", "Explore"), dish.DishId);
-
+                    var shopurl = string.Format("{0}?shopId={1}", Url.Action("ShopView", "Explore"), dish.ShopId);
                     <li class="boxlist-item">
                         <div class="boxlist-item_box">
                             <div class="boxlist-cover">
@@ -28,7 +28,7 @@
                                 </span>
                             </div>
                             <div class="boxlist-user" title="@dish.ShopName">
-                                <a class="boxlist-a" href="">@dish.ShopName</a>
+                                <a class="boxlist-a" href="@shopurl">@dish.ShopName</a>
                             </div>
                             <div class="boxlist-other">￥@dish.Price.ToString("0.00")</div>
                             <div class="boxlist-other">@dish.UpdateDate.ToString("yyyy-MM-dd")</div>
