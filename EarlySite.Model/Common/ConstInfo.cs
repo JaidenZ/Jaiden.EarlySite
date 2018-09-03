@@ -11,6 +11,10 @@
 
     }
     
+    /// <summary>
+    /// 序列号生成
+    /// </summary>
+    /// <remarks>2018-4-12 Haojun.Zhao 创建</remarks>
     public static class Generation
     {
 
