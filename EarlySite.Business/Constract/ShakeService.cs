@@ -28,7 +28,16 @@
                 Message = "筛选单品信息成功"
             };
 
+            try
+            {
 
+            }
+            catch(Exception ex)
+            {
+                result.Status = false;
+                result.Message = "筛选单出错:" + ex.Message;
+                result.StatusCode = "Shake000";
+            }
 
             return result;
         }
