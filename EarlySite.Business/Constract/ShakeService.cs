@@ -22,7 +22,15 @@
 
         Result<Dish> IShakeService.ShakeDish(ShakeParam param)
         {
-            throw new System.NotImplementedException();
+            Result<Dish> result = new Result<Dish>()
+            {
+                Status = true,
+                Message = "筛选单品信息成功"
+            };
+
+
+
+            return result;
         }
 
         /// <summary>
