@@ -23,15 +23,15 @@
                 <ul class="data__info">
                     <li class="data_info__item">创建时间:@Model.UpdateDate.ToString("yyyy-MM-dd")</li>
                     <li class="data_info__item data_info__item--even">描述:@Model.Description</li>
-                    <li class="data_info__item">是否公开:</li>
+                    @*<li class="data_info__item">是否公开:</li>*@
                     <li class="data_info__item data_info__item--even">标签:</li>
                 </ul>
                 <div class="data__actions" role="toolbar">
-                    <!--删除 操作-->
-                    <a class="mod_btn" href="">
-                        <i class="mod_btn__icon_delete"></i>
-                        删除
-                    </a>
+                    @*<!--删除 操作-->
+                        <a class="mod_btn" href="">
+                            <i class="mod_btn__icon_delete"></i>
+                            删除
+                        </a>*@
                     <!--收藏操作-->
                     <a class="mod_btn mod_btn_red" href="javascript:toast('コレクション')">
                         <i class="mod_btn_green__icon_like"></i>

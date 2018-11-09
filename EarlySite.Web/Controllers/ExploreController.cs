@@ -68,9 +68,9 @@
             Result<Recipes> recipe = ServiceObjectContainer.Get<IRecipesService>().GetRecipesById(recipeId);
             //是否是自己的食谱
             ViewBag.IsSelf = recipe.Data.Phone == CurrentAccount.Phone;
-            ////获取单品集合
-            //Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<IDishService>().GetCollectDishList(recipe.Data.RecipesId);
-            //ViewBag.DishList = dishlist.Data;
+            //获取单品集合
+            Result<IList<Dish>> dishlist = ServiceObjectContainer.Get<IDishService>().GetCollectDishList(recipe.Data.RecipesId);
+            ViewBag.DishList = dishlist.Data;
             //获取相似食谱
 
             
