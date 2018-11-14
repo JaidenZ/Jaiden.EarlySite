@@ -78,5 +78,13 @@
         /// <returns></returns>
         Result<IList<Recipes>> GetSomeRecpiesByDishId(int dishId,int num);
 
+        /// <summary>
+        /// 根据单品编号获取包含此单品的食谱集
+        /// </summary>
+        /// <param name="dishId">单品编号</param>
+        /// <param name="num">获取食谱集数量</param>
+        /// <returns></returns>
+        Result<IList<Recipes>> GetSomeRecpiesByRecipeId(int recipeId, int num);
+
     }
 }

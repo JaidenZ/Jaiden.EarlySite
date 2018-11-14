@@ -104,25 +104,25 @@
                     <h3 class="other_part__tit">相似食谱</h3>
                     <div class="mod_dishlist">
                         @{
-                            IList<Shop> nearshop = (IList<Shop>)ViewBag.NearShop;
+                            IList<Recipes> recipesList = (IList<Recipes>)ViewBag.Recipes;
 
-                            if (nearshop != null && nearshop.Count > 0)
+                            if (recipesList != null && recipesList.Count > 0)
                             {
                                 <ul class="dishlist__list">
-                                    @foreach (Shop item in nearshop)
+                                    @foreach (Recipes item in recipesList)
                                     {
-                                        var shopurl = string.Format("{0}?shopId={1}", Url.Action("ShopView", "Explore"), item.ShopId);
+                                        var recpisurl = string.Format("{0}?recipeId={1}", Url.Action("RecipeView", "Explore"), item.RecipesId);
 
                                         <li class="dishlist__item">
                                             <div class="dishlist__item_box">
                                                 <div class="dishlist__cover">
-                                                    <a class="js_dishlist" href="@shopurl">
-                                                        <img class="dishlist__pic" src="data:image/png;base64," alt="...">
+                                                    <a class="js_dishlist" href="@recpisurl">
+                                                        <img class="dishlist__pic" src="data:image/png;base64,@item.Cover" alt="...">
                                                     </a>
                                                 </div>
                                                 <h4 class="dishlist__title">
                                                     <span class="dishlist__title_txt">
-                                                        <a href="@shopurl">@item.ShopName</a>
+                                                        <a href="@recpisurl">@item.Name</a>
                                                     </span>
                                                 </h4>
                                             </div>

@@ -461,5 +461,62 @@
 
             return result;
         }
+
+        /// <summary>
+        /// 根据食谱编号获取包含此食谱单品的相似食谱集
+        /// </summary>
+        /// <param name="recipeId">获取食谱编号</param>
+        /// <param name="num">获取食谱集数量</param>
+        /// <returns></returns>
+        public Result<IList<Recipes>> GetSomeRecpiesByRecipeId(int recipeId, int num)
+        {
+
+            Result<IList<Recipes>> result = new Result<IList<Recipes>>()
+            {
+                Status = true,
+                Data = new List<Recipes>(),
+                Message = "成功获取相似的食谱集"
+            };
+            if (recipeId == 0 || num == 0)
+            {
+                result.Status = false;
+                result.Message = "获取食谱失败,请检查参数合法性";
+                return result;
+            }
+            try
+            {
+                //获取食谱的单品
+                IList<RelationShareInfo> recipesshare = ServiceObjectContainer.Get<IRelationShareInfoCache>().GetRelationShareByReceipId(recipeId).ToList();
+                if(recipesshare != null && recipesshare.Count > 0)
+                {
+                    IList<int> dishids = new List<int>();
+                    foreach (RelationShareInfo shareitem in recipesshare)
+                    {
+                        dishids.Add(shareitem.DishId);
+                    }
+                    //获取包含单品编号的其他的关系集合
+                    IList<RelationShareInfo> shareinfo = ServiceObjectContainer.Get<IRelationShareInfoCache>().GetRelationShareByDishId(dishids).Where(i => i.RecipesId != recipeId).OrderByDescending(t => t.UpdateDate).Take(num).ToList();
+
+                    if (shareinfo != null && shareinfo.Count > 0)
+                    {
+                        //获取食谱集合信息
+                        foreach (var item in shareinfo)
+                        {
+                            Recipes recipe = ServiceObjectContainer.Get<IRecipesCache>().GetRecipesInfoById(item.RecipesId).Copy<Recipes>();
+                            result.Data.Add(recipe);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Message = "获取食谱集异常:" + ex.Message;
+                result.StatusCode = "6000001";
+            }
+
+            return result;
+
+        }
     }
 }

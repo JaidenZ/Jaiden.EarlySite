@@ -54,6 +54,51 @@
         }
 
         /// <summary>
+        /// 获取单品下的分享关系集合
+        /// </summary>
+        /// <param name="dishId"></param>
+        /// <returns></returns>
+        IList<RelationShareInfo> IRelationShareInfoCache.GetRelationShareByDishId(IList<int> dishId)
+        {
+            IList<RelationShareInfo> result = new List<RelationShareInfo>();
+
+            if (dishId == null || dishId.Count == 0)
+            {
+                throw new ArgumentNullException("dishIds can not be null");
+            }
+
+            foreach (int ditem in dishId)
+            {
+                string key = string.Format("DB_RS_*_{0}_*", ditem);
+                IList<string> keys = Session.Current.ScanAllKeys(key);
+                if (keys != null && keys.Count > 0)
+                {
+                    foreach (string k in keys)
+                    {
+                        result.Add(Session.Current.Get<RelationShareInfo>(k));
+                    }
+                }
+                else
+                {
+                    //从数据库拿取
+                    result = DBConnectionManager.Instance.Reader.Select<RelationShareInfo>(new RelationShareSelectSpefication(ditem.ToString(), 2).Satifasy());
+                    if (result != null && result.Count > 0)
+                    {
+                        foreach (RelationShareInfo item in result)
+                        {
+                            //同步到缓存
+                            Session.Current.Set(item.GetKeyName(), item);
+                            Session.Current.Expire(item.GetKeyName(), ExpireTime);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+
+
+        /// <summary>
         /// 根据手机号获取分享集合缓存
         /// </summary>
         /// <param name="phone"></param>
