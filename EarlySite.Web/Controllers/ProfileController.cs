@@ -32,6 +32,9 @@
             //获取用户收藏的单品
             //Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
             ViewBag.FavoriteDishs = dishresult.Data;
+            
+            //用户收藏总数
+            ViewBag.FavoriteCount = dishresult.Data.Count + recipesresult.Data.Count;
 
             return View(viewaccount);
         }
