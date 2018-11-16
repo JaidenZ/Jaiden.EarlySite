@@ -25,6 +25,14 @@
             //获取用户分享的单品列表
             Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
             ViewBag.Dishs = dishresult.Data;
+
+            //获取用户收藏的食谱
+            //Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
+            ViewBag.FavoriteRecipes = recipesresult.Data;
+            //获取用户收藏的单品
+            //Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
+            ViewBag.FavoriteDishs = dishresult.Data;
+
             return View(viewaccount);
         }
 
@@ -50,6 +58,27 @@
             return PartialView(dishs);
         }
 
+        /// <summary>
+        /// 收藏单品分布视图
+        /// </summary>
+        /// <param name="favoritedish"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult FavoriteDishPatialView(IList<Dish> favoritedish)
+        {
+            return PartialView(favoritedish);
+        }
+
+        /// <summary>
+        /// 收藏食谱分布视图
+        /// </summary>
+        /// <param name="favoritedish"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult FavoriteRecipePatialView(IList<Recipes> favoriteRecipe)
+        {
+            return PartialView(favoriteRecipe);
+        }
 
         [HttpGet]
         public ActionResult Setting()

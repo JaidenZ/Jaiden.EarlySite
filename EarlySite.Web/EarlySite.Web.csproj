@@ -252,6 +252,8 @@
     <Content Include="Views\Explore\RecipeView.cshtml" />
     <Content Include="Views\Explore\ShopView.cshtml" />
     <Content Include="Views\Explore\DishView.cshtml" />
+    <Content Include="Views\Profile\FavoriteDishPatialView.cshtml" />
+    <Content Include="Views\Profile\FavoriteRecipePatialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

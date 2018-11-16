@@ -168,12 +168,22 @@
             </div>
             <div class="row corner">
                 @{
-                    Html.RenderPartial("RecipesPatialView", (IList<Recipes>)ViewBag.Recipes);
+            Html.RenderPartial("RecipesPatialView", (IList<Recipes>)ViewBag.Recipes);
                 }
             </div>
             <div class="row corner">
                 @{
-                    Html.RenderPartial("DishPatialView", (IList<Dish>)ViewBag.Dishs);
+            Html.RenderPartial("DishPatialView", (IList<Dish>)ViewBag.Dishs);
+                }
+            </div>
+            <div class="row corner">
+                @{
+            Html.RenderPartial("FavoriteRecipePatialView", (IList<Recipes>)ViewBag.FavoriteRecipes);
+                }
+            </div>
+            <div class="row corner">
+                @{
+            Html.RenderPartial("FavoriteDishPatialView", (IList<Dish>)ViewBag.FavoriteDishs);
                 }
             </div>
         </div>

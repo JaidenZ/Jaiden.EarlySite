@@ -1,0 +1,48 @@
+﻿@using EarlySite.Model.Show;
+
+@model IList<Recipes>
+
+@{
+    //收藏总数
+    var favoriteCount = Model == null ? 0 : Model.Count;
+
+}
+<div class="warrper">
+    <div class="warrper-header">
+        <a class="warrper-header-title efont" href="">收藏的食谱</a>
+        <span class="warrper-header-more">进行了 @favoriteCount 次食谱收藏</span>
+    </div>
+    <div class="warrper-body">
+        <div class="row warrper-body-list">
+            @{
+                if (Model != null && Model.Count > 0)
+                {
+                    <ul class="boxlist">
+                        @foreach (Recipes item in Model)
+                        {
+                            var recipeUrl = string.Format("{0}?recipeId={1}", Url.Action("RecipeView", "Explore"), item.RecipesId);
+                            <li class="boxlist-item">
+                                <div class="boxlist-item_box">
+                                    <div class="boxlist-cover">
+                                        <a class="boxlist-a" href="@recipeUrl">
+                                            <img class="boxlist-pic" src="data:image/png;base64,@item.Cover" alt="xxx" />
+                                        </a>
+                                    </div>
+                                    <div class="boxlist-title">
+                                        <span class="boxlist-title-txt">
+                                            <a class="boxlist-a" href="@recipeUrl" title="@item.Name">@item.Name</a>
+                                        </span>
+                                    </div>
+                                    <div class="boxlist-user" title="@item.Phone">
+                                        <a class="boxlist-a" href="">@item.Phone</a>
+                                    </div>
+                                    <div class="boxlist-other">@item.UpdateDate.ToString("yyyy-MM-dd")</div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+</div>
