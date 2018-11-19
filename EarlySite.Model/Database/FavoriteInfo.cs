@@ -19,7 +19,7 @@
         /// <summary>
         /// 收藏类型
         /// </summary>
-        public int FvoriteType { get; set; }
+        public int FavoriteType { get; set; }
 
         /// <summary>
         /// 最后更新时间
@@ -29,7 +29,7 @@
         public string GetKeyName()
         {
             //DB_FA_手机号_收藏编号_类型
-            return string.Format("DB_FA_{0}_{1}_{2}", this.Phone, this.FavoriteId, this.FvoriteType);
+            return string.Format("DB_FA_{0}_{1}_{2}", this.Phone, this.FavoriteId, this.FavoriteType);
         }
     }
 }
