@@ -101,6 +101,11 @@
                     result.Data = favoriteRecipes.CopyList<RecipesInfo, Recipes>();
                     result.Status = true;
                 }
+                else
+                {
+                    result.Status = false;
+                    result.Data = new List<Recipes>();
+                }
 
             }
             catch(Exception ex)

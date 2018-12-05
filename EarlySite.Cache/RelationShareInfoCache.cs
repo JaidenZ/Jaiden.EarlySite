@@ -2,7 +2,7 @@
 {
     using CacheBase;
     using EarlySite.Drms.DBManager;
-    using EarlySite.Drms.Spefication.RelationSpefication;
+    using EarlySite.Drms.Spefication;
     using EarlySite.Model.Database;
     using System;
     using System.Collections.Generic;
