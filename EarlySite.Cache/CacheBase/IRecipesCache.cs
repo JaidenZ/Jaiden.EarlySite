@@ -15,6 +15,15 @@
         /// <returns></returns>
         RecipesInfo GetRecipesInfoById(int recipesId);
 
+
+        /// <summary>
+        /// 根据食谱编号获取缓存
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        IList<RecipesInfo> GetRecipesInfoById(IList<int> recipesIds);
+
+
         /// <summary>
         /// 根据手机号获食谱集
         /// </summary>
@@ -22,13 +31,7 @@
         /// <returns></returns>
         IList<RecipesInfo> GetRecipesInfoByPhone(long phone);
 
-        /// <summary>
-        /// 根据手机号获取喜爱的食谱集
-        /// </summary>
-        /// <param name="phone"></param>
-        /// <returns></returns>
-        IList<RecipesInfo> GetFavoriteRecipesByPhone(long phone);
-
+        
 
         /// <summary>
         /// 设置食谱禁用启用状态

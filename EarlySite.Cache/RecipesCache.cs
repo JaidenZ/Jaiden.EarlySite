@@ -82,9 +82,23 @@
         /// </summary>
         /// <param name="phone"></param>
         /// <returns></returns>
-        IList<RecipesInfo> IRecipesCache.GetFavoriteRecipesByPhone(long phone)
+        IList<RecipesInfo> IRecipesCache.GetRecipesInfoById(IList<int> recipesIds)
         {
-            throw new NotImplementedException();
+            IList<RecipesInfo> result = null;
+
+            if(recipesIds != null && recipesIds.Count > 0)
+            {
+                result = new List<RecipesInfo>();
+                foreach (int id in recipesIds)
+                {
+                    RecipesInfo model = GetRecipesInfoById(id);
+                    if(model != null)
+                    {
+                        result.Add(model);
+                    }
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -92,7 +106,7 @@
         /// </summary>
         /// <param name="recipesId"></param>
         /// <returns></returns>
-        RecipesInfo IRecipesCache.GetRecipesInfoById(int recipesId)
+        public RecipesInfo GetRecipesInfoById(int recipesId)
         {
             string key = string.Format("DB_RI_{0}_*", recipesId);
 

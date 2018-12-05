@@ -63,6 +63,7 @@
     <Compile Include="Spefication\DishSpefication\DishSelectSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishShopNameUpdateSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishUpdateSpefication.cs" />
+    <Compile Include="Spefication\FavoriteSpefication\FavoriteSelectSpefication.cs" />
     <Compile Include="Spefication\LoggerSpefication\AddSystemLoggerSpeficaiton.cs" />
     <Compile Include="Spefication\RecipesSpefication\RecipesAddSpefication.cs" />
     <Compile Include="Spefication\RecipesSpefication\RecipesCountForSelectPageSpefication.cs" />

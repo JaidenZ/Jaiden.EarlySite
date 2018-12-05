@@ -27,8 +27,8 @@
             ViewBag.Dishs = dishresult.Data;
 
             //获取用户收藏的食谱
-            //Result<IList<Recipes>> recipesresult = ServiceObjectContainer.Get<IRecipesService>().GetRecipesByPhone(phone);
-            ViewBag.FavoriteRecipes = recipesresult.Data;
+            Result<IList<Recipes>> favoriteRecipes = ServiceObjectContainer.Get<IRecipesService>().GetFavoriteRecipesByPhone(phone);
+            ViewBag.FavoriteRecipes = favoriteRecipes.Data;
             //获取用户收藏的单品
             //Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
             ViewBag.FavoriteDishs = dishresult.Data;

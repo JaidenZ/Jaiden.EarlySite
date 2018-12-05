@@ -80,6 +80,8 @@
             };
             try
             {
+                //收藏关系缓存
+                IRelationFavoriteCache favoritecache = ServiceObjectContainer.Get<IRelationFavoriteCache>();
                 //食谱缓存服务
                 IRecipesCache recipesservice = ServiceObjectContainer.Get<IRecipesCache>();
                 if (phone == 0)
@@ -87,7 +89,12 @@
                     throw new ArgumentException("获取食谱,参数非法");
                 }
 
-                IList<RecipesInfo> favoriteRecipes = recipesservice.GetFavoriteRecipesByPhone(phone);
+                //获取收藏关系
+                IList<FavoriteInfo> favoritelist = favoritecache.GetFavoriteByPhone(phone, Model.Enum.FavoriteTypeEnum.收藏食谱);
+                IList<int> favoriterecipesId = favoritelist.Select(s => s.FavoriteId).ToList();
+                
+                //获取食谱集信息
+                IList<RecipesInfo> favoriteRecipes = recipesservice.GetRecipesInfoById(favoriterecipesId);
 
                 if(favoriteRecipes != null && favoriteRecipes.Count > 0)
                 {

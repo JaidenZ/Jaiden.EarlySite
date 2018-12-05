@@ -5,6 +5,7 @@
     using System.Text;
     using EarlySite.Cache.CacheBase;
     using EarlySite.Drms.DBManager;
+    using EarlySite.Drms.Spefication;
     using EarlySite.Model.Database;
     using EarlySite.Model.Enum;
 
@@ -15,6 +16,12 @@
     /// </summary>
     public partial class RelationFavoriteCache : IRelationFavoriteCache
     {
+        /// <summary>
+        /// 通过手机号获取收藏关系集合
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <param name="favoritetype"></param>
+        /// <returns></returns>
         public IList<FavoriteInfo> GetFavoriteByPhone(long phone, FavoriteTypeEnum favoritetype)
         {
             if(phone == 0)
@@ -35,20 +42,18 @@
             }
             else
             {
-                ////从数据库拿取
-                //result = DBConnectionManager.Instance.Reader.Select<FavoriteInfo>(new RelationShareSelectSpefication(dishId.ToString(), 2).Satifasy());
-                //if (result != null && result.Count > 0)
-                //{
-                //    foreach (FavoriteInfo item in result)
-                //    {
-                //        //同步到缓存
-                //        Session.Current.Set(item.GetKeyName(), item);
-                //        Session.Current.Expire(item.GetKeyName(), ExpireTime);
-                //    }
-                //}
+                //从数据库拿取
+                result = DBConnectionManager.Instance.Reader.Select<FavoriteInfo>(new FavoriteSelectSpefication(phone, favoritetype).Satifasy());
+                if (result != null && result.Count > 0)
+                {
+                    foreach (FavoriteInfo item in result)
+                    {
+                        //同步到缓存
+                        Session.Current.Set(item.GetKeyName(), item);
+                        Session.Current.Expire(item.GetKeyName(), ExpireTime);
+                    }
+                }
             }
-
-
             return result;
         }
     }

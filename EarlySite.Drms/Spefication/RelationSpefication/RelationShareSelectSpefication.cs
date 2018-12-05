@@ -1,4 +1,4 @@
-﻿namespace EarlySite.Drms.Spefication.RelationSpefication
+﻿namespace EarlySite.Drms.Spefication
 {
     using System.Text;
     using System.Collections.Generic;
