@@ -3,6 +3,9 @@
     using EarlySite.Model.Enum;
     using System;
 
+    /// <summary>
+    /// 收藏关系信息模型
+    /// </summary>
     public class FavoriteInfo : IKeyNameSpecification
     {
 

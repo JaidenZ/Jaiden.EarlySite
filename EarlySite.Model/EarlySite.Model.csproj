@@ -48,6 +48,7 @@
     <Compile Include="Database\ShopInfo.cs" />
     <Compile Include="Enum\AccountEnum.cs" />
     <Compile Include="Enum\DishTypeEnum.cs" />
+    <Compile Include="Enum\FavoriteTypeEnum.cs" />
     <Compile Include="IKeyNameSpecification.cs" />
     <Compile Include="Show\Account.cs" />
     <Compile Include="Show\Dish.cs" />
