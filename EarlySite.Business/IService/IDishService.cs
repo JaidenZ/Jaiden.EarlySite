@@ -76,5 +76,12 @@
         /// <returns></returns>
         Result<IList<Dish>> GetCollectDishList(int recipesId);
 
+        /// <summary>
+        /// 根据手机号获取喜爱的单品集
+        /// </summary>
+        /// <param name="phone"></param>
+        /// <returns></returns>
+        Result<IList<Dish>> GetFavoriteDishByPhone(long phone);
+
     }
 }

@@ -30,11 +30,11 @@
             Result<IList<Recipes>> favoriteRecipes = ServiceObjectContainer.Get<IRecipesService>().GetFavoriteRecipesByPhone(phone);
             ViewBag.FavoriteRecipes = favoriteRecipes.Data;
             //获取用户收藏的单品
-            //Result<IList<Dish>> dishresult = ServiceObjectContainer.Get<IDishService>().GetShareDishList(phone);
-            ViewBag.FavoriteDishs = dishresult.Data;
+            Result<IList<Dish>> favoritedishs = ServiceObjectContainer.Get<IDishService>().GetFavoriteDishByPhone(phone);
+            ViewBag.FavoriteDishs = favoritedishs.Data;
             
             //用户收藏总数
-            ViewBag.FavoriteCount = dishresult.Data.Count + recipesresult.Data.Count;
+            ViewBag.FavoriteCount = favoriteRecipes.Data.Count + favoritedishs.Data.Count;
 
             return View(viewaccount);
         }

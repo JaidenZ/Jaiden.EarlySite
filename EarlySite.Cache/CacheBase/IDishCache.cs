@@ -17,6 +17,13 @@
         DishInfo GetDishInfoById(int dishId);
 
         /// <summary>
+        /// 获取单品
+        /// </summary>
+        /// <param name="dishId">单品编号</param>
+        /// <returns>单品信息</returns>
+        IList<DishInfo> GetDishInfoById(IList<int> dishIds);
+
+        /// <summary>
         /// 获取店铺的单品集合
         /// </summary>
         /// <param name="shopId"></param>

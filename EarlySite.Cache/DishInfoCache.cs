@@ -20,7 +20,7 @@
         /// </summary>
         /// <param name="dishId"></param>
         /// <returns></returns>
-        DishInfo IDishCache.GetDishInfoById(int dishId)
+        public DishInfo GetDishInfoById(int dishId)
         {
             DishInfo result = null;
             string key = string.Format("DB_DI_{0}_*", dishId);
@@ -44,6 +44,32 @@
             return result;
         }
         
+
+        /// <summary>
+        /// 获取单品信息
+        /// </summary>
+        /// <param name="dishIds"></param>
+        /// <returns></returns>
+        IList<DishInfo> IDishCache.GetDishInfoById(IList<int> dishIds)
+        {
+
+            IList<DishInfo> result = null;
+
+            if (dishIds != null && dishIds.Count > 0)
+            {
+                result = new List<DishInfo>();
+                foreach (int id in dishIds)
+                {
+                    DishInfo model = GetDishInfoById(id);
+                    if (model != null)
+                    {
+                        result.Add(model);
+                    }
+                }
+            }
+            return result;
+        }
+
 
         /// <summary>
         /// 获取门店的单品信息

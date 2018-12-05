@@ -111,6 +111,7 @@
             catch(Exception ex)
             {
                 result.Status = false;
+                result.Data = new List<Recipes>();
                 result.Message = "查找食谱出错:" + ex.Message;
                 LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetFavoriteRecipesByPhone() .RecipesService"), LogType.ErrorLog);
             }

@@ -12,6 +12,7 @@
     using EarlySite.Core.Utils;
     using EarlySite.Cache.CacheBase;
     using EarlySite.Core.DDD.Service;
+    using System.Linq;
 
     public class DishService : IDishService
     {
@@ -486,6 +487,57 @@
 
 
             return result;
+        }
+
+        public Result<IList<Dish>> GetFavoriteDishByPhone(long phone)
+        {
+            Result<IList<Dish>> result = new Result<IList<Dish>>()
+            {
+                Status = true,
+                Message = "查找单品集合成功"
+            };
+            try
+            {
+                //收藏关系缓存
+                IRelationFavoriteCache favoritecache = ServiceObjectContainer.Get<IRelationFavoriteCache>();
+                //食谱缓存服务
+                IDishCache dishcache = ServiceObjectContainer.Get<IDishCache>();
+                if (phone == 0)
+                {
+                    throw new ArgumentException("获取食谱,参数非法");
+                }
+
+                //获取收藏关系
+                IList<FavoriteInfo> favoritelist = favoritecache.GetFavoriteByPhone(phone, Model.Enum.FavoriteTypeEnum.收藏单品);
+                IList<int> favoriterecipesId = favoritelist.Select(s => s.FavoriteId).ToList();
+
+                //获取单品信息
+                IList<DishInfo> favoritedishs = dishcache.GetDishInfoById(favoriterecipesId);
+
+                if (favoritedishs != null && favoritedishs.Count > 0)
+                {
+                    result.Data = favoritedishs.CopyList<DishInfo, Dish>();
+                    result.Status = true;
+                }
+                else
+                {
+                    result.Status = false;
+                    result.Data = new List<Dish>();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Status = false;
+                result.Data = new List<Dish>();
+                result.Message = "查找单品出错:" + ex.Message;
+                LoggerUtils.LogIn(LoggerUtils.ColectExceptionMessage(ex, "At service:GetFavoriteDishByPhone() .DishService"), LogType.ErrorLog);
+            }
+
+            return result;
+
+
+
         }
     }
 }
