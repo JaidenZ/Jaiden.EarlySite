@@ -63,6 +63,7 @@
     <Compile Include="Spefication\DishSpefication\DishSelectSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishShopNameUpdateSpefication.cs" />
     <Compile Include="Spefication\DishSpefication\DishUpdateSpefication.cs" />
+    <Compile Include="Spefication\FavoriteSpefication\FavoriteDeleteSpefication.cs" />
     <Compile Include="Spefication\FavoriteSpefication\FavoriteSelectSpefication.cs" />
     <Compile Include="Spefication\LoggerSpefication\AddSystemLoggerSpeficaiton.cs" />
     <Compile Include="Spefication\RecipesSpefication\RecipesAddSpefication.cs" />
@@ -99,6 +100,9 @@
       <Project>{d889ebf6-62f6-4bff-b537-9830baa24953}</Project>
       <Name>EarlySite.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Spefication\FavoriteSpefication\FavoriteAddSpefication.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
